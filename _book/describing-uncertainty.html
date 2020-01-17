@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Describing Uncertainty | Statistical Methods in Water Resources with R</title>
+  <meta name="description" content="This project aims to translate Helsel and Hirsch ‘Statistical Methods in Water Resources’ into R." />
+  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Describing Uncertainty | Statistical Methods in Water Resources with R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This project aims to translate Helsel and Hirsch ‘Statistical Methods in Water Resources’ into R." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Describing Uncertainty | Statistical Methods in Water Resources with R" />
+  
+  <meta name="twitter:description" content="This project aims to translate Helsel and Hirsch ‘Statistical Methods in Water Resources’ into R." />
+  
+
+<meta name="author" content="MiRoVaGo" />
+
+
+<meta name="date" content="2020-01-08" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="ch2.html"/>
+<link rel="next" href="references.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Statistical Methods in Water Resources with R</a></li>    
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="summarizing-data.html"><a href="summarizing-data.html"><i class="fa fa-check"></i><b>1</b> Summarizing data</a><ul>
+<li class="chapter" data-level="1.1" data-path="summarizing-data.html"><a href="summarizing-data.html#characteristics-of-water-resources-data"><i class="fa fa-check"></i><b>1.1</b> Characteristics of Water Resources Data</a></li>
+<li class="chapter" data-level="1.2" data-path="summarizing-data.html"><a href="summarizing-data.html#measures-of-location"><i class="fa fa-check"></i><b>1.2</b> Measures of Location</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="summarizing-data.html"><a href="summarizing-data.html#classical-measure-the-mean"><i class="fa fa-check"></i><b>1.2.1</b> Classical Measure – the Mean</a></li>
+<li class="chapter" data-level="1.2.2" data-path="summarizing-data.html"><a href="summarizing-data.html#resistant-measure-the-median"><i class="fa fa-check"></i><b>1.2.2</b> Resistant Measure – the Median</a></li>
+<li class="chapter" data-level="1.2.3" data-path="summarizing-data.html"><a href="summarizing-data.html#other-measures-of-location"><i class="fa fa-check"></i><b>1.2.3</b> Other Measures of Location</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="summarizing-data.html"><a href="summarizing-data.html#measures-of-spread"><i class="fa fa-check"></i><b>1.3</b> Measures of Spread</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="summarizing-data.html"><a href="summarizing-data.html#classical-measures"><i class="fa fa-check"></i><b>1.3.1</b> Classical Measures</a></li>
+<li class="chapter" data-level="1.3.2" data-path="summarizing-data.html"><a href="summarizing-data.html#resistant-measures"><i class="fa fa-check"></i><b>1.3.2</b> Resistant Measures</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="summarizing-data.html"><a href="summarizing-data.html#measures-of-skewness"><i class="fa fa-check"></i><b>1.4</b> Measures of Skewness</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="summarizing-data.html"><a href="summarizing-data.html#classical-measure-of-skewness"><i class="fa fa-check"></i><b>1.4.1</b> Classical Measure of Skewness</a></li>
+<li class="chapter" data-level="1.4.2" data-path="summarizing-data.html"><a href="summarizing-data.html#resistant-measure-of-skewness"><i class="fa fa-check"></i><b>1.4.2</b> Resistant Measure of Skewness</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="summarizing-data.html"><a href="summarizing-data.html#other-resistant-measures"><i class="fa fa-check"></i><b>1.5</b> Other Resistant Measures</a></li>
+<li class="chapter" data-level="1.6" data-path="summarizing-data.html"><a href="summarizing-data.html#outliers"><i class="fa fa-check"></i><b>1.6</b> Outliers</a></li>
+<li class="chapter" data-level="1.7" data-path="summarizing-data.html"><a href="summarizing-data.html#transformations"><i class="fa fa-check"></i><b>1.7</b> Transformations</a><ul>
+<li class="chapter" data-level="1.7.1" data-path="summarizing-data.html"><a href="summarizing-data.html#the-ladder-of-powers"><i class="fa fa-check"></i><b>1.7.1</b> The Ladder of Powers</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="ch2.html"><a href="ch2.html"><i class="fa fa-check"></i><b>2</b> Graphical Data Analysis</a><ul>
+<li class="chapter" data-level="2.1" data-path="ch2.html"><a href="ch2.html#graphical-analysis-of-single-data-sets"><i class="fa fa-check"></i><b>2.1</b> Graphical Analysis of Single Data Sets</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="ch2.html"><a href="ch2.html#histograms"><i class="fa fa-check"></i><b>2.1.1</b> Histograms</a></li>
+<li class="chapter" data-level="2.1.2" data-path="ch2.html"><a href="ch2.html#stem-and-leaf-diagrams"><i class="fa fa-check"></i><b>2.1.2</b> Stem and Leaf Diagrams</a></li>
+<li class="chapter" data-level="2.1.3" data-path="ch2.html"><a href="ch2.html#quantile-plots"><i class="fa fa-check"></i><b>2.1.3</b> Quantile Plots</a></li>
+<li class="chapter" data-level="2.1.4" data-path="ch2.html"><a href="ch2.html#boxplots"><i class="fa fa-check"></i><b>2.1.4</b> Boxplots</a></li>
+<li class="chapter" data-level="2.1.5" data-path="ch2.html"><a href="ch2.html#probability-plots"><i class="fa fa-check"></i><b>2.1.5</b> Probability Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="ch2.html"><a href="ch2.html#graphical-comparisons-of-two-or-more-data-sets"><i class="fa fa-check"></i><b>2.2</b> Graphical Comparisons of Two or More Data Sets</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="ch2.html"><a href="ch2.html#histograms-1"><i class="fa fa-check"></i><b>2.2.1</b> Histograms</a></li>
+<li class="chapter" data-level="2.2.2" data-path="ch2.html"><a href="ch2.html#dot-and-line-plots-of-means-standard-deviations"><i class="fa fa-check"></i><b>2.2.2</b> Dot and Line Plots of Means, Standard Deviations</a></li>
+<li class="chapter" data-level="2.2.3" data-path="ch2.html"><a href="ch2.html#boxplots-1"><i class="fa fa-check"></i><b>2.2.3</b> Boxplots</a></li>
+<li class="chapter" data-level="2.2.4" data-path="ch2.html"><a href="ch2.html#probability-plots-1"><i class="fa fa-check"></i><b>2.2.4</b> Probability Plots</a></li>
+<li class="chapter" data-level="2.2.5" data-path="ch2.html"><a href="ch2.html#q-q-plots"><i class="fa fa-check"></i><b>2.2.5</b> Q-Q Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="ch2.html"><a href="ch2.html#scatterplots-and-enhancements"><i class="fa fa-check"></i><b>2.3</b> Scatterplots and Enhancements</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="ch2.html"><a href="ch2.html#evaluating-linearity"><i class="fa fa-check"></i><b>2.3.1</b> Evaluating Linearity</a></li>
+<li class="chapter" data-level="2.3.2" data-path="ch2.html"><a href="ch2.html#evaluating-differences-in-location-on-a-scatterplot"><i class="fa fa-check"></i><b>2.3.2</b> Evaluating Differences in Location on a Scatterplot</a></li>
+<li class="chapter" data-level="2.3.3" data-path="ch2.html"><a href="ch2.html#evaluating-differences-in-spread"><i class="fa fa-check"></i><b>2.3.3</b> Evaluating Differences in Spread</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="ch2.html"><a href="ch2.html#graphs-for-multivariate-data"><i class="fa fa-check"></i><b>2.4</b> Graphs for Multivariate Data</a></li>
+<li class="chapter" data-level="2.5" data-path="ch2.html"><a href="ch2.html#profile-plots"><i class="fa fa-check"></i><b>2.5</b> Profile Plots</a></li>
+<li class="chapter" data-level="2.6" data-path="ch2.html"><a href="ch2.html#star-plots"><i class="fa fa-check"></i><b>2.6</b> Star Plots</a></li>
+<li class="chapter" data-level="2.7" data-path="ch2.html"><a href="ch2.html#trilinear-diagrams"><i class="fa fa-check"></i><b>2.7</b> Trilinear Diagrams</a></li>
+<li class="chapter" data-level="2.8" data-path="ch2.html"><a href="ch2.html#plots-of-principal-components"><i class="fa fa-check"></i><b>2.8</b> Plots of Principal Components</a></li>
+<li class="chapter" data-level="2.9" data-path="ch2.html"><a href="ch2.html#other-multivariate-plots"><i class="fa fa-check"></i><b>2.9</b> Other Multivariate Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="describing-uncertainty.html"><a href="describing-uncertainty.html"><i class="fa fa-check"></i><b>3</b> Describing Uncertainty</a><ul>
+<li class="chapter" data-level="3.1" data-path="describing-uncertainty.html"><a href="describing-uncertainty.html#definition-of-interval-estimates"><i class="fa fa-check"></i><b>3.1</b> Definition of Interval Estimates</a></li>
+<li class="chapter" data-level="3.2" data-path="describing-uncertainty.html"><a href="describing-uncertainty.html#interpretation-of-interval-estimates"><i class="fa fa-check"></i><b>3.2</b> Interpretation of Interval Estimates</a></li>
+<li class="chapter" data-level="3.3" data-path="describing-uncertainty.html"><a href="describing-uncertainty.html#confidence-intervals-for-the-median"><i class="fa fa-check"></i><b>3.3</b> Confidence Intervals for the Median</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="describing-uncertainty.html"><a href="describing-uncertainty.html#nonparametric-interval-estimate-for-the-median"><i class="fa fa-check"></i><b>3.3.1</b> Nonparametric Interval Estimate For The Median</a></li>
+<li class="chapter" data-level="3.3.2" data-path="describing-uncertainty.html"><a href="describing-uncertainty.html#parametric-interval-estimate-for-the-median"><i class="fa fa-check"></i><b>3.3.2</b> Parametric Interval Estimate For The Median</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="describing-uncertainty.html"><a href="describing-uncertainty.html#confidence-intervals-for-the-mean"><i class="fa fa-check"></i><b>3.4</b> Confidence Intervals For The Mean</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="describing-uncertainty.html"><a href="describing-uncertainty.html#symmetric-confidence-interval-for-the-mean"><i class="fa fa-check"></i><b>3.4.1</b> Symmetric Confidence Interval For The Mean</a></li>
+<li class="chapter" data-level="3.4.2" data-path="describing-uncertainty.html"><a href="describing-uncertainty.html#asymmetric-confidence-interval-for-the-mean"><i class="fa fa-check"></i><b>3.4.2</b> Asymmetric Confidence Interval For The Mean</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="describing-uncertainty.html"><a href="describing-uncertainty.html#nonparametric-prediction-intervals"><i class="fa fa-check"></i><b>3.5</b> Nonparametric Prediction Intervals</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="describing-uncertainty.html"><a href="describing-uncertainty.html#two-sided-nonparametric-prediction-interval"><i class="fa fa-check"></i><b>3.5.1</b> Two-Sided Nonparametric Prediction Interval</a></li>
+<li class="chapter" data-level="3.5.2" data-path="describing-uncertainty.html"><a href="describing-uncertainty.html#one-sided-nonparametric-prediction-interval"><i class="fa fa-check"></i><b>3.5.2</b> One-Sided Nonparametric Prediction Interval</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="describing-uncertainty.html"><a href="describing-uncertainty.html#parametric-prediction-intervals"><i class="fa fa-check"></i><b>3.6</b> Parametric Prediction Intervals</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="describing-uncertainty.html"><a href="describing-uncertainty.html#symmetric-prediction-interval"><i class="fa fa-check"></i><b>3.6.1</b> Symmetric Prediction Interval</a></li>
+<li class="chapter" data-level="3.6.2" data-path="describing-uncertainty.html"><a href="describing-uncertainty.html#asymmetric-prediction-intervals"><i class="fa fa-check"></i><b>3.6.2</b> Asymmetric Prediction Intervals</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="describing-uncertainty.html"><a href="describing-uncertainty.html#confidence-intervals-for-percentiles-tolerance-intervals"><i class="fa fa-check"></i><b>3.7</b> Confidence Intervals For Percentiles (Tolerance Intervals)</a><ul>
+<li class="chapter" data-level="3.7.1" data-path="describing-uncertainty.html"><a href="describing-uncertainty.html#nonparametric-confidence-intervals-for-percentiles"><i class="fa fa-check"></i><b>3.7.1</b> Nonparametric Confidence Intervals For Percentiles</a></li>
+<li class="chapter" data-level="3.7.2" data-path="describing-uncertainty.html"><a href="describing-uncertainty.html#nonparametric-tests-for-percentiles"><i class="fa fa-check"></i><b>3.7.2</b> Nonparametric Tests For Percentiles</a></li>
+<li class="chapter" data-level="3.7.3" data-path="describing-uncertainty.html"><a href="describing-uncertainty.html#parametric-confidence-intervals-for-percentiles"><i class="fa fa-check"></i><b>3.7.3</b> Parametric Confidence Intervals For Percentiles</a></li>
+<li class="chapter" data-level="3.7.4" data-path="describing-uncertainty.html"><a href="describing-uncertainty.html#parametric-tests-for-percentiles"><i class="fa fa-check"></i><b>3.7.4</b> Parametric Tests For Percentiles</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="describing-uncertainty.html"><a href="describing-uncertainty.html#other-uses-for-confidence-intervals"><i class="fa fa-check"></i><b>3.8</b> Other Uses For Confidence Intervals</a><ul>
+<li class="chapter" data-level="3.8.1" data-path="describing-uncertainty.html"><a href="describing-uncertainty.html#implications-of-non-normality-for-detection-of-outliers"><i class="fa fa-check"></i><b>3.8.1</b> Implications of Non-Normality For Detection of Outliers</a></li>
+<li class="chapter" data-level="3.8.2" data-path="describing-uncertainty.html"><a href="describing-uncertainty.html#implications-of-non-normality-for-quality-control"><i class="fa fa-check"></i><b>3.8.2</b> Implications of Non-Normality For Quality Control</a></li>
+<li class="chapter" data-level="3.8.3" data-path="describing-uncertainty.html"><a href="describing-uncertainty.html#implications-of-non-normality-for-sampling-design"><i class="fa fa-check"></i><b>3.8.3</b> Implications of Non-Normality For Sampling Design</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"><em>Statistical Methods in Water Resources</em> with R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="describing-uncertainty" class="section level1">
+<h1><span class="header-section-number">Chapter 3</span> Describing Uncertainty</h1>
+<div id="definition-of-interval-estimates" class="section level2">
+<h2><span class="header-section-number">3.1</span> Definition of Interval Estimates</h2>
+</div>
+<div id="interpretation-of-interval-estimates" class="section level2">
+<h2><span class="header-section-number">3.2</span> Interpretation of Interval Estimates</h2>
+</div>
+<div id="confidence-intervals-for-the-median" class="section level2">
+<h2><span class="header-section-number">3.3</span> Confidence Intervals for the Median</h2>
+<div id="nonparametric-interval-estimate-for-the-median" class="section level3">
+<h3><span class="header-section-number">3.3.1</span> Nonparametric Interval Estimate For The Median</h3>
+</div>
+<div id="parametric-interval-estimate-for-the-median" class="section level3">
+<h3><span class="header-section-number">3.3.2</span> Parametric Interval Estimate For The Median</h3>
+</div>
+</div>
+<div id="confidence-intervals-for-the-mean" class="section level2">
+<h2><span class="header-section-number">3.4</span> Confidence Intervals For The Mean</h2>
+<div id="symmetric-confidence-interval-for-the-mean" class="section level3">
+<h3><span class="header-section-number">3.4.1</span> Symmetric Confidence Interval For The Mean</h3>
+</div>
+<div id="asymmetric-confidence-interval-for-the-mean" class="section level3">
+<h3><span class="header-section-number">3.4.2</span> Asymmetric Confidence Interval For The Mean</h3>
+</div>
+</div>
+<div id="nonparametric-prediction-intervals" class="section level2">
+<h2><span class="header-section-number">3.5</span> Nonparametric Prediction Intervals</h2>
+<div id="two-sided-nonparametric-prediction-interval" class="section level3">
+<h3><span class="header-section-number">3.5.1</span> Two-Sided Nonparametric Prediction Interval</h3>
+</div>
+<div id="one-sided-nonparametric-prediction-interval" class="section level3">
+<h3><span class="header-section-number">3.5.2</span> One-Sided Nonparametric Prediction Interval</h3>
+</div>
+</div>
+<div id="parametric-prediction-intervals" class="section level2">
+<h2><span class="header-section-number">3.6</span> Parametric Prediction Intervals</h2>
+<div id="symmetric-prediction-interval" class="section level3">
+<h3><span class="header-section-number">3.6.1</span> Symmetric Prediction Interval</h3>
+</div>
+<div id="asymmetric-prediction-intervals" class="section level3">
+<h3><span class="header-section-number">3.6.2</span> Asymmetric Prediction Intervals</h3>
+</div>
+</div>
+<div id="confidence-intervals-for-percentiles-tolerance-intervals" class="section level2">
+<h2><span class="header-section-number">3.7</span> Confidence Intervals For Percentiles (Tolerance Intervals)</h2>
+<div id="nonparametric-confidence-intervals-for-percentiles" class="section level3">
+<h3><span class="header-section-number">3.7.1</span> Nonparametric Confidence Intervals For Percentiles</h3>
+</div>
+<div id="nonparametric-tests-for-percentiles" class="section level3">
+<h3><span class="header-section-number">3.7.2</span> Nonparametric Tests For Percentiles</h3>
+</div>
+<div id="parametric-confidence-intervals-for-percentiles" class="section level3">
+<h3><span class="header-section-number">3.7.3</span> Parametric Confidence Intervals For Percentiles</h3>
+</div>
+<div id="parametric-tests-for-percentiles" class="section level3">
+<h3><span class="header-section-number">3.7.4</span> Parametric Tests For Percentiles</h3>
+</div>
+</div>
+<div id="other-uses-for-confidence-intervals" class="section level2">
+<h2><span class="header-section-number">3.8</span> Other Uses For Confidence Intervals</h2>
+<div id="implications-of-non-normality-for-detection-of-outliers" class="section level3">
+<h3><span class="header-section-number">3.8.1</span> Implications of Non-Normality For Detection of Outliers</h3>
+</div>
+<div id="implications-of-non-normality-for-quality-control" class="section level3">
+<h3><span class="header-section-number">3.8.2</span> Implications of Non-Normality For Quality Control</h3>
+</div>
+<div id="implications-of-non-normality-for-sampling-design" class="section level3">
+<h3><span class="header-section-number">3.8.3</span> Implications of Non-Normality For Sampling Design</h3>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="ch2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Statistical-Methods-in-Water-Resources.pdf", "Statistical-Methods-in-Water-Resources.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

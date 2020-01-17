@@ -1,0 +1,18 @@
+--- 
+title: "*Statistical Methods in Water Resources* with R"
+author: ["MiRoVaGo"]
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+fig_caption: yes
+bibliography: [references.bib]
+biblio-style: apalike
+link-citations: yes
+#github-repo: TBD
+description: "This project aims to translate Helsel and Hirsch 'Statistical Methods in Water Resources' into R."
+---
+
+# Preface {-}
+
+This book is a re-coding of [Statistical Methods in Water Resources](https://pubs.usgs.gov/twri/twri4a3/) by Helsel & Hirsch. As the use of R in the hydrology community steadily grows, translating Helsel & Hirsch material into R was an opportunity we could not miss. The content herein is a direct adaptation of the source material into R and its tools.

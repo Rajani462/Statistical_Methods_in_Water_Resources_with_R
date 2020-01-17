@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Describing Uncertainty | Statistical Methods in Water Resources with R</title>
+  <meta name="description" content="This project aims to translate Helsel and Hirsch ‘Statistical Methods in Water Resources’ into R." />
+  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Describing Uncertainty | Statistical Methods in Water Resources with R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This project aims to translate Helsel and Hirsch ‘Statistical Methods in Water Resources’ into R." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Describing Uncertainty | Statistical Methods in Water Resources with R" />
+  
+  <meta name="twitter:description" content="This project aims to translate Helsel and Hirsch ‘Statistical Methods in Water Resources’ into R." />
+  
+
+<meta name="author" content="MiRoVaGo" />
+
+
+<meta name="date" content="2020-01-17" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="ch2.html"/>
+<link rel="next" href="references.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Statistical Methods in Water Resources with R</a></li>    
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="ch1.html"><a href="ch1.html"><i class="fa fa-check"></i><b>1</b> Summarizing data</a><ul>
+<li class="chapter" data-level="1.1" data-path="ch1.html"><a href="ch1.html#characteristics-of-water-resources-data"><i class="fa fa-check"></i><b>1.1</b> Characteristics of Water Resources Data</a></li>
+<li class="chapter" data-level="1.2" data-path="ch1.html"><a href="ch1.html#measures-of-location"><i class="fa fa-check"></i><b>1.2</b> Measures of Location</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="ch1.html"><a href="ch1.html#classical-measure-the-mean"><i class="fa fa-check"></i><b>1.2.1</b> Classical Measure – the Mean</a></li>
+<li class="chapter" data-level="1.2.2" data-path="ch1.html"><a href="ch1.html#resistant-measure-the-median"><i class="fa fa-check"></i><b>1.2.2</b> Resistant Measure – the Median</a></li>
+<li class="chapter" data-level="1.2.3" data-path="ch1.html"><a href="ch1.html#other-measures-of-location"><i class="fa fa-check"></i><b>1.2.3</b> Other Measures of Location</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="ch1.html"><a href="ch1.html#measures-of-spread"><i class="fa fa-check"></i><b>1.3</b> Measures of Spread</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="ch1.html"><a href="ch1.html#classical-measures"><i class="fa fa-check"></i><b>1.3.1</b> Classical Measures</a></li>
+<li class="chapter" data-level="1.3.2" data-path="ch1.html"><a href="ch1.html#resistant-measures"><i class="fa fa-check"></i><b>1.3.2</b> Resistant Measures</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="ch1.html"><a href="ch1.html#measures-of-skewness"><i class="fa fa-check"></i><b>1.4</b> Measures of Skewness</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="ch1.html"><a href="ch1.html#classical-measure-of-skewness"><i class="fa fa-check"></i><b>1.4.1</b> Classical Measure of Skewness</a></li>
+<li class="chapter" data-level="1.4.2" data-path="ch1.html"><a href="ch1.html#resistant-measure-of-skewness"><i class="fa fa-check"></i><b>1.4.2</b> Resistant Measure of Skewness</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="ch1.html"><a href="ch1.html#other-resistant-measures"><i class="fa fa-check"></i><b>1.5</b> Other Resistant Measures</a></li>
+<li class="chapter" data-level="1.6" data-path="ch1.html"><a href="ch1.html#outliers"><i class="fa fa-check"></i><b>1.6</b> Outliers</a></li>
+<li class="chapter" data-level="1.7" data-path="ch1.html"><a href="ch1.html#transformations"><i class="fa fa-check"></i><b>1.7</b> Transformations</a><ul>
+<li class="chapter" data-level="1.7.1" data-path="ch1.html"><a href="ch1.html#the-ladder-of-powers"><i class="fa fa-check"></i><b>1.7.1</b> The Ladder of Powers</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ch1.html"><a href="ch1.html#exercises"><i class="fa fa-check"></i>Exercises</a><ul>
+<li class="chapter" data-level="" data-path="ch1.html"><a href="ch1.html#section"><i class="fa fa-check"></i>1.1</a></li>
+<li class="chapter" data-level="" data-path="ch1.html"><a href="ch1.html#section-1"><i class="fa fa-check"></i>1.2</a></li>
+<li class="chapter" data-level="" data-path="ch1.html"><a href="ch1.html#section-2"><i class="fa fa-check"></i>1.3</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="ch2.html"><a href="ch2.html"><i class="fa fa-check"></i><b>2</b> Graphical Data Analysis</a><ul>
+<li class="chapter" data-level="2.1" data-path="ch2.html"><a href="ch2.html#ch2-1"><i class="fa fa-check"></i><b>2.1</b> Graphical Analysis of Single Data Sets</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="ch2.html"><a href="ch2.html#histograms"><i class="fa fa-check"></i><b>2.1.1</b> Histograms</a></li>
+<li class="chapter" data-level="2.1.2" data-path="ch2.html"><a href="ch2.html#stem-and-leaf-diagrams"><i class="fa fa-check"></i><b>2.1.2</b> Stem and Leaf Diagrams</a></li>
+<li class="chapter" data-level="2.1.3" data-path="ch2.html"><a href="ch2.html#quantile-plots"><i class="fa fa-check"></i><b>2.1.3</b> Quantile Plots</a></li>
+<li class="chapter" data-level="2.1.4" data-path="ch2.html"><a href="ch2.html#boxplots"><i class="fa fa-check"></i><b>2.1.4</b> Boxplots</a></li>
+<li class="chapter" data-level="2.1.5" data-path="ch2.html"><a href="ch2.html#probability-plots"><i class="fa fa-check"></i><b>2.1.5</b> Probability Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="ch2.html"><a href="ch2.html#ch2-2"><i class="fa fa-check"></i><b>2.2</b> Graphical Comparisons of Two or More Data Sets</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="ch2.html"><a href="ch2.html#histograms-1"><i class="fa fa-check"></i><b>2.2.1</b> Histograms</a></li>
+<li class="chapter" data-level="2.2.2" data-path="ch2.html"><a href="ch2.html#dot-and-line-plots-of-means-standard-deviations"><i class="fa fa-check"></i><b>2.2.2</b> Dot and Line Plots of Means, Standard Deviations</a></li>
+<li class="chapter" data-level="2.2.3" data-path="ch2.html"><a href="ch2.html#boxplots-1"><i class="fa fa-check"></i><b>2.2.3</b> Boxplots</a></li>
+<li class="chapter" data-level="2.2.4" data-path="ch2.html"><a href="ch2.html#probability-plots-1"><i class="fa fa-check"></i><b>2.2.4</b> Probability Plots</a></li>
+<li class="chapter" data-level="2.2.5" data-path="ch2.html"><a href="ch2.html#q-q-plots"><i class="fa fa-check"></i><b>2.2.5</b> Q-Q Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="ch2.html"><a href="ch2.html#scatterplots-and-enhancements"><i class="fa fa-check"></i><b>2.3</b> Scatterplots and Enhancements</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="ch2.html"><a href="ch2.html#evaluating-linearity"><i class="fa fa-check"></i><b>2.3.1</b> Evaluating Linearity</a></li>
+<li class="chapter" data-level="2.3.2" data-path="ch2.html"><a href="ch2.html#evaluating-differences-in-location-on-a-scatterplot"><i class="fa fa-check"></i><b>2.3.2</b> Evaluating Differences in Location on a Scatterplot</a></li>
+<li class="chapter" data-level="2.3.3" data-path="ch2.html"><a href="ch2.html#evaluating-differences-in-spread"><i class="fa fa-check"></i><b>2.3.3</b> Evaluating Differences in Spread</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="ch2.html"><a href="ch2.html#graphs-for-multivariate-data"><i class="fa fa-check"></i><b>2.4</b> Graphs for Multivariate Data</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="ch2.html"><a href="ch2.html#profile-plots"><i class="fa fa-check"></i><b>2.4.1</b> Profile Plots</a></li>
+<li class="chapter" data-level="2.4.2" data-path="ch2.html"><a href="ch2.html#star-plots"><i class="fa fa-check"></i><b>2.4.2</b> Star Plots</a></li>
+<li class="chapter" data-level="2.4.3" data-path="ch2.html"><a href="ch2.html#trilinear-diagrams"><i class="fa fa-check"></i><b>2.4.3</b> Trilinear Diagrams</a></li>
+<li class="chapter" data-level="2.4.4" data-path="ch2.html"><a href="ch2.html#plots-of-principal-components"><i class="fa fa-check"></i><b>2.4.4</b> Plots of Principal Components</a></li>
+<li class="chapter" data-level="2.4.5" data-path="ch2.html"><a href="ch2.html#other-multivariate-plots"><i class="fa fa-check"></i><b>2.4.5</b> Other Multivariate Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#exercises-1"><i class="fa fa-check"></i>Exercises</a><ul>
+<li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#section-3"><i class="fa fa-check"></i>2.1</a></li>
+<li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#section-4"><i class="fa fa-check"></i>2.2</a></li>
+<li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#section-5"><i class="fa fa-check"></i>2.3</a></li>
+<li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#section-6"><i class="fa fa-check"></i>2.4</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="ch3.html"><a href="ch3.html"><i class="fa fa-check"></i><b>3</b> Describing Uncertainty</a><ul>
+<li class="chapter" data-level="3.1" data-path="ch3.html"><a href="ch3.html#definition-of-interval-estimates"><i class="fa fa-check"></i><b>3.1</b> Definition of Interval Estimates</a></li>
+<li class="chapter" data-level="3.2" data-path="ch3.html"><a href="ch3.html#interpretation-of-interval-estimates"><i class="fa fa-check"></i><b>3.2</b> Interpretation of Interval Estimates</a></li>
+<li class="chapter" data-level="3.3" data-path="ch3.html"><a href="ch3.html#ch3-3"><i class="fa fa-check"></i><b>3.3</b> Confidence Intervals for the Median</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="ch3.html"><a href="ch3.html#ch3-3-1"><i class="fa fa-check"></i><b>3.3.1</b> Nonparametric Interval Estimate For The Median</a></li>
+<li class="chapter" data-level="3.3.2" data-path="ch3.html"><a href="ch3.html#ch3-3-2"><i class="fa fa-check"></i><b>3.3.2</b> Parametric Interval Estimate For The Median</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="ch3.html"><a href="ch3.html#ch3-4"><i class="fa fa-check"></i><b>3.4</b> Confidence Intervals For The Mean</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="ch3.html"><a href="ch3.html#ch3-4-1"><i class="fa fa-check"></i><b>3.4.1</b> Symmetric Confidence Interval For The Mean</a></li>
+<li class="chapter" data-level="3.4.2" data-path="ch3.html"><a href="ch3.html#ch3-4-2"><i class="fa fa-check"></i><b>3.4.2</b> Asymmetric Confidence Interval For The Mean (For Skewed Data)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="ch3.html"><a href="ch3.html#ch3-5"><i class="fa fa-check"></i><b>3.5</b> Nonparametric Prediction Intervals</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="ch3.html"><a href="ch3.html#two-sided-nonparametric-prediction-interval"><i class="fa fa-check"></i><b>3.5.1</b> Two-Sided Nonparametric Prediction Interval</a></li>
+<li class="chapter" data-level="3.5.2" data-path="ch3.html"><a href="ch3.html#one-sided-nonparametric-prediction-interval"><i class="fa fa-check"></i><b>3.5.2</b> One-Sided Nonparametric Prediction Interval</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="ch3.html"><a href="ch3.html#ch3-6"><i class="fa fa-check"></i><b>3.6</b> Parametric Prediction Intervals</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="ch3.html"><a href="ch3.html#symmetric-prediction-interval"><i class="fa fa-check"></i><b>3.6.1</b> Symmetric Prediction Interval</a></li>
+<li class="chapter" data-level="3.6.2" data-path="ch3.html"><a href="ch3.html#asymmetric-prediction-intervals"><i class="fa fa-check"></i><b>3.6.2</b> Asymmetric Prediction Intervals</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="ch3.html"><a href="ch3.html#ch3-7"><i class="fa fa-check"></i><b>3.7</b> Confidence Intervals For Percentiles (Tolerance Intervals)</a><ul>
+<li class="chapter" data-level="3.7.1" data-path="ch3.html"><a href="ch3.html#ch3-7-1"><i class="fa fa-check"></i><b>3.7.1</b> Nonparametric Confidence Intervals For Percentiles</a></li>
+<li class="chapter" data-level="3.7.2" data-path="ch3.html"><a href="ch3.html#ch3-7-2"><i class="fa fa-check"></i><b>3.7.2</b> Nonparametric Tests For Percentiles</a></li>
+<li class="chapter" data-level="3.7.3" data-path="ch3.html"><a href="ch3.html#ch3-7-3"><i class="fa fa-check"></i><b>3.7.3</b> Parametric Confidence Intervals For Percentiles</a></li>
+<li class="chapter" data-level="3.7.4" data-path="ch3.html"><a href="ch3.html#ch3-7-4"><i class="fa fa-check"></i><b>3.7.4</b> Parametric Tests For Percentiles</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="ch3.html"><a href="ch3.html#other-uses-for-confidence-intervals"><i class="fa fa-check"></i><b>3.8</b> Other Uses For Confidence Intervals</a><ul>
+<li class="chapter" data-level="3.8.1" data-path="ch3.html"><a href="ch3.html#implications-of-non-normality-for-detection-of-outliers"><i class="fa fa-check"></i><b>3.8.1</b> Implications of Non-Normality For Detection of Outliers</a></li>
+<li class="chapter" data-level="3.8.2" data-path="ch3.html"><a href="ch3.html#implications-of-non-normality-for-quality-control"><i class="fa fa-check"></i><b>3.8.2</b> Implications of Non-Normality For Quality Control</a></li>
+<li class="chapter" data-level="3.8.3" data-path="ch3.html"><a href="ch3.html#implications-of-non-normality-for-sampling-design"><i class="fa fa-check"></i><b>3.8.3</b> Implications of Non-Normality For Sampling Design</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#exercises-2"><i class="fa fa-check"></i>Exercises</a><ul>
+<li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#section-7"><i class="fa fa-check"></i>3.1</a></li>
+<li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#section-8"><i class="fa fa-check"></i>3.2</a></li>
+<li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#section-9"><i class="fa fa-check"></i>3.3</a></li>
+<li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#section-10"><i class="fa fa-check"></i>3.4</a></li>
+<li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#section-11"><i class="fa fa-check"></i>3.5</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"><em>Statistical Methods in Water Resources</em> with R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="ch3" class="section level1">
+<h1><span class="header-section-number">Chapter 3</span> Describing Uncertainty</h1>
+<p>The mean nitrate concentration in a shallow aquifer under agricultural land was calculated as <span class="math inline">\(5.1 \; mg/L\)</span>. How reliable is this estimate? Is <span class="math inline">\(5.1 \; mg/L\)</span> in violation of a health advisory limit of <span class="math inline">\(5 \; mg/L\)</span>? Should it be treated differently than another aquifer having a mean concentration of <span class="math inline">\(4.8 \; mg/L\)</span>?</p>
+<p>Thirty wells over a 5-county area were found to have a mean specific capacity of 1 gallon per minute per foot, and a standard deviation of 7 gallons per minute per foot. A new well was drilled and developed with an acid treatment. The well produced a specific capacity of 15 gallons per minute per foot. To determine whether this increase might be due to the acid treatment, how likely is a specific capacity of 15 to result from the regional distribution of the other 30 wells?</p>
+<p>An estimate of the 100-year flood, the 99th percentile of annual flood peaks, was determined to be 10,000 cubic feet per second (cfs). Assuming that the choice of a particular distribution to model these floods (Log Pearson Type III) is correct, what is the reliability of this estimate?</p>
+<p>In chapter <a href="ch1.html#ch1">1</a> several summary statistics were presented which described key attributes of a data set. They were sample estimates (such as <span class="math inline">\(\overline{x}\)</span> and <span class="math inline">\(s^{2}\)</span>) of true and unknown population parameters (such as µ and σ<sup>2</sup>). In this chapter, descriptions of the uncertainty or reliability of sample estimates is presented. As an alternative to reporting a single estimate, the utility of reporting a range of values called an “interval estimate” is demonstrated. Both parametric and nonparametric interval estimates are presented. These intervals can also be used to test whether the population parameter is significantly different from some pre-specified value.</p>
+<div id="definition-of-interval-estimates" class="section level2">
+<h2><span class="header-section-number">3.1</span> Definition of Interval Estimates</h2>
+<p>The sample median and sample mean estimate the corresponding center points of a population. Such estimates are called <strong>point estimates</strong>. By themselves, point estimates do not portray the reliability, or lack of reliability (variability), of these estimates. For example, suppose that two data sets X and Y exist, both with a sample mean of 5 and containing the same number of data. The Y data all cluster tightly around 5, while the X data are much more variable. The point estimate of 5 for X is much less reliable than that for Y because of the greater variability in the X data. In other words, more caution is needed when stating that 5 estimates the true population mean of X than when stating this for Y. Reporting only the sample (point) estimate of 5 fails to give any hint of this difference.</p>
+<p>As an alternative to point estimates, <strong>interval estimates</strong> are intervals which have a stated probability of containing the true population value. The intervals are wider for data sets having greater variability. Thus in the above example an interval between 4.7 and 5.3 may have a 95% probability of containing the (unknown) true population mean of Y. It would take a much wider interval, say between 2.0 and 8.0, to have the same probability of containing the true mean of X. The difference in the reliability of the two estimates is therefore clearly stated using interval estimates. Interval estimates can provide two pieces of information which point estimates cannot:</p>
+<ol style="list-style-type: decimal">
+<li>A statement of the probability or likelihood that the interval contains the true population value (its reliability).</li>
+<li>A statement of the likelihood that a single data point with specified magnitude comes from the population under study.</li>
+</ol>
+<p>Interval estimates for the first purpose are called confidence intervals; intervals for the second purpose are called prediction intervals. Though related, the two types of interval estimates are not identical, and cannot be interchanged.</p>
+<p>In sections <a href="ch3.html#ch3-3">3.3</a> and <a href="ch3.html#ch3-4">3.4</a>, confidence intervals will be developed for both the median and mean. Prediction intervals, both parametric and nonparametric, will be used in sections <a href="ch3.html#ch3-5">3.5</a> and <a href="ch3.html#ch3-6">3.6</a> to judge whether one new observation is consistent with existing data. Intervals for percentiles other than the median will be discussed in section <a href="ch3.html#ch3-7">3.7</a>.</p>
+<p><img src="figures/3_A.png" width="505" style="display: block; margin: auto;" /></p>
+</div>
+<div id="interpretation-of-interval-estimates" class="section level2">
+<h2><span class="header-section-number">3.2</span> Interpretation of Interval Estimates</h2>
+<p>Suppose that the true population mean µ of concentration in an aquifer was 10. Also suppose that the true population variance σ<sup>2</sup> equals 1. As these values in practice are never known, samples are taken to estimate them by the sample mean  and sample variance s<sup>2</sup>. Sufficient funding is available to take 12 water samples (roughly one per month) during a year, and the days on which sampling occurs are randomly chosen. From these 12 samples  and s<sup>2</sup> are computed. Although in reality only one set of 12 samples would be taken each year, using a computer 12 days can be selected multiple times to illustrate the concept of an interval estimate. For each of 10 independent sets of 12 samples, a confidence interval on the mean is computed using equations given later in section <a href="ch3.html#ch3-4-1">3.4.1</a>. The results are shown in table <a href="ch3.html#tab:3-1">3.1</a> and figure <a href="ch3.html#fig:fig-3-1">3.1</a>.</p>
+<table>
+<caption><span id="tab:3-1">Table 3.1: </span> Ten 90% confidence intervals around a true mean of 10. Data follow a normal distribution. The interval with the asterisk does not inclue the true value.</caption>
+<thead>
+<tr class="header">
+<th align="center"></th>
+<th align="center">N</th>
+<th align="center">Mean</th>
+<th align="center">St. Dev.</th>
+<th align="center">90% Confidence Interval</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">12</td>
+<td align="center">10.06</td>
+<td align="center">1.11</td>
+<td align="center">(9.49 to 10.64)</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center">12</td>
+<td align="center">10.60</td>
+<td align="center">0.81</td>
+<td align="center">*(10.18 to 11.02)</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td align="center">12</td>
+<td align="center">9.95</td>
+<td align="center">1.26</td>
+<td align="center">(9.29 to 10.60)</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td align="center">12</td>
+<td align="center">10.18</td>
+<td align="center">1.26</td>
+<td align="center">(9.52 to 10.83)</td>
+</tr>
+<tr class="odd">
+<td align="center">5</td>
+<td align="center">12</td>
+<td align="center">10.17</td>
+<td align="center">1.33</td>
+<td align="center">(9.48 to 10.85)</td>
+</tr>
+<tr class="even">
+<td align="center">6</td>
+<td align="center">12</td>
+<td align="center">10.22</td>
+<td align="center">1.19</td>
+<td align="center">(9.60 to 10.84)</td>
+</tr>
+<tr class="odd">
+<td align="center">7</td>
+<td align="center">12</td>
+<td align="center">9.71</td>
+<td align="center">1.51</td>
+<td align="center">(8.92 to 10.49)</td>
+</tr>
+<tr class="even">
+<td align="center">8</td>
+<td align="center">12</td>
+<td align="center">9.90</td>
+<td align="center">1.01</td>
+<td align="center">(9.38 to 10.43)</td>
+</tr>
+<tr class="odd">
+<td align="center">9</td>
+<td align="center">12</td>
+<td align="center">9.95</td>
+<td align="center">0.10</td>
+<td align="center">(9.43 to 10.46)</td>
+</tr>
+<tr class="even">
+<td align="center">10</td>
+<td align="center">12</td>
+<td align="center">9.88</td>
+<td align="center">1.37</td>
+<td align="center">(9.17 to 10.59)</td>
+</tr>
+</tbody>
+</table>
+<div class="figure" style="text-align: center"><span id="fig:fig-3-1"></span>
+<img src="figures/3_1.png" alt="Ten 90% confidence intervals for normally-distributed data with true mean = 10." width="528" />
+<p class="caption">
+Figure 3.1: Ten 90% confidence intervals for normally-distributed data with true mean = 10.
+</p>
+</div>
+<p>These ten intervals are “90% confidence intervals” on the true population mean. That is, the true mean will be contained in these intervals an average of 90 percent of the time. So for the 10 intervals in the table, nine are expected to include the true value while one is not. This is in fact what happened. Of course when a one-time sampling occurs, the computed interval will either include or not include the true, unknown population mean. The probability that the interval does include the true value is called the <strong>confidence level</strong> of the interval. The probability that this interval will not cover the true value, called the <strong>alpha level</strong> (<span class="math inline">\(\alpha\)</span>), is computed as
+<span class="math display" id="eq:3-1">\[\begin{equation}
+\alpha = 1 - confidence level.
+\tag{3.1}
+\end{equation}\]</span>
+The width of a confidence interval is a function of the shape of the data distribution (its variability and skewness), the sample size, and of the confidence level desired. As the confidence level increases the interval width also increases, because a larger interval is more likely to contain the true value than is a shorter interval. Thus a 95% confidence interval will be wider than a 90% interval for the same data.</p>
+<p>Symmetric confidence intervals on the mean are commonly computed assuming the data follow a normal distribution (see section <a href="ch3.html#ch3-4-1">3.4.1</a>). If not, the distribution of the mean itself will be approximately normal as long as sample sizes are large (say 50 observations or greater). Confidence intervals assuming normality will then include the true mean (<span class="math inline">\(1 − \alpha\)</span>)% of the time. In the above example, the data were generated from a normal distribution, so the small sample size of 12 is not a problem. However when data are skewed and sample sizes below 50 or more, symmetric confidence intervals will not contain the mean (<span class="math inline">\(1 − \alpha\)</span>)% of the time. In the example below, symmetric confidence intervals are incorrectly computed for skewed data (figure <a href="ch3.html#fig:fig-3-2">3.2</a>). The results (figure <a href="ch3.html#fig:fig-3-3">3.3</a> and table <a href="ch3.html#tab:3-2">3.2</a>) show that the confidence intervals miss the true value of 1 more frequently than they should. The greater the skewness, the larger the sample size must be before symmetric confidence intervals can be relied on. As an alternative, asymmetric confidence intervals can be computed for the common situation of skewed data. They are also presented in the following sections.</p>
+<table>
+<caption><span id="tab:3-2">Table 3.2: </span> Ten 90% confidence intervals around a true mean of 1. Data do not follow a normal distribution. Intervals with an asterisk do not inclue the true value.</caption>
+<thead>
+<tr class="header">
+<th align="center"></th>
+<th align="center">N</th>
+<th align="center">Mean</th>
+<th align="center">St. Dev.</th>
+<th align="center">90% Confidence Interval</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">12</td>
+<td align="center">0.784</td>
+<td align="center">0.320</td>
+<td align="center">*(0.618 to 0.950)</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center">12</td>
+<td align="center">0.811</td>
+<td align="center">0.299</td>
+<td align="center">*(0.656 to 0.966)</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td align="center">12</td>
+<td align="center">1.178</td>
+<td align="center">0.700</td>
+<td align="center">(0.815 to 1.541)</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td align="center">12</td>
+<td align="center">1.030</td>
+<td align="center">0.459</td>
+<td align="center">(0.792 to 1.267)</td>
+</tr>
+<tr class="odd">
+<td align="center">5</td>
+<td align="center">12</td>
+<td align="center">1.079</td>
+<td align="center">0.573</td>
+<td align="center">(0.782 to 1.376)</td>
+</tr>
+<tr class="even">
+<td align="center">6</td>
+<td align="center">12</td>
+<td align="center">0.833</td>
+<td align="center">0.363</td>
+<td align="center">(0.644 to 1.021)</td>
+</tr>
+<tr class="odd">
+<td align="center">7</td>
+<td align="center">12</td>
+<td align="center">0.789</td>
+<td align="center">0.240</td>
+<td align="center">*(0.664 to 0.913)</td>
+</tr>
+<tr class="even">
+<td align="center">8</td>
+<td align="center">12</td>
+<td align="center">1.159</td>
+<td align="center">0.815</td>
+<td align="center">(0.736 to 1.581)</td>
+</tr>
+<tr class="odd">
+<td align="center">9</td>
+<td align="center">12</td>
+<td align="center">0.822</td>
+<td align="center">0.365</td>
+<td align="center">*(0.633 to 0.992)</td>
+</tr>
+<tr class="even">
+<td align="center">10</td>
+<td align="center">12</td>
+<td align="center">0.837</td>
+<td align="center">0.478</td>
+<td align="center">(0.589 to 1.085)</td>
+</tr>
+</tbody>
+</table>
+<div class="figure" style="text-align: center"><span id="fig:fig-3-2"></span>
+<img src="figures/3_2.png" alt="Histogram of skewed example data. µ = 1.0 σ = 0.75." width="331" />
+<p class="caption">
+Figure 3.2: Histogram of skewed example data. µ = 1.0 σ = 0.75.
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:fig-3-3"></span>
+<img src="figures/3_3.png" alt="Ten 90% confidence intervals for skewed data with true mean = 1.0" width="346" />
+<p class="caption">
+Figure 3.3: Ten 90% confidence intervals for skewed data with true mean = 1.0
+</p>
+</div>
+</div>
+<div id="ch3-3" class="section level2">
+<h2><span class="header-section-number">3.3</span> Confidence Intervals for the Median</h2>
+<p>A confidence interval for the true population median may be computed either without assuming the data follow any specific distribution (section <a href="ch3.html#ch3-3-1">3.3.1</a>), or assuming they follow a distribution such as the lognormal (section <a href="ch3.html#ch3-3-2">3.3.2</a>).</p>
+<p><img src="figures/3_B.png" width="561" style="display: block; margin: auto;" /></p>
+<div id="ch3-3-1" class="section level3">
+<h3><span class="header-section-number">3.3.1</span> Nonparametric Interval Estimate For The Median</h3>
+A nonparametric interval estimate for the true population median is computed using the binomial distribution. First, the desired significance level <span class="math inline">\(\alpha\)</span> is stated, the acceptable risk of not including the true median. One-half (<span class="math inline">\(\alpha / 2\)</span>) of this risk is assigned to each end of the interval (figure <a href="ch3.html#fig:fig-3-4">3.4</a>). A table of the binomial distribution provides lower and upper critical values x’ and x at one-half the desired alpha level (<span class="math inline">\(\alpha / 2\)</span>). These critical values are transformed into the ranks R<sub>l</sub> and R<sub>u</sub> corresponding to data points C<sub>l</sub> and C<sub>u</sub> at the ends of the confidence interval.
+<div class="figure" style="text-align: center"><span id="fig:fig-3-4"></span>
+<img src="figures/3_4.png" alt="Probability of containing the true median P~.50~ in a 2-sided interval estimate. P~.50~ will be below the lower interval bound (C~l~) $lpha / 2$% of the time, and above the upper interval bound (C~u~) $lpha / 2$% of the time." width="502" />
+<p class="caption">
+Figure 3.4: Probability of containing the true median P<sub>.50</sub> in a 2-sided interval estimate. P<sub>.50</sub> will be below the lower interval bound (C<sub>l</sub>) <span class="math inline">\(lpha / 2\)</span>% of the time, and above the upper interval bound (C<sub>u</sub>) <span class="math inline">\(lpha / 2\)</span>% of the time.
+</p>
+</div>
+<p>For small sample sizes, the binomial table is entered at the <span class="math inline">\(p = 0.5\)</span> (median) column in order to compute a confidence interval on the median. This column is reproduced in Appendix Table B5 – it is identical to the quantiles for the sign test (see chapter 6). A critical value x’ is obtained from Table B5 corresponding to <span class="math inline">\(\alpha / 2\)</span>, or as close to <span class="math inline">\(\alpha / 2\)</span> as possible. This critical value is then used to compute the ranks R<sub>u</sub> and R<sub>l</sub> corresponding to the data values at the upper and lower confidence limits for the median. These limits are the R<sub>l</sub>th ranked data points going in from each end of the sorted list of n observations. The resulting confidence interval will reflect the shape (skewed or symmetric) of the original data.
+<span class="math display" id="eq:3-2">\[\begin{equation}
+R_{l} = x^{\prime} \\
+\tag{3.2}
+\end{equation}\]</span>
+<span class="math display" id="eq:3-3">\[\begin{equation}
+\begin{aligned}
+R_{u} &amp; = n - x^{\prime} = x &amp;&amp; \text{for $x^{\prime}$ and from Appendix Table B5}
+\end{aligned}
+\tag{3.3}
+\end{equation}\]</span>
+Nonparametric intervals cannot always exactly produce the desired confidence level when sample sizes are small. This is because they are discrete, jumping from one data value to the next at the ends of the intervals. However, confidence levels close to those desired are available for all but the smallest sample sizes.</p>
+<p><u>Example 2</u></p>
+<p>The following 25 arsenic concentrations (in ppb) were reported for ground waters of southeastern New Hampshire (<span class="citation">Boudette et al. (<a href="#ref-boudette_high_1985">1985</a>)</span>). A histogram of the data is shown in figure <a href="ch3.html#fig:fig-3-5">3.5</a>. Compute the <span class="math inline">\(\alpha = 0.05\)</span> interval estimate of the median concentration.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">1.3</th>
+<th align="center">1.5</th>
+<th align="center">1.8</th>
+<th align="center">2.6</th>
+<th align="center">2.8</th>
+<th align="center">3.5</th>
+<th align="center">4.0</th>
+<th align="center">4.8</th>
+<th align="center">8</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">9.5</td>
+<td align="center">12</td>
+<td align="center">14</td>
+<td align="center">19</td>
+<td align="center">23</td>
+<td align="center">41</td>
+<td align="center">80</td>
+<td align="center">100</td>
+<td align="center">110</td>
+</tr>
+<tr class="even">
+<td align="center">120</td>
+<td align="center">190</td>
+<td align="center">240</td>
+<td align="center">250</td>
+<td align="center">300</td>
+<td align="center">340</td>
+<td align="center">580</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<div class="figure" style="text-align: center"><span id="fig:fig-3-5"></span>
+<img src="figures/3_5.png" alt="Histogram of Example 2 arsenic concentrations (in ppb)" width="398" />
+<p class="caption">
+Figure 3.5: Histogram of Example 2 arsenic concentrations (in ppb)
+</p>
+</div>
+<p>The sample median concentration <span class="math inline">\(\hat{C}_{0.5} = 19\)</span>, the 13th observation ranked from smallest to largest. To determine a 95% confidence interval for the true median concentration <span class="math inline">\(C_{0.5}\)</span>, the tabled critical value with an entry nearest to <span class="math inline">\(\alpha / 2 = 0.025\)</span> is <span class="math inline">\(x^{\prime} = 7\)</span> from Table B5. The entry value of 0.022 is quite near 0.025, and is the equivalent to the shaded area at one side of figure <a href="ch3.html#fig:fig-3-4">3.4</a>. From equations <a href="ch3.html#eq:3-2">(3.2)</a> and <a href="ch3.html#eq:3-3">(3.3)</a> the rank R<sub>l</sub> of the observation corresponding to the lower confidence limit is 8, and R<sub>u</sub> corresponding to the upper confidence limit is 25 − 7 = 18.</p>
+<p>For this confidence interval the alpha level <span class="math inline">\(\alpha = 2 \bullet 0.022 = 0.044\)</span>. This is equivalent to a 1−0.044 or 95.6% confidence limit for <span class="math inline">\(C_{0.5}\)</span>, and is the interval between the 8th and 18th ranked observations (the 8th point in from either end), or <span class="math display">\[C_{l} = 4.8 \leq C_{0.5} \leq 110 = C_{u} \; \; \text{at} \; \alpha = 0.044\]</span> The asymmetry around <span class="math inline">\(\hat{C}_{0.5} = 19\)</span> reflects the skewness of the data.</p>
+<p>An alternative method for computing the same nonparametric interval is used when the sample size <span class="math inline">\(n &gt; 20\)</span>. This large-sample approximation utilizes a table of the standard normal distribution available in every basic statistics textbook to approximate the binomial distribution. By using this approximation, only small tables of the binomial distribution up to <span class="math inline">\(n = 20\)</span> need be included in statistics texts. A critical value <span class="math inline">\(z_{\alpha / 2}\)</span> from the normal table determines the upper and lower ranks of observations corresponding to the ends of the confidence interval. Those ranks are
+<span class="math display" id="eq:3-4">\[\begin{equation}
+R_{l} = \frac{n - z_{\alpha / 2} \sqrt{n}}{2} \\
+\tag{3.4}
+\end{equation}\]</span>
+<span class="math display" id="eq:3-5">\[\begin{equation}
+R_{u} = \frac{n + z_{\alpha / 2} \sqrt{n}}{2} + 1
+\tag{3.5}
+\end{equation}\]</span>
+The computed ranks R<sub>u</sub> and R<sub>l</sub> are rounded to the nearest integer when necessary.</p>
+<p><u>Example 2,cont.</u></p>
+<p>For the <span class="math inline">\(n = 25\)</span> arsenic concentrations, an approximate 95 percent confidence interval on the true median <span class="math inline">\(C_{0.5}\)</span> is computed using <span class="math inline">\(z_{\alpha / 2} = 1.96\)</span> so that
+<span class="math display">\[\begin{equation}
+\begin{aligned}
+R_{l} &amp;= \frac{25 - 1.96 \bullet \sqrt{25}}{2} &amp;&amp;= 7.6\\ 
+R_{u} &amp;= \frac{25 + 1.96 \bullet \sqrt{25}}{2} + 1 &amp;&amp;= 18.4
+\end{aligned}
+\end{equation}\]</span></p>
+<p>the “7.6th ranked observation” in from either end. Rounding to the nearest integer, the 8th and 18th ranked observations are used as the ends of the <span class="math inline">\(\alpha = 0.05\)</span> confidence limit on <span class="math inline">\(C_{0.5}\)</span>, agreeing with the exact 95.6% confidence limit computed previously.</p>
+</div>
+<div id="ch3-3-2" class="section level3">
+<h3><span class="header-section-number">3.3.2</span> Parametric Interval Estimate For The Median</h3>
+<p>As mentioned in chapter <a href="ch1.html#ch1">1</a>, the geometric mean of x (<span class="math inline">\(GM_{x}\)</span>) is an estimate of the median in original (x) units when the data logarithms <span class="math inline">\(y = \ln{(x)}\)</span> are symmetric. The mean of <span class="math inline">\(y\)</span> and confidence interval on the mean of y become the geometric mean with its (asymmetric) confidence interval after being retransformed back to original units by exponentiation (equations <a href="ch3.html#eq:3-6">(3.6)</a> and <a href="ch3.html#eq:3-7">(3.7)</a>). These are parametric alternatives to the point and interval estimates of section <a href="ch3.html#ch3-3-1">3.3.1</a>. Here it is assumed that the data are distributed as a lognormal distribution. The geometric mean and interval would be more efficient (shorter interval) measures of the median and its confidence interval when the data are truly lognormal. The sample median and its interval are more appropriate and more efficient if the logarithms of data still exhibit skewness and/or outliers.
+<span class="math display" id="eq:3-6">\[\begin{equation}
+\begin{aligned}
+&amp; GM_{x} = \exp{\left( \overline{y} \right)} &amp;&amp; \text{where $y = \ln{(x)}$ and $\overline{y} =$ sample mean of $y$.}
+\end{aligned}
+\tag{3.6}
+\end{equation}\]</span>
+<span class="math display" id="eq:3-7">\[\begin{equation}
+\exp{\left( \overline{y} - t_{(\alpha / 2, n - 1)} \sqrt{s^{2}_{y} / n} \right)} \leq GM_{x} \leq \exp{\left( \overline{y} + t_{(\alpha / 2, n - 1)} \sqrt{s^{2}_{y} / n}  \right)} \\
+\text{where $s^{2}_{y} =$ sample variance of $y$ in natural log units.}
+\tag{3.7}
+\end{equation}\]</span></p>
+<p><u>Example 2,cont.</u></p>
+<p>Natural logs of the arsenic data are as follows:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">0.262</th>
+<th align="center">0.405</th>
+<th align="center">0.588</th>
+<th align="center">0.956</th>
+<th align="center">1.030</th>
+<th align="center">1.253</th>
+<th align="center">1.387</th>
+<th align="center">1.569</th>
+<th align="center">2.079</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">2.251</td>
+<td align="center">2.485</td>
+<td align="center">2.639</td>
+<td align="center">2.944</td>
+<td align="center">3.135</td>
+<td align="center">3.714</td>
+<td align="center">4.382</td>
+<td align="center">4.605</td>
+<td align="center">4.700</td>
+</tr>
+<tr class="even">
+<td align="center">4.787</td>
+<td align="center">5.247</td>
+<td align="center">5.481</td>
+<td align="center">5.521</td>
+<td align="center">5.704</td>
+<td align="center">5.829</td>
+<td align="center">6.363</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<p>The mean of the logs <span class="math inline">\(= 3.17\)</span>, with standard deviation of 1.96. From figure <a href="ch3.html#fig:fig-3-6">3.6</a> the logs of the data appear more symmetric than do the original units of concentration shown previously in figure <a href="ch3.html#fig:fig-3-5">3.5</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:fig-3-6"></span>
+<img src="figures/3_6.png" alt="Histogram of natural logs of the arsenic concentrations of Example 2" width="404" />
+<p class="caption">
+Figure 3.6: Histogram of natural logs of the arsenic concentrations of Example 2
+</p>
+</div>
+<p>From equations <a href="ch3.html#eq:3-6">(3.6)</a> and <a href="ch3.html#eq:3-7">(3.7)</a>, the geometric mean and its 95% confidence interval are: <span class="math display">\[GM_{C} = \exp{(3.17)} = 23.8\]</span>
+<span class="math display">\[\begin{equation}
+\begin{aligned}
+\exp{\left( 3.17 - 2.064 \bullet \sqrt{1.96^{2} / 25} \right)} &amp;\leq GM_{C} &amp;&amp;\leq \exp{\left( 3.17 + 2.064 \bullet \sqrt{1.96^{2} / 25} \right)} \\
+\exp{(2.36)} &amp;\leq GM_{C} &amp;&amp;\leq \exp{(3.98)}
+10.6 &amp;\leq GM_{C} &amp;&amp;\leq 53.5
+\end{aligned}
+\end{equation}\]</span>
+The scientist must decide whether it is appropriate to assume a lognormal distribution. If not, the nonparametric interval of section <a href="ch3.html#ch3-3-1">3.3.1</a> would be preferred.</p>
+</div>
+</div>
+<div id="ch3-4" class="section level2">
+<h2><span class="header-section-number">3.4</span> Confidence Intervals For The Mean</h2>
+<p>Interval estimates may also be computed for the true population mean <span class="math inline">\(\mu\)</span>. These are appropriate if the center of mass of the data is the statistic of interest (see Chapter <a href="ch1.html#ch1">1</a>). Intervals symmetric around the sample mean <span class="math inline">\(\overline{X}\)</span> are computed most often. For large sample sizes a symmetric interval adequately describes the variation of the mean, regardless of the shape of the data distribution. This is because the distribution of the sample mean will be closely approximated by a normal distribution as sample sizes get larger, even though the data may not be normally distributed<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. For smaller sample sizes, however, the mean will not be normally distributed unless the data themselves are normally distributed. As data increase in skewness, more data are required before the distribution of the mean can be adequately approximated by a normal distribution. For highly skewed distributions or data containing outliers, it may take more than 100 observations before the mean will be sufficiently unaffected by the largest values to assume that its distribution will be symmetric.</p>
+<div id="ch3-4-1" class="section level3">
+<h3><span class="header-section-number">3.4.1</span> Symmetric Confidence Interval For The Mean</h3>
+<p>Symmetric confidence intervals for the mean are computed using a table of the student’s t distribution available in statistics textbooks and software. This table is entered to find critical values for t at one-half the desired alpha level. The width of the confidence interval is a function of these critical values, the standard deviation of the data, and the sample size. When data are skewed or contain outliers, the assumptions behind the t-interval do not hold. The resulting symmetric interval will be so wide that most observations will be included in it. It may also extend below zero on the lower end. Negative endpoints of a confidence interval for data which cannot be negative are clear signals that the assumption of a symmetric confidence interval is not warranted. For such data, assuming a lognormal distribution as described in section <a href="ch3.html#ch3-4-2">3.4.2</a> would be more appropriate.</p>
+<p>The student’s t statistic <span class="math inline">\(t_{(\alpha / 2, n − 1)}\)</span> is used to compute the following symmetric confidence interval:
+<span class="math display" id="eq:3-8">\[\begin{equation}
+\overline{x} - t_{(\alpha / 2, n - 1)} \bullet \sqrt{s^{2} / n} \leq \mu \leq \overline{x} + t_{(\alpha / 2, n - 1)} \bullet \sqrt{s^{2} / n}
+\tag{3.8}
+\end{equation}\]</span>
+<u>Example 2,cont.</u></p>
+<p>The sample mean arsenic concentration <span class="math inline">\(\overline{C} = 98.4\)</span>. This is the point estimate for the true unknown population mean <span class="math inline">\(\mu\)</span>. An <span class="math inline">\(\alpha = 0.05\)</span> confidence interval on <span class="math inline">\(\mu\)</span> is
+<span class="math display">\[\begin{equation}
+\begin{aligned}
+98.4 - t_{(0.025, 24)} \bullet \sqrt{144.7^{2} / 25} \leq &amp;\mu \leq 98.4 + t_{(0.025, 24)} \bullet \sqrt{144.7^{2} / 25} \\
+98.4 - 2.064 \bullet 28.9 \leq &amp;\mu \leq 98.4 + 2.064 \bullet 28.9 \\
+38.7 \leq &amp;\mu \leq 158.1
+\end{aligned}
+\end{equation}\]</span>
+Thus there is a 95% probability that <span class="math inline">\(\mu\)</span> is contained in the interval between 38.7 and 158.1 ppb, assuming that a symmetric confidence interval is appropriate. Note that this confidence interval is, like <span class="math inline">\(\overline{C}\)</span>, sensitive to the highest data values. If the largest value of 580 were changed to 380, the median and its confidence interval would be unaffected. <span class="math inline">\(\overline{C}\)</span> would change to 90.4, with a 95% interval estimate for <span class="math inline">\(\mu\)</span> from 40.7 to 140.1.</p>
+</div>
+<div id="ch3-4-2" class="section level3">
+<h3><span class="header-section-number">3.4.2</span> Asymmetric Confidence Interval For The Mean (For Skewed Data)</h3>
+<p>Means and confidence intervals may also be computed by assuming that the logarithms <span class="math inline">\(y = \ln{(x)}\)</span> of the data are symmetric. If the data appear more like a lognormal than a normal distribution, this assumption will give a more reliable (lower variance) estimate of the mean than will computation of the usual sample mean without log transformation.</p>
+<p>To estimate the population mean <span class="math inline">\(\mu_{x}\)</span> in original units, assume the data are lognormal. One-half the variance of the logarithms is added to <span class="math inline">\(\overline{y}\)</span> (the mean of the logs) prior to exponentiation (<span class="citation">Aitchison and Brown (<a href="#ref-aitchison_lognormal_1981">1981</a>)</span>). As the sample variance <span class="math inline">\(s^{2}_{y}\)</span> is only an estimate of the true variance of the logarithms, the sample estimate of the mean is biased (<span class="citation">Bradu and Mundlak (<a href="#ref-bradu_estimation_1970">1970</a>)</span>). However, for small <span class="math inline">\(s^{2}_{y}\)</span> and large sample sizes the bias is negligible. See Chapter 9 for more information on the bias of this estimator.
+<span class="math display" id="eq:3-9">\[\begin{equation}
+\begin{aligned}
+&amp; \hat{\mu}_{x} = \exp{\left( \overline{y} + 0.5 \bullet s^{2}_{y} \right)} &amp;&amp;\text{where $y = \ln{(x)}$,} \\
+\end{aligned}
+\tag{3.9}
+\end{equation}\]</span>
+<span class="math display">\[\overline{y} = \text{sample mean and $s^{2}_{y} =$ sample variance of $y$ in natural log units.}\]</span>
+The confidence interval around <span class="math inline">\(\hat{\mu}_{x}\)</span> is <u>not</u> the interval estimate computed for the geometric mean in equation <a href="ch3.html#eq:3-7">(3.7)</a>. It cannot be computed simply by exponentiating the interval around <span class="math inline">\(\overline{y}\)</span>. An exact confidence interval in original units for the mean of lognormal data can be computed, though the equation is beyond the scope of this book. See <span class="citation">Land (<a href="#ref-land_confidence_1971">1971</a>)</span> and <span class="citation">Land (<a href="#ref-land_evaluation_1972">1972</a>)</span> for details.</p>
+<p><u>Example 2,cont.</u></p>
+<p>To estimate the mean concentration assuming a lognormal distribution, <span class="math display">\[\hat{\mu}_{C} = \exp{\left( 3.17 + 0.5 \bullet 1.96^{2} \right)} = 162.8 .\]</span> This estimate does not even fall within the confidence interval computed earlier for the geometric mean (<span class="math inline">\(10.6 \leq GM_{C} \leq 53.5\)</span>). Thus here is a case where it is obvious that the CI on the geometric mean is not an interval estimate of the mean. It is an interval estimate of the median, assuming the data follow a lognormal distribution.</p>
+</div>
+</div>
+<div id="ch3-5" class="section level2">
+<h2><span class="header-section-number">3.5</span> Nonparametric Prediction Intervals</h2>
+<p>The question is often asked whether one new observation is likely to have come from the same distribution as previously-collected data, or alternatively from a different distribution. This can be evaluated by determining whether the new observation is outside the <strong>prediction interval</strong> computed from existing data. Prediction intervals contain <span class="math inline">\(100 \bullet (1 − \alpha)\)</span> percent of the data distribution, while <span class="math inline">\(100 \bullet \alpha\)</span> percent are outside of the interval. If a new observation comes from the same distribution as previously-measured data, there is a <span class="math inline">\(100 \bullet \alpha\)</span> percent chance that it will lie outside of the prediction interval. Therefore being outside the interval does not “prove” the new observation is different, just that it is likely to be so. How likely this is depends on the choice of <span class="math inline">\(\alpha\)</span> made by the scientist.</p>
+<p>Prediction intervals are computed for a different purpose than confidence intervals – they deal with individual data values as opposed to a summary statistic such as the mean. A prediction interval is wider than the corresponding confidence interval, because an individual observation is more variable than is a summary statistic computed from several observations. Unlike a confidence interval, a prediction interval takes into account the variability of single data points around the median or mean, in addition to the error in estimating the center of the distribution. When the mean <span class="math inline">\(\pm\)</span> 2 standard deviations are mistakenly used to estimate the width of a prediction interval, new data are asserted as being from a different population more frequently than they should.</p>
+<p>In this section nonparametric prediction intervals are presented – intervals not requiring the data to follow any particular distributional shape. Prediction intervals can also be developed assuming the data follow a particular distribution, such as the normal. These are discussed in section <a href="ch3.html#ch3-6">3.6</a>. Both two-sided and one-sided prediction intervals are described.</p>
+<p><img src="figures/3_C.png" width="532" style="display: block; margin: auto;" /></p>
+<p>It may also be of interest to know whether the median or mean of a new set of data differs from that for an existing group. To test for differences in medians, use the rank-sum test of Chapter 5. To test for differences in means, the two-sample t-test of Chapter 5 should be performed.</p>
+<div id="two-sided-nonparametric-prediction-interval" class="section level3">
+<h3><span class="header-section-number">3.5.1</span> Two-Sided Nonparametric Prediction Interval</h3>
+<p>The nonparametric prediction interval of confidence level α is simply the interval between the <span class="math inline">\(\alpha / 2\)</span> and <span class="math inline">\(1 − (\alpha / 2)\)</span> percentiles of the distribution (figure <a href="ch3.html#fig:fig-3-7">3.7</a>). This interval contains <span class="math inline">\(100 \bullet (1 − \alpha)\)</span> percent of the data, while <span class="math inline">\(100 \bullet \alpha\)</span> percent lies outside of the interval. Therefore if the new additional data point comes from the same distribution as the previously measured data, there is a <span class="math inline">\(100 \bullet \alpha\)</span> percent chance that it will lie outside of the prediction interval and be incorrectly labeled as “changed”. The interval will reflect the shape of the data it is developed from, and no assumptions about the form of that shape need be made.
+<span class="math display" id="eq:3-10">\[\begin{equation}
+PI_{np} = X_{\alpha / 2 \bullet (n + 1)} \;\; \text{to} \;\; X_{\lbrack 1 - (\alpha / 2) \rbrack \bullet (n+1)}
+\tag{3.10}
+\end{equation}\]</span></p>
+<div class="figure" style="text-align: center"><span id="fig:fig-3-7"></span>
+<img src="figures/3_7.png" alt="Two-sided prediction interval. A new observation will be below $X_{l}$ $lpha/2$% and above $X_{u}$ $lpha/2$% of the time, when the data distribution is unchanged." width="524" />
+<p class="caption">
+Figure 3.7: Two-sided prediction interval. A new observation will be below <span class="math inline">\(X_{l}\)</span> <span class="math inline">\(lpha/2\)</span>% and above <span class="math inline">\(X_{u}\)</span> <span class="math inline">\(lpha/2\)</span>% of the time, when the data distribution is unchanged.
+</p>
+</div>
+<p><u>Example 2,cont.</u></p>
+<p>Compute a 90% (<span class="math inline">\(\alpha = 0.10\)</span>) prediction interval for the arsenic data without assuming the data follow any particular distribution.</p>
+<p>The 5th and 95th percentiles of the arsenic data are the observations with ranks of (<span class="math inline">\(0.05 \bullet 26\)</span>) and (<span class="math inline">\(0.95 \bullet 26\)</span>), or 1.3 and 24.7. By linearly interpolating between the 1st and 2nd, and 24th and 25th observations, the <span class="math inline">\(\alpha = 0.10\)</span> prediction interval is
+<span class="math display">\[\begin{equation}
+\begin{aligned}
+X_{1} + 0.3 \bullet \left( X_{2} - X_{1} \right) &amp; \text{ to } X_{24} + 0.7 \bullet \left( X_{25} - X_{24} \right) \\
+1.3 + 0.3 \bullet 0.2 &amp; \text{ to } 340 + 0.7 \bullet 240 \\
+1.4 &amp; \text{ to } 508 \text{ ppb}
+\end{aligned}
+\end{equation}\]</span>
+A new observation less than 1.4 or greater than 508 can be considered as coming from a different distribution at a 10% risk level (<span class="math inline">\(\alpha = 0.10\)</span>).</p>
+</div>
+<div id="one-sided-nonparametric-prediction-interval" class="section level3">
+<h3><span class="header-section-number">3.5.2</span> One-Sided Nonparametric Prediction Interval</h3>
+<p>One-sided prediction intervals are appropriate if the interest is in whether a new observation is larger than existing data, or smaller than existing data, but not both. The decision to use a onesided interval must be based entirely on the question of interest. It should not be determined after looking at the data and deciding that the new observation is likely to be only larger, or only smaller, than existing information. One-sided intervals use <span class="math inline">\(\alpha\)</span> rather than <span class="math inline">\(\alpha / 2\)</span> as the error risk, placing all the risk on one side of the interval (figure <a href="ch3.html#fig:fig-3-8">3.8</a>).
+<span class="math display" id="eq:3-11">\[\begin{equation}
+\begin{aligned}
+\text{one-sided PI np: $\;\;\;\;\;$} &amp; \text{new $x$} &lt; X_{\alpha \bullet (n + 1)} \text{ , or} \\
+&amp; \text{new $x$} &lt; X_{\lbrack 1 - (\alpha / 2) \rbrack \bullet (n+1)} \\
+&amp; \text{(but not either, or)}
+\end{aligned}
+\tag{3.11}
+\end{equation}\]</span></p>
+<div class="figure" style="text-align: center"><span id="fig:fig-3-8"></span>
+<img src="figures/3_8.png" alt="Confidence level and alpha level for a 1-sided prediction interval Probability of obtaining a new observation greater than $X_{u}$ when the distribution is unchanged is $lpha$." width="519" />
+<p class="caption">
+Figure 3.8: Confidence level and alpha level for a 1-sided prediction interval Probability of obtaining a new observation greater than <span class="math inline">\(X_{u}\)</span> when the distribution is unchanged is <span class="math inline">\(lpha\)</span>.
+</p>
+</div>
+<p><u>Example 2,cont.</u></p>
+<p>An arsenic concentration of 350 ppb is found in a New Hampshire well. Does this indicate a change to larger values as compared to the distribution of concentrations for the example 2 data? Use <span class="math inline">\(\alpha = 0.10\)</span>.</p>
+<p>As only large concentrations are of interest, the new data point will be considered larger if it exceeds the <span class="math inline">\(\alpha = 0.10\)</span> one-sided prediction interval, or upper 90th percentile of the existing data. <span class="math inline">\(X_{0.90 \bullet 26} = X_{23.4}\)</span>. By linear interpolation this corresponds to a concentration of <span class="math display">\[X_{23} + 0.4 \bullet (X_{24} - X_{23}) = 300 + 0.4 \bullet (40) = 316\]</span> In other words, a concentration of 316 or greater will occur approximately 10 percent of the time if the distribution of data has not increased. Therefore a concentration of 350 ppb is considered larger than the existing data at an α level of 0.10.</p>
+</div>
+</div>
+<div id="ch3-6" class="section level2">
+<h2><span class="header-section-number">3.6</span> Parametric Prediction Intervals</h2>
+<p>Parametric prediction intervals are also used to determine whether a new observation is likely to come from a different distribution than previously-collected data. However, an assumption is now made about the shape of that distribution. This assumption provides more information with which to construct the interval, as long as the assumption is valid. If the data do not approximately follow the assumed distribution, the prediction interval may be quite inaccurate.</p>
+<div id="symmetric-prediction-interval" class="section level3">
+<h3><span class="header-section-number">3.6.1</span> Symmetric Prediction Interval</h3>
+<p>The most common assumption is that the data follow a normal distribution. Prediction intervals are then constructed to be symmetric around the sample mean, and wider than confidence intervals on the mean. The equation for this interval differs from that for a confidence interval around the mean by adding a term <span class="math inline">\(\sqrt{s^{2}} = s\)</span>, the standard deviation of individual observations around their mean:
+<span class="math display" id="eq:3-12">\[\begin{equation}
+PI = \overline{x} - t_{(\alpha / 2, n - 1)} \bullet \sqrt{s^{2} + \left( s^{2} / n \right)} \;\; \text{to} \;\; \overline{x} + t_{(\alpha / 2, n - 1)} \bullet \sqrt{s^{2} + \left( s^{2} / n \right)}
+\tag{3.12}
+\end{equation}\]</span>
+One-sided intervals are computed as before, using <span class="math inline">\(\alpha\)</span> rather than <span class="math inline">\(\alpha / 2\)</span> and comparing new data to only one end of the prediction interval.</p>
+<p><u>Example 2,cont.</u></p>
+<p>Assuming symmetry, is a concentration of 350 ppb different (not just larger) than what would be expected from the previous distribution of arsenic concentrations? Use <span class="math inline">\(\alpha = 0.10\)</span>.</p>
+<p>The parametric two-sided <span class="math inline">\(\alpha = 0.10\)</span> prediction interval is
+<span class="math display">\[\begin{equation}
+\begin{aligned}
+98.4 - t_{(0.05, 24)} \bullet \sqrt{144.7^{2} + \left( 144.7^{2} / 25 \right)} &amp;\text{$\;$to$\;$} 98.4 + t_{(0.05, 24)} \bullet \sqrt{144.7^{2} + \left( 144.7^{2} / 25 \right)} \\
+98.4 - 1.711 \bullet 147.6 &amp;\text{$\;$to$\;$} 98.4 + 1.711 \bullet 147.6 \\
+-154.1 &amp;\text{$\;$to$\;$} 350.9
+\end{aligned}
+\end{equation}\]</span>
+350 ppb is at the upper limit of 350.9, so the concentration is not declared different at <span class="math inline">\(\alpha = 0.10\)</span>. The negative concentration reported as the lower prediction bound is a clear indication that the underlying data are not symmetric, as concentrations are non-negative. To avoid an endpoint as unrealistic as this negative concentration, an asymmetric prediction interval should be used instead.</p>
+</div>
+<div id="asymmetric-prediction-intervals" class="section level3">
+<h3><span class="header-section-number">3.6.2</span> Asymmetric Prediction Intervals</h3>
+<p>Asymmetric intervals can be computed either using the nonparametric intervals of section <a href="ch3.html#ch3-5">3.5</a>, or by assuming symmetry of the logarithms and computing a parametric interval on the logs of the data. Either asymmetric interval is more valid than a symmetric interval when the underlying data are not symmetric, as is the case for the arsenic data of example 2. As stated in Chapter <a href="ch1.html#ch1">1</a>, most water resources data and indeed most environmental data show positive skewness. Thus they should be modelled using asymmetric intervals. Symmetric <u>prediction</u> intervals should be used only when the data are known to come from a normal distribution. This is because prediction intervals deal with the behavior of individual observations. Therefore the Central Limit Theorem (see first footnote in this chapter) does not apply. Data must be assumed nonnormal unless shown otherwise. It is difficult to disprove normality using hypothesis tests (Chapter 4) due to the small sample sizes common to environmental data sets. It is also difficult to see non-normality with graphs unless the departures are strong (Chapter 10). It is unfortunate that though most water resources data sets are asymmetric and small, symmetric intervals are commonly used.</p>
+<p>An asymmetric (but parametric) prediction interval can be computed using logarithms. This interval is parametric because percentiles are computed assuming that the data follow a lognormal distribution. Thus from equation <a href="ch3.html#eq:3-12">(3.12)</a>:
+<span class="math display" id="eq:3-13">\[\begin{equation}
+PI = \exp{\left( \overline{y} - t_{(\alpha / 2, n - 1)} \bullet \sqrt{s^{2}_{y} + \left( s^{2}_{y} / n \right)}\right)} \text{$\;$to$\;$} \exp{\left( \overline{y} + t_{(\alpha / 2, n - 1)} \bullet \sqrt{s^{2}_{y} + \left( s^{2}_{y} / n \right)}\right)} \\
+\text{where $y = \ln{(X)}$, $\overline{y}$ is the mean and $s^{2}_{y}$ the variance of the logarithms.}
+\tag{3.13}
+\end{equation}\]</span>
+<u>Example 2,cont.</u></p>
+<p>An asymmetric prediction interval is computed using the logs of the arsenic data. A 90% prediction interval becomes
+<span class="math display">\[\begin{equation}
+\begin{aligned}
+\ln{(PI)} = 3.17 - t_{(0.05, 24)} \bullet \sqrt{1.96^{2} + 1.96^{2} / 25} &amp;\text{$\;\;$to$\;\;$} 3.17 + t_{(0.05, 24)} \bullet \sqrt{1.96^{2} + 1.96^{2} / 25} \\
+3.17 - 1.71 \bullet 2.11 &amp;\text{$\;\;$to$\;\;$} 3.17 + 1.71 \bullet 2.11 \\
+0.44 &amp;\text{$\;\;$to$\;\;$} 6.78 \\
+\text{which when exponentiated into original units becomes} \\
+1.55 &amp;\text{$\;\;$to$\;\;$} 880.1
+\end{aligned}
+\end{equation}\]</span>
+As percentiles can be transformed directly from one measurement scale to another, the prediction interval in log units can be directly exponentiated to give the prediction interval in original units. This parametric prediction interval differs from the one based on sample percentiles in that a lognormal distribution is assumed. The parametric interval would be preferred if the assumption of a lognormal distribution is believed. The sample percentile interval would be preferred when a robust interval is desired, such as when a lognormal model is not believed, or when the scientist does not wish to assume any model for the data distribution.</p>
+</div>
+</div>
+<div id="ch3-7" class="section level2">
+<h2><span class="header-section-number">3.7</span> Confidence Intervals For Percentiles (Tolerance Intervals)</h2>
+<p>Quantiles or percentiles have had the traditional use in water resources of describing the frequency of flood events. Thus the 100-year flood is the 99th percentile (0.99 quantile) of the distribution of annual flood peaks. It is the magnitude of flood which is expected to be exceeded only once in 100 years. The 20-year flood is of a magnitude which is expected to be exceeded only once in 20 years (5 times in 100 years), or is the 95th percentile of annual peaks. Similarly, the 2-year flood is the median or 50th percentile of annual peaks. Flood percentiles are determined assuming that peak flows follow a specified distribution. The log Pearson Type III is often used in the United States. Historically, European countries have used the Gumbel (extreme value) distribution, though the GEV distribution is now more common (<span class="citation">Ponce (<a href="#ref-ponce_engineering_1989">1989</a>)</span>).</p>
+<p>The most commonly-reported statistic for analyses of low flows is also based on percentiles, the “7-day 10-year low flow” or <span class="math inline">\(7Q10\)</span>. The <span class="math inline">\(7Q10\)</span> is the 10th percentile of the distribution of annual values of <span class="math inline">\(Y\)</span>, where <span class="math inline">\(Y\)</span> is the lowest average of mean daily flows over any consecutive 7-day period for that year. <span class="math inline">\(Y\)</span> values are commonly fit to Log Pearson III or Gumbel distributions in order to compute the percentile. Often a series of duration periods is used to better define flow characteristics, i.e. the <span class="math inline">\(30Q10\)</span>, <span class="math inline">\(60Q10\)</span>, and others (<span class="citation">Ponce (<a href="#ref-ponce_engineering_1989">1989</a>)</span>).</p>
+<p>Recently, percentiles: water quality of water-quality records appear to be becoming more important in a regulatory framework. <span class="citation">Crabtree, Cluckie, and Forster (<a href="#ref-crabtree_percentile_1987">1987</a>)</span> among others have reported an increasing reliance on percentiles for developing and monitoring compliance with water quality standards<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>. In these scenarios, the median, 95th, or some other percentile should not exceed (or be below) a standard. As of now, no distribution is usually assumed for water-quality concentrations, so that sample percentiles are commonly computed and compared to the standard. In regulatory frameworks, exceedance of a tolerance interval on concentration is sometimes used as evidence of contamination. A tolerance interval is nothing other than a confidence interval on the percentile. The percentile used is the ‘coverage coefficient’ of the tolerance interval.</p>
+<p>In light of the ever increasing use of percentiles in water resources applications, understanding of their variability is quite important. In section <a href="ch3.html#ch3-7-1">3.7.1</a>, interval estimates will be computed without assuming a distribution for the data. Estimates of peak flow percentiles computed in this way will therefore differ somewhat in comparison to those computed using a Log Pearson III or Gumbel assumption. Computation of percentile interval estimates when assuming a specific distributional shape is discussed in section <a href="ch3.html#ch3-7-3">3.7.3</a>. In sections <a href="ch3.html#ch3-7-2">3.7.2</a> and <a href="ch3.html#ch3-7-4">3.7.4</a>, use of interval estimates for testing hypotheses is illustrated.</p>
+<p><img src="figures/3_D.png" width="390" style="display: block; margin: auto;" /></p>
+<div id="ch3-7-1" class="section level3">
+<h3><span class="header-section-number">3.7.1</span> Nonparametric Confidence Intervals For Percentiles</h3>
+<p>Confidence intervals can be developed for any percentile analogous to those developed in section <a href="ch3.html#ch3-3">3.3</a> for the median. First the desired confidence level is stated. For small sample sizes a table of the binomial distribution is entered to find upper and lower limits corresponding to critical values at one-half the desired alpha level (<span class="math inline">\(\alpha / 2\)</span>). These critical values are transformed into the ranks corresponding to data points at the ends of the confidence interval.</p>
+<p>The binomial table is entered at the column for <span class="math inline">\(p\)</span>, the percentile (actually the quantile) for which a confidence interval is desired. So for a confidence interval on the 75th percentile, the <span class="math inline">\(p = 0.75\)</span> column is used. Go down the column until the appropriate sample size <span class="math inline">\(n\)</span> is found. The tabled probability <span class="math inline">\(p^{*}\)</span> should be found which is as close to <span class="math inline">\(\alpha / 2\)</span> as possible. The lower critical value <span class="math inline">\(x_{l}\)</span> is the integer corresponding to this probability <span class="math inline">\(p^{*}\)</span>. A second critical value <span class="math inline">\(x_{u}\)</span> is similarly obtained by continuing down the column to find a tabled probability <span class="math inline">\(p^{\prime} \cong (1 − \alpha / 2)\)</span>. These critical values <span class="math inline">\(x_{l}\)</span> and <span class="math inline">\(x_{u}\)</span> are used to compute the ranks <span class="math inline">\(R_{l}\)</span> and <span class="math inline">\(R_{u}\)</span> corresponding to the data values at the upper and lower ends of the confidence limit (equations <a href="ch3.html#eq:3-14">(3.14)</a> and <a href="ch3.html#eq:3-15">(3.15)</a>). The resulting confidence level of the interval will equal (<span class="math inline">\(p^{\prime} − p^{*}\)</span>).
+<span class="math display" id="eq:3-14">\[\begin{equation}
+R_{l} = x_{l} +1
+\tag{3.14}
+\end{equation}\]</span>
+<span class="math display" id="eq:3-15">\[\begin{equation}
+R_{u} = x_{u}
+\tag{3.15}
+\end{equation}\]</span>
+<u>Example 2,cont.</u></p>
+<p>For the arsenic concentrations of <span class="citation">Boudette et al. (<a href="#ref-boudette_high_1985">1985</a>)</span>, determine a 95% confidence interval on <span class="math inline">\(C_{0.20}\)</span>, the 20th percentile of concentration (<span class="math inline">\(p = 0.2\)</span>).</p>
+<p>The sample 20th percentile <span class="math inline">\(\hat{C}_{0.20} = 2.9\)</span> ppb, the <span class="math inline">\(0.20 \bullet (26) = 5.2\)</span> smallest observation, or two-tenths of the distance between the 5th and 6th smallest observations. To determine a 95% confidence interval for the true 20th percentile <span class="math inline">\(C_{0.20}\)</span>, the binomial table from a statistics text such as <span class="citation">Bhattacharyya and Johnson (<a href="#ref-bhattacharyya_statistical_1977">1977</a>)</span> is entered at the <span class="math inline">\(p = 0.20\)</span> column. The integer <span class="math inline">\(x_{l}\)</span> having an entry nearest to <span class="math inline">\(\alpha / 2 = 0.025\)</span> is found to be <span class="math inline">\(1\)</span> (<span class="math inline">\(p^{*} = 0.027\)</span>, the error probability for the
+lower side of the distribution). From equation <a href="ch3.html#eq:3-14">(3.14)</a> the rank <span class="math inline">\(R_{l} = 2\)</span>. Going further down the column, <span class="math inline">\(p^{\prime} = 0.983\)</span> for an <span class="math inline">\(x_{u} = R_{u} = 9\)</span>. Therefore a 95.6% confidence interval (<span class="math inline">\(0.983 − 0.027 = 0.956\)</span>) for the 20th percentile is the range between the 2nd and 9th observations, or <span class="math display">\[1.5 \leq C_{0.20} \leq 8 \;\; \text{at} \; \alpha = 0.044\]</span> The asymmetry around <span class="math inline">\(\hat{C}_{0.20} = 2.9\)</span> reflects the skewness of the data.</p>
+<p>When <span class="math inline">\(n &gt; 20\)</span>, a large-sample (normal) approximation to the binomial distribution can be used to obtain interval estimates for percentiles. From a table of quantiles of the standard normal distribution, <span class="math inline">\(z_{\alpha / 2}\)</span> and <span class="math inline">\(z_{\lbrack 1 - \alpha / 2 \rbrack}\)</span> (the <span class="math inline">\(\alpha / 2\)</span>th and <span class="math inline">\(\lbrack 1 − \alpha / 2 \rbrack\)</span>th normal quantiles) determine the upper and lower ranks of observations corresponding to the ends of the confidence interval. Those ranks are
+<span class="math display" id="eq:3-16">\[\begin{equation}
+R_{l} = np + z_{\alpha / 2} \bullet \sqrt{np(1 - p)} + 0.5
+\tag{3.16}
+\end{equation}\]</span>
+<span class="math display" id="eq:3-17">\[\begin{equation}
+R_{l} = np + z_{\lbrack 1 - \alpha / 2 \rbrack} \bullet \sqrt{np(1 - p)} + 0.5
+\tag{3.17}
+\end{equation}\]</span>
+The 0.5 terms added to each reflect a continuity correction (see Chapter 4) of 0.5 for the lower bound and −0.5 for the upper bound, plus the +1 term for the upper bound analogous to equation <a href="ch3.html#eq:3-5">(3.5)</a>. The computed ranks <span class="math inline">\(R_{u}\)</span> and <span class="math inline">\(R_{l}\)</span> are rounded to the nearest integer.</p>
+<p><u>Example 2,cont.</u></p>
+<p>Using the large sample approximation of equations <a href="ch3.html#eq:3-16">(3.16)</a> and <a href="ch3.html#eq:3-17">(3.17)</a>, what is a 95% confidence interval estimate for the true 0.2 quantile?</p>
+<p>Using <span class="math inline">\(z_{\alpha / 2} = - 1.96\)</span> the lower and upper ranks of the interval are
+<span class="math display">\[\begin{equation}
+\begin{aligned}
+R_{l} &amp;= 25 \bullet 0.2 + (-1.96) \bullet \sqrt{25 \bullet 0.2(1 - 0.2)} + 0.5 &amp;&amp;= 5 - 1.96 \bullet 2 + 0.5 &amp;&amp;&amp;= 1.6 \\
+R_{u} &amp;= 25 \bullet 0.2 + 1.96 \bullet \sqrt{25 \bullet 0.2(1 - 0.2)} + 0.5 &amp;&amp;= 5 + 1.96 \bullet 2 + 0.5 &amp;&amp;&amp;= 9.4
+\end{aligned}
+\end{equation}\]</span>
+After rounding, the 2nd and 9th ranked observations are found to be an approximate <span class="math inline">\(\alpha = 0.05\)</span> confidence limit on <span class="math inline">\(C_{0.2}\)</span>, agreeing with the exact confidence limit computed previously.</p>
+</div>
+<div id="ch3-7-2" class="section level3">
+<h3><span class="header-section-number">3.7.2</span> Nonparametric Tests For Percentiles</h3>
+<p>Often it is of interest to test whether a percentile is different from, or larger or smaller than, some specified value. For example, a water quality standard <span class="math inline">\(X_{0}\)</span> could be set such that the median of daily concentrations should not exceed <span class="math inline">\(X_{0}\)</span> ppb. Or the 10-year flood (90th percentile of annual peak flows) may be tested to determine if it differs from a regional design value <span class="math inline">\(X_{0}\)</span>. Detailed discussions of hypothesis tests do not begin until the next chapter. However, a simple way to view such a test is discussed below. It is directly related to confidence intervals.</p>
+<div id="n-p-test-for-whether-a-percentile-differs-from-x_0-a-two-sided-test" class="section level4">
+<h4><span class="header-section-number">3.7.2.1</span> N-P test for whether a percentile differs from <span class="math inline">\(X_{0}\)</span> (a two-sided test)</h4>
+<p>To test whether the percentile of a data set is significantly different (either larger or smaller) from a pre-specified value X0, compute an interval estimate for the percentile as described in section <a href="ch3.html#ch3-7-1">3.7.1</a>. If <span class="math inline">\(X_{0}\)</span> falls within this interval, the percentile is not significantly different from <span class="math inline">\(X_{0}\)</span> at a significance level = <span class="math inline">\(\alpha\)</span> (figure <a href="ch3.html#fig:fig-3-9">3.9</a>). If <span class="math inline">\(X_{0}\)</span> is not within the interval, the percentile significantly differs from <span class="math inline">\(X_{0}\)</span> at the significance level of <span class="math inline">\(\alpha\)</span>.</p>
+<div class="figure" style="text-align: center"><span id="fig:fig-3-9"></span>
+<img src="figures/3_9.png" alt="Interval estimate of $p$th percentile $X_{p}$ as a test for whether $X_{p} = X_{0}$.
+A. $X_{0}$ inside interval estimate: $X_{p}$ not significantly different from $X_{0}$.
+B. $X_{0}$ outside interval estimate: $X_{p}$ significantly different from $X_{0}$." width="510" />
+<p class="caption">
+Figure 3.9: Interval estimate of <span class="math inline">\(p\)</span>th percentile <span class="math inline">\(X_{p}\)</span> as a test for whether <span class="math inline">\(X_{p} = X_{0}\)</span>.
+A. <span class="math inline">\(X_{0}\)</span> inside interval estimate: <span class="math inline">\(X_{p}\)</span> not significantly different from <span class="math inline">\(X_{0}\)</span>.
+B. <span class="math inline">\(X_{0}\)</span> outside interval estimate: <span class="math inline">\(X_{p}\)</span> significantly different from <span class="math inline">\(X_{0}\)</span>.
+</p>
+</div>
+<p><u>Example 3</u></p>
+<p>In Appendix C1 are annual peak discharges for the Saddle River at Lodi, NJ from 1925 to 1967. Of interest is the 5-year flood, the flood which is likely to be equalled or exceeded once every 5 years (20 times in 100 years), and so is the 80th percentile of annual peaks. Though flood percentiles are usually computed assuming a Log Pearson Type III or Gumbel distribution (<span class="citation">Ponce (<a href="#ref-ponce_engineering_1989">1989</a>)</span>), here they will be estimated by the sample 80th percentile. Is there evidence that the 20-year flood between 1925-1967 differs from a design value of 1300 cfs at an <span class="math inline">\(\alpha = 0.05\)</span>?</p>
+<p>The 80th percentile is estimated from the 43 values between 1925 and 1967 as the <span class="math inline">\(0.8 \bullet (44) = 35.2\)</span> value when ranked from smallest to largest. Therefore <span class="math inline">\(\hat{Q}_{0.8} = 1672\)</span> cfs, 0.2 of the distance between the 35th and 36th ranked peak flow. A two-sided confidence interval on this percentile is (following equations <a href="ch3.html#eq:3-16">(3.16)</a> and <a href="ch3.html#eq:3-17">(3.17)</a>):
+<span class="math display">\[\begin{equation}
+\begin{aligned}
+&amp;R_{l} = np + z_{\alpha / 2} \bullet \sqrt{np(1 - p)} + 0.5 &amp;&amp;R_{u} = np + z_{\lbrack 1 - \alpha / 2 \rbrack} \bullet \sqrt{np(1 - p)} + 0.5 \\
+&amp;R_{l} = 43(0.8) - 1.96 \bullet \sqrt{43 \bullet 0.8 (0.2)} + 0.5 &amp;&amp;R_{u} = 43(0.8) + 1.96 \bullet \sqrt{43 \bullet 0.8 (0.2)} + 0.5 \\
+&amp;R_{l} = 29.8 &amp;&amp;R_{u} = 40.0\\
+\end{aligned}
+\end{equation}\]</span>
+The <span class="math inline">\(\alpha = 0.05\)</span> confidence interval lies between the 30th and 40th ranked peak flows, or <span class="math display">\[1370 &lt; Q_{0.8} &lt; 1860\]</span> which does not include the design value <span class="math inline">\(X_{0} = 1300\)</span> cfs. Therefore the 20-year flood does differ from the design value at a significance level of 0.05.</p>
+</div>
+<div id="n-p-test-for-whether-a-percentile-exceeds-x_0-a-one-sided-test" class="section level4">
+<h4><span class="header-section-number">3.7.2.2</span> N-P test for whether a percentile exceeds <span class="math inline">\(X_{0}\)</span> (a one-sided test)</h4>
+<p>To test whether a percentile <span class="math inline">\(X_{p}\)</span> significantly exceeds a specified value or standard <span class="math inline">\(X_{0}\)</span>, compute the one-sided confidence interval of section <a href="ch3.html#ch3-7-1">3.7.1</a>. Remember that the entire error level <span class="math inline">\(\alpha\)</span> is placed on the side below the percentile point estimate <span class="math inline">\(\hat{X}_{p}\)</span> (figure <a href="ch3.html#fig:fig-3-10">3.10</a>). <span class="math inline">\(X_{p}\)</span> will be declared significantly higher than <span class="math inline">\(X_{0}\)</span> if its one-sided confidence interval lies entirely above <span class="math inline">\(X_{0}\)</span>.</p>
+<div class="figure" style="text-align: center"><span id="fig:fig-3-10"></span>
+<img src="figures/3_10.png" alt="One-sided interval estimate as a test for whether $X_{p} &gt; X_{0}$.
+A. $X_{0}$ inside interval estimate: $X_{p}$ not significantly greater than $X_{0}$.
+B. $X_{0}$ below interval estimate: $X_{p}$ significantly greater than $X_{0}$." width="422" />
+<p class="caption">
+Figure 3.10: One-sided interval estimate as a test for whether <span class="math inline">\(X_{p} &gt; X_{0}\)</span>.
+A. <span class="math inline">\(X_{0}\)</span> inside interval estimate: <span class="math inline">\(X_{p}\)</span> not significantly greater than <span class="math inline">\(X_{0}\)</span>.
+B. <span class="math inline">\(X_{0}\)</span> below interval estimate: <span class="math inline">\(X_{p}\)</span> significantly greater than <span class="math inline">\(X_{0}\)</span>.
+</p>
+</div>
+<p><u>Example 2,cont.</u></p>
+<p>Suppose that a water-quality standard stated that the 90th percentile of arsenic concentrations in drinking water shall not exceed 300 ppb. Has this standard been violated at the <span class="math inline">\(\alpha = 0.05\)</span> confidence level by the New Hampshire data of example 2?</p>
+<p>The 90th percentile of the example 2 arsenic concentrations is
+<span class="math display">\[\begin{equation}
+\begin{aligned}
+\hat{C}_{0.90} &amp;= (25 + 1) \bullet 0.9\text{th} &amp;&amp;= 23.4\text{th data point} &amp;&amp;&amp;= 300 + 0.4(340 − 300) \\
+&amp;= 316 \text{ppb.}
+\end{aligned}
+\end{equation}\]</span>
+Following equation <a href="ch3.html#eq:3-16">(3.16)</a> but using <span class="math inline">\(\alpha\)</span> instead of <span class="math inline">\(\alpha / 2\)</span>, the rank of the observation corresponding to a one-sided 95% lower confidence bound on <span class="math inline">\(C_{0.90}\)</span> is
+<span class="math display">\[\begin{equation}
+\begin{aligned}
+R_{l} &amp;= np + z_{\alpha} \bullet \sqrt{np(1 - p)} + 0.5 &amp;&amp;= 25 \bullet 0.9 + z_{0.05} \bullet \sqrt{25 \bullet 0.9(0.1)} + 0.5 \\
+&amp;= 22.5 + (- 1.64) \bullet \sqrt{2.25} + 0.5 \\
+&amp;= 20.5
+\end{aligned}
+\end{equation}\]</span>
+and thus the lower confidence limit is the 20.5th lowest observation, or 215 ppb, halfway between the 20th and 21st observations. This confidence limit is less than <span class="math inline">\(X_{0} = 300\)</span>, and therefore the standard has not been exceeded at the 95% confidence level.</p>
+</div>
+<div id="n-p-test-for-whether-a-percentile-is-less-than-x_0-a-one-sided-test" class="section level4">
+<h4><span class="header-section-number">3.7.2.3</span> N-P test for whether a percentile is less than <span class="math inline">\(X_{0}\)</span> (a one-sided test)</h4>
+<p>To test whether a percentile <span class="math inline">\(X_{p}\)</span> is significantly less than <span class="math inline">\(X_{0}\)</span>, compute the one-sided confidence interval placing all error <span class="math inline">\(\alpha\)</span> on the side above <span class="math inline">\(\hat{X}_{p}\)</span> (figure <a href="ch3.html#fig:fig-3-11">3.11</a>). <span class="math inline">\(X_{p}\)</span> will be declared as significantly less than <span class="math inline">\(X_{0}\)</span> if its one-sided confidence interval is entirely below <span class="math inline">\(X_{0}\)</span>.</p>
+<div class="figure" style="text-align: center"><span id="fig:fig-3-11"></span>
+<img src="figures/3_11.png" alt="One-sided interval estimate as a test for whether $X_{p} &lt; X_{0}$.
+A. $X_{0}$ inside interval estimate: $X_{p}$ not significantly less than $X_{0}$.
+B. $X_{0}$ above interval estimate: $X_{p}$ significantly less than $X_{0}$." width="357" />
+<p class="caption">
+Figure 3.11: One-sided interval estimate as a test for whether <span class="math inline">\(X_{p} &lt; X_{0}\)</span>.
+A. <span class="math inline">\(X_{0}\)</span> inside interval estimate: <span class="math inline">\(X_{p}\)</span> not significantly less than <span class="math inline">\(X_{0}\)</span>.
+B. <span class="math inline">\(X_{0}\)</span> above interval estimate: <span class="math inline">\(X_{p}\)</span> significantly less than <span class="math inline">\(X_{0}\)</span>.
+</p>
+</div>
+<p><u>Example 4</u></p>
+<p>The following 43 values are annual 7-day minimum flows for 1941−1983 on the Little Mahoning Creek at McCormick, PA. Though percentiles of low flows are often computed using a Log Pearson Type III distribution, here the sample estimate of the percentile will be computed. Is the <span class="math inline">\(7Q10\)</span> low-flow (the 10th percentile of these data) significantly less than 3 cfs at <span class="math inline">\(\alpha = 0.05\)</span>?</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">0.69</th>
+<th align="center">0.80</th>
+<th align="center">1.30</th>
+<th align="center">1.40</th>
+<th align="center">1.50</th>
+<th align="center">1.50</th>
+<th align="center">1.80</th>
+<th align="center">1.80</th>
+<th align="center">2.10</th>
+<th align="center">2.50</th>
+<th align="center">2.80</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">2.90</td>
+<td align="center">3.00</td>
+<td align="center">3.10</td>
+<td align="center">3.30</td>
+<td align="center">3.70</td>
+<td align="center">3.80</td>
+<td align="center">3.80</td>
+<td align="center">4.00</td>
+<td align="center">4.10</td>
+<td align="center">4.20</td>
+<td align="center">4.30</td>
+</tr>
+<tr class="even">
+<td align="center">4.40</td>
+<td align="center">4.80</td>
+<td align="center">4.90</td>
+<td align="center">5.70</td>
+<td align="center">5.80</td>
+<td align="center">5.90</td>
+<td align="center">6.00</td>
+<td align="center">6.10</td>
+<td align="center">7.90</td>
+<td align="center">8.00</td>
+<td align="center">8.00</td>
+</tr>
+<tr class="odd">
+<td align="center">9.70</td>
+<td align="center">9.80</td>
+<td align="center">10.00</td>
+<td align="center">11.00</td>
+<td align="center">11.00</td>
+<td align="center">12.00</td>
+<td align="center">13.00</td>
+<td align="center">16.00</td>
+<td align="center">20.00</td>
+<td align="center">23.00</td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<p>The sample 10th percentile of the data is 4.4th observation, or <span class="math inline">\(\hat{7Q}_{0.10} = 1.4\)</span> cfs. The upper 95% confidence interval for <span class="math inline">\(Q_{0.10}\)</span> is located (following equation <a href="ch3.html#eq:3-17">(3.17)</a> but using <span class="math inline">\(\alpha\)</span>) at rank <span class="math inline">\(R_{u}\)</span>:
+<span class="math display">\[\begin{equation}
+\begin{aligned}
+R_{l} &amp;= np + z_{\lbrack 1 - \alpha \rbrack} \bullet \sqrt{np(1 - p)} + 0.5\\
+&amp;= 43 \bullet 0.1 + 1.64 \bullet \sqrt{43 \bullet 0.1(0.9)} + 0.5 \\
+&amp;= 8.0
+\end{aligned}
+\end{equation}\]</span>
+So the upper 95% confidence limit equals 1.8 cfs. This is below the <span class="math inline">\(X_{0}\)</span> of 3 cfs, and therefore the <span class="math inline">\(7Q10\)</span> is significantly less than 3 cfs at an <span class="math inline">\(\alpha = 0.05\)</span>.</p>
+</div>
+</div>
+<div id="ch3-7-3" class="section level3">
+<h3><span class="header-section-number">3.7.3</span> Parametric Confidence Intervals For Percentiles</h3>
+<p>Confidence intervals for percentiles can also be computed by assuming that data follow a particular distribution. Distributional assumptions are employed because there are often insufficient data to compute percentiles with the required precision. Adding information contained in the distribution will increase the precision of the estimate <u>as long as the distributional assumption is a reasonable one</u>. However when the distribution which is assumed does not fit the data well, the resulting estimates are less accurate, and more misleading, than if nothing were assumed. Unfortunately, the situation in which an assumption is most needed, that of small sample sizes, is the same situation where it is difficult to determine whether the data follow the assumed distribution.</p>
+<p>There is little theoretical reason why data should follow one distribution over another. As stated in Chapter <a href="ch1.html#ch1">1</a>, most environmental data have a lower bound at zero and may have quite large observations differing from the bulk of the data. Distributions fit to such data must posses skewness, such as the lognormal. But few “first principles” can be drawn on to favor one skewed distribution over another. Empirical studies have found that for specific locations and variables certain distributions seem to fit well, and those have become traditionally used. Thus the lognormal, Pearson Type III and Gumbel distributions are commonly assumed in water resources applications.</p>
+<p>Computation of point and interval estimates for percentiles assuming a lognormal distribution are straightforward. First the sample mean <span class="math inline">\(\overline{y}\)</span> and sample standard deviation <span class="math inline">\(s_{y}\)</span> of the logarithms are computed. The point estimate is then
+<span class="math display" id="eq:3-18">\[\begin{equation}
+\hat{X}_{p} = \exp{\left( \overline{y} + z_{p} \bullet s_{y} \right)}
+\tag{3.18}
+\end{equation}\]</span>
+where <span class="math inline">\(z_{p}\)</span> is the pth quantile of the standard normal distribution and <span class="math inline">\(y = \ln{(x)}\)</span>.</p>
+<p>The interval estimate for the median was previously given by equation <a href="ch3.html#eq:3-7">(3.7)</a> assuming that data are lognormal. For other percentiles, confidence intervals are computed using the non-central t-distribution (<span class="citation">Stedinger (<a href="#ref-stedinger_confidence_1983">1983</a>)</span>). Tables of that distribution are found in Stedinger’s article, with more complete entries online in commercial computer mathematical libraries. The confidence interval on <span class="math inline">\(X_{p}\)</span> is:
+<span class="math display" id="eq:3-19">\[\begin{equation}
+CI \left({X}_{p} \right) = \exp{\left( \overline{y} + \zeta_{\alpha / 2} \bullet s_{y}, \overline{y} + \zeta_{\lbrack 1 - \alpha / 2 \rbrack} \bullet s_{y}\right)}
+\tag{3.19}
+\end{equation}\]</span>
+where <span class="math inline">\(\zeta_{\alpha / 2}\)</span> is the <span class="math inline">\(\alpha / 2\)</span> quantile of the non-central t distribution for the desired percentile with sample size of <span class="math inline">\(n\)</span>.</p>
+<p><u>Example 2,cont.</u></p>
+<p>Compute a 90% interval estimate for the 90th percentile of the New Hampshire arsenic concentrations, assuming the data are lognormal.</p>
+<p>The 90th percentile assuming concentrations are lognormal is as given in equation <a href="ch3.html#eq:3-18">(3.18)</a>:
+<span class="math display">\[\begin{equation}
+\begin{aligned}
+\hat{C}_{0.90} &amp;= \exp{\left( \overline{y} + z_{0.90} \bullet s_{y} \right)} &amp;&amp;= \exp{(3.17 + 1.28 \bullet 1.96)} \\
+&amp;= 292.6 \; \text{ppb.}
+\end{aligned}
+\end{equation}\]</span>
+(which is lower than the sample estimate of 316 ppb obtained without assuming the data are lognormal).</p>
+<p>The corresponding 90% interval estimate from equation <a href="ch3.html#eq:3-19">(3.19)</a> is:
+<span class="math display">\[\begin{equation}
+\begin{aligned}
+\exp{\left( \overline{y} + \zeta_{0.05} \bullet s_{y} \right)} &lt; &amp; C_{0.90} &amp;&amp; &lt; \exp{\left( \overline{y} + \zeta_{0.95} \bullet s_{y} \right)} \\
+\exp{\left( 3.17 + 0.898 \bullet 1.96 \right)} &lt; &amp; C_{0.90} &amp;&amp; &lt; \exp{\left( 3.17 + 1.838 \bullet 1.96 \right)} \\
+138.4 &lt; &amp; C_{0.90} &amp;&amp; &lt; 873.5
+\end{aligned}
+\end{equation}\]</span>
+This estimate would be preferred over the nonparametric estimate if it was believed that the data were truly lognormal. Otherwise a nonparametric interval would be preferred. When the data are truly lognormal, the two intervals should be quite similar.</p>
+<p>Interval estimates for percentiles of the Log Pearson III distribution are computed in a similar fashion. See <span class="citation">Stedinger (<a href="#ref-stedinger_confidence_1983">1983</a>)</span> for details on the procedure.</p>
+</div>
+<div id="ch3-7-4" class="section level3">
+<h3><span class="header-section-number">3.7.4</span> Parametric Tests For Percentiles</h3>
+<p>Analogous to section <a href="ch3.html#ch3-7-2">3.7.2</a>, parametric interval estimates may be used to conduct a parametric test for whether a percentile is different from (2-sided test), exceeds (1-sided test), or is less than (1-sided test) some specified value <span class="math inline">\(X_{0}\)</span>. With the 2-sided test for difference, if <span class="math inline">\(X_{0}\)</span> falls within the interval having <span class="math inline">\(\alpha / 2\)</span> on either side, the percentile is not proven to be significantly different from <span class="math inline">\(X_{0}\)</span>. If <span class="math inline">\(X_{0}\)</span> falls outside this interval, the evidence supports <span class="math inline">\(X_{p} \neq X_{0}\)</span> with an error level of <span class="math inline">\(\alpha\)</span>. For the one-sided tests, the error level <span class="math inline">\(\alpha\)</span> is placed entirely on one side before conducting the test, and <span class="math inline">\(X_{0}\)</span> is again compared to the end of the interval to determine difference or similarity.</p>
+<p><u>Example 2,cont.</u></p>
+<p>Test whether the 90th percentile of arsenic concentrations in drinking water exceeds 300 ppb at the <span class="math inline">\(\alpha = 0.05\)</span> significance level, assuming the data are lognormal.</p>
+<p>The one-sided 95% lower confidence limit for the 90th percentile was computed above as 138.4 ppb. (note the nonparametric bound was 215 ppb). This limit is less than the <span class="math inline">\(p_{0}\)</span> value of 300, and therefore the standard has not been exceeded at the 95% confidence level.</p>
+</div>
+</div>
+<div id="other-uses-for-confidence-intervals" class="section level2">
+<h2><span class="header-section-number">3.8</span> Other Uses For Confidence Intervals</h2>
+<p>Confidence intervals are used for purposes other than as interval estimates. Three common uses are to detect outliers, for quality control charts, and for determining sample sizes necessary to achieve a stated level of precision. Often overlooked are the implications of data non-normality for the three applications. These are discussed in the following three sections.</p>
+<div id="implications-of-non-normality-for-detection-of-outliers" class="section level3">
+<h3><span class="header-section-number">3.8.1</span> Implications of Non-Normality For Detection of Outliers</h3>
+<p>An outlier is an observation which appears to differ in its characteristics from the bulk of the data set to which it is assigned. It is a subjective concept – different people may define specific points as either outliers, or not. Outliers are sometimes deleted from a data set in order to use procedures based on the normal distribution. One of the central themes of this book is that this is a dangerous and unwarranted practice. It is dangerous because these data may well be totally valid. There is no law stating that observed data must follow some specific distribution, such as the normal. Outlying observations are often the most important data collected, providing insight into extreme conditions or important causative relationships. Deleting outliers is unwarranted because procedures not requiring an assumption of normality are both available and powerful. Many of these are discussed in the following chapters.</p>
+<p>In order to delete an outlier, an observation must first be declared to be one. Rules or “tests” for outliers have been used for years, as surveyed by <span class="citation">Beckman and Cook (<a href="#ref-beckman_outlier_1983">1983</a>)</span>. The most common tests are based on a t-interval, and assume that data follow a normal distribution.</p>
+<p>Usually equation <a href="ch3.html#eq:3-12">(3.12)</a> for a normal prediction interval is simplified by assuming the (<span class="math inline">\(s^{2} / n\)</span>) terms under the square root sign are negligable compared to <span class="math inline">\(s^{2}\)</span> (true for large <span class="math inline">\(n\)</span>). Points beyond the simplified prediction interval are declared as outliers, and dropped.</p>
+<p>Real world data may not follow a normal distribution. As opposed to a mean of large data sets, there is no reason to assume that they should. Rejection of points by outlier tests may not indicate that data are in any sense in error, but only that they do not follow a normal distribution (<span class="citation">Fisher (<a href="#ref-fisher_mathematical_1922">1922</a>)</span>). For example, below are 25 observations from a lognormal distribution. When the t-prediction interval is applied with <span class="math inline">\(\alpha = 0.05\)</span>, the largest observation is declared to be an outlier. Yet it is known to be from the same non-normal distribution as generated the remaining observations.</p>
+<p><img src="figures/3_E.png" width="594" style="display: block; margin: auto;" /></p>
+<p>Multiple outliers cause other problems for outlier tests that are based on normality (<span class="citation">Beckman and Cook (<a href="#ref-beckman_outlier_1983">1983</a>)</span>). They may so inflate the estimated standard deviation that no points are declared as outliers. When several points are spaced at increasingly larger distances from the mean, the first may be declared an outlier upon using the test once, but re-testing after deletion causes the second largest to be rejected, and so on. Replication of the test may eventually discard a substantial part of the data set. The choice of how many times to apply the test is entirely arbitrary.</p>
+</div>
+<div id="implications-of-non-normality-for-quality-control" class="section level3">
+<h3><span class="header-section-number">3.8.2</span> Implications of Non-Normality For Quality Control</h3>
+<p>A visual presentation of confidence intervals used extensively in industrial processes is a <strong>control chart</strong> (<span class="citation">Montgomery (<a href="#ref-montgomery_introduction_1991">1991</a>)</span>). A small number of products are sampled from the total possible at a given point in time, and their mean calculated. The sampling is repeated at regular or random intervals, depending on the design, resulting in a series of sample means. These are used to construct one type of control chart, the xbar chart. This chart visually detects when the mean of future samples become different from those used to construct the chart. The decision of difference is based on exceeding the parametric confidence interval around the mean given in section <a href="ch3.html#ch3-4-1">3.4.1</a>.</p>
+<p>Suppose a chemical laboratory measures the same standard solution at several times during a day to determine whether the equipment and operator are producing consistent results. For a series of <span class="math inline">\(n\)</span> measurements at <span class="math inline">\(m\)</span> time intervals, the total sample size <span class="math inline">\(N = n \bullet m\)</span>. The best estimate of the concentration for that standard is the overall mean <span class="math display">\[\overline{X} = \sum_{i=1}^{N} \frac{X_{i}}{N}\]</span> <span class="math inline">\(\overline{X}\)</span> is plotted as the center line of the chart. A confidence interval on that mean is described by equation <a href="ch3.html#eq:3-8">(3.8)</a>, using the sample size <span class="math inline">\(n\)</span> available for computing each individual mean value. Those interval boundaries are also plotted as parallel lines on the quality control chart. Mean values will on average plot outside of these boundaries only <span class="math inline">\(\alpha \bullet 100\)</span>% of the time if the means are normally distributed. Points falling outside the boundaries more frequently than this are taken to indicate that something in the process has changed.</p>
+<p>If <span class="math inline">\(n\)</span> is large (say 30 or more) the Central Limit Theorem states that the means will be normally distributed even though the underlying data may not be. However if <span class="math inline">\(n\)</span> is much smaller, as is often the case, the means may not follow this pattern. In particular, for skewed data (data with outliers on only one side), the distribution around the mean may still be skewed. The result is a large value for the standard deviation, and wide confidence bands. Therefore the chart will have lower power to detect departures or drifts away from the expected mean value than if the data were not skewed.</p>
+<p>Control charts are also produced to illustrate process variance. These either use the range (R chart) or standard deviation (S chart). Both charts are even more sensitive to departures from normality than is the <span class="math inline">\(\overline{X}\)</span> chart (<span class="citation">Montgomery (<a href="#ref-montgomery_introduction_1991">1991</a>)</span>). Both will have a difficult time in detecting changes in variance when the underlying data are non-normal, and the sample size <span class="math inline">\(n\)</span> for each mean is small.</p>
+<p>In water quality studies the most frequent application of control charts is to laboratory chemical analyses. As chemical data tend to be positively skewed, control charts on the logs of the data are usually more applicable than those in the original units. Otherwise large numbers of samples must be used to determine mean values. Use of logarithms results in the center line estimating the median in original units, with multiplicative variation represented by the confidence bands of section <a href="ch3.html#ch3-3-2">3.3.2</a>.</p>
+<p>Nonparametric control charts may be utilized if sample sizes are sufficiently large. These could use the confidence intervals for the median rather than the mean, as in section <a href="ch3.html#ch3-3">3.3</a>. Alternatively, limits could be set around the mean or median using the “F-psuedosigma” of <span class="citation">Hoaglin, Mosteller, and Tukey (<a href="#ref-hoaglin_understanding_1983">1983</a>)</span>. This was done by <span class="citation">Schroder, Brooks, and Willoughby (<a href="#ref-schroder_results_1987">1987</a>)</span>. The F-psuedosigma is the interquartile range divided by 1.349. It equals the standard deviation for a normal distribution, but is not as strongly affected by outliers. It is most useful for characterizing symmetric data containing outliers at both ends, providing a more resistant measure of spread than does the standard deviation.</p>
+</div>
+<div id="implications-of-non-normality-for-sampling-design" class="section level3">
+<h3><span class="header-section-number">3.8.3</span> Implications of Non-Normality For Sampling Design</h3>
+<p>The t-interval equations are also used to determine the number of samples necessary to estimate a mean with a specified level of precision. However, such equations require the data to approximately follow a normal distribution. They must consider power as well as the interval width. Finally, one must decide whether the mean is the most appropriate characteristic to measure for skewed data.</p>
+<p>To estimate the sample size sufficient for determining an interval estimate of the mean with a specified width, equation <a href="ch3.html#eq:3-8">(3.8)</a> is solved for <span class="math inline">\(n\)</span> to produce
+<span class="math display" id="eq:3-20">\[\begin{equation}
+n = \left( \frac{t_{\alpha / 2, n - 1}s}{\Delta} \right)^{2}
+\tag{3.20}
+\end{equation}\]</span>
+where <span class="math inline">\(s\)</span> is the sample standard deviation and <span class="math inline">\(\Delta\)</span> is one-half the desired interval width. <span class="citation">Sanders (<a href="#ref-sanders_design_1983">1983</a>)</span> and other authors have promoted this equation. As discussed above, for sample sizes less than 30 to 50 and even higher with strongly skewed data, this calculation may have large errors. Estimates of s will be inaccurate, and strongly inflated by any skewness and/or outliers. Resulting estimates of n will therefore be large. For example, <span class="citation">Håkanson (<a href="#ref-haakanson_sediment_1984">1984</a>)</span> estimated the number of samples necessary to provide reasonable interval widths for mean river and lake sediment characteristics, including sediment chemistry. Based on the coefficients of variation reported in the article, the data for river sediments were quite skewed, as might be expected. Necessary sample sizes for rivers were calculated at 200 and higher.</p>
+<p>Before using such simplistic equations, skewed data should be transformed to something closer to symmetry, if not normality. For example, logarithms will drastically lower estimated sample sizes for skewed data, equivalent to equation <a href="ch3.html#eq:3-13">(3.13)</a>. Samples sizes would result which allow the median (geometric mean) to be estimated within a multiplicative tolerance factor equal to $ 2 $ in log units.</p>
+<p>A second problem with equations like <a href="ch3.html#eq:3-20">(3.20)</a> for estimating sample size, even when data follow a normal distribution, is pointed out by <span class="citation">Kupper and Hafner (<a href="#ref-kupper_appropriate_1989">1989</a>)</span>. They show that eq. <a href="ch3.html#eq:3-20">(3.20)</a> underestimates the true sample size needed for a given level of precision, even for estimates of <span class="math inline">\(n \geq 40\)</span>. This is because eq. <a href="ch3.html#eq:3-20">(3.20)</a> does not recognize that the standard deviation <span class="math inline">\(s\)</span> is only an estimate of the true value <span class="math inline">\(\sigma\)</span>. They suggest adding a tolerance probability to eq. <a href="ch3.html#eq:3-20">(3.20)</a>, akin to a statement of power. Then the estimated interval width will be at least as small as the desired interval width for some stated percentage (say 90 or 95%) of the time. For example, when <span class="math inline">\(n\)</span> would equal 40 based on equation <a href="ch3.html#eq:3-20">(3.20)</a>, the resulting interval width will be less than the desired width <span class="math inline">\(2 \Delta\)</span> only about 42% of the time! The sample size should instead be 53 in order to insure the interval width is within tolerance range 90% of the time. They conclude that eq. <a href="ch3.html#eq:3-20">(3.20)</a> and similar equations which do not take power into consideration “behave so poorly in all instances that their future use should be strongly discouraged”.</p>
+<p>Sample sizes necessary for interval estimates of the median or to perform the nonparametric tests of later chapters may be derived without the assumption of normality required above for t-intervals. <span class="citation">Noether (<a href="#ref-noether_sample_1987">1987</a>)</span> describes these more robust sample size estimates, which do include power considerations and so are more valid than equation <a href="ch3.html#eq:3-20">(3.20)</a>. However, neither the normaltheory or nonparametric estimates consider the important and frequently-observed effects of seasonality or trend, and so may never provide estimates sufficiently accurate to be anything more than a crude guide.</p>
+</div>
+</div>
+<div id="exercises-2" class="section level2 unnumbered">
+<h2>Exercises</h2>
+<div id="section-7" class="section level3 unnumbered">
+<h3>3.1</h3>
+<p>Compute both nonparametric and parametric 95% interval estimates for the median of the granodiorite data of exercise 2.3. Which is more appropriate for these data? Why?</p>
+</div>
+<div id="section-8" class="section level3 unnumbered">
+<h3>3.2</h3>
+<p>Compute the symmetric 95% interval estimate for the mean of the quartz monzonite data of exercise 2.3. Compute the sample mean, and the mean assuming the data are lognormal. Which point estimate is more appropriate for these data? Why?</p>
+</div>
+<div id="section-9" class="section level3 unnumbered">
+<h3>3.3</h3>
+<p>A well yield of 0.85 gallons/min/foot was measured in a well in Virginia. Is this yield likely to belong to the same distribution as the data in exercise 1.1, or does it represent something larger? Answer by computing 95% parametric and nonparametric intervals. Which interval is more appropriate for these data?</p>
+</div>
+<div id="section-10" class="section level3 unnumbered">
+<h3>3.4</h3>
+<p>Construct the most appropriate 95 percent interval estimates for the mean and median annual streamflows for the Conecuh River at Brantley, Alabama (data in Appendix C2).</p>
+</div>
+<div id="section-11" class="section level3 unnumbered">
+<h3>3.5</h3>
+<p>Suppose a water intake is to be located on the Potomac River at Chain Bridge in such a way that the intake should not be above the water surface more than 10 percent of the time. Data for the design year (365 daily flows, ranked in order) are given in Appendix C3. Compute a 95% confidence interval for the daily flow guaranteed by this placement during the 90% of the time the intake is below water.</p>
+
+</div>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-aitchison_lognormal_1981">
+<p>Aitchison, John, and James AC Brown. 1981. “The Lognormal Distribution.” Cambridge Univ. Press, Cambridge, England.</p>
+</div>
+<div id="ref-beckman_outlier_1983">
+<p>Beckman, Richard J, and R Dennis Cook. 1983. “Outlier………. S.” <em>Technometrics</em> 25 (2). Taylor &amp; Francis Group: 119–49.</p>
+</div>
+<div id="ref-bhattacharyya_statistical_1977">
+<p>Bhattacharyya, GK, and RA Johnson. 1977. “Statistical Concepts and Methods.” <em>John Wiley, New York</em>.</p>
+</div>
+<div id="ref-boudette_high_1985">
+<p>Boudette, Eugene L, FC Canney, JE Cotton, RI Davis, WH Ficklin, and JM Motooka. 1985. “High Levels of Arsenic in the Groundwaters of Southeastern New Hampshire.” <em>U.S. Geological Survey Open-File Report</em> 85 (202): 23.</p>
+</div>
+<div id="ref-bradu_estimation_1970">
+<p>Bradu, Dan, and Yair Mundlak. 1970. “Estimation in Lognormal Linear Models.” <em>Journal of the American Statistical Association</em> 65 (329). Taylor &amp; Francis: 198–211.</p>
+</div>
+<div id="ref-crabtree_percentile_1987">
+<p>Crabtree, RW, ID Cluckie, and CF Forster. 1987. “Percentile Estimation for Water Quality Data.” <em>Water Research</em> 21 (5). Elsevier: 583–90.</p>
+</div>
+<div id="ref-fisher_mathematical_1922">
+<p>Fisher, Ronald A. 1922. “On the Mathematical Foundations of Theoretical Statistics.” <em>Philosophical Transactions of the Royal Society of London. Series A, Containing Papers of a Mathematical or Physical Character</em> 222 (594-604). The Royal Society London: 309–68.</p>
+</div>
+<div id="ref-haakanson_sediment_1984">
+<p>Håkanson, Lars. 1984. “Sediment Sampling in Different Aquatic Environments: Statistical Aspects.” <em>Water Resources Research</em> 20 (1). Wiley Online Library: 41–46.</p>
+</div>
+<div id="ref-hoaglin_understanding_1983">
+<p>Hoaglin, David Caster, Frederick Mosteller, and John Wilder Tukey. 1983. <em>Understanding Robust and Exploratory Data Analysis</em>. Vol. 3. Wiley New York.</p>
+</div>
+<div id="ref-kupper_appropriate_1989">
+<p>Kupper, Lawrence L, and Kerry B Hafner. 1989. “How Appropriate Are Popular Sample Size Formulas?” <em>The American Statistician</em> 43 (2). Taylor &amp; Francis: 101–5.</p>
+</div>
+<div id="ref-land_confidence_1971">
+<p>Land, Charles E. 1971. “Confidence Intervals for Linear Functions of the Normal Mean and Variance.” <em>The Annals of Mathematical Statistics</em>. JSTOR, 1187–1205.</p>
+</div>
+<div id="ref-land_evaluation_1972">
+<p>Land, Charles E. 1972. “An Evaluation of Approximate Confidence Interval Estimation Methods for Lognormal Means.” <em>Technometrics</em> 14 (1). Taylor &amp; Francis Group: 145–58.</p>
+</div>
+<div id="ref-montgomery_introduction_1991">
+<p>Montgomery, Douglas C. 1991. <em>Introduction to Statistical Quality Control</em>. John Wiley, New York, NY.</p>
+</div>
+<div id="ref-noether_sample_1987">
+<p>Noether, Gottfried E. 1987. “Sample Size Determination for Some Common Nonparametric Tests.” <em>Journal of the American Statistical Association</em> 82 (398). Taylor &amp; Francis Group: 645–47.</p>
+</div>
+<div id="ref-ponce_engineering_1989">
+<p>Ponce, Victor Miguel. 1989. <em>Engineering Hydrology: Principles and Practices</em>. Vol. 640. Prentice Hall Englewood Cliffs, NJ.</p>
+</div>
+<div id="ref-sanders_design_1983">
+<p>Sanders, Thomas Gayler. 1983. <em>Design of Networks for Monitoring Water Quality</em>. Water Resources Publication.</p>
+</div>
+<div id="ref-schroder_results_1987">
+<p>Schroder, LJ, Myron H Brooks, and Timothy C Willoughby. 1987. “Results of Intercomparison Studies for the Measurement of pH and Specific Conductance at National Atmospheric Deposition Program/National Trends Network Monitoring Sites, October 1981-October 1985.” <em>Water-Resources Investigations Report</em> 86. US Geological Survey, 4363.</p>
+</div>
+<div id="ref-stedinger_confidence_1983">
+<p>Stedinger, Jery R. 1983. “Confidence Intervals for Design Events.” <em>Journal of Hydraulic Engineering</em> 109 (1). American Society of Civil Engineers: 13–27.</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>This property is called the Central Limit Theorem (<span class="citation">Conover (<a href="#ref-conover_practical_1980">1980</a>)</span>). It holds for data which follow a distribution having finite variance, and so includes most distributions of interest in water resources.<a href="ch3.html#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>Data presented by <span class="citation">Crabtree, Cluckie, and Forster (<a href="#ref-crabtree_percentile_1987">1987</a>)</span> shows that for each of their cases, percentiles of flow and water-quality constituents are best estimated by (nonparametric) sample percentiles rather than by assuming some distribution. However they come to a different conclusion for two constituents (see their Table 2) by assuming that a parametric process is better unless proven otherwise. In those two cases either could be used.<a href="ch3.html#fnref2" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="ch2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Statistical-Methods-in-Water-Resources.pdf", "Statistical-Methods-in-Water-Resources.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
