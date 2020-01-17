@@ -1150,9 +1150,9 @@ knitr::include_graphics("figures/3_6.png")
 From equations \@ref(eq:3-6) and \@ref(eq:3-7), the geometric mean and its 95% confidence interval are: $$GM_{C} = \exp{(3.17)} = 23.8$$
 \begin{equation}
 \begin{aligned}
-\exp{\left( 3.17 - 2.064 \bullet \sqrt{1.96^{2} / 25} \right)} &\leq GM_{C} &&\leq \exp{\left( 3.17 + 2.064 \bullet \sqrt{1.96^{2} / 25} \right)} \\
-\exp{(2.36)} &\leq GM_{C} &&\leq \exp{(3.98)}
-10.6 &\leq GM_{C} &&\leq 53.5
+\exp{\left( 3.17 - 2.064 \bullet \sqrt{1.96^{2} / 25} \right)} \leq &GM_{C} \leq \exp{\left( 3.17 + 2.064 \bullet \sqrt{1.96^{2} / 25} \right)} \\
+\exp{(2.36)} \leq &GM_{C} \leq \exp{(3.98)}
+10.6 \leq &GM_{C} \leq 53.5
 \end{aligned}
 \end{equation}
 The scientist must decide whether it is appropriate to assume a lognormal distribution. If not, the nonparametric interval of section \@ref(ch3-3-1) would be preferred.
