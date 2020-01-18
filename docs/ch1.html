@@ -24,7 +24,7 @@
 <meta name="author" content="MiRoVaGo" />
 
 
-<meta name="date" content="2020-01-17" />
+<meta name="date" content="2020-01-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -189,7 +189,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#section-3"><i class="fa fa-check"></i>2.1</a></li>
 <li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#section-4"><i class="fa fa-check"></i>2.2</a></li>
 <li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#section-5"><i class="fa fa-check"></i>2.3</a></li>
-<li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#section-6"><i class="fa fa-check"></i>2.4</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="ch3.html"><a href="ch3.html"><i class="fa fa-check"></i><b>3</b> Describing Uncertainty</a><ul>
@@ -223,11 +222,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.8.3" data-path="ch3.html"><a href="ch3.html#implications-of-non-normality-for-sampling-design"><i class="fa fa-check"></i><b>3.8.3</b> Implications of Non-Normality For Sampling Design</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#exercises-2"><i class="fa fa-check"></i>Exercises</a><ul>
-<li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#section-7"><i class="fa fa-check"></i>3.1</a></li>
-<li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#section-8"><i class="fa fa-check"></i>3.2</a></li>
-<li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#section-9"><i class="fa fa-check"></i>3.3</a></li>
-<li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#section-10"><i class="fa fa-check"></i>3.4</a></li>
-<li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#section-11"><i class="fa fa-check"></i>3.5</a></li>
+<li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#section-6"><i class="fa fa-check"></i>3.1</a></li>
+<li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#section-7"><i class="fa fa-check"></i>3.2</a></li>
+<li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#section-8"><i class="fa fa-check"></i>3.3</a></li>
+<li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#section-9"><i class="fa fa-check"></i>3.4</a></li>
+<li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#section-10"><i class="fa fa-check"></i>3.5</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -285,7 +284,7 @@ should one be employed over the other?</p>
 \tag{1.1}
 \end{equation}\]</span></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">mean_x &lt;-<span class="st"> </span><span class="kw">mean</span>(x)</a></code></pre></div>
-For data which are in one of k groups, equation <a href="ch1.html#eq:1-1">(1.1)</a> can be rewritten to show that the overall
+<p>For data which are in one of k groups, equation <a href="ch1.html#eq:1-1">(1.1)</a> can be rewritten to show that the overall
 mean depends on the mean for each group, weighted by the number of observations n<sub>i</sub> in each
 group:
 <span class="math display" id="eq:1-2">\[\begin{equation}
@@ -300,7 +299,7 @@ where <span class="math inline">\(\mathbf{\overline{X}_{i}}\)</span> is the mean
 \end{split}
 \tag{1.3}
 \end{equation}\]</span>
-where <span class="math inline">\(\mathbf{\overline{X}_{(j)}}\)</span> is the mean of all observations excluding X<sub>j</sub>. Each observation’s influence on the overall mean <span class="math inline">\(\mathbf{\overline{X}}\)</span> is <span class="math inline">\(\left( \mathbf{X_{j} -\overline{X}_{(j)}} \right)\)</span>, the distance between the observation and the mean excluding that observation. Thus all observations do not have the same influence on the mean. An ‘outlier’ observation, either high or low, has a much greater influence on the overall mean <span class="math inline">\(\mathbf{\overline{X}}\)</span> than does a more ‘typical’ observation, one closer to its <span class="math inline">\(\mathbf{\overline{X}_{(j)}}\)</span>.
+where <span class="math inline">\(\mathbf{\overline{X}_{(j)}}\)</span> is the mean of all observations excluding X<sub>j</sub>. Each observation’s influence on the overall mean <span class="math inline">\(\mathbf{\overline{X}}\)</span> is <span class="math inline">\(\left( \mathbf{X_{j} -\overline{X}_{(j)}} \right)\)</span>, the distance between the observation and the mean excluding that observation. Thus all observations do not have the same influence on the mean. An ‘outlier’ observation, either high or low, has a much greater influence on the overall mean <span class="math inline">\(\mathbf{\overline{X}}\)</span> than does a more ‘typical’ observation, one closer to its <span class="math inline">\(\mathbf{\overline{X}_{(j)}}\)</span>.</p>
 <div class="figure" style="text-align: center"><span id="fig:fig-1-1"></span>
 <img src="figures/1_1.png" alt="Density Function for a Lognormal Distribution" width="221" />
 <p class="caption">
@@ -314,8 +313,8 @@ Figure 1.2: Density Function for a Normal Distribution
 </p>
 </div>
 <p>Another way of illustrating this influence is to realize that the mean is the balance point of the data, when each point is stacked on a number line (figure <a href="ch1.html#fig:fig-1-3-1">1.3</a>). Data points further from the center exert a stronger downward force than those closer to the center. If one point near the center were removed, the balance point would only need a small adjustment to keep the data set in balance. But if one outlying value were removed, the balance point would shift dramatically (figure <a href="ch1.html#fig:fig-1-3-2">1.4</a>). This sensitivity to the magnitudes of a small number of points in the data set defines why the mean is not a “resistant” measure of location. It is not resistant to changes in the presence of, or to changes in the magnitudes of, a few outlying observations.</p>
-When this strong influence of a few observations is desirable, the mean is an appropriate measure of center. This usually occurs when computing units of mass, such as the average concentration of sediment from several samples in a cross-section. Suppose that sediment
-concentrations closer to the river banks were much higher than those in the center. Waters represented by a bottle of high concentration would exert more influence (due to greater mass of sediment per volume) on the final concentration than waters of low or average concentration. This is entirely appropriate, as the same would occur if the stream itself were somehow mechanically mixed throughout its cross section.
+<p>When this strong influence of a few observations is desirable, the mean is an appropriate measure of center. This usually occurs when computing units of mass, such as the average concentration of sediment from several samples in a cross-section. Suppose that sediment
+concentrations closer to the river banks were much higher than those in the center. Waters represented by a bottle of high concentration would exert more influence (due to greater mass of sediment per volume) on the final concentration than waters of low or average concentration. This is entirely appropriate, as the same would occur if the stream itself were somehow mechanically mixed throughout its cross section.</p>
 <div class="figure" style="text-align: center"><span id="fig:fig-1-3-1"></span>
 <img src="figures/1_3_a.png" alt="The mean (triangle) as balance point of a data set" width="266" />
 <p class="caption">
@@ -364,9 +363,9 @@ GM &amp; = exp\left( \overline{Y} \right), &amp;&amp; \text{where $Y_{i} = \ln{(
 \end{aligned}
 \tag{1.5}
 \end{equation}\]</span></p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">geometric_mean_x &lt;-<span class="st"> </span><span class="kw">geoMean</span>(x)</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">geometric_mean_x &lt;-<span class="st"> </span><span class="kw">Gmean</span>(x)</a></code></pre></div>
 <p>(in this book the natural, base e logarithm will be abbreviated <strong>ln</strong>, and its inverse e<sup>x</sup> abbreviated <strong>exp(x)</strong>). For positively skewed data the geometric mean is usually quite close to the median. In fact, when the logarithms of the data are symmetric, the geometric mean is an unbiased estimate of the median. This is because the median and mean logarithms are equal, as in figure <a href="ch1.html#fig:fig-1-2">1.2</a>. When transformed back to original units, the geometric mean continues to be an estimate for the median, but is not an estimate for the mean (figure <a href="ch1.html#fig:fig-1-1">1.1</a>).</p>
-Compromises between the median and mean are available by trimming off several of the lowest and highest observations, and calculating the mean of what is left. Such estimates of location are not influenced by the most extreme (and perhaps anomalous) ends of the sample, as is the mean. Yet they allow the magnitudes of most of the values to affect the estimate, unlike the median. These estimators are called “trimmed means”, and any desirable percentage of the data may be trimmed away. The most common trimming is to remove 25 percent of the data on each end – the resulting mean of the central 50 percent of data is commonly called the “trimmed mean”, but is more precisely the 25 percent trimmed mean. A “0% trimmed mean” is the sample mean itself, while trimming all but 1 or 2 central values produces the median. Percentages of trimming should be explicitly stated when used. The trimmed mean is a resistant estimator of location, as it is not strongly influenced by outliers, and works well for a wide variety of distributional shapes (normal, lognormal, etc.). It may be considered a weighted mean, where data beyond the cutoff ‘window’ are given a weight of 0, and those within the window a weight of 1.0 (see figure <a href="ch1.html#fig:fig-1-4">1.5</a>).
+<p>Compromises between the median and mean are available by trimming off several of the lowest and highest observations, and calculating the mean of what is left. Such estimates of location are not influenced by the most extreme (and perhaps anomalous) ends of the sample, as is the mean. Yet they allow the magnitudes of most of the values to affect the estimate, unlike the median. These estimators are called “trimmed means”, and any desirable percentage of the data may be trimmed away. The most common trimming is to remove 25 percent of the data on each end – the resulting mean of the central 50 percent of data is commonly called the “trimmed mean”, but is more precisely the 25 percent trimmed mean. A “0% trimmed mean” is the sample mean itself, while trimming all but 1 or 2 central values produces the median. Percentages of trimming should be explicitly stated when used. The trimmed mean is a resistant estimator of location, as it is not strongly influenced by outliers, and works well for a wide variety of distributional shapes (normal, lognormal, etc.). It may be considered a weighted mean, where data beyond the cutoff ‘window’ are given a weight of 0, and those within the window a weight of 1.0 (see figure <a href="ch1.html#fig:fig-1-4">1.5</a>).</p>
 <div class="figure" style="text-align: center"><span id="fig:fig-1-4"></span>
 <img src="figures/1_4.png" alt="Window diagram for the trimmed mean" width="279" />
 <p class="caption">
@@ -513,7 +512,7 @@ qs_{.10} = \frac{(P_{.90}-P_{.50})-(P_{.50}-P_{.10})}{P_{.90}-P_{.10}}
 <h3><span class="header-section-number">1.7.1</span> The Ladder of Powers</h3>
 <p>In order to make an asymmetric distribution become more symmetric, the data can be transformed or re-expressed into new units. These new units alter the distances between observations on a line plot. The effect is to either expand or contract the distances to extreme observations on one side of the median, making it look more like the other side. The most commonly-used transformation in water resources is the logarithm. Logs of water discharge, hydraulic conductivity, or concentration are often taken before statistical analyses are performed.</p>
 <p>Transformations usually involve power functions of the form <span class="math inline">\(y = x^{\mathbf{θ}}\)</span>, where x is the untransformed data, y the transformed data, and θ the power exponent. In figure <a href="ch1.html#fig:fig-1-5">1.6</a> the values of θ are listed in the “ladder of powers” (<span class="citation">Velleman and Hoaglin (<a href="#ref-velleman_applications_1981">1981</a>)</span>), a useful structure for determining a proper value of <strong>θ</strong>.</p>
-As can be seen from the ladder of powers, any transformations with θ less than 1 may be used to make right-skewed data more symmetric. Constructing a boxplot or Q-Q plot (see Chapter <a href="ch2.html#ch2">2</a>) of the transformed data will indicate whether the transformation was appropriate. Should a logarithmic transformation overcompensate for right skewness and produce a slightly leftskewed distribution, a ‘milder’ transformation with θ closer to 1, such as a square-root or cuberoot transformation, should be employed instead. Transformations with θ &gt; 1 will aid in making left-skewed data more symmetric.
+<p>As can be seen from the ladder of powers, any transformations with θ less than 1 may be used to make right-skewed data more symmetric. Constructing a boxplot or Q-Q plot (see Chapter <a href="ch2.html#ch2">2</a>) of the transformed data will indicate whether the transformation was appropriate. Should a logarithmic transformation overcompensate for right skewness and produce a slightly leftskewed distribution, a ‘milder’ transformation with θ closer to 1, such as a square-root or cuberoot transformation, should be employed instead. Transformations with θ &gt; 1 will aid in making left-skewed data more symmetric.</p>
 <div class="figure" style="text-align: center"><span id="fig:fig-1-5"></span>
 <img src="figures/1_5.png" alt="&quot;LADDER OF POWERS&quot; (modified from @velleman_applications_1981)" width="456" />
 <p class="caption">
@@ -535,6 +534,68 @@ Figure 1.6: “LADDER OF POWERS” (modified from <span class="citation">Vellema
 <li>median</li>
 <li>compare these estimates of location. Why do they differ?</li>
 </ol>
+<p>Unit well yields (in gal/min/ft) in Virginia (<span class="citation">Wright (<a href="#ref-wright_effects_1985">1985</a>)</span>)</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">0.001</th>
+<th align="center">0.030</th>
+<th align="center">0.10</th>
+<th align="center">0.003</th>
+<th align="center">0.040</th>
+<th align="center">0.454</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">0.007</td>
+<td align="center">0.041</td>
+<td align="center">0.49</td>
+<td align="center">0.020</td>
+<td align="center">0.077</td>
+<td align="center">1.02</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1"><span class="kw">library</span>(data.table)</a>
+<a class="sourceLine" id="cb35-2" data-line-number="2"><span class="kw">library</span>(DescTools)</a>
+<a class="sourceLine" id="cb35-3" data-line-number="3">x &lt;-<span class="st"> </span><span class="kw">fread</span>(<span class="st">&#39;data/well_yields_virginia.csv&#39;</span>)</a>
+<a class="sourceLine" id="cb35-4" data-line-number="4">a &lt;-<span class="st"> </span><span class="kw">mean</span>(x<span class="op">$</span>unit_well_yield)</a>
+<a class="sourceLine" id="cb35-5" data-line-number="5">b &lt;-<span class="st"> </span><span class="kw">mean</span>(x<span class="op">$</span>unit_well_yield, <span class="dt">trim =</span> <span class="fl">0.25</span>)</a>
+<a class="sourceLine" id="cb35-6" data-line-number="6">c &lt;-<span class="st"> </span><span class="kw">Gmean</span>(x<span class="op">$</span>unit_well_yield)</a>
+<a class="sourceLine" id="cb35-7" data-line-number="7">d &lt;-<span class="st"> </span><span class="kw">median</span>(x<span class="op">$</span>unit_well_yield)</a>
+<a class="sourceLine" id="cb35-8" data-line-number="8">results &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">c</span>(a, b, c, d), <span class="dt">row.names =</span> <span class="kw">c</span>(<span class="st">&quot;Mean&quot;</span>, <span class="st">&quot;Trimmed Mean&quot;</span>, <span class="st">&quot;Geometric Mean&quot;</span>, <span class="st">&quot;Median&quot;</span>))</a>
+<a class="sourceLine" id="cb35-9" data-line-number="9"><span class="kw">setnames</span>(results, <span class="st">&quot;Value&quot;</span>)</a>
+<a class="sourceLine" id="cb35-10" data-line-number="10">knitr<span class="op">::</span><span class="kw">kable</span>(results)</a></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Mean</td>
+<td align="right">0.1902500</td>
+</tr>
+<tr class="even">
+<td>Trimmed Mean</td>
+<td align="right">0.0513333</td>
+</tr>
+<tr class="odd">
+<td>Geometric Mean</td>
+<td align="right">0.0426380</td>
+</tr>
+<tr class="even">
+<td>Median</td>
+<td align="right">0.0405000</td>
+</tr>
+</tbody>
+</table>
+<ol start="5" style="list-style-type: lower-alpha">
+<li>They differ because the data are skewed. The estimates which are more robust are similar, while the mean is larger.</li>
+</ol>
 </div>
 <div id="section-1" class="section level3 unnumbered">
 <h3>1.2</h3>
@@ -546,6 +607,50 @@ Figure 1.6: “LADDER OF POWERS” (modified from <span class="citation">Vellema
 <li>skew and quartile skew.</li>
 </ol>
 <p>Discuss the differences between a through c.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1"><span class="kw">library</span>(data.table)</a>
+<a class="sourceLine" id="cb36-2" data-line-number="2"><span class="kw">library</span>(DescTools)</a>
+<a class="sourceLine" id="cb36-3" data-line-number="3"><span class="kw">library</span>(e1071)</a>
+<a class="sourceLine" id="cb36-4" data-line-number="4">x &lt;-<span class="st"> </span><span class="kw">fread</span>(<span class="st">&#39;data/well_yields_virginia.csv&#39;</span>)</a>
+<a class="sourceLine" id="cb36-5" data-line-number="5">a &lt;-<span class="st"> </span><span class="kw">sd</span>(x<span class="op">$</span>unit_well_yield)</a>
+<a class="sourceLine" id="cb36-6" data-line-number="6">b &lt;-<span class="st"> </span><span class="kw">IQR</span>(x<span class="op">$</span>unit_well_yield, <span class="dt">type =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb36-7" data-line-number="7">c &lt;-<span class="st"> </span><span class="kw">mad</span>(x<span class="op">$</span>unit_well_yield, <span class="dt">constant =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb36-8" data-line-number="8">d_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">skewness</span>(x<span class="op">$</span>unit_well_yield, <span class="dt">type =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb36-9" data-line-number="9">quartiles_x &lt;-<span class="st"> </span><span class="kw">quantile</span>(x<span class="op">$</span>unit_well_yield, <span class="dt">prob =</span> <span class="kw">c</span>(<span class="fl">0.25</span>, <span class="fl">0.50</span>, <span class="fl">0.75</span>), <span class="dt">type =</span> <span class="dv">2</span>, <span class="dt">names =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb36-10" data-line-number="10">d_<span class="dv">2</span> &lt;-<span class="st"> </span>((quartiles_x[<span class="dv">3</span>] <span class="op">-</span><span class="st"> </span>quartiles_x[<span class="dv">2</span>]) <span class="op">-</span><span class="st"> </span>(quartiles_x[<span class="dv">2</span>] <span class="op">-</span><span class="st"> </span>quartiles_x[<span class="dv">1</span>])) <span class="op">/</span><span class="st"> </span>(quartiles_x[<span class="dv">3</span>] <span class="op">-</span><span class="st"> </span>quartiles_x[<span class="dv">1</span>])</a>
+<a class="sourceLine" id="cb36-11" data-line-number="11">results &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">c</span>(a, b, c, d_<span class="dv">1</span>, d_<span class="dv">2</span>), <span class="dt">row.names =</span> <span class="kw">c</span>(<span class="st">&quot;Standard Deviation&quot;</span>, <span class="st">&quot;IQR&quot;</span>, <span class="st">&quot;MAD&quot;</span>, <span class="st">&quot;Skew&quot;</span>, <span class="st">&quot;Quartile Skew&quot;</span>))</a>
+<a class="sourceLine" id="cb36-12" data-line-number="12"><span class="kw">setnames</span>(results, <span class="st">&quot;Value&quot;</span>)</a>
+<a class="sourceLine" id="cb36-13" data-line-number="13">knitr<span class="op">::</span><span class="kw">kable</span>(results)</a></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Standard Deviation</td>
+<td align="right">0.3123000</td>
+</tr>
+<tr class="even">
+<td>IQR</td>
+<td align="right">0.2635000</td>
+</tr>
+<tr class="odd">
+<td>MAD</td>
+<td align="right">0.0370000</td>
+</tr>
+<tr class="even">
+<td>Skew</td>
+<td align="right">2.0740805</td>
+</tr>
+<tr class="odd">
+<td>Quartile Skew</td>
+<td align="right">0.7950664</td>
+</tr>
+</tbody>
+</table>
+<p>Because the data are asymmetric, the median difference is small, but the IQR and standard deviation are not.</p>
 </div>
 <div id="section-2" class="section level3 unnumbered">
 <h3>1.3</h3>
@@ -554,6 +659,91 @@ How should this value affect the choice of summary statistics used</p>
 <ol style="list-style-type: lower-alpha">
 <li>to compute the mass of nitrogen falling per square mile.</li>
 <li>to compute a “typical” concentration and variability for these data?</li>
+</ol>
+<table>
+<thead>
+<tr class="header">
+<th align="center">0.3</th>
+<th align="center">0.9</th>
+<th align="center">0.36</th>
+<th align="center">0.92</th>
+<th align="center">0.5</th>
+<th align="center">1.0</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">0.7</td>
+<td align="center">9.7</td>
+<td align="center">0.7</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1"><span class="kw">library</span>(data.table)</a>
+<a class="sourceLine" id="cb37-2" data-line-number="2"><span class="kw">library</span>(DescTools)</a>
+<a class="sourceLine" id="cb37-3" data-line-number="3"><span class="kw">library</span>(e1071)</a>
+<a class="sourceLine" id="cb37-4" data-line-number="4">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.3</span>, <span class="fl">0.9</span>, <span class="fl">0.36</span>, <span class="fl">0.92</span>, <span class="fl">0.5</span>, <span class="fl">1.0</span>, <span class="fl">0.7</span>, <span class="fl">9.7</span>, <span class="fl">0.7</span>, <span class="fl">1.3</span>)</a>
+<a class="sourceLine" id="cb37-5" data-line-number="5">a &lt;-<span class="st"> </span><span class="kw">mean</span>(x)</a>
+<a class="sourceLine" id="cb37-6" data-line-number="6">b &lt;-<span class="st"> </span><span class="kw">median</span>(x)</a>
+<a class="sourceLine" id="cb37-7" data-line-number="7">c &lt;-<span class="st"> </span><span class="kw">Gmean</span>(x)</a>
+<a class="sourceLine" id="cb37-8" data-line-number="8">d &lt;-<span class="st"> </span><span class="kw">skewness</span>(x, <span class="dt">type =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb37-9" data-line-number="9">e &lt;-<span class="st"> </span><span class="kw">sd</span>(x)</a>
+<a class="sourceLine" id="cb37-10" data-line-number="10">f &lt;-<span class="st"> </span><span class="kw">IQR</span>(x, <span class="dt">type =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb37-11" data-line-number="11">g &lt;-<span class="st"> </span><span class="kw">mad</span>(x, <span class="dt">constant =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb37-12" data-line-number="12">quartiles_x &lt;-<span class="st"> </span><span class="kw">quantile</span>(x, <span class="dt">prob =</span> <span class="kw">c</span>(<span class="fl">0.25</span>, <span class="fl">0.50</span>, <span class="fl">0.75</span>), <span class="dt">type =</span> <span class="dv">2</span>, <span class="dt">names =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb37-13" data-line-number="13">h &lt;-<span class="st"> </span>((quartiles_x[<span class="dv">3</span>] <span class="op">-</span><span class="st"> </span>quartiles_x[<span class="dv">2</span>]) <span class="op">-</span><span class="st"> </span>(quartiles_x[<span class="dv">2</span>] <span class="op">-</span><span class="st"> </span>quartiles_x[<span class="dv">1</span>])) <span class="op">/</span><span class="st"> </span>(quartiles_x[<span class="dv">3</span>] <span class="op">-</span><span class="st"> </span>quartiles_x[<span class="dv">1</span>])</a>
+<a class="sourceLine" id="cb37-14" data-line-number="14">results &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">c</span>(a, b, c, d, e, f, g, h), <span class="dt">row.names =</span> <span class="kw">c</span>(<span class="st">&quot;Mean&quot;</span>, <span class="st">&quot;Median&quot;</span>, <span class="st">&quot;Geometric Mean&quot;</span>, <span class="st">&quot;Skew&quot;</span>, <span class="st">&quot;Standard Deviation&quot;</span>, <span class="st">&quot;IQR&quot;</span>, <span class="st">&quot;MAD&quot;</span>, <span class="st">&quot;Quartile Skew&quot;</span>))</a>
+<a class="sourceLine" id="cb37-15" data-line-number="15"><span class="kw">setnames</span>(results, <span class="st">&quot;Value&quot;</span>)</a>
+<a class="sourceLine" id="cb37-16" data-line-number="16">knitr<span class="op">::</span><span class="kw">kable</span>(results)</a></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Mean</td>
+<td align="right">1.6380000</td>
+</tr>
+<tr class="even">
+<td>Median</td>
+<td align="right">0.8000000</td>
+</tr>
+<tr class="odd">
+<td>Geometric Mean</td>
+<td align="right">0.8792928</td>
+</tr>
+<tr class="even">
+<td>Skew</td>
+<td align="right">3.0947642</td>
+</tr>
+<tr class="odd">
+<td>Standard Deviation</td>
+<td align="right">2.8490848</td>
+</tr>
+<tr class="even">
+<td>IQR</td>
+<td align="right">0.5000000</td>
+</tr>
+<tr class="odd">
+<td>MAD</td>
+<td align="right">0.2500000</td>
+</tr>
+<tr class="even">
+<td>Quartile Skew</td>
+<td align="right">-0.2000000</td>
+</tr>
+</tbody>
+</table>
+<p>The largest observation is an outlier. Though the skew appears to be strongly positive, and the standard deviation large, this is due only to the effect of that one point. The majority of the data are not skewed, as shown by the more resistant quartile skew coefficient.</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>assuming the outlying observation is accurate, representing some high-nitrogen location which is important to have sampled, the mean must be used to compute the mass of nitrogen falling per square mile. It would probably be computed by weighting concentrations by the surface area represented by each environment. The median would under-represent this mass loading.</p></li>
+<li><p>the median would be a better “typical” concentration, and the IQR a better “typical” variability, than the mean and standard deviation. This is due to the strong effect of the one unusual point on these traditional measures.</p></li>
 </ol>
 
 </div>
@@ -628,7 +818,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["Statistical-Methods-in-Water-Resources.pdf", "Statistical-Methods-in-Water-Resources.epub"],
+"download": ["Statistical-Methods-in-Water-Resources.pdf"],
 "toc": {
 "collapse": "subsection"
 }

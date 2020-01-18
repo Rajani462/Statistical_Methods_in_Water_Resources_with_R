@@ -91,7 +91,7 @@ knitr::include_graphics("figures/3_B.png")
 ### Nonparametric Interval Estimate For The Median {#ch3-3-1}
 
 A nonparametric interval estimate for the true population median is computed using the binomial distribution. First, the desired significance level $\alpha$ is stated, the acceptable risk of not including the true median. One-half ($\alpha / 2$) of this risk is assigned to each end of the interval (figure \@ref(fig:fig-3-4)). A table of the binomial distribution provides lower and upper critical values x' and x at one-half the desired alpha level ($\alpha / 2$). These critical values are transformed into the ranks R~l~ and R~u~ corresponding to data points C~l~ and C~u~ at the ends of the confidence interval.
-```{r fig-3-4, echo = FALSE, fig.cap = "Probability of containing the true median P~.50~ in a 2-sided interval estimate. P~.50~ will be below the lower interval bound (C~l~) $\alpha / 2$% of the time, and above the upper interval bound (C~u~) $\alpha / 2$% of the time.", fig.align="center"}
+```{r fig-3-4, echo = FALSE, fig.cap = "Probability of containing the true median P~.50~ in a 2-sided interval estimate. P~.50~ will be below the lower interval bound (C~l~) α/2% of the time, and above the upper interval bound (C~u~) α/2% of the time.", fig.align="center"}
 knitr::include_graphics("figures/3_4.png")
 ```
 For small sample sizes, the binomial table is entered at the $p = 0.5$ (median) column in order to compute a confidence interval on the median. This column is reproduced in Appendix Table B5 -- it is identical to the quantiles for the sign test (see chapter 6). A critical value x' is obtained from Table B5 corresponding to $\alpha / 2$, or as close to $\alpha / 2$ as possible. This critical value is then used to compute the ranks R~u~ and R~l~ corresponding to the data values at the upper and lower confidence limits for the median. These limits are the R~l~th ranked data points going in from each end of the sorted list of n observations. The resulting confidence interval will reflect the shape (skewed or symmetric) of the original data.
@@ -254,7 +254,7 @@ PI_{np} = X_{\alpha / 2 \bullet (n + 1)} \;\; \text{to} \;\; X_{\lbrack 1 - (\al
 (\#eq:3-10)
 \end{equation}
 
-```{r fig-3-7, echo = FALSE, fig.cap = "Two-sided prediction interval. A new observation will be below $X_{l}$ $\alpha/2$% and above $X_{u}$ $\alpha/2$% of the time, when the data distribution is unchanged.", fig.align="center"}
+```{r fig-3-7, echo = FALSE, fig.cap = "Two-sided prediction interval. A new observation will be below X~l~ α/2% and above $X_{u}$ α/2% of the time, when the data distribution is unchanged.", fig.align="center"}
 knitr::include_graphics("figures/3_7.png")
 ```
 
@@ -284,7 +284,7 @@ One-sided prediction intervals are appropriate if the interest is in whether a n
 (\#eq:3-11)
 \end{equation}
 
-```{r fig-3-8, echo = FALSE, fig.cap = "Confidence level and alpha level for a 1-sided prediction interval Probability of obtaining a new observation greater than $X_{u}$ when the distribution is unchanged is $\alpha$.", fig.align="center"}
+```{r fig-3-8, echo = FALSE, fig.cap = "Confidence level and alpha level for a 1-sided prediction interval Probability of obtaining a new observation greater than $X_{u}$ when the distribution is unchanged is α.", fig.align="center"}
 knitr::include_graphics("figures/3_8.png")
 ```
 
@@ -414,16 +414,16 @@ Often it is of interest to test whether a percentile is different from, or large
 To test whether the percentile of a data set is significantly different (either larger or smaller) from a pre-specified value X0, compute an interval estimate for the percentile as described in section \@ref(ch3-7-1). If $X_{0}$ falls within this interval, the percentile is not significantly different from $X_{0}$ at a significance level = $\alpha$ (figure \@ref(fig:fig-3-9)). If $X_{0}$ is not within the interval, the percentile significantly differs from $X_{0}$ at the significance level of $\alpha$.
 
 ```{r, echo = FALSE}
-fig_cap_3_9 <- "Interval estimate of $p$th percentile $X_{p}$ as a test for whether $X_{p} = X_{0}$.\
-A. $X_{0}$ inside interval estimate: $X_{p}$ not significantly different from $X_{0}$.\
+fig_cap_3_9 <- "Interval estimate of $p$th percentile $X_{p}$ as a test for whether $X_{p} = X_{0}$.\n
+A. $X_{0}$ inside interval estimate: $X_{p}$ not significantly different from $X_{0}$.\n
 B. $X_{0}$ outside interval estimate: $X_{p}$ significantly different from $X_{0}$."
 
-fig_cap_3_10 <- "One-sided interval estimate as a test for whether $X_{p} > X_{0}$.\
-A. $X_{0}$ inside interval estimate: $X_{p}$ not significantly greater than $X_{0}$.\
+fig_cap_3_10 <- "One-sided interval estimate as a test for whether $X_{p} > X_{0}$.\n
+A. $X_{0}$ inside interval estimate: $X_{p}$ not significantly greater than $X_{0}$.\n
 B. $X_{0}$ below interval estimate: $X_{p}$ significantly greater than $X_{0}$."
 
-fig_cap_3_11 <- "One-sided interval estimate as a test for whether $X_{p} < X_{0}$.\
-A. $X_{0}$ inside interval estimate: $X_{p}$ not significantly less than $X_{0}$.\
+fig_cap_3_11 <- "One-sided interval estimate as a test for whether $X_{p} < X_{0}$.\n
+A. $X_{0}$ inside interval estimate: $X_{p}$ not significantly less than $X_{0}$.\n
 B. $X_{0}$ above interval estimate: $X_{p}$ significantly less than $X_{0}$."
 ```
 

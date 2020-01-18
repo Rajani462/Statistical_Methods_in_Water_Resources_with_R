@@ -24,7 +24,7 @@
 <meta name="author" content="MiRoVaGo" />
 
 
-<meta name="date" content="2020-01-17" />
+<meta name="date" content="2020-01-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -189,7 +189,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#section-3"><i class="fa fa-check"></i>2.1</a></li>
 <li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#section-4"><i class="fa fa-check"></i>2.2</a></li>
 <li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#section-5"><i class="fa fa-check"></i>2.3</a></li>
-<li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#section-6"><i class="fa fa-check"></i>2.4</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="ch3.html"><a href="ch3.html"><i class="fa fa-check"></i><b>3</b> Describing Uncertainty</a><ul>
@@ -223,11 +222,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.8.3" data-path="ch3.html"><a href="ch3.html#implications-of-non-normality-for-sampling-design"><i class="fa fa-check"></i><b>3.8.3</b> Implications of Non-Normality For Sampling Design</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#exercises-2"><i class="fa fa-check"></i>Exercises</a><ul>
-<li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#section-7"><i class="fa fa-check"></i>3.1</a></li>
-<li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#section-8"><i class="fa fa-check"></i>3.2</a></li>
-<li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#section-9"><i class="fa fa-check"></i>3.3</a></li>
-<li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#section-10"><i class="fa fa-check"></i>3.4</a></li>
-<li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#section-11"><i class="fa fa-check"></i>3.5</a></li>
+<li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#section-6"><i class="fa fa-check"></i>3.1</a></li>
+<li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#section-7"><i class="fa fa-check"></i>3.2</a></li>
+<li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#section-8"><i class="fa fa-check"></i>3.3</a></li>
+<li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#section-9"><i class="fa fa-check"></i>3.4</a></li>
+<li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#section-10"><i class="fa fa-check"></i>3.5</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -471,9 +470,9 @@ Figure 3.3: Ten 90% confidence intervals for skewed data with true mean = 1.0
 <h3><span class="header-section-number">3.3.1</span> Nonparametric Interval Estimate For The Median</h3>
 A nonparametric interval estimate for the true population median is computed using the binomial distribution. First, the desired significance level <span class="math inline">\(\alpha\)</span> is stated, the acceptable risk of not including the true median. One-half (<span class="math inline">\(\alpha / 2\)</span>) of this risk is assigned to each end of the interval (figure <a href="ch3.html#fig:fig-3-4">3.4</a>). A table of the binomial distribution provides lower and upper critical values x’ and x at one-half the desired alpha level (<span class="math inline">\(\alpha / 2\)</span>). These critical values are transformed into the ranks R<sub>l</sub> and R<sub>u</sub> corresponding to data points C<sub>l</sub> and C<sub>u</sub> at the ends of the confidence interval.
 <div class="figure" style="text-align: center"><span id="fig:fig-3-4"></span>
-<img src="figures/3_4.png" alt="Probability of containing the true median P~.50~ in a 2-sided interval estimate. P~.50~ will be below the lower interval bound (C~l~) $lpha / 2$% of the time, and above the upper interval bound (C~u~) $lpha / 2$% of the time." width="502" />
+<img src="figures/3_4.png" alt="Probability of containing the true median P~.50~ in a 2-sided interval estimate. P~.50~ will be below the lower interval bound (C~l~) α/2% of the time, and above the upper interval bound (C~u~) α/2% of the time." width="502" />
 <p class="caption">
-Figure 3.4: Probability of containing the true median P<sub>.50</sub> in a 2-sided interval estimate. P<sub>.50</sub> will be below the lower interval bound (C<sub>l</sub>) <span class="math inline">\(lpha / 2\)</span>% of the time, and above the upper interval bound (C<sub>u</sub>) <span class="math inline">\(lpha / 2\)</span>% of the time.
+Figure 3.4: Probability of containing the true median P<sub>.50</sub> in a 2-sided interval estimate. P<sub>.50</sub> will be below the lower interval bound (C<sub>l</sub>) α/2% of the time, and above the upper interval bound (C<sub>u</sub>) α/2% of the time.
 </p>
 </div>
 <p>For small sample sizes, the binomial table is entered at the <span class="math inline">\(p = 0.5\)</span> (median) column in order to compute a confidence interval on the median. This column is reproduced in Appendix Table B5 – it is identical to the quantiles for the sign test (see chapter 6). A critical value x’ is obtained from Table B5 corresponding to <span class="math inline">\(\alpha / 2\)</span>, or as close to <span class="math inline">\(\alpha / 2\)</span> as possible. This critical value is then used to compute the ranks R<sub>u</sub> and R<sub>l</sub> corresponding to the data values at the upper and lower confidence limits for the median. These limits are the R<sub>l</sub>th ranked data points going in from each end of the sorted list of n observations. The resulting confidence interval will reflect the shape (skewed or symmetric) of the original data.
@@ -683,9 +682,9 @@ PI_{np} = X_{\alpha / 2 \bullet (n + 1)} \;\; \text{to} \;\; X_{\lbrack 1 - (\al
 \tag{3.10}
 \end{equation}\]</span></p>
 <div class="figure" style="text-align: center"><span id="fig:fig-3-7"></span>
-<img src="figures/3_7.png" alt="Two-sided prediction interval. A new observation will be below $X_{l}$ $lpha/2$% and above $X_{u}$ $lpha/2$% of the time, when the data distribution is unchanged." width="524" />
+<img src="figures/3_7.png" alt="Two-sided prediction interval. A new observation will be below X~l~ α/2% and above $X_{u}$ α/2% of the time, when the data distribution is unchanged." width="524" />
 <p class="caption">
-Figure 3.7: Two-sided prediction interval. A new observation will be below <span class="math inline">\(X_{l}\)</span> <span class="math inline">\(lpha/2\)</span>% and above <span class="math inline">\(X_{u}\)</span> <span class="math inline">\(lpha/2\)</span>% of the time, when the data distribution is unchanged.
+Figure 3.7: Two-sided prediction interval. A new observation will be below X<sub>l</sub> α/2% and above <span class="math inline">\(X_{u}\)</span> α/2% of the time, when the data distribution is unchanged.
 </p>
 </div>
 <p><u>Example 2,cont.</u></p>
@@ -712,9 +711,9 @@ A new observation less than 1.4 or greater than 508 can be considered as coming 
 \tag{3.11}
 \end{equation}\]</span></p>
 <div class="figure" style="text-align: center"><span id="fig:fig-3-8"></span>
-<img src="figures/3_8.png" alt="Confidence level and alpha level for a 1-sided prediction interval Probability of obtaining a new observation greater than $X_{u}$ when the distribution is unchanged is $lpha$." width="519" />
+<img src="figures/3_8.png" alt="Confidence level and alpha level for a 1-sided prediction interval Probability of obtaining a new observation greater than $X_{u}$ when the distribution is unchanged is α." width="519" />
 <p class="caption">
-Figure 3.8: Confidence level and alpha level for a 1-sided prediction interval Probability of obtaining a new observation greater than <span class="math inline">\(X_{u}\)</span> when the distribution is unchanged is <span class="math inline">\(lpha\)</span>.
+Figure 3.8: Confidence level and alpha level for a 1-sided prediction interval Probability of obtaining a new observation greater than <span class="math inline">\(X_{u}\)</span> when the distribution is unchanged is α.
 </p>
 </div>
 <p><u>Example 2,cont.</u></p>
@@ -820,11 +819,13 @@ After rounding, the 2nd and 9th ranked observations are found to be an approxima
 <p>To test whether the percentile of a data set is significantly different (either larger or smaller) from a pre-specified value X0, compute an interval estimate for the percentile as described in section <a href="ch3.html#ch3-7-1">3.7.1</a>. If <span class="math inline">\(X_{0}\)</span> falls within this interval, the percentile is not significantly different from <span class="math inline">\(X_{0}\)</span> at a significance level = <span class="math inline">\(\alpha\)</span> (figure <a href="ch3.html#fig:fig-3-9">3.9</a>). If <span class="math inline">\(X_{0}\)</span> is not within the interval, the percentile significantly differs from <span class="math inline">\(X_{0}\)</span> at the significance level of <span class="math inline">\(\alpha\)</span>.</p>
 <div class="figure" style="text-align: center"><span id="fig:fig-3-9"></span>
 <img src="figures/3_9.png" alt="Interval estimate of $p$th percentile $X_{p}$ as a test for whether $X_{p} = X_{0}$.
+
 A. $X_{0}$ inside interval estimate: $X_{p}$ not significantly different from $X_{0}$.
+
 B. $X_{0}$ outside interval estimate: $X_{p}$ significantly different from $X_{0}$." width="510" />
 <p class="caption">
-Figure 3.9: Interval estimate of <span class="math inline">\(p\)</span>th percentile <span class="math inline">\(X_{p}\)</span> as a test for whether <span class="math inline">\(X_{p} = X_{0}\)</span>.
-A. <span class="math inline">\(X_{0}\)</span> inside interval estimate: <span class="math inline">\(X_{p}\)</span> not significantly different from <span class="math inline">\(X_{0}\)</span>.
+<p>Figure 3.9: Interval estimate of <span class="math inline">\(p\)</span>th percentile <span class="math inline">\(X_{p}\)</span> as a test for whether <span class="math inline">\(X_{p} = X_{0}\)</span>.</p>
+<p>A. <span class="math inline">\(X_{0}\)</span> inside interval estimate: <span class="math inline">\(X_{p}\)</span> not significantly different from <span class="math inline">\(X_{0}\)</span>.</p>
 B. <span class="math inline">\(X_{0}\)</span> outside interval estimate: <span class="math inline">\(X_{p}\)</span> significantly different from <span class="math inline">\(X_{0}\)</span>.
 </p>
 </div>
@@ -845,11 +846,13 @@ The <span class="math inline">\(\alpha = 0.05\)</span> confidence interval lies 
 <p>To test whether a percentile <span class="math inline">\(X_{p}\)</span> significantly exceeds a specified value or standard <span class="math inline">\(X_{0}\)</span>, compute the one-sided confidence interval of section <a href="ch3.html#ch3-7-1">3.7.1</a>. Remember that the entire error level <span class="math inline">\(\alpha\)</span> is placed on the side below the percentile point estimate <span class="math inline">\(\hat{X}_{p}\)</span> (figure <a href="ch3.html#fig:fig-3-10">3.10</a>). <span class="math inline">\(X_{p}\)</span> will be declared significantly higher than <span class="math inline">\(X_{0}\)</span> if its one-sided confidence interval lies entirely above <span class="math inline">\(X_{0}\)</span>.</p>
 <div class="figure" style="text-align: center"><span id="fig:fig-3-10"></span>
 <img src="figures/3_10.png" alt="One-sided interval estimate as a test for whether $X_{p} &gt; X_{0}$.
+
 A. $X_{0}$ inside interval estimate: $X_{p}$ not significantly greater than $X_{0}$.
+
 B. $X_{0}$ below interval estimate: $X_{p}$ significantly greater than $X_{0}$." width="422" />
 <p class="caption">
-Figure 3.10: One-sided interval estimate as a test for whether <span class="math inline">\(X_{p} &gt; X_{0}\)</span>.
-A. <span class="math inline">\(X_{0}\)</span> inside interval estimate: <span class="math inline">\(X_{p}\)</span> not significantly greater than <span class="math inline">\(X_{0}\)</span>.
+<p>Figure 3.10: One-sided interval estimate as a test for whether <span class="math inline">\(X_{p} &gt; X_{0}\)</span>.</p>
+<p>A. <span class="math inline">\(X_{0}\)</span> inside interval estimate: <span class="math inline">\(X_{p}\)</span> not significantly greater than <span class="math inline">\(X_{0}\)</span>.</p>
 B. <span class="math inline">\(X_{0}\)</span> below interval estimate: <span class="math inline">\(X_{p}\)</span> significantly greater than <span class="math inline">\(X_{0}\)</span>.
 </p>
 </div>
@@ -877,11 +880,13 @@ and thus the lower confidence limit is the 20.5th lowest observation, or 215 ppb
 <p>To test whether a percentile <span class="math inline">\(X_{p}\)</span> is significantly less than <span class="math inline">\(X_{0}\)</span>, compute the one-sided confidence interval placing all error <span class="math inline">\(\alpha\)</span> on the side above <span class="math inline">\(\hat{X}_{p}\)</span> (figure <a href="ch3.html#fig:fig-3-11">3.11</a>). <span class="math inline">\(X_{p}\)</span> will be declared as significantly less than <span class="math inline">\(X_{0}\)</span> if its one-sided confidence interval is entirely below <span class="math inline">\(X_{0}\)</span>.</p>
 <div class="figure" style="text-align: center"><span id="fig:fig-3-11"></span>
 <img src="figures/3_11.png" alt="One-sided interval estimate as a test for whether $X_{p} &lt; X_{0}$.
+
 A. $X_{0}$ inside interval estimate: $X_{p}$ not significantly less than $X_{0}$.
+
 B. $X_{0}$ above interval estimate: $X_{p}$ significantly less than $X_{0}$." width="357" />
 <p class="caption">
-Figure 3.11: One-sided interval estimate as a test for whether <span class="math inline">\(X_{p} &lt; X_{0}\)</span>.
-A. <span class="math inline">\(X_{0}\)</span> inside interval estimate: <span class="math inline">\(X_{p}\)</span> not significantly less than <span class="math inline">\(X_{0}\)</span>.
+<p>Figure 3.11: One-sided interval estimate as a test for whether <span class="math inline">\(X_{p} &lt; X_{0}\)</span>.</p>
+<p>A. <span class="math inline">\(X_{0}\)</span> inside interval estimate: <span class="math inline">\(X_{p}\)</span> not significantly less than <span class="math inline">\(X_{0}\)</span>.</p>
 B. <span class="math inline">\(X_{0}\)</span> above interval estimate: <span class="math inline">\(X_{p}\)</span> significantly less than <span class="math inline">\(X_{0}\)</span>.
 </p>
 </div>
@@ -1038,23 +1043,23 @@ where <span class="math inline">\(s\)</span> is the sample standard deviation an
 </div>
 <div id="exercises-2" class="section level2 unnumbered">
 <h2>Exercises</h2>
-<div id="section-7" class="section level3 unnumbered">
+<div id="section-6" class="section level3 unnumbered">
 <h3>3.1</h3>
 <p>Compute both nonparametric and parametric 95% interval estimates for the median of the granodiorite data of exercise 2.3. Which is more appropriate for these data? Why?</p>
 </div>
-<div id="section-8" class="section level3 unnumbered">
+<div id="section-7" class="section level3 unnumbered">
 <h3>3.2</h3>
 <p>Compute the symmetric 95% interval estimate for the mean of the quartz monzonite data of exercise 2.3. Compute the sample mean, and the mean assuming the data are lognormal. Which point estimate is more appropriate for these data? Why?</p>
 </div>
-<div id="section-9" class="section level3 unnumbered">
+<div id="section-8" class="section level3 unnumbered">
 <h3>3.3</h3>
 <p>A well yield of 0.85 gallons/min/foot was measured in a well in Virginia. Is this yield likely to belong to the same distribution as the data in exercise 1.1, or does it represent something larger? Answer by computing 95% parametric and nonparametric intervals. Which interval is more appropriate for these data?</p>
 </div>
-<div id="section-10" class="section level3 unnumbered">
+<div id="section-9" class="section level3 unnumbered">
 <h3>3.4</h3>
 <p>Construct the most appropriate 95 percent interval estimates for the mean and median annual streamflows for the Conecuh River at Brantley, Alabama (data in Appendix C2).</p>
 </div>
-<div id="section-11" class="section level3 unnumbered">
+<div id="section-10" class="section level3 unnumbered">
 <h3>3.5</h3>
 <p>Suppose a water intake is to be located on the Potomac River at Chain Bridge in such a way that the intake should not be above the water surface more than 10 percent of the time. Data for the design year (365 daily flows, ranked in order) are given in Appendix C3. Compute a 95% confidence interval for the daily flow guaranteed by this placement during the 90% of the time the intake is below water.</p>
 
@@ -1173,7 +1178,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["Statistical-Methods-in-Water-Resources.pdf", "Statistical-Methods-in-Water-Resources.epub"],
+"download": ["Statistical-Methods-in-Water-Resources.pdf"],
 "toc": {
 "collapse": "subsection"
 }

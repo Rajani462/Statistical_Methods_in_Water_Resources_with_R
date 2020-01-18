@@ -39,9 +39,11 @@ The mean ($\mathbf{\overline{X}}$) is computed as the sum of all data values **X
 \overline{X} = \sum_{i=1}^{n} \frac{X_{i}}{n}
 (\#eq:1-1)
 \end{equation}
+
 ```{r eval=FALSE}
 mean_x <- mean(x)
 ```
+
 For data which are in one of k groups, equation \@ref(eq:1-1) can be rewritten to show that the overall
 mean depends on the mean for each group, weighted by the number of observations n~i~ in each
 group:
@@ -58,19 +60,24 @@ where $\mathbf{\overline{X}_{i}}$  is the mean for group i. The influence of any
 (\#eq:1-3)
 \end{equation}
 where $\mathbf{\overline{X}_{(j)}}$ is the mean of all observations excluding X~j~. Each observation's influence on the overall mean $\mathbf{\overline{X}}$ is $\left( \mathbf{X_{j} -\overline{X}_{(j)}} \right)$, the distance between the observation and the mean excluding that observation. Thus all observations do not have the same influence on the mean. An 'outlier' observation, either high or low, has a much greater influence on the overall mean $\mathbf{\overline{X}}$ than does a more 'typical' observation, one closer to its $\mathbf{\overline{X}_{(j)}}$.
+
 ```{r fig-1-1,  echo=FALSE, fig.cap = "Density Function for a Lognormal Distribution", fig.align="center"}
 knitr::include_graphics("figures/1_1.png")
 ```
+
 ```{r fig-1-2,  echo=FALSE, fig.cap = "Density Function for a Normal Distribution", fig.align="center"}
 knitr::include_graphics("figures/1_2.png")
 ```
+
 Another way of illustrating this influence is to realize that the mean is the balance point of the data, when each point is stacked on a number line (figure \@ref(fig:fig-1-3-1)). Data points further from the center exert a stronger downward force than those closer to the center. If one point near the center were removed, the balance point would only need a small adjustment to keep the data set in balance. But if one outlying value were removed, the balance point would shift dramatically (figure \@ref(fig:fig-1-3-2)). This sensitivity to the magnitudes of a small number of points in the data set defines why the mean is not a "resistant" measure of location. It is not resistant to changes in the presence of, or to changes in the magnitudes of, a few outlying observations.
 
 When this strong influence of a few observations is desirable, the mean is an appropriate measure of center. This usually occurs when computing units of mass, such as the average concentration of sediment from several samples in a cross-section. Suppose that sediment
 concentrations closer to the river banks were much higher than those in the center. Waters represented by a bottle of high concentration would exert more influence (due to greater mass of sediment per volume) on the final concentration than waters of low or average concentration. This is entirely appropriate, as the same would occur if the stream itself were somehow mechanically mixed throughout its cross section.
+
 ```{r fig-1-3-1,  echo=FALSE, fig.cap = "The mean (triangle) as balance point of a data set", fig.align="center"}
 knitr::include_graphics("figures/1_3_a.png")
 ```
+
 ```{r fig-1-3-2,  echo=FALSE, fig.cap = "Shift of the mean downward after removal of outlier", fig.align="center"}
 knitr::include_graphics("figures/1_3_b.png")
 ```
@@ -85,10 +92,13 @@ median \left(P_{0.50} \right) & = \frac{1}{2} \left( X_{(n/2)} +  X_{(n/2) + 1} 
 \end{aligned}
 (\#eq:1-4)
 \end{equation}
+
 ```{r eval=FALSE}
 median_x <- median(x)
 ```
+
 The median is only minimally affected by the magnitude of a single observation, being determined solely by the relative order of observations. This resistance to the effect of a change in value or presence of outlying observations is often a desirable property. To demonstrate the resistance of the median, suppose the last value of the following data set (a) of 7 observations were multiplied by 10 to obtain data set (b):
+
 ```{r}
 a <- c(2,4,8,9,11,11,12)
 mean(a)
@@ -97,6 +107,7 @@ b <- c(2,4,8,9,11,11,120)
 mean(b)
 median(b)
 ```
+
 The mean increases from 8.1 to 23.6. The median, the $\frac{(7+1)}{2}$th or 4th lowest data point, is unaffected by the change.
 
 When a summary value is desired that is not strongly influenced by a few extreme observations, the median is preferable to the mean. One such example is the chemical concentration one might expect to find over many streams in a given region. Using the median, one stream with unusually high concentration has no greater effect on the estimate than one with low concentration. The mean concentration may be pulled towards the outlier, and be higher than concentrations found in most of the streams. Not so for the median. 
@@ -112,15 +123,19 @@ GM & = exp\left( \overline{Y} \right), && \text{where $Y_{i} = \ln{(X_{i})}$}\\
 \end{aligned}
 (\#eq:1-5)
 \end{equation}
+
 ```{r eval=FALSE}
-geometric_mean_x <- geoMean(x)
+geometric_mean_x <- Gmean(x)
 ```
+
 (in this book the natural, base e logarithm will be abbreviated **ln**, and its inverse e^x^ abbreviated **exp(x)**). For positively skewed data the geometric mean is usually quite close to the median. In fact, when the logarithms of the data are symmetric, the geometric mean is an unbiased estimate of the median. This is because the median and mean logarithms are equal, as in figure \@ref(fig:fig-1-2). When transformed back to original units, the geometric mean continues to be an estimate for the median, but is not an estimate for the mean (figure \@ref(fig:fig-1-1)).
 
 Compromises between the median and mean are available by trimming off several of the lowest and highest observations, and calculating the mean of what is left. Such estimates of location are not influenced by the most extreme (and perhaps anomalous) ends of the sample, as is the mean. Yet they allow the magnitudes of most of the values to affect the estimate, unlike the median. These estimators are called "trimmed means", and any desirable percentage of the data may be trimmed away. The most common trimming is to remove 25 percent of the data on each end -- the resulting mean of the central 50 percent of data is commonly called the "trimmed mean", but is more precisely the 25 percent trimmed mean. A "0% trimmed mean" is the sample mean itself, while trimming all but 1 or 2 central values produces the median. Percentages of trimming should be explicitly stated when used. The trimmed mean is a resistant estimator of location, as it is not strongly influenced by outliers, and works well for a wide variety of distributional shapes (normal, lognormal, etc.). It may be considered a weighted mean, where data beyond the cutoff 'window' are given a weight of 0, and those within the window a weight of 1.0 (see figure \@ref(fig:fig-1-4)).
+
 ```{r fig-1-4,  echo=FALSE, fig.cap = "Window diagram for the trimmed mean", fig.align="center"}
 knitr::include_graphics("figures/1_4.png")
 ```
+
 ## Measures of Spread
 
 It is just as important to know how variable the data are as it is to know their general center or location. Variability is quantified by measures of spread. 
@@ -134,18 +149,22 @@ s^{2} & = \sum_{i=1}^{n} \frac{(X_{i} - \overline{X})^{2}}{(n-1)} && \text{sampl
 \end{aligned}
 (\#eq:1-6)
 \end{equation}
+
 ```{r eval=FALSE}
 variance_x <- var(x)
 ```
+
 \begin{equation}
 \begin{aligned}
 s & = \sqrt{s^{2}} && \text{sample standard deviation}
 \end{aligned}
 (\#eq:1-7)
 \end{equation}
+
 ```{r eval=FALSE}
 standard_deviation_x <- sd(x)
 ```
+
 They are computed using the squares of deviations of data from the mean, so that outliers influence their magnitudes even more so than for the mean. When outliers are present these measures are unstable and inflated. They may give the impression of much greater spread than is indicated by the majority of the data set.
 
 ### Resistant Measures
@@ -162,15 +181,19 @@ The IQR is defined as the 75th percentile minus the 25th percentile. The 75th, 5
 \end {aligned}
 (\#eq:1-8)
 \end{equation}
+
 ```{r eval=FALSE}
 interquartile_range_x <- IQR(x, type = 2)
 # There are 9 different types you can specify. Type 2 seems to be the method used herein.
 ```
+
 Non-integer values of (n+1)•j imply linear interpolation between adjacent values of X. For the example 1 data set given earlier, n = 7, and therefore the 25th percentile is X~(7+1)•.25~ or X~2~ = 4, the second lowest observation. The 75th percentile is X~6~, the 6th lowest observation, or 11. The IQR is therefore 11 − 4 = 7.
+
 ```{r}
 a
 IQR(a, type = 2)
 ```
+
 One resistant estimator of spread other than the IQR is the Median Absolute Deviation, or MAD. The MAD is computed by first listing the absolute value of all differences |d| between each observation and the median. The median of these absolute values is then the MAD.
 \begin{equation}
 \begin{aligned}
@@ -178,14 +201,18 @@ One resistant estimator of spread other than the IQR is the Median Absolute Devi
 \end {aligned}
 (\#eq:1-9)
 \end{equation}
+
 ```{r eval=FALSE}
 median_absolute_deviation_x <- mad(x, constant = 1)
 ```
-Comparison of each estimate of spread for the Example 1 data set is as follows. When the last value is changed from 12 to 120, the standard deviation increases from 3.8 to 42.7. The IQR and the MAD remain exactly the same. 
+
+Comparison of each estimate of spread for the Example 1 data set is as follows. When the last value is changed from 12 to 120, the standard deviation increases from 3.8 to 42.7. The IQR and the MAD remain exactly the same.
+
 ```{r}
 c(IQR(a, type = 2), var(a), mad(a, constant = 1))
 c(IQR(b, type = 2), var(b), mad(b, constant = 1))
 ```
+
 ## Measures of Skewness
 
 Hydrologic data are typically skewed, meaning that data sets are not symmetric around the mean or median, with extreme values extending out longer in one direction. The density function for a lognormal distribution shown previously as figure \@ref(fig:fig-1-1) illustrates this skewness. When extreme values extend the right tail of the distribution, as they do with figure \@ref(fig:fig-1-1), the data are said to be skewed to the right, or positively skewed. Left skewness, when the tail extends to the left, is called negative skew.
@@ -199,17 +226,21 @@ The coefficient of skewness (g) is the skewness measure used most often. It is t
 g = \frac{n}{(n-1)(n-2)} \sum_{i = 1}^{n} \frac{(x_{i} - \overline{X})^{3}}{s^{3}}
 (\#eq:1-10)
 \end{equation}
+
 ```{r eval=FALSE}
 library(e1071)
 skewness_x <- skewness(x, type = 2)
 # There are 3 different types you can specify. Type 2 seems to be the method used herein.
 ```
+
 A right-skewed distribution has positive g; a left-skewed distribution has negative g. Again, the influence of a few outliers is important -- an otherwise symmetric distribution having one outlier will produce a large (and possibly misleading) measure of skewness. For the example 1 data, the g skewness coefficient increases from −0.8 to 2.6 when the last data point is changed from 12 to
 120.
+
 ```{r}
 e1071::skewness(a, type = 2)
 e1071::skewness(b, type = 2)
 ```
+
 ### Resistant Measure of Skewness
 
 A more resistant measure of skewness is the quartile skew coefficient qs (@kenney_mathematics_1954):
@@ -217,12 +248,15 @@ A more resistant measure of skewness is the quartile skew coefficient qs (@kenne
 qs = \frac{(P_{.75}-P_{.50})-(P_{.50}-P_{.25})}{P_{.75}-P_{.25}}
 (\#eq:1-11)
 \end{equation}
+
 ```{r eval=FALSE}
 quartiles_x <- quantile(x, prob = c(0.25, 0.50, 0.75), type = 2)
 # There are 9 different types you can specify. Type 2 seems to be the method used herein.
 quartile_skew_x <- ((quartiles_x[3] - quartiles_x[2]) - (quartiles_x[2] - quartiles_x[1])) / (quartiles_x[3] - quartiles_x[1])
 ```
-the difference in distances of the upper and lower quartiles from the median, divided by the IQR. A right-skewed distribution again has positive qs; a left-skewed distribution has negative qs. Similar to the trimmed mean and IQR, qs uses the central 50 percent of the data. For the example 1 data, qs = (11−9) − (9−4) / (11−4) = −0.43 both before and after alteration of the last data point. Note that this resistance may be a liability if sensitivity to a few observations is important. 
+
+the difference in distances of the upper and lower quartiles from the median, divided by the IQR. A right-skewed distribution again has positive qs; a left-skewed distribution has negative qs. Similar to the trimmed mean and IQR, qs uses the central 50 percent of the data. For the example 1 data, qs = (11−9) − (9−4) / (11−4) = −0.43 both before and after alteration of the last data point. Note that this resistance may be a liability if sensitivity to a few observations is important.
+
 ```{r}
 quartiles_a <- quantile(a, prob = c(0.25, 0.50, 0.75), type = 2, names = FALSE)
 quartile_skew_a <- ((quartiles_a[3] - quartiles_a[2]) - (quartiles_a[2] - quartiles_a[1])) / (quartiles_a[3] - quartiles_a[1])
@@ -231,6 +265,7 @@ quartiles_b <- quantile(b, prob = c(0.25, 0.50, 0.75), type = 2, names = FALSE)
 quartile_skew_b <- ((quartiles_b[3] - quartiles_b[2]) - (quartiles_b[2] - quartiles_b[1])) / (quartiles_b[3] - quartiles_b[1])
 quartile_skew_b
 ```
+
 ## Other Resistant Measures
 
 Other percentiles may be used to produce a series of resistant measures of location, spread and skewness. For example, the 10 percent trimmed mean can be coupled with the range between the 10th and 90th percentiles as a measure of spread, and a corresponding measure of skewness: 
@@ -238,11 +273,13 @@ Other percentiles may be used to produce a series of resistant measures of locat
 qs_{.10} = \frac{(P_{.90}-P_{.50})-(P_{.50}-P_{.10})}{P_{.90}-P_{.10}}
 (\#eq:1-12)
 \end{equation}
+
 ```{r eval=FALSE}
 quartiles_x <- quantile(x, prob = c(0.10, 0.50, 0.90), type = 2)
 # There are 9 different types you can specify. Type 2 seems to be the method used herein.
 quartile_skew_10_x <- ((quartiles_x[3] - quartiles_x[2]) - (quartiles_x[2] - quartiles_x[1])) / (quartiles_x[3] - quartiles_x[1])
 ```
+
 to produce a consistent series of resistant statistics. Geologists have used the 16th and 84th percentiles for many years to compute a similar series of robust measures of the distributions of sediment particles (@inman_measures_1952). However, measures based on quartiles have become generally standard, and other measures should be clearly defined prior to their use. The median, IQR, and quartile skew can be easily summarized graphically using a boxplot (see Chapter \@ref(ch2)) and are familiar to most data analysts.
 
 ## Outliers
@@ -280,14 +317,17 @@ In order to make an asymmetric distribution become more symmetric, the data can 
 Transformations usually involve power functions of the form $y = x^{\mathbf{θ}}$, where x is the untransformed data, y the transformed data, and θ the power exponent. In figure \@ref(fig:fig-1-5) the values of θ are listed in the "ladder of powers" (@velleman_applications_1981), a useful structure for determining a proper value of **θ**.
 
 As can be seen from the ladder of powers, any transformations with θ less than 1 may be used to make right-skewed data more symmetric. Constructing a boxplot or Q-Q plot (see Chapter \@ref(ch2)) of the transformed data will indicate whether the transformation was appropriate. Should a logarithmic transformation overcompensate for right skewness and produce a slightly leftskewed distribution, a 'milder' transformation with θ closer to 1, such as a square-root or cuberoot transformation, should be employed instead. Transformations with θ > 1 will aid in making left-skewed data more symmetric.
+
 ```{r fig-1-5,  echo=FALSE, fig.cap = '"LADDER OF POWERS" (modified from @velleman_applications_1981)', fig.align="center"}
 knitr::include_graphics("figures/1_5.png")
 ```
+
 However, the tendency to search for the 'best' transformation should be avoided. For example, when dealing with several similar data sets, it is probably better to find one transformation which works reasonably well for all, rather than using slightly different ones for each. It must be remembered that each data set is a sample from a larger population, and another sample from the same population will likely indicate a slightly different 'best' transformation. Determination of 'best' in great precision is an approach that is rarely worth the effort.
 
 ## Exercises {-}
 
 ### 1.1 {-} 
+
 Yields in wells penetrating rock units without fractures were measured by @wright_effects_1985, and are given below. Calculate the
 
 a. mean
@@ -295,8 +335,30 @@ b. trimmed mean
 c. geometric mean
 d. median
 e. compare these estimates of location. Why do they differ?
+
+Unit well yields (in gal/min/ft) in Virginia (@wright_effects_1985)
+
+|0.001|0.030|0.10|0.003|0.040|0.454|
+|:--:|:--:|:--:|:--:|:--:|:--:|
+|0.007|0.041|0.49|0.020|0.077|1.02|
+
+```{r message = FALSE, warning = FALSE}
+library(data.table)
+library(DescTools)
+x <- fread('data/well_yields_virginia.csv')
+a <- mean(x$unit_well_yield)
+b <- mean(x$unit_well_yield, trim = 0.25)
+c <- Gmean(x$unit_well_yield)
+d <- median(x$unit_well_yield)
+results <- data.frame(c(a, b, c, d), row.names = c("Mean", "Trimmed Mean", "Geometric Mean", "Median"))
+setnames(results, "Value")
+knitr::kable(results)
+```
+
+e. They differ because the data are skewed. The estimates which are more robust are similar, while the mean is larger.
     
 ### 1.2 {-}
+
 For the well yield data of exercise 1.1, calculate the
 
 a. standard deviation
@@ -306,9 +368,58 @@ d. skew and quartile skew.
 
 Discuss the differences between a through c.
 
+```{r message = FALSE, warning = FALSE}
+library(data.table)
+library(DescTools)
+library(e1071)
+x <- fread('data/well_yields_virginia.csv')
+a <- sd(x$unit_well_yield)
+b <- IQR(x$unit_well_yield, type = 2)
+c <- mad(x$unit_well_yield, constant = 1)
+d_1 <- skewness(x$unit_well_yield, type = 2)
+quartiles_x <- quantile(x$unit_well_yield, prob = c(0.25, 0.50, 0.75), type = 2, names = FALSE)
+d_2 <- ((quartiles_x[3] - quartiles_x[2]) - (quartiles_x[2] - quartiles_x[1])) / (quartiles_x[3] - quartiles_x[1])
+results <- data.frame(c(a, b, c, d_1, d_2), row.names = c("Standard Deviation", "IQR", "MAD", "Skew", "Quartile Skew"))
+setnames(results, "Value")
+knitr::kable(results)
+```
+
+Because the data are asymmetric, the median difference is small, but the IQR and standard deviation are not. 
+
 ### 1.3 {-}
+
 Ammonia plus organic nitrogen (in mg/L) was measured in samples of precipitation by @oltmann_rainfall_1989. Some of their data are presented below. Compute summary statistics for these data. Which observation might be considered an outlier?\
 How should this value affect the choice of summary statistics used
 
 a. to compute the mass of nitrogen falling per square mile.
 b. to compute a "typical" concentration and variability for these data?
+
+|0.3|0.9|0.36|0.92|0.5|1.0|
+|:--:|:--:|:--:|:--:|:--:|:--:|
+|0.7|9.7|0.7|1.3|||
+
+```{r message = FALSE, warning = FALSE}
+library(data.table)
+library(DescTools)
+library(e1071)
+x <- c(0.3, 0.9, 0.36, 0.92, 0.5, 1.0, 0.7, 9.7, 0.7, 1.3)
+a <- mean(x)
+b <- median(x)
+c <- Gmean(x)
+d <- skewness(x, type = 2)
+e <- sd(x)
+f <- IQR(x, type = 2)
+g <- mad(x, constant = 1)
+quartiles_x <- quantile(x, prob = c(0.25, 0.50, 0.75), type = 2, names = FALSE)
+h <- ((quartiles_x[3] - quartiles_x[2]) - (quartiles_x[2] - quartiles_x[1])) / (quartiles_x[3] - quartiles_x[1])
+results <- data.frame(c(a, b, c, d, e, f, g, h), row.names = c("Mean", "Median", "Geometric Mean", "Skew", "Standard Deviation", "IQR", "MAD", "Quartile Skew"))
+setnames(results, "Value")
+knitr::kable(results)
+```
+
+The largest observation is an outlier. Though the skew appears to be strongly positive, and the standard deviation large, this is due only to the effect of that one point. The majority of the data are not skewed, as shown by the more resistant quartile skew coefficient.
+
+a. assuming the outlying observation is accurate, representing some high-nitrogen location which is important to have sampled, the mean must be used to compute the mass of nitrogen falling per square mile. It would probably be computed by weighting concentrations by the surface area represented by each environment. The median would under-represent this mass loading.
+
+b. the median would be a better "typical" concentration, and the IQR a better "typical" variability, than the mean and standard deviation. This is due to the strong effect of the one unusual point on these traditional measures.
+
