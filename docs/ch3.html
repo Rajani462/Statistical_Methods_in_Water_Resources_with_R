@@ -24,7 +24,7 @@
 <meta name="author" content="MiRoVaGo" />
 
 
-<meta name="date" content="2020-01-18" />
+<meta name="date" content="2020-01-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -622,7 +622,7 @@ Figure 3.6: Histogram of natural logs of the arsenic concentrations of Example 2
 <span class="math display">\[\begin{equation}
 \begin{aligned}
 \exp{\left( 3.17 - 2.064 \bullet \sqrt{1.96^{2} / 25} \right)} \leq &amp;GM_{C} \leq \exp{\left( 3.17 + 2.064 \bullet \sqrt{1.96^{2} / 25} \right)} \\
-\exp{(2.36)} \leq &amp;GM_{C} \leq \exp{(3.98)}
+\exp{(2.36)} \leq &amp;GM_{C} \leq \exp{(3.98)} \\
 10.6 \leq &amp;GM_{C} \leq 53.5
 \end{aligned}
 \end{equation}\]</span>
@@ -796,7 +796,7 @@ R_{l} = np + z_{\alpha / 2} \bullet \sqrt{np(1 - p)} + 0.5
 \tag{3.16}
 \end{equation}\]</span>
 <span class="math display" id="eq:3-17">\[\begin{equation}
-R_{l} = np + z_{\lbrack 1 - \alpha / 2 \rbrack} \bullet \sqrt{np(1 - p)} + 0.5
+R_{u} = np + z_{\lbrack 1 - \alpha / 2 \rbrack} \bullet \sqrt{np(1 - p)} + 0.5
 \tag{3.17}
 \end{equation}\]</span>
 The 0.5 terms added to each reflect a continuity correction (see Chapter 4) of 0.5 for the lower bound and −0.5 for the upper bound, plus the +1 term for the upper bound analogous to equation <a href="ch3.html#eq:3-5">(3.5)</a>. The computed ranks <span class="math inline">\(R_{u}\)</span> and <span class="math inline">\(R_{l}\)</span> are rounded to the nearest integer.</p>
@@ -1046,22 +1046,163 @@ where <span class="math inline">\(s\)</span> is the sample standard deviation an
 <div id="section-6" class="section level3 unnumbered">
 <h3>3.1</h3>
 <p>Compute both nonparametric and parametric 95% interval estimates for the median of the granodiorite data of exercise 2.3. Which is more appropriate for these data? Why?</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">6.0</span>, <span class="fl">0.5</span>, <span class="fl">0.4</span>, <span class="fl">0.7</span>, <span class="fl">0.8</span>, <span class="fl">6.0</span>, <span class="fl">5.0</span>, <span class="fl">0.6</span>, <span class="fl">1.2</span>, <span class="fl">0.3</span>, <span class="fl">0.2</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="dv">10</span>, <span class="fl">0.2</span>, <span class="fl">0.2</span>, <span class="fl">1.7</span>, <span class="fl">3.0</span>)</a>
+<a class="sourceLine" id="cb51-2" data-line-number="2">x &lt;-<span class="st"> </span><span class="kw">sort</span>(x)</a>
+<a class="sourceLine" id="cb51-3" data-line-number="3">median_x &lt;-<span class="st"> </span><span class="kw">median</span>(x)</a>
+<a class="sourceLine" id="cb51-4" data-line-number="4">N &lt;-<span class="st"> </span><span class="kw">length</span>(x)</a>
+<a class="sourceLine" id="cb51-5" data-line-number="5">ALPHA &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.95</span></a>
+<a class="sourceLine" id="cb51-6" data-line-number="6">R_l &lt;-<span class="st"> </span><span class="kw">qbinom</span>(ALPHA <span class="op">/</span><span class="st"> </span><span class="dv">2</span>, N, <span class="fl">0.5</span>)</a>
+<a class="sourceLine" id="cb51-7" data-line-number="7">R_u &lt;-<span class="st"> </span>N <span class="op">-</span><span class="st"> </span>R_l</a>
+<a class="sourceLine" id="cb51-8" data-line-number="8">x_l &lt;-<span class="st"> </span>x[R_l]</a>
+<a class="sourceLine" id="cb51-9" data-line-number="9">x_u &lt;-<span class="st"> </span>x[R_u]</a>
+<a class="sourceLine" id="cb51-10" data-line-number="10">nonparametric &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;nonparametric: &quot;</span>, x_l, <span class="st">&quot; ≤ &quot;</span>, median_x,  <span class="st">&quot; ≤ &quot;</span>, x_u)</a>
+<a class="sourceLine" id="cb51-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb51-12" data-line-number="12">y &lt;-<span class="st"> </span><span class="kw">log</span>(x)</a>
+<a class="sourceLine" id="cb51-13" data-line-number="13">GM_x &lt;-<span class="st"> </span><span class="kw">exp</span>(<span class="kw">mean</span>(y))</a>
+<a class="sourceLine" id="cb51-14" data-line-number="14">t &lt;-<span class="st"> </span><span class="kw">abs</span>(<span class="kw">qt</span>(ALPHA <span class="op">/</span><span class="st"> </span><span class="dv">2</span>, <span class="dt">df =</span> N <span class="op">-</span><span class="st"> </span><span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb51-15" data-line-number="15">y_l &lt;-<span class="st"> </span><span class="kw">exp</span>(<span class="kw">mean</span>(y) <span class="op">-</span><span class="st"> </span>(t <span class="op">*</span><span class="st"> </span><span class="kw">sqrt</span>(<span class="kw">var</span>(y) <span class="op">/</span><span class="st"> </span>N)))</a>
+<a class="sourceLine" id="cb51-16" data-line-number="16">y_u &lt;-<span class="st"> </span><span class="kw">exp</span>(<span class="kw">mean</span>(y) <span class="op">+</span><span class="st"> </span>(t <span class="op">*</span><span class="st"> </span><span class="kw">sqrt</span>(<span class="kw">var</span>(y) <span class="op">/</span><span class="st"> </span>N)))</a>
+<a class="sourceLine" id="cb51-17" data-line-number="17">parametric &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;parametric: &quot;</span>, y_l, <span class="st">&quot; ≤ &quot;</span>, GM_x, <span class="st">&quot; ≤ &quot;</span>, y_u)</a>
+<a class="sourceLine" id="cb51-18" data-line-number="18"></a>
+<a class="sourceLine" id="cb51-19" data-line-number="19">nonparametric</a></code></pre></div>
+<pre><code>## [1] &quot;nonparametric: 0.4 ≤ 0.65 ≤ 1.7&quot;</code></pre>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" data-line-number="1">parametric</a></code></pre></div>
+<pre><code>## [1] &quot;parametric: 0.506466777225634 ≤ 0.955914691054861 ≤ 1.80421093280798&quot;</code></pre>
+<p>Either of intervals is reasonable. The logs of the data still retain some skewness, so the nonparametric interval may be more realistic. The choice would depend on whether the assumption of lognormality was believed.</p>
 </div>
 <div id="section-7" class="section level3 unnumbered">
 <h3>3.2</h3>
 <p>Compute the symmetric 95% interval estimate for the mean of the quartz monzonite data of exercise 2.3. Compute the sample mean, and the mean assuming the data are lognormal. Which point estimate is more appropriate for these data? Why?</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">1.0</span>, <span class="fl">0.2</span>, <span class="fl">1.2</span>,   <span class="fl">1.0</span>, <span class="fl">0.3</span>,   <span class="fl">0.1</span>, <span class="fl">0.1</span>,   <span class="fl">0.4</span>, <span class="fl">3.2</span>,   <span class="fl">0.3</span>, <span class="fl">0.4</span>,   <span class="fl">1.8</span>, <span class="fl">0.9</span>,   <span class="fl">0.1</span>, <span class="fl">0.2</span>,   <span class="fl">0.3</span>, <span class="fl">0.5</span>)</a>
+<a class="sourceLine" id="cb55-2" data-line-number="2">x &lt;-<span class="st"> </span><span class="kw">sort</span>(x)</a>
+<a class="sourceLine" id="cb55-3" data-line-number="3">mean_x &lt;-<span class="st"> </span><span class="kw">mean</span>(x)</a>
+<a class="sourceLine" id="cb55-4" data-line-number="4">s2_x &lt;-<span class="st"> </span><span class="kw">var</span>(x)</a>
+<a class="sourceLine" id="cb55-5" data-line-number="5">N &lt;-<span class="st"> </span><span class="kw">length</span>(x)</a>
+<a class="sourceLine" id="cb55-6" data-line-number="6">ALPHA &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.95</span></a>
+<a class="sourceLine" id="cb55-7" data-line-number="7">t &lt;-<span class="st"> </span><span class="kw">abs</span>(<span class="kw">qt</span>(ALPHA <span class="op">/</span><span class="st"> </span><span class="dv">2</span>, <span class="dt">df =</span> N <span class="op">-</span><span class="st"> </span><span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb55-8" data-line-number="8">x_l &lt;-<span class="st"> </span>mean_x <span class="op">-</span><span class="st"> </span>(t <span class="op">*</span><span class="st"> </span><span class="kw">sqrt</span>(s2_x <span class="op">/</span><span class="st"> </span>N))</a>
+<a class="sourceLine" id="cb55-9" data-line-number="9">x_u &lt;-<span class="st"> </span>mean_x <span class="op">+</span><span class="st"> </span>(t <span class="op">*</span><span class="st"> </span><span class="kw">sqrt</span>(s2_x <span class="op">/</span><span class="st"> </span>N))</a>
+<a class="sourceLine" id="cb55-10" data-line-number="10">symmetric &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;Symmetric: &quot;</span>, x_l, <span class="st">&quot; ≤ &quot;</span>, mean_x, <span class="st">&quot; ≤ &quot;</span>, x_u)</a>
+<a class="sourceLine" id="cb55-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb55-12" data-line-number="12">y &lt;-<span class="st"> </span><span class="kw">log</span>(x)</a>
+<a class="sourceLine" id="cb55-13" data-line-number="13">mean_y &lt;-<span class="st"> </span><span class="kw">mean</span>(y)</a>
+<a class="sourceLine" id="cb55-14" data-line-number="14">s2_y &lt;-<span class="st"> </span><span class="kw">var</span>(y)</a>
+<a class="sourceLine" id="cb55-15" data-line-number="15">mean_lognorm_x &lt;-<span class="st"> </span><span class="kw">exp</span>(mean_y <span class="op">+</span><span class="st"> </span>(<span class="fl">0.5</span> <span class="op">*</span><span class="st"> </span>s2_y)) </a>
+<a class="sourceLine" id="cb55-16" data-line-number="16">ln_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;Point estimates:    mean = &quot;</span>, mean_x, <span class="st">&quot; (assuming normal distribution)&quot;</span>)</a>
+<a class="sourceLine" id="cb55-17" data-line-number="17">ln_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;                    mean = &quot;</span>, mean_lognorm_x, <span class="st">&quot; (assuming a lognormal distribution).&quot;</span>)</a>
+<a class="sourceLine" id="cb55-18" data-line-number="18"><span class="kw">cat</span>(symmetric, ln_<span class="dv">1</span> , ln_<span class="dv">2</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</a></code></pre></div>
+<pre><code>## Symmetric: 0.295175103687019 ≤ 0.705882352941177 ≤ 1.11658960219533
+## Point estimates:    mean = 0.705882352941177 (assuming normal distribution)
+##                     mean = 0.729414817622854 (assuming a lognormal distribution).</code></pre>
+<p>As the logs of the data are more symmetric than the data prior to transformation, the lognormal (2nd) estimate is preferred.</p>
 </div>
 <div id="section-8" class="section level3 unnumbered">
 <h3>3.3</h3>
 <p>A well yield of 0.85 gallons/min/foot was measured in a well in Virginia. Is this yield likely to belong to the same distribution as the data in exercise 1.1, or does it represent something larger? Answer by computing 95% parametric and nonparametric intervals. Which interval is more appropriate for these data?</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" data-line-number="1"><span class="kw">library</span>(data.table)</a>
+<a class="sourceLine" id="cb57-2" data-line-number="2">x &lt;-<span class="st"> </span><span class="kw">fread</span>(<span class="st">&#39;data/well_yields_virginia.csv&#39;</span>)</a>
+<a class="sourceLine" id="cb57-3" data-line-number="3">x &lt;-<span class="st"> </span>x<span class="op">$</span>unit_well_yield</a>
+<a class="sourceLine" id="cb57-4" data-line-number="4">x &lt;-<span class="st"> </span><span class="kw">sort</span>(x)</a>
+<a class="sourceLine" id="cb57-5" data-line-number="5">mean_x &lt;-<span class="st"> </span><span class="kw">mean</span>(x)</a>
+<a class="sourceLine" id="cb57-6" data-line-number="6">s2_x &lt;-<span class="st"> </span><span class="kw">var</span>(x)</a>
+<a class="sourceLine" id="cb57-7" data-line-number="7">N &lt;-<span class="st"> </span><span class="kw">length</span>(x)</a>
+<a class="sourceLine" id="cb57-8" data-line-number="8">ALPHA &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.95</span></a>
+<a class="sourceLine" id="cb57-9" data-line-number="9">t &lt;-<span class="st"> </span><span class="kw">abs</span>(<span class="kw">qt</span>(ALPHA <span class="op">/</span><span class="st"> </span><span class="dv">2</span>, <span class="dt">df =</span> N <span class="op">-</span><span class="st"> </span><span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb57-10" data-line-number="10">PI_l &lt;-<span class="st"> </span>mean_x <span class="op">-</span><span class="st"> </span>(t <span class="op">*</span><span class="st"> </span><span class="kw">sqrt</span>(s2_x <span class="op">+</span><span class="st"> </span>(s2_x <span class="op">/</span><span class="st"> </span>N)))</a>
+<a class="sourceLine" id="cb57-11" data-line-number="11">PI_u &lt;-<span class="st"> </span>mean_x <span class="op">+</span><span class="st"> </span>(t <span class="op">*</span><span class="st"> </span><span class="kw">sqrt</span>(s2_x <span class="op">+</span><span class="st"> </span>(s2_x <span class="op">/</span><span class="st"> </span>N)))</a>
+<a class="sourceLine" id="cb57-12" data-line-number="12">sol_<span class="dv">0</span> &lt;-<span class="st"> &quot;Parametric 95% prediction interval: &quot;</span></a>
+<a class="sourceLine" id="cb57-13" data-line-number="13">sol_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">paste0</span>(PI_l, <span class="st">&quot; to &quot;</span>, PI_u, <span class="st">&quot; gallons/min/foot.&quot;</span>)</a>
+<a class="sourceLine" id="cb57-14" data-line-number="14">sol_<span class="dv">2</span> &lt;-<span class="st"> &quot;Includes 0.85, so same distribution.&quot;</span></a>
+<a class="sourceLine" id="cb57-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb57-16" data-line-number="16">low_idx &lt;-<span class="st"> </span>(ALPHA <span class="op">/</span><span class="st"> </span><span class="dv">2</span>) <span class="op">*</span><span class="st"> </span>(N <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb57-17" data-line-number="17">up_idx &lt;-<span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>(ALPHA <span class="op">/</span><span class="st"> </span><span class="dv">2</span>)) <span class="op">*</span><span class="st"> </span>(N <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb57-18" data-line-number="18"></a>
+<a class="sourceLine" id="cb57-19" data-line-number="19">sol_<span class="dv">3</span> &lt;-<span class="st"> &quot;Nonparametric 95% prediction interval: &quot;</span></a>
+<a class="sourceLine" id="cb57-20" data-line-number="20">sol_<span class="dv">4</span> &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;X_&quot;</span>, low_idx, <span class="st">&quot; to &quot;</span>, <span class="st">&quot;X_&quot;</span>, up_idx)</a>
+<a class="sourceLine" id="cb57-21" data-line-number="21"><span class="kw">cat</span>(sol_<span class="dv">0</span>, sol_<span class="dv">1</span>, sol_<span class="dv">2</span>, sol_<span class="dv">3</span>, sol_<span class="dv">4</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</a></code></pre></div>
+<pre><code>## Parametric 95% prediction interval: 
+## -0.525184969204106 to 0.905684969204106 gallons/min/foot.
+## Includes 0.85, so same distribution.
+## Nonparametric 95% prediction interval: 
+## X_0.325 to X_12.675</code></pre>
+<p>The sample size is too small to produce such a wide (95%) nonparametric prediction interval. Therefore a parametric interval must be used. However, the negative lower end of the parametric prediction interval indicates that a symmetric interval is not appropriate. So an asymmetric interval resulting from taking logarithms should be used instead of the one above.</p>
 </div>
 <div id="section-9" class="section level3 unnumbered">
 <h3>3.4</h3>
 <p>Construct the most appropriate 95 percent interval estimates for the mean and median annual streamflows for the Conecuh River at Brantley, Alabama (data in Appendix C2).</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" data-line-number="1"><span class="kw">library</span>(data.table)</a>
+<a class="sourceLine" id="cb59-2" data-line-number="2"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb59-3" data-line-number="3"><span class="kw">source</span>(<span class="st">&quot;./data/themes.R&quot;</span>)</a>
+<a class="sourceLine" id="cb59-4" data-line-number="4"><span class="kw">source</span>(<span class="st">&quot;./data/palettes.R&quot;</span>)</a>
+<a class="sourceLine" id="cb59-5" data-line-number="5">x &lt;-<span class="st"> </span><span class="kw">fread</span>(<span class="st">&#39;data/appendix_c2.csv&#39;</span>)</a>
+<a class="sourceLine" id="cb59-6" data-line-number="6">graph_a &lt;-<span class="st"> </span><span class="kw">ggplot</span>(x, <span class="kw">aes</span>(<span class="dt">x =</span> Flow_cfs)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb59-7" data-line-number="7"><span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">color =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">fill =</span> palettes_bright<span class="op">$</span>colset_cheer_brights[<span class="dv">2</span>], <span class="dt">alpha =</span> <span class="fl">0.4</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb59-8" data-line-number="8"><span class="st">  </span>theme_generic <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb59-9" data-line-number="9"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Flow in cfs&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;DENSITY&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb59-10" data-line-number="10"><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1500</span>))</a>
+<a class="sourceLine" id="cb59-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb59-12" data-line-number="12">x &lt;-<span class="st"> </span>x<span class="op">$</span>Flow_cfs</a>
+<a class="sourceLine" id="cb59-13" data-line-number="13">x &lt;-<span class="st"> </span><span class="kw">sort</span>(x)</a>
+<a class="sourceLine" id="cb59-14" data-line-number="14">mean_x &lt;-<span class="st"> </span><span class="kw">mean</span>(x)</a>
+<a class="sourceLine" id="cb59-15" data-line-number="15">s2_x &lt;-<span class="st"> </span><span class="kw">var</span>(x)</a>
+<a class="sourceLine" id="cb59-16" data-line-number="16">N &lt;-<span class="st"> </span><span class="kw">length</span>(x)</a>
+<a class="sourceLine" id="cb59-17" data-line-number="17">ALPHA &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.95</span></a>
+<a class="sourceLine" id="cb59-18" data-line-number="18">t &lt;-<span class="st"> </span><span class="kw">abs</span>(<span class="kw">qt</span>(ALPHA <span class="op">/</span><span class="st"> </span><span class="dv">2</span>, <span class="dt">df =</span> N <span class="op">-</span><span class="st"> </span><span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb59-19" data-line-number="19">x_l &lt;-<span class="st"> </span>mean_x <span class="op">-</span><span class="st"> </span>(t <span class="op">*</span><span class="st"> </span><span class="kw">sqrt</span>(s2_x <span class="op">/</span><span class="st"> </span>N))</a>
+<a class="sourceLine" id="cb59-20" data-line-number="20">x_u &lt;-<span class="st"> </span>mean_x <span class="op">+</span><span class="st"> </span>(t <span class="op">*</span><span class="st"> </span><span class="kw">sqrt</span>(s2_x <span class="op">/</span><span class="st"> </span>N))</a>
+<a class="sourceLine" id="cb59-21" data-line-number="21">mean_x_range &lt;-<span class="st"> </span>mean_x <span class="op">-</span><span class="st"> </span>x_l</a>
+<a class="sourceLine" id="cb59-22" data-line-number="22"></a>
+<a class="sourceLine" id="cb59-23" data-line-number="23">sol_<span class="dv">0</span> &lt;-<span class="st"> &quot;The data look relatively symmetric, so no logs taken.&quot;</span></a>
+<a class="sourceLine" id="cb59-24" data-line-number="24">sol_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;mean:    &quot;</span>, mean_x, <span class="st">&quot; ± &quot;</span>, mean_x_range, <span class="st">&quot;, or &quot;</span>)</a>
+<a class="sourceLine" id="cb59-25" data-line-number="25">sol_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">paste0</span>(x_l, <span class="st">&quot; to &quot;</span>, x_u)</a>
+<a class="sourceLine" id="cb59-26" data-line-number="26"></a>
+<a class="sourceLine" id="cb59-27" data-line-number="27">median_x &lt;-<span class="st"> </span><span class="kw">median</span>(x)</a>
+<a class="sourceLine" id="cb59-28" data-line-number="28">R_l &lt;-<span class="st"> </span><span class="kw">qbinom</span>(ALPHA <span class="op">/</span><span class="st"> </span><span class="dv">2</span>, N, <span class="fl">0.5</span>)</a>
+<a class="sourceLine" id="cb59-29" data-line-number="29">R_u &lt;-<span class="st"> </span>N <span class="op">-</span><span class="st"> </span>R_l</a>
+<a class="sourceLine" id="cb59-30" data-line-number="30"></a>
+<a class="sourceLine" id="cb59-31" data-line-number="31">sol_<span class="dv">3</span> &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;median:    R_l = &quot;</span>, R_l, <span class="st">&quot;, R_u = &quot;</span>, R_u)</a>
+<a class="sourceLine" id="cb59-32" data-line-number="32">sol_<span class="dv">4</span> &lt;-<span class="st"> </span><span class="kw">paste0</span>(x[R_l], <span class="st">&quot; to &quot;</span>, x[R_u])</a>
+<a class="sourceLine" id="cb59-33" data-line-number="33"></a>
+<a class="sourceLine" id="cb59-34" data-line-number="34">graph_a</a></code></pre></div>
+<p><img src="Statistical-Methods-in-Water-Resources_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" data-line-number="1"><span class="kw">cat</span>(sol_<span class="dv">0</span>, sol_<span class="dv">1</span>, sol_<span class="dv">2</span>, sol_<span class="dv">3</span>, sol_<span class="dv">4</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</a></code></pre></div>
+<pre><code>## The data look relatively symmetric, so no logs taken.
+## mean:    682.75 ± 126.136783051822, or 
+## 556.613216948178 to 808.886783051822
+## median:    R_l = 6, R_u = 14
+## 524 to 859</code></pre>
 </div>
 <div id="section-10" class="section level3 unnumbered">
 <h3>3.5</h3>
 <p>Suppose a water intake is to be located on the Potomac River at Chain Bridge in such a way that the intake should not be above the water surface more than 10 percent of the time. Data for the design year (365 daily flows, ranked in order) are given in Appendix C3. Compute a 95% confidence interval for the daily flow guaranteed by this placement during the 90% of the time the intake is below water.</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" data-line-number="1"><span class="kw">library</span>(data.table)</a>
+<a class="sourceLine" id="cb62-2" data-line-number="2">x &lt;-<span class="st"> </span><span class="kw">fread</span>(<span class="st">&#39;data/appendix_c3.csv&#39;</span>)</a>
+<a class="sourceLine" id="cb62-3" data-line-number="3">x &lt;-<span class="st"> </span><span class="kw">as.vector</span>(<span class="kw">t</span>(x))</a>
+<a class="sourceLine" id="cb62-4" data-line-number="4">x &lt;-<span class="st"> </span><span class="kw">sort</span>(x)</a>
+<a class="sourceLine" id="cb62-5" data-line-number="5">mean_x &lt;-<span class="st"> </span><span class="kw">mean</span>(x)</a>
+<a class="sourceLine" id="cb62-6" data-line-number="6">sd_x &lt;-<span class="st"> </span><span class="kw">sd</span>(x)</a>
+<a class="sourceLine" id="cb62-7" data-line-number="7">N &lt;-<span class="st"> </span><span class="kw">length</span>(x)</a>
+<a class="sourceLine" id="cb62-8" data-line-number="8">p &lt;-<span class="st"> </span><span class="fl">0.1</span></a>
+<a class="sourceLine" id="cb62-9" data-line-number="9">np &lt;-<span class="st">  </span>N <span class="op">*</span><span class="st"> </span>p</a>
+<a class="sourceLine" id="cb62-10" data-line-number="10">ALPHA &lt;-<span class="st"> </span><span class="fl">0.05</span></a>
+<a class="sourceLine" id="cb62-11" data-line-number="11">idxs &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">as.integer</span>(np), <span class="kw">as.integer</span>(np) <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb62-12" data-line-number="12">x_<span class="dv">10</span> &lt;-<span class="st"> </span>x[idxs[<span class="dv">1</span>]] <span class="op">+</span><span class="st"> </span>((np <span class="op">-</span><span class="st"> </span>idxs[<span class="dv">1</span>]) <span class="op">*</span><span class="st"> </span>(x[idxs[<span class="dv">2</span>]] <span class="op">-</span><span class="st"> </span>x[idxs[<span class="dv">1</span>]]))</a>
+<a class="sourceLine" id="cb62-13" data-line-number="13">z_<span class="dv">095</span> &lt;-<span class="st"> </span><span class="kw">qnorm</span>((<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>ALPHA), <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb62-14" data-line-number="14">R_u &lt;-<span class="st">  </span>np <span class="op">+</span><span class="st"> </span>(z_<span class="dv">095</span> <span class="op">*</span><span class="st"> </span><span class="kw">sqrt</span>(np <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>p))) <span class="op">+</span><span class="st"> </span><span class="fl">0.5</span></a>
+<a class="sourceLine" id="cb62-15" data-line-number="15">x_u &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(x[<span class="kw">as.integer</span>(R_u)])</a>
+<a class="sourceLine" id="cb62-16" data-line-number="16">sol_<span class="dv">0</span> &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;The 10th percentile = &quot;</span>, x_<span class="dv">10</span>, <span class="st">&quot; cfs&quot;</span>)</a>
+<a class="sourceLine" id="cb62-17" data-line-number="17">sol_<span class="dv">1</span> &lt;-<span class="st"> &quot;A one-sided 95% confidence interval for the 90th percentile (an upper confidence limit&quot;</span></a>
+<a class="sourceLine" id="cb62-18" data-line-number="18">sol_<span class="dv">2</span> &lt;-<span class="st"> &quot;to insure that the intake does not go dry) is found using the large-sample&quot;</span></a>
+<a class="sourceLine" id="cb62-19" data-line-number="19">sol_<span class="dv">3</span> &lt;-<span class="st"> &quot;approximation of equation 3.17: &quot;</span></a>
+<a class="sourceLine" id="cb62-20" data-line-number="20">sol_<span class="dv">4</span> &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;R_u = &quot;</span>, R_u)</a>
+<a class="sourceLine" id="cb62-21" data-line-number="21">sol_<span class="dv">5</span> &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;The 46th ranked point is the upper CI, or &quot;</span>, x_u ,<span class="st">&quot; cfs&quot;</span>)</a>
+<a class="sourceLine" id="cb62-22" data-line-number="22"><span class="kw">cat</span>(sol_<span class="dv">0</span>, sol_<span class="dv">1</span>, sol_<span class="dv">2</span>, sol_<span class="dv">3</span>, sol_<span class="dv">4</span>, sol_<span class="dv">5</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</a></code></pre></div>
+<pre><code>## The 10th percentile = 2445 cfs
+## A one-sided 95% confidence interval for the 90th percentile (an upper confidence limit
+## to insure that the intake does not go dry) is found using the large-sample
+## approximation of equation 3.17: 
+## R_u = 46.4274653256872
+## The 46th ranked point is the upper CI, or 2700 cfs</code></pre>
 
 </div>
 </div>

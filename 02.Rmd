@@ -269,7 +269,7 @@ ggplot(annual_streamflow, aes(x = zp, y = log10(V1))) +
   scale_x_continuous(breaks = seq(-2.5, 2.5, 0.5), limits = c(-2.5, 2.5))
 ```
 
-```{r fig-2-11, echo = FALSE, fig.cap = "Probability plot of a right-skewed distribution (unit well yields)", fig.align="center"}
+```{r fig-2-11, echo = FALSE, fig.cap = "Probability plot of a right-skewed distribution (unit well yields)", fig.align="center", message = FALSE, warning = FALSE}
 ggplot(unit_well_yield_data, aes(x = zp, y = unit_well_yield)) + 
   geom_point() +
   geom_line(aes(y = qnorm(p_i, 0.19025, 0.3123))) +
