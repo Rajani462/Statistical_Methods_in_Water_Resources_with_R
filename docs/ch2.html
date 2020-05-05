@@ -1,0 +1,1438 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Graphical Data Analysis | Statistical Methods in Water Resources with R</title>
+  <meta name="description" content="This project aims to translate Helsel and Hirsch ‘Statistical Methods in Water Resources’ into R." />
+  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Graphical Data Analysis | Statistical Methods in Water Resources with R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This project aims to translate Helsel and Hirsch ‘Statistical Methods in Water Resources’ into R." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Graphical Data Analysis | Statistical Methods in Water Resources with R" />
+  
+  <meta name="twitter:description" content="This project aims to translate Helsel and Hirsch ‘Statistical Methods in Water Resources’ into R." />
+  
+
+<meta name="author" content="MiRoVaGo" />
+
+
+<meta name="date" content="2020-05-05" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="ch1.html"/>
+<link rel="next" href="ch3.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Statistical Methods in Water Resources with R</a></li>    
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="ch1.html"><a href="ch1.html"><i class="fa fa-check"></i><b>1</b> Summarizing data</a><ul>
+<li class="chapter" data-level="1.1" data-path="ch1.html"><a href="ch1.html#characteristics-of-water-resources-data"><i class="fa fa-check"></i><b>1.1</b> Characteristics of Water Resources Data</a></li>
+<li class="chapter" data-level="1.2" data-path="ch1.html"><a href="ch1.html#measures-of-location"><i class="fa fa-check"></i><b>1.2</b> Measures of Location</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="ch1.html"><a href="ch1.html#classical-measure-the-mean"><i class="fa fa-check"></i><b>1.2.1</b> Classical Measure – the Mean</a></li>
+<li class="chapter" data-level="1.2.2" data-path="ch1.html"><a href="ch1.html#resistant-measure-the-median"><i class="fa fa-check"></i><b>1.2.2</b> Resistant Measure – the Median</a></li>
+<li class="chapter" data-level="1.2.3" data-path="ch1.html"><a href="ch1.html#other-measures-of-location"><i class="fa fa-check"></i><b>1.2.3</b> Other Measures of Location</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="ch1.html"><a href="ch1.html#measures-of-spread"><i class="fa fa-check"></i><b>1.3</b> Measures of Spread</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="ch1.html"><a href="ch1.html#classical-measures"><i class="fa fa-check"></i><b>1.3.1</b> Classical Measures</a></li>
+<li class="chapter" data-level="1.3.2" data-path="ch1.html"><a href="ch1.html#resistant-measures"><i class="fa fa-check"></i><b>1.3.2</b> Resistant Measures</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="ch1.html"><a href="ch1.html#measures-of-skewness"><i class="fa fa-check"></i><b>1.4</b> Measures of Skewness</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="ch1.html"><a href="ch1.html#classical-measure-of-skewness"><i class="fa fa-check"></i><b>1.4.1</b> Classical Measure of Skewness</a></li>
+<li class="chapter" data-level="1.4.2" data-path="ch1.html"><a href="ch1.html#resistant-measure-of-skewness"><i class="fa fa-check"></i><b>1.4.2</b> Resistant Measure of Skewness</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="ch1.html"><a href="ch1.html#other-resistant-measures"><i class="fa fa-check"></i><b>1.5</b> Other Resistant Measures</a></li>
+<li class="chapter" data-level="1.6" data-path="ch1.html"><a href="ch1.html#outliers"><i class="fa fa-check"></i><b>1.6</b> Outliers</a></li>
+<li class="chapter" data-level="1.7" data-path="ch1.html"><a href="ch1.html#transformations"><i class="fa fa-check"></i><b>1.7</b> Transformations</a><ul>
+<li class="chapter" data-level="1.7.1" data-path="ch1.html"><a href="ch1.html#the-ladder-of-powers"><i class="fa fa-check"></i><b>1.7.1</b> The Ladder of Powers</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ch1.html"><a href="ch1.html#exercises"><i class="fa fa-check"></i>Exercises</a><ul>
+<li class="chapter" data-level="" data-path="ch1.html"><a href="ch1.html#section"><i class="fa fa-check"></i>1.1</a></li>
+<li class="chapter" data-level="" data-path="ch1.html"><a href="ch1.html#section-1"><i class="fa fa-check"></i>1.2</a></li>
+<li class="chapter" data-level="" data-path="ch1.html"><a href="ch1.html#section-2"><i class="fa fa-check"></i>1.3</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="ch2.html"><a href="ch2.html"><i class="fa fa-check"></i><b>2</b> Graphical Data Analysis</a><ul>
+<li class="chapter" data-level="2.1" data-path="ch2.html"><a href="ch2.html#ch2-1"><i class="fa fa-check"></i><b>2.1</b> Graphical Analysis of Single Data Sets</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="ch2.html"><a href="ch2.html#histograms"><i class="fa fa-check"></i><b>2.1.1</b> Histograms</a></li>
+<li class="chapter" data-level="2.1.2" data-path="ch2.html"><a href="ch2.html#stem-and-leaf-diagrams"><i class="fa fa-check"></i><b>2.1.2</b> Stem and Leaf Diagrams</a></li>
+<li class="chapter" data-level="2.1.3" data-path="ch2.html"><a href="ch2.html#quantile-plots"><i class="fa fa-check"></i><b>2.1.3</b> Quantile Plots</a></li>
+<li class="chapter" data-level="2.1.4" data-path="ch2.html"><a href="ch2.html#boxplots"><i class="fa fa-check"></i><b>2.1.4</b> Boxplots</a></li>
+<li class="chapter" data-level="2.1.5" data-path="ch2.html"><a href="ch2.html#probability-plots"><i class="fa fa-check"></i><b>2.1.5</b> Probability Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="ch2.html"><a href="ch2.html#ch2-2"><i class="fa fa-check"></i><b>2.2</b> Graphical Comparisons of Two or More Data Sets</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="ch2.html"><a href="ch2.html#histograms-1"><i class="fa fa-check"></i><b>2.2.1</b> Histograms</a></li>
+<li class="chapter" data-level="2.2.2" data-path="ch2.html"><a href="ch2.html#dot-and-line-plots-of-means-standard-deviations"><i class="fa fa-check"></i><b>2.2.2</b> Dot and Line Plots of Means, Standard Deviations</a></li>
+<li class="chapter" data-level="2.2.3" data-path="ch2.html"><a href="ch2.html#boxplots-1"><i class="fa fa-check"></i><b>2.2.3</b> Boxplots</a></li>
+<li class="chapter" data-level="2.2.4" data-path="ch2.html"><a href="ch2.html#probability-plots-1"><i class="fa fa-check"></i><b>2.2.4</b> Probability Plots</a></li>
+<li class="chapter" data-level="2.2.5" data-path="ch2.html"><a href="ch2.html#q-q-plots"><i class="fa fa-check"></i><b>2.2.5</b> Q-Q Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="ch2.html"><a href="ch2.html#scatterplots-and-enhancements"><i class="fa fa-check"></i><b>2.3</b> Scatterplots and Enhancements</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="ch2.html"><a href="ch2.html#evaluating-linearity"><i class="fa fa-check"></i><b>2.3.1</b> Evaluating Linearity</a></li>
+<li class="chapter" data-level="2.3.2" data-path="ch2.html"><a href="ch2.html#evaluating-differences-in-location-on-a-scatterplot"><i class="fa fa-check"></i><b>2.3.2</b> Evaluating Differences in Location on a Scatterplot</a></li>
+<li class="chapter" data-level="2.3.3" data-path="ch2.html"><a href="ch2.html#evaluating-differences-in-spread"><i class="fa fa-check"></i><b>2.3.3</b> Evaluating Differences in Spread</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="ch2.html"><a href="ch2.html#graphs-for-multivariate-data"><i class="fa fa-check"></i><b>2.4</b> Graphs for Multivariate Data</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="ch2.html"><a href="ch2.html#profile-plots"><i class="fa fa-check"></i><b>2.4.1</b> Profile Plots</a></li>
+<li class="chapter" data-level="2.4.2" data-path="ch2.html"><a href="ch2.html#star-plots"><i class="fa fa-check"></i><b>2.4.2</b> Star Plots</a></li>
+<li class="chapter" data-level="2.4.3" data-path="ch2.html"><a href="ch2.html#trilinear-diagrams"><i class="fa fa-check"></i><b>2.4.3</b> Trilinear Diagrams</a></li>
+<li class="chapter" data-level="2.4.4" data-path="ch2.html"><a href="ch2.html#plots-of-principal-components"><i class="fa fa-check"></i><b>2.4.4</b> Plots of Principal Components</a></li>
+<li class="chapter" data-level="2.4.5" data-path="ch2.html"><a href="ch2.html#other-multivariate-plots"><i class="fa fa-check"></i><b>2.4.5</b> Other Multivariate Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#exercises-1"><i class="fa fa-check"></i>Exercises</a><ul>
+<li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#section-3"><i class="fa fa-check"></i>2.1</a></li>
+<li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#section-4"><i class="fa fa-check"></i>2.2</a></li>
+<li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#section-5"><i class="fa fa-check"></i>2.3</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="ch3.html"><a href="ch3.html"><i class="fa fa-check"></i><b>3</b> Describing Uncertainty</a><ul>
+<li class="chapter" data-level="3.1" data-path="ch3.html"><a href="ch3.html#definition-of-interval-estimates"><i class="fa fa-check"></i><b>3.1</b> Definition of Interval Estimates</a></li>
+<li class="chapter" data-level="3.2" data-path="ch3.html"><a href="ch3.html#interpretation-of-interval-estimates"><i class="fa fa-check"></i><b>3.2</b> Interpretation of Interval Estimates</a></li>
+<li class="chapter" data-level="3.3" data-path="ch3.html"><a href="ch3.html#ch3-3"><i class="fa fa-check"></i><b>3.3</b> Confidence Intervals for the Median</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="ch3.html"><a href="ch3.html#ch3-3-1"><i class="fa fa-check"></i><b>3.3.1</b> Nonparametric Interval Estimate For The Median</a></li>
+<li class="chapter" data-level="3.3.2" data-path="ch3.html"><a href="ch3.html#ch3-3-2"><i class="fa fa-check"></i><b>3.3.2</b> Parametric Interval Estimate For The Median</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="ch3.html"><a href="ch3.html#ch3-4"><i class="fa fa-check"></i><b>3.4</b> Confidence Intervals For The Mean</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="ch3.html"><a href="ch3.html#ch3-4-1"><i class="fa fa-check"></i><b>3.4.1</b> Symmetric Confidence Interval For The Mean</a></li>
+<li class="chapter" data-level="3.4.2" data-path="ch3.html"><a href="ch3.html#ch3-4-2"><i class="fa fa-check"></i><b>3.4.2</b> Asymmetric Confidence Interval For The Mean (For Skewed Data)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="ch3.html"><a href="ch3.html#ch3-5"><i class="fa fa-check"></i><b>3.5</b> Nonparametric Prediction Intervals</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="ch3.html"><a href="ch3.html#two-sided-nonparametric-prediction-interval"><i class="fa fa-check"></i><b>3.5.1</b> Two-Sided Nonparametric Prediction Interval</a></li>
+<li class="chapter" data-level="3.5.2" data-path="ch3.html"><a href="ch3.html#one-sided-nonparametric-prediction-interval"><i class="fa fa-check"></i><b>3.5.2</b> One-Sided Nonparametric Prediction Interval</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="ch3.html"><a href="ch3.html#ch3-6"><i class="fa fa-check"></i><b>3.6</b> Parametric Prediction Intervals</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="ch3.html"><a href="ch3.html#symmetric-prediction-interval"><i class="fa fa-check"></i><b>3.6.1</b> Symmetric Prediction Interval</a></li>
+<li class="chapter" data-level="3.6.2" data-path="ch3.html"><a href="ch3.html#asymmetric-prediction-intervals"><i class="fa fa-check"></i><b>3.6.2</b> Asymmetric Prediction Intervals</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="ch3.html"><a href="ch3.html#ch3-7"><i class="fa fa-check"></i><b>3.7</b> Confidence Intervals For Percentiles (Tolerance Intervals)</a><ul>
+<li class="chapter" data-level="3.7.1" data-path="ch3.html"><a href="ch3.html#ch3-7-1"><i class="fa fa-check"></i><b>3.7.1</b> Nonparametric Confidence Intervals For Percentiles</a></li>
+<li class="chapter" data-level="3.7.2" data-path="ch3.html"><a href="ch3.html#ch3-7-2"><i class="fa fa-check"></i><b>3.7.2</b> Nonparametric Tests For Percentiles</a></li>
+<li class="chapter" data-level="3.7.3" data-path="ch3.html"><a href="ch3.html#ch3-7-3"><i class="fa fa-check"></i><b>3.7.3</b> Parametric Confidence Intervals For Percentiles</a></li>
+<li class="chapter" data-level="3.7.4" data-path="ch3.html"><a href="ch3.html#ch3-7-4"><i class="fa fa-check"></i><b>3.7.4</b> Parametric Tests For Percentiles</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="ch3.html"><a href="ch3.html#other-uses-for-confidence-intervals"><i class="fa fa-check"></i><b>3.8</b> Other Uses For Confidence Intervals</a><ul>
+<li class="chapter" data-level="3.8.1" data-path="ch3.html"><a href="ch3.html#implications-of-non-normality-for-detection-of-outliers"><i class="fa fa-check"></i><b>3.8.1</b> Implications of Non-Normality For Detection of Outliers</a></li>
+<li class="chapter" data-level="3.8.2" data-path="ch3.html"><a href="ch3.html#implications-of-non-normality-for-quality-control"><i class="fa fa-check"></i><b>3.8.2</b> Implications of Non-Normality For Quality Control</a></li>
+<li class="chapter" data-level="3.8.3" data-path="ch3.html"><a href="ch3.html#implications-of-non-normality-for-sampling-design"><i class="fa fa-check"></i><b>3.8.3</b> Implications of Non-Normality For Sampling Design</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#exercises-2"><i class="fa fa-check"></i>Exercises</a><ul>
+<li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#section-6"><i class="fa fa-check"></i>3.1</a></li>
+<li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#section-7"><i class="fa fa-check"></i>3.2</a></li>
+<li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#section-8"><i class="fa fa-check"></i>3.3</a></li>
+<li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#section-9"><i class="fa fa-check"></i>3.4</a></li>
+<li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#section-10"><i class="fa fa-check"></i>3.5</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="ch4.html"><a href="ch4.html"><i class="fa fa-check"></i><b>4</b> Hypothesis Tests</a><ul>
+<li class="chapter" data-level="4.1" data-path="ch4.html"><a href="ch4.html#ch4-1"><i class="fa fa-check"></i><b>4.1</b> Classification of Hypothesis Tests</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="ch4.html"><a href="ch4.html#Ch4-1-1"><i class="fa fa-check"></i><b>4.1.1</b> Classification Based on Measurement Scales</a></li>
+<li class="chapter" data-level="4.1.2" data-path="ch4.html"><a href="ch4.html#Ch4-1-2"><i class="fa fa-check"></i><b>4.1.2</b> Classification Based on the Data Distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="ch4.html"><a href="ch4.html#Ch4-2"><i class="fa fa-check"></i><b>4.2</b> Structure of Hypothesis Tests</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="ch4.html"><a href="ch4.html#Ch4-2-1"><i class="fa fa-check"></i><b>4.2.1</b> Choose the Appropriate Test</a></li>
+<li class="chapter" data-level="4.2.2" data-path="ch4.html"><a href="ch4.html#Ch4-2-2"><i class="fa fa-check"></i><b>4.2.2</b> Establish the Null and Alternate Hypotheses</a></li>
+<li class="chapter" data-level="4.2.3" data-path="ch4.html"><a href="ch4.html#ch4-2-3"><i class="fa fa-check"></i><b>4.2.3</b> Decide on an Acceptable Error Rate α</a></li>
+<li class="chapter" data-level="4.2.4" data-path="ch4.html"><a href="ch4.html#Ch4-2-4"><i class="fa fa-check"></i><b>4.2.4</b> Compute the Test Statistic from the Data</a></li>
+<li class="chapter" data-level="4.2.5" data-path="ch4.html"><a href="ch4.html#Ch4-2-5"><i class="fa fa-check"></i><b>4.2.5</b> Compute the p-Value</a></li>
+<li class="chapter" data-level="4.2.6" data-path="ch4.html"><a href="ch4.html#Ch4-2-6"><i class="fa fa-check"></i><b>4.2.6</b> Make the Decision to Reject H0 or Not</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="ch4.html"><a href="ch4.html#Ch4-3"><i class="fa fa-check"></i><b>4.3</b> The Rank-Sum Test as an Example of Hypothesis Testing</a></li>
+<li class="chapter" data-level="4.4" data-path="ch4.html"><a href="ch4.html#ch4-4"><i class="fa fa-check"></i><b>4.4</b> Tests for Normality</a></li>
+<li class="chapter" data-level="" data-path="ch4.html"><a href="ch4.html#exercises-3"><i class="fa fa-check"></i>Exercises</a><ul>
+<li class="chapter" data-level="" data-path="ch4.html"><a href="ch4.html#section-11"><i class="fa fa-check"></i>4.1</a></li>
+<li class="chapter" data-level="" data-path="ch4.html"><a href="ch4.html#section-12"><i class="fa fa-check"></i>4.2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="ch5.html"><a href="ch5.html"><i class="fa fa-check"></i><b>5</b> Differences between Two Independent Groups</a><ul>
+<li class="chapter" data-level="5.1" data-path="ch5.html"><a href="ch5.html#ch5-1"><i class="fa fa-check"></i><b>5.1</b> The Rank-Sum Test</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="ch5.html"><a href="ch5.html#ch5-1-1"><i class="fa fa-check"></i><b>5.1.1</b> Null and Alternate Hypotheses</a></li>
+<li class="chapter" data-level="5.1.2" data-path="ch5.html"><a href="ch5.html#ch5-1-2"><i class="fa fa-check"></i><b>5.1.2</b> Computation of the Exact Test</a></li>
+<li class="chapter" data-level="5.1.3" data-path="ch5.html"><a href="ch5.html#ch5-1-3"><i class="fa fa-check"></i><b>5.1.3</b> The Large Sample Approximation</a></li>
+<li class="chapter" data-level="5.1.4" data-path="ch5.html"><a href="ch5.html#ch5-1-3-1"><i class="fa fa-check"></i><b>5.1.4</b> Correction for ties</a></li>
+<li class="chapter" data-level="5.1.5" data-path="ch5.html"><a href="ch5.html#ch5-1-4"><i class="fa fa-check"></i><b>5.1.5</b> The Rank Transform Approximation</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="ch5.html"><a href="ch5.html#ch5-2"><i class="fa fa-check"></i><b>5.2</b> The t-Test</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="ch5.html"><a href="ch5.html#ch5-2-1"><i class="fa fa-check"></i><b>5.2.1</b> Assumptions of the Test</a></li>
+<li class="chapter" data-level="5.2.2" data-path="ch5.html"><a href="ch5.html#ch5-2-2"><i class="fa fa-check"></i><b>5.2.2</b> Computation of the t-Test</a></li>
+<li class="chapter" data-level="5.2.3" data-path="ch5.html"><a href="ch5.html#ch5-2-3"><i class="fa fa-check"></i><b>5.2.3</b> Modification for Unequal Variances</a></li>
+<li class="chapter" data-level="5.2.4" data-path="ch5.html"><a href="ch5.html#ch5-2-4"><i class="fa fa-check"></i><b>5.2.4</b> Consequences of Violating the t-Test’s Assumptions</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="ch5.html"><a href="ch5.html#ch5-3"><i class="fa fa-check"></i><b>5.3</b> Graphical Presentation of Results</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="ch5.html"><a href="ch5.html#ch5-3-1"><i class="fa fa-check"></i><b>5.3.1</b> Side-by-Side Boxplots</a></li>
+<li class="chapter" data-level="5.3.2" data-path="ch5.html"><a href="ch5.html#ch5-3-2"><i class="fa fa-check"></i><b>5.3.2</b> Q-Q Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="ch5.html"><a href="ch5.html#ch5-4"><i class="fa fa-check"></i><b>5.4</b> Estimating the Magnitude of Differences Between Two Groups</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="ch5.html"><a href="ch5.html#ch5-4-1"><i class="fa fa-check"></i><b>5.4.1</b> The Hodges-Lehmann Estimator</a></li>
+<li class="chapter" data-level="5.4.2" data-path="ch5.html"><a href="ch5.html#ch5-4-2"><i class="fa fa-check"></i><b>5.4.2</b> Confidence Interval for <span class="math inline">\(\hat{\Delta}\)</span></a></li>
+<li class="chapter" data-level="5.4.3" data-path="ch5.html"><a href="ch5.html#ch5-4-3"><i class="fa fa-check"></i><b>5.4.3</b> Difference Between Mean Values</a></li>
+<li class="chapter" data-level="5.4.4" data-path="ch5.html"><a href="ch5.html#ch5-4-4"><i class="fa fa-check"></i><b>5.4.4</b> Confidence Interval for <span class="math inline">\(\bar{x} − \bar{y}\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ch5.html"><a href="ch5.html#exercises-4"><i class="fa fa-check"></i>Exercises</a><ul>
+<li class="chapter" data-level="" data-path="ch5.html"><a href="ch5.html#section-13"><i class="fa fa-check"></i>5.1</a></li>
+<li class="chapter" data-level="" data-path="ch5.html"><a href="ch5.html#section-14"><i class="fa fa-check"></i>5.2</a></li>
+<li class="chapter" data-level="" data-path="ch5.html"><a href="ch5.html#section-15"><i class="fa fa-check"></i>5.3</a></li>
+<li class="chapter" data-level="" data-path="ch5.html"><a href="ch5.html#section-16"><i class="fa fa-check"></i>5.4</a></li>
+<li class="chapter" data-level="" data-path="ch5.html"><a href="ch5.html#section-17"><i class="fa fa-check"></i>5.5</a></li>
+<li class="chapter" data-level="" data-path="ch5.html"><a href="ch5.html#section-18"><i class="fa fa-check"></i>5.6</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="ch6.html"><a href="ch6.html"><i class="fa fa-check"></i><b>6</b> Matched-Pair Tests</a><ul>
+<li class="chapter" data-level="6.1" data-path="ch6.html"><a href="ch6.html#ch6-1"><i class="fa fa-check"></i><b>6.1</b> The Sign Test</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="ch6.html"><a href="ch6.html#ch6-1-1"><i class="fa fa-check"></i><b>6.1.1</b> Null and Alternate Hypotheses</a></li>
+<li class="chapter" data-level="6.1.2" data-path="ch6.html"><a href="ch6.html#ch6-1-2"><i class="fa fa-check"></i><b>6.1.2</b> Computation of the Exact Test</a></li>
+<li class="chapter" data-level="6.1.3" data-path="ch6.html"><a href="ch6.html#ch6-1-3"><i class="fa fa-check"></i><b>6.1.3</b> The Large Sample Approximation</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="ch6.html"><a href="ch6.html#ch6-2"><i class="fa fa-check"></i><b>6.2</b> The Signed-Rank Test</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="ch6.html"><a href="ch6.html#ch6-2-1"><i class="fa fa-check"></i><b>6.2.1</b> Null and Alternate Hypotheses</a></li>
+<li class="chapter" data-level="6.2.2" data-path="ch6.html"><a href="ch6.html#ch6-2-2"><i class="fa fa-check"></i><b>6.2.2</b> Computation of the Exact Test</a></li>
+<li class="chapter" data-level="6.2.3" data-path="ch6.html"><a href="ch6.html#ch6-2-3"><i class="fa fa-check"></i><b>6.2.3</b> The Large Sample Approximation</a></li>
+<li class="chapter" data-level="6.2.4" data-path="ch6.html"><a href="ch6.html#ch6-2-4"><i class="fa fa-check"></i><b>6.2.4</b> The Rank Transform Approximation</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="ch6.html"><a href="ch6.html#ch6-3"><i class="fa fa-check"></i><b>6.3</b> The Paired t-Test</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="ch6.html"><a href="ch6.html#ch6-3-1"><i class="fa fa-check"></i><b>6.3.1</b> Assumptions of the Test</a></li>
+<li class="chapter" data-level="6.3.2" data-path="ch6.html"><a href="ch6.html#ch6-3-2"><i class="fa fa-check"></i><b>6.3.2</b> Computation of the Paired t-Test</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="ch6.html"><a href="ch6.html#ch6-4"><i class="fa fa-check"></i><b>6.4</b> Consequences of Violating Test Assumptions</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="ch6.html"><a href="ch6.html#ch6-4-1"><i class="fa fa-check"></i><b>6.4.1</b> Assumption of Normality (t-Test)</a></li>
+<li class="chapter" data-level="6.4.2" data-path="ch6.html"><a href="ch6.html#ch6-4-2"><i class="fa fa-check"></i><b>6.4.2</b> Assumption of Symmetry (Signed-Rank Test)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="ch6.html"><a href="ch6.html#ch6-5"><i class="fa fa-check"></i><b>6.5</b> Graphical Presentation of Results</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="ch6.html"><a href="ch6.html#boxplots-6-5-1"><i class="fa fa-check"></i><b>6.5.1</b> Boxplots {#6-5-1}</a></li>
+<li class="chapter" data-level="6.5.2" data-path="ch6.html"><a href="ch6.html#ch6-5-2"><i class="fa fa-check"></i><b>6.5.2</b> Scatterplots With X=Y Line</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="ch6.html"><a href="ch6.html#ch6-6"><i class="fa fa-check"></i><b>6.6</b> Estimating the Magnitude of Differences Between Two Groups</a><ul>
+<li class="chapter" data-level="6.6.1" data-path="ch6.html"><a href="ch6.html#ch6-6-1"><i class="fa fa-check"></i><b>6.6.1</b> The Median Difference (Sign Test)</a></li>
+<li class="chapter" data-level="6.6.2" data-path="ch6.html"><a href="ch6.html#ch6-6-2"><i class="fa fa-check"></i><b>6.6.2</b> The Hodges-Lehmann Estimator (Signed-Rank Test)</a></li>
+<li class="chapter" data-level="6.6.3" data-path="ch6.html"><a href="ch6.html#ch6-6-2-1"><i class="fa fa-check"></i><b>6.6.3</b> Confidence interval on <span class="math inline">\(\bar{\Delta}\)</span></a></li>
+<li class="chapter" data-level="6.6.4" data-path="ch6.html"><a href="ch6.html#ch6-6-3"><i class="fa fa-check"></i><b>6.6.4</b> Mean Difference (t-Test)</a></li>
+<li class="chapter" data-level="6.6.5" data-path="ch6.html"><a href="ch6.html#ch6-6-3-1"><i class="fa fa-check"></i><b>6.6.5</b> Confidence interval on the mean difference</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ch6.html"><a href="ch6.html#exercises-5"><i class="fa fa-check"></i>Exercises</a><ul>
+<li class="chapter" data-level="" data-path="ch6.html"><a href="ch6.html#section-19"><i class="fa fa-check"></i>6.1</a></li>
+<li class="chapter" data-level="" data-path="ch6.html"><a href="ch6.html#section-20"><i class="fa fa-check"></i>6.2</a></li>
+<li class="chapter" data-level="" data-path="ch6.html"><a href="ch6.html#section-21"><i class="fa fa-check"></i>6.3</a></li>
+<li class="chapter" data-level="" data-path="ch6.html"><a href="ch6.html#section-22"><i class="fa fa-check"></i>6.4</a></li>
+<li class="chapter" data-level="" data-path="ch6.html"><a href="ch6.html#section-23"><i class="fa fa-check"></i>6.5</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"><em>Statistical Methods in Water Resources</em> with R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="ch2" class="section level1">
+<h1><span class="header-section-number">Chapter 2</span> Graphical Data Analysis</h1>
+<p>Perhaps it seems odd that a chapter on graphics appears at the front of a text on statistical methods. We believe this is very appropriate, as graphs provide crucial information to the data analyst which is difficult to obtain in any other way. For example, figure <a href="ch2.html#fig:fig-2-1">2.1</a> shows eight scatterplots, all of which have exactly the same correlation coefficient. Computing statistical measures without looking at a plot is an invitation to misunderstanding data, as figure <a href="ch2.html#fig:fig-2-1">2.1</a> illustrates. Graphs provide visual summaries of data which more quickly and completely describe essential information than do tables of numbers.</p>
+<p>Graphs are essential for two purposes:</p>
+<ol style="list-style-type: decimal">
+<li>to provide insight for the analyst into the data under scrutiny, and</li>
+<li>to illustrate important concepts when presenting the results to others.</li>
+</ol>
+<p>The first of these tasks has been called <u>exploratory data analysis</u> (EDA), and is the subject of this chapter. EDA procedures often are (or should be) the ‘first look’ at data. Patterns and theories of how the system behaves are developed by observing the data through graphs. These are inductive procedures – the data are summarized rather than tested. Their results provide guidance for the selection of appropriate deductive hypothesis testing procedures.</p>
+<p>Once an analysis is complete, the findings must be reported to others. Whether a written report or oral presentation, the analyst must convince the audience that the conclusions reached are supported by the data. No better way exists to do this than through graphics. Many of the same graphical methods which have concisely summarized the information for the analyst will also provide insight into the data for the reader or audience.</p>
+<p>The chapter begins with a discussion of graphical methods for analysis of a single data set. Two methods are particularly useful: boxplots and probability plots. Their construction is presented in detail. Next, methods for comparison of two or more groups of data are discussed. Then bivariate plots (scatterplots) are presented, with an especially useful enhancement called a smooth. The chapter ends with a discussion of plots appropriate for multivariate data.</p>
+<div class="figure" style="text-align: center"><span id="fig:fig-2-1"></span>
+<img src="figures/2_1.png" alt="Eight scatterplots all with correlation coefficient r = 0.70 (@chambers_graphical_1983)" width="256" />
+<p class="caption">
+Figure 2.1: Eight scatterplots all with correlation coefficient r = 0.70 (<span class="citation">Chambers et al. (<a href="#ref-chambers_graphical_1983">1983</a>)</span>)
+</p>
+</div>
+<p>Throughout sections <a href="ch2.html#ch2-1">2.1</a> and <a href="ch2.html#ch2-2">2.2</a> two data sets will be used to compare and contrast the effectiveness of each graphical method. These are annual streamflow (in cubic feet per second, or cfs) for the Licking River at Catawba, Kentucky, from 1929 through 1983, and unit well yields (in gallons per minute per foot of water-bearing material) for valleys without fracturing in
+Virginia (<span class="citation">Wright (<a href="#ref-wright_effects_1985">1985</a>)</span>).</p>
+<div id="ch2-1" class="section level2">
+<h2><span class="header-section-number">2.1</span> Graphical Analysis of Single Data Sets</h2>
+<div id="histograms" class="section level3">
+<h3><span class="header-section-number">2.1.1</span> Histograms</h3>
+<p>Histograms are familiar graphics, and their construction is detailed in numerous introductory texts on statistics. Bars are drawn whose height is the number n<sub>i</sub>, or fraction n<sub>i</sub>/n, of data falling into one of several categories or intervals (figures <a href="ch2.html#fig:fig-2-2-1">2.2</a> &amp; <a href="ch2.html#fig:fig-2-2-2">2.3</a>). <span class="citation">Iman and Conover (<a href="#ref-iman_modern_1983">1983</a>)</span> suggest that, for a sample size of n, the number of intervals k should be the smallest integer such that 2<sup>k</sup> ≥ n.</p>
+<p>Histograms have one primary deficiency – their visual impression depends on the number of categories selected for the plot. For example, compare figure <a href="ch2.html#fig:fig-2-2-1">2.2</a> with <a href="ch2.html#fig:fig-2-2-2">2.3</a>. Both are histograms of the same data: annual streamflows for the Licking River. Comparisons of shape and similarity among these two figures and the many other possible histograms of the same data depend on the choice of bar widths and centers. False impressions that these are different distributions might be given by characteristics such as the gap around 6,250 cfs. It is seen in <a href="ch2.html#fig:fig-2-2-2">2.3</a> but not in <a href="ch2.html#fig:fig-2-2-1">2.2</a>.</p>
+<p>Histograms are quite useful for depicting large differences in shape or symmetry, such as whether a data set appears symmetric or skewed. They cannot be used for more precise judgements such as depicting individual values. Thus from figure <a href="ch2.html#fig:fig-2-2-1">2.2</a> the lowest flow is seen to be larger than 750 cfs, but might be as large as 2,250 cfs. More detail is given in <a href="ch2.html#fig:fig-2-2-2">2.3</a>, but this lowest observed discharge is still only known to be somewhere between 500 to 1,000 cfs.</p>
+<p>For data measured on a continuous scale (such as streamflow or concentration), histograms are not the best method for graphical analysis. The process of forcing continuous data into discrete categories may obscure important characteristics of the distribution. However, histograms are excellent when displaying data which have natural categories or groupings. Examples of such data would include the number of individual organisms found at a stream site grouped by species type, or the number of water-supply wells exceeding some critical yield grouped by geologic unit.</p>
+<div class="figure" style="text-align: center"><span id="fig:fig-2-2-1"></span>
+<img src="Statistical-Methods-in-Water-Resources_files/figure-html/fig-2-2-1-1.png" alt="Histogram of annual streamflow for the Licking River" width="672" />
+<p class="caption">
+Figure 2.2: Histogram of annual streamflow for the Licking River
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:fig-2-2-2"></span>
+<img src="Statistical-Methods-in-Water-Resources_files/figure-html/fig-2-2-2-1.png" alt="Second histogram of same data, but with different interval divisions" width="672" />
+<p class="caption">
+Figure 2.3: Second histogram of same data, but with different interval divisions
+</p>
+</div>
+</div>
+<div id="stem-and-leaf-diagrams" class="section level3">
+<h3><span class="header-section-number">2.1.2</span> Stem and Leaf Diagrams</h3>
+<p>Figure <a href="ch2.html#fig-2-3">2.4</a> shows a stem and leaf (S-L) diagram for the Licking River streamflow data with the same divisions as in figure <a href="ch2.html#fig:fig-2-2-2">2.3</a>. Stem and leaf diagrams are like histograms turned on their side, with data magnitudes to two significant digits presented rather than only bar heights. Individual values are easily found. The S-L profile is identical to the histogram and can similarly be used to judge shape and symmetry, but the numerical information adds greater detail. One S-L could function as both a table and a histogram for small data sets.</p>
+<p>An S-L is constructed by dividing the range of the data into roughly 10 intervals, and placing the first digit corresponding to these intervals to the left of the vertical line. This is the ‘stem’, ranging from 1 to 8 (0 to 8000+ cfs) in figure <a href="ch2.html#fig-2-3">2.4*</a>. Each observation is then represented by one digit to the right of the line (the ‘leaves’), so that the number of leaves equals the number of observations falling into that interval. To provide more detail, figure <a href="ch2.html#fig-2-3">2.4*</a> has two lines for each stem digit, split to allow 5 leaf digits per line (0-4 and 5-9). Here the first stem is the stem for leaves less than 5, and the second stem for leaves greater than or equal to 5. For example, in figure <a href="ch2.html#fig-2-3">2.4*</a> three observations occur between 1500 and 2000 cfs, with values of 1800, 1900, and 1900 cfs.</p>
+<p>The lowest flow is now seen to be between 1000 and 1500 cfs. The gap between 7,000 to 7,500 cfs is still evident, and now the numerical values of the three highest flows are presented. Comparisons between distributions still remain difficult using S-L plots, however, due to the required arbitrary choice of group boundaries.
+<a id="fig-2-3"></a></p>
+<pre><code>## 
+##   The decimal point is 3 digit(s) to the right of the |
+## 
+##   1 | 34
+##   1 | 899
+##   2 | 2
+##   2 | 566789
+##   3 | 013
+##   3 | 5667789
+##   4 | 000111222
+##   4 | 5558
+##   5 | 00034
+##   5 | 66789
+##   6 | 12
+##   6 | 5
+##   7 | 
+##   7 | 5
+##   8 | 0</code></pre>
+<pre><code>## [1] &quot;Fig 2.4* Stem and Leaf Plot of Annual Streamflow&quot;</code></pre>
+</div>
+<div id="quantile-plots" class="section level3">
+<h3><span class="header-section-number">2.1.3</span> Quantile Plots</h3>
+<p>Quantile plots visually portray the quantiles, or percentiles (which equal the quantiles times 100) of the distribution of sample data. Quantiles of importance such as the median are easily discerned (quantile, or cumulative frequency = 0.5). With experience, the spread and skewness of the data, as well as any bimodal character, can be examined. Quantile plots have three advantages:</p>
+<ol style="list-style-type: decimal">
+<li>Arbitrary categories are not required, as with histograms or S-L’s.</li>
+<li>All of the data are displayed, unlike a boxplot.</li>
+<li>Every point has a distinct position, without overlap.</li>
+</ol>
+Figure <a href="ch2.html#fig:fig-2-4">2.4</a> is a quantile plot of the streamflow data from figures <a href="ch2.html#fig:fig-2-2-1">2.2</a> and <a href="ch2.html#fig:fig-2-2-2">2.3</a>. Attributes of the data such as the gap between 6500 and 7500 cfs (indicated by the nearly horizontal line segment) are evident. The percent of data in the sample less than a given cfs value can be read from the graph with much greater accuracy than from a histogram.
+<div class="figure" style="text-align: center"><span id="fig:fig-2-4"></span>
+<img src="Statistical-Methods-in-Water-Resources_files/figure-html/fig-2-4-1.png" alt="Quantile plot of the Licking River annual streamflow data" width="672" />
+<p class="caption">
+Figure 2.4: Quantile plot of the Licking River annual streamflow data
+</p>
+</div>
+<div id="construction-of-a-quantile-plot" class="section level4">
+<h4><span class="header-section-number">2.1.3.1</span> Construction of a quantile plot</h4>
+<p>To construct a quantile plot, the data are ranked from smallest to largest. The smallest data value is assigned a rank i = 1, while the largest receives a rank i = n, where n is the sample size of the data set. The data values themselves are plotted along one axis, usually the horizontal axis. On the other axis is the “plotting position”, which is a function of the rank i and sample size n. As discussed in the next section, the Cunnane plotting position p<sub>i</sub> = (i−0.4)/(n+0.2) is used in this book. Below are listed the first and last 5 of the 50 data pairs used in construction of figure <a href="ch2.html#fig:fig-2-4">2.4</a>. When tied data values are present, each is assigned a separate plotting position (the plotting positions are not averaged). In this way tied values are portrayed as a vertical “cliff” on the plot.</p>
+<pre><code>##     idx       V1        p_i
+##  1:   1 1253.083 0.01195219
+##  2:   2 1357.667 0.03187251
+##  3:   3 1833.891 0.05179283
+##  4:   4 1861.817 0.07171315
+##  5:   5 1891.042 0.09163347
+##  6:  46 6078.083 0.90836653
+##  7:  47 6235.858 0.92828685
+##  8:  48 6535.075 0.94820717
+##  9:  49 7513.200 0.96812749
+## 10:  50 7984.617 0.98804781</code></pre>
+<p>Quantile plots are sample approximations of the cumulative distribution function (cdf) of a continuous random variable. The cdf for a normal distribution is shown in figure <a href="ch2.html#fig:fig-2-7">2.7</a>. A second approximation is the sample (or empirical) cdf, which differs from quantile plots in its vertical scale. The vertical axis of a sample cdf is the probability i/n of being less than or equal to that observation. The largest observation has i/n = 1, and so has a zero probability of being exceeded. For samples (subsets) taken from a population, a nonzero probability of exceeding the largest value observed thus far should be recognized. This is done by using the plotting position, a value less than i/n, on the vertical axis of the quantile plot. As sample sizes increase, the quantile plot will more closely mimic the underlying population cdf.</p>
+<div id="plotting-positions" class="section level5">
+<h5><span class="header-section-number">2.1.3.1.1</span> Plotting positions</h5>
+<p>Variations of quantile plots are used frequently for three purposes:</p>
+<ol style="list-style-type: decimal">
+<li>to compare two or more data distributions (a Q-Q plot),</li>
+<li>to compare data to a normal distribution (a probability plot), and</li>
+<li>to calculate frequencies of exceedance (a flow-duration curve).</li>
+</ol>
+<p>Unfortunately, different plotting positions have traditionally been used for each of the above three purposes. It would be desirable instead to use one formula that is suitable for all three. Numerous plotting position formulas have been suggested, most having the general formula <span class="math display">\[p = (i − a) / (n + 1 − 2a)\]</span> where a varies from 0 to 0.5. Five of the most commonly-used formulas are:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Reference</th>
+<th align="center">a</th>
+<th align="center">Formula</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="citation">Weibull (<a href="#ref-weibull_phenomenon_1939">1939</a>)</span></td>
+<td align="center">0</td>
+<td align="center"><span class="math inline">\(i / (n + 1)\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="citation">Blom (<a href="#ref-blom_statistical_1958">1958</a>)</span></td>
+<td align="center">0.375</td>
+<td align="center"><span class="math inline">\((i - 0.375) / (n + 0.25)\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="citation">Cunnane (<a href="#ref-cunnane_unbiased_1978">1978</a>)</span></td>
+<td align="center">0.4</td>
+<td align="center"><span class="math inline">\((i - 0.4) / (n + 0.2)\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="citation">Gringorten (<a href="#ref-gringorten_plotting_1963">1963</a>)</span></td>
+<td align="center">0.44</td>
+<td align="center"><span class="math inline">\((i - 0.44) / (n + 0.12)\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="citation">Hazen (<a href="#ref-hazen_storage_1914">1914</a>)</span></td>
+<td align="center">0.5</td>
+<td align="center"><span class="math inline">\((i - 0.5) / n\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>The Weibull formula has long been used by hydrologists in the United States for plotting flowduration and flood-frequency curves (<span class="citation">Langbein (<a href="#ref-langbein_plotting_1960">1960</a>)</span>). It is used in Bulletin 17B, the standard reference for determining flood frequencies in the United States (<span class="citation">Interagency Advisory Committee on Water Data (<a href="#ref-interagency_guidelines_1982">1982</a>)</span>). The Blom formula is best for comparing data quantiles to those of a normal distribution in probability plots, though all of the above formulas except the Weibull are acceptable for that purpose (<span class="citation">Looney and Gulledge Jr (<a href="#ref-looney_probability_1985">1985</a><a href="#ref-looney_probability_1985">a</a>)</span>). The Hazen formula is used by <span class="citation">Chambers et al. (<a href="#ref-chambers_graphical_1983">1983</a>)</span> for comparing two or more data sets using Q-Q plots.</p>
+<p>Separate formulae could be used for the situations in which each is optimal. In this book we instead use one formula, the Cunnane formula given above, for all three purposes. We do this in an attempt to simplify. The Cunnane formula was chosen because</p>
+<ol style="list-style-type: decimal">
+<li>it is acceptable for normal probability plots, being very close to Blom.</li>
+<li>it is used by Canadian and some European hydrologists for plotting flowduration and flood-frequency curves. <span class="citation">Cunnane (<a href="#ref-cunnane_unbiased_1978">1978</a>)</span> presents the arguments for use of this formula over the Weibull when calculating exceedance probabilities.</li>
+</ol>
+<p>For convenience when dealing with small sample sizes, table B1 of the Appendix presents Cunnane plotting positions for sample sizes n = 5 to 20.</p>
+</div>
+</div>
+</div>
+<div id="boxplots" class="section level3">
+<h3><span class="header-section-number">2.1.4</span> Boxplots</h3>
+<p>A very useful and concise graphical display for summarizing the distribution of a data set is the boxplot (figure <a href="ch2.html#fig:fig-2-5">2.5</a>). Boxplots provide visual summaries of</p>
+<ol style="list-style-type: decimal">
+<li>the center of the data (the median–the center line of the box)</li>
+<li>the variation or spread (interquartile range–the box height)</li>
+<li>the skewness (quartile skew–the relative size of box halves)</li>
+<li>presence or absence of unusual values (“outside” and “far outside” values).</li>
+</ol>
+<p>Boxplots are even more useful in comparing these attributes among several data sets.</p>
+<p>Compare figures <a href="ch2.html#fig:fig-2-4">2.4</a> and <a href="ch2.html#fig:fig-2-5">2.5</a>, both of the Licking River data. Boxplots do not present all of the data, as do stem-and-leaf or quantile plots. Yet presenting all data may be more detail than is necessary, or even desirable. Boxplots do provide concise visual summaries of essential data characteristics. For example, the symmetry of the Licking River data is shown in figure <a href="ch2.html#fig:fig-2-5">2.5</a> by the similar sizes of top and bottom box halves, and by the similar lengths of whiskers. In contrast,
+in figure <a href="ch2.html#fig:fig-2-6">2.6</a> the taller top box halves and whiskers indicate a right-skewed distribution, the most commonly occurring shape for water resources data. Boxplots are often put side-by-side to visually compare and contrast groups of data.</p>
+<p>Three commonly used versions of the boxplot are described as follows (figure <a href="ch2.html#fig:fig-2-6">2.6</a>). Any of the three may appropriately be called a boxplot.</p>
+<div class="figure" style="text-align: center"><span id="fig:fig-2-5"></span>
+<img src="Statistical-Methods-in-Water-Resources_files/figure-html/fig-2-5-1.png" alt="Boxplot of the Licking River annual streamflow data" width="672" />
+<p class="caption">
+Figure 2.5: Boxplot of the Licking River annual streamflow data
+</p>
+</div>
+<div id="simple-boxplot" class="section level4">
+<h4><span class="header-section-number">2.1.4.1</span> Simple boxplot</h4>
+<p>The simple boxplot was originally called a “box-and-whisker” plot by <span class="citation">Tukey (<a href="#ref-tukey_exploratory_1977">1977</a>)</span>. It consists of a center line (the median) splitting a rectangle defined by the upper and lower hinges (very similar to quartiles – see appendix). Whiskers are lines drawn from the ends of the box to the maximum and minimum of the data, as depicted in graph a of figure <a href="ch2.html#fig:fig-2-6">2.6</a>.</p>
+</div>
+<div id="standard-boxplot" class="section level4">
+<h4><span class="header-section-number">2.1.4.2</span> Standard boxplot</h4>
+<p>Tukey’s “schematic plot” has become the most commonly used version of a boxplot (middle graph in figure <a href="ch2.html#fig:fig-2-6">2.6</a>), and will be the type of boxplot used throughout this book. With this standard boxplot, outlying values are distinguished from the rest of the plot. The box is as defined above. However, the whiskers are shortened to extend only to the last observation within one step beyond either end of the box (“adjacent values”). A step equals 1.5 times the height of the box (1.5 times the interquartile range). Observations between one and two steps from the box in either direction, if present, are plotted individually with an asterisk (“outside values”). Outside values occur fewer than once in 100 times for data from a normal distribution. Observations farther than two steps beyond the box, if present, are distinguished by plotting them with a small circle (“far-out values”). These occur fewer than once in 300,000 times for a normal distribution. The occurrence of outside or far-out values more frequently than expected gives a quick visual indication that data may not originate from a normal distribution.</p>
+</div>
+<div id="truncated-boxplot" class="section level4">
+<h4><span class="header-section-number">2.1.4.3</span> Truncated boxplot</h4>
+<p>In a third version of the boxplot (left graph of figure <a href="ch2.html#fig:fig-2-6">2.6</a>), the whiskers are drawn only to the 90th and 10th percentiles of the data set. The largest 10 percent and smallest 10 percent of the data are not shown. This version could easily be confused with the simple boxplot, as no data appear beyond the whiskers, and should be clearly defined as having eliminated the most extreme 20 percent of data. It should be used only when the extreme 20 percent of data are not of interest.</p>
+<p>In a variation on the truncated boxplot, <span class="citation">Cleveland and McGill (<a href="#ref-cleveland_graphical_1985">1985</a>)</span> plotted all observations beyond the 10th and 90th percentile-whiskers individually, calling this a “box graph”. The weakness of this style of graph is that 10 percent of the data will always be plotted individually at each end, and so the plot is far less effective than a standard boxplot for defining and emphasizing unusual values.</p>
+<p>Further detail on construction of boxplots may be found in the appendix, and in <span class="citation">Chambers et al. (<a href="#ref-chambers_graphical_1983">1983</a>)</span> and <span class="citation">McGill, Tukey, and Larsen (<a href="#ref-mcgill_variations_1978">1978</a>)</span>.</p>
+<div class="figure" style="text-align: center"><span id="fig:fig-2-6"></span>
+<img src="Statistical-Methods-in-Water-Resources_files/figure-html/fig-2-6-1.png" alt="Three versions of the boxplot (unit well yield data)." width="672" />
+<p class="caption">
+Figure 2.6: Three versions of the boxplot (unit well yield data).
+</p>
+</div>
+</div>
+</div>
+<div id="probability-plots" class="section level3">
+<h3><span class="header-section-number">2.1.5</span> Probability Plots</h3>
+<p>Probability plots are used to determine how well data fit a theoretical distribution, such as the normal, lognormal, or gamma distributions. This could be attempted by visually comparing histograms of sample data to density curves of the theoretical distributions such as figures <a href="ch1.html#fig:fig-1-1">1.1</a> and <a href="ch1.html#fig:fig-1-2">1.2</a>. However, research into human perception has shown that departures from straight lines are discerned more easily than departures from curvilinear patterns. By expressing the theoretical distribution as a straight line, departures from the distribution are more easily perceived. This is what occurs with a probability plot.</p>
+<p>To construct a probability plot, quantiles of sample data are plotted against quantiles of the standardized theoretical distribution. In figure <a href="ch2.html#fig:fig-2-7">2.7</a>, quantiles from the quantile plot of the Licking River streamflow data (lower scale) are overlain with the S-shaped quantiles of the standard normal distribution (upper scale). For a given cumulative frequency (plotting position, p), quantiles from each curve are paired and plotted as one point on the probability plot, figure <a href="ch2.html#fig:fig-2-8">2.8</a>. Note that quantiles of the data are simply the observation values themselves, the pth quantiles where <span class="math inline">\(p = (i − 0.4)/(n + 0.2)\)</span>. Quantiles of the standard normal distribution are available in table form in most textbooks on statistics. Thus, for each observation, a pair of quantiles is plotted in figure <a href="ch2.html#fig:fig-2-8">2.8</a> as one point. For example, the median <span class="math inline">\((p = 0.5)\)</span> equals 0 for the standard normal, and 4068 cfs for the Licking River data. The point (0,4068) is one point included in figure <a href="ch2.html#fig:fig-2-8">2.8</a>. Data closely approximating the shape of the theoretical distribution, in this case a normal distribution, will plot near to a straight line.</p>
+<p>To illustrate the construction of a probability plot in detail, data on unit well yields (y<sub>i</sub>) from <span class="citation">Wright (<a href="#ref-wright_effects_1985">1985</a>)</span> will be plotted versus their normal quantiles (also called normal scores). The data are ranked from the smallest (<span class="math inline">\(i = 1\)</span>) to largest (i=n), and their corresponding plotting positions <span class="math inline">\(p_{i} = (i − 0.4)/(n + 0.2)\)</span> calculated. Normal quantiles (Zp) for a given plotting position p<sub>i</sub> may be obtained in one of three ways:</p>
+<ol style="list-style-type: lower-alpha">
+<li>from a table of the standard normal distribution found in most statistics textbooks</li>
+<li>from table B2 in the Appendix, which presents standard normal quantiles for the Cunnane plotting positions of table B1</li>
+<li>from a computerized approximation to the inverse standard normal distribution available in many statistical packages, or as listed by <span class="citation">Zelen and Severo (<a href="#ref-zelen_probability_1964">1964</a>)</span>.</li>
+</ol>
+<p>Entering the table with <span class="math inline">\(p_{i} = .05\)</span>, for example, will provide a <span class="math inline">\(Zp = − 1.65\)</span>. Note that since the median of the standard normal distribution is 0, Zp will be symmetrical about the median, and only half of the Zp values must be looked up:</p>
+<div class="figure" style="text-align: center"><span id="fig:fig-2-7"></span>
+<img src="Statistical-Methods-in-Water-Resources_files/figure-html/fig-2-7-1.png" alt="Overlay of Licking River and standard normal distribution quantile plots" width="672" />
+<p class="caption">
+Figure 2.7: Overlay of Licking River and standard normal distribution quantile plots
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:fig-2-8"></span>
+<img src="Statistical-Methods-in-Water-Resources_files/figure-html/fig-2-8-1.png" alt="Probability plot of the Licking River data" width="672" />
+<p class="caption">
+Figure 2.8: Probability plot of the Licking River data
+</p>
+</div>
+<pre><code>##     unit_well_yield        p_i         zp
+##  1:           0.001 0.04918033 -1.6528536
+##  2:           0.003 0.13114754 -1.1209830
+##  3:           0.007 0.21311475 -0.7956603
+##  4:           0.020 0.29508197 -0.5385985
+##  5:           0.030 0.37704918 -0.3132400
+##  6:           0.040 0.45901639 -0.1029120
+##  7:           0.041 0.54098361  0.1029120
+##  8:           0.077 0.62295082  0.3132400
+##  9:           0.100 0.70491803  0.5385985
+## 10:           0.454 0.78688525  0.7956603
+## 11:           0.490 0.86885246  1.1209830
+## 12:           1.020 0.95081967  1.6528536</code></pre>
+<p>For comparison purposes, it is helpful to plot a reference straight line on the plot. The solid line on figure <a href="ch2.html#fig:fig-2-8">2.8</a> is the normal distribution which has the same mean and standard deviation as do the sample data. This reference line is constructed by plotting <span class="math inline">\(\overline{y}\)</span> as the y intercept of the line (<span class="math inline">\(Zp = 0\)</span>), so that the line is centered at the point (<span class="math inline">\(0, \overline{y}\)</span>), the mean of both sets of quantiles. The standard deviation <span class="math inline">\(s\)</span> is the slope of the line on a normal probability plot, as the quantiles of a standard normal distribution are in units of standard deviation. Thus the line connects the points (<span class="math inline">\(0, \overline{y}\)</span>) and (<span class="math inline">\(1 , \overline{y} + s\)</span>).</p>
+<div id="probability-paper" class="section level4">
+<h4><span class="header-section-number">2.1.5.1</span> Probability paper</h4>
+<p>Specialized ‘probability paper’ is often used for probability plots. This paper simply retransforms the linear scale for quantiles of the standard distribution back into a nonlinear scale of plotting positions (figure <a href="ch2.html#fig:fig-2-9">2.9</a>). There is no difference between the two versions except for the horizontal scale. With probability paper the horizontal axis can be directly interpreted as the percent probability of occurrence, the plotting position times 100. The linear quantile scale of figure <a href="ch2.html#fig:fig-2-8">2.8</a> is sometimes included on probability paper as ‘probits,’ where a probit = normal quantile + 5.0. Probability paper is available for distributions other than the normal, but all are constructed the same way, using standardized quantiles of the theoretical distribution.</p>
+<p>In figure <a href="ch2.html#fig:fig-2-9">2.9</a> the lower horizontal scale results from sorting the data in increasing order, and assigning rank 1 to the smallest value. This is commonly done in water-quality and low-flow studies. Had the data been sorted in decreasing order, assigning rank 1 to the largest value as is done in flood-flow studies, the upper scale would result – the percent exceedance. Either horizontal scale may be obtained by subtracting the other from 100 percent.</p>
+<div class="figure" style="text-align: center"><span id="fig:fig-2-9"></span>
+<img src="figures/2_9.png" alt="Probability plot of Licking River data on probability paper" width="498" />
+<p class="caption">
+Figure 2.9: Probability plot of Licking River data on probability paper
+</p>
+</div>
+</div>
+<div id="deviations-from-a-linear-pattern" class="section level4">
+<h4><span class="header-section-number">2.1.5.2</span> Deviations from a linear pattern</h4>
+<p>If probability plots do not exhibit a linear pattern, their nonlinearity will indicate why the data do not fit the theoretical distribution. This is additional information that hypothesis tests for normality (described later) do not provide. Three typical conditions resulting in deviations from linearity are: asymmetry or skewness, outliers, and heavy tails of the distribution. These are
+discussed below.</p>
+<p>Figure <a href="ch2.html#fig:fig-2-10">2.10</a> is a probability plot of the base 10 logarithms of the Licking River data. The data are negatively (left) skewed. This is seen in figure <a href="ch2.html#fig:fig-2-10">2.10</a> as a greater slope on the left-hand side of the plot, producing a slightly convex shape. Figure <a href="ch2.html#fig:fig-2-11">2.11</a> shows a right-skewed distribution, the unit well yield data. The lower bound of zero, and the large slope on the right-hand side of the plot produces an overall concave shape. Thus probability plots can be used to indicate what type of transformation is needed to produce a more symmetric distribution. The degree of curvature gives some indication of the severity of skewness, and therefore the degree of transformation required.</p>
+<p>Outliers appear on probability plots as departures from the pattern of the rest of the data. Figure <a href="ch2.html#fig:fig-2-12">2.12</a> is a probability plot of the Licking River data, but the two largest observations have been altered (multiplied by 3). Compare figures <a href="ch2.html#fig:fig-2-12">2.12</a> and <a href="ch2.html#fig:fig-2-8">2.8</a>. Note that the majority of points in figure <a href="ch2.html#fig:fig-2-12">2.12</a> still retain a linear pattern, with the two outliers offset from that pattern. Note that the straight line, a normal distribution with mean and standard deviation equal to those of the altered data, does not fit the data well. This is because the mean and standard deviation are inflated by the two outliers.</p>
+<p>The third departure from linearity occurs when more data are present in both tails (areas furthest from the median) than would be expected for a normal distribution. Figure <a href="ch2.html#fig:fig-2-13">2.13</a> is a probability plot of adjusted nitrate concentrations in precipitation from Wellston, Michigan (<span class="citation">Schertz and Hirsch (<a href="#ref-schertz_trend_1985">1985</a>)</span>). These data are actually residuals (departures) from a regression of log of nitrate concentration versus log of precipitation volume. A residual of 0 indicates that the concentration is exactly what would be expected for that volume, a positive residual more than what is expected, and negative less than expected. The data in figure <a href="ch2.html#fig:fig-2-13">2.13</a> display a predominantly linear pattern, yet one not fit well by the theoretical normal shown as the solid line. Again this lack of fit indicates outliers are present. The outliers are data to the left which plot below the linear pattern, and those above the pattern to the right of the figure. Outliers occur on both ends in greater numbers than expected from a normal distribution. A boxplot for the data is shown in figure <a href="ch2.html#fig:fig-2-14">2.14</a> for comparison. Note that both the box and whiskers are symmetric, and therefore no power transformation such as those in the “ladder of powers” would produce a more nearly normal distribution. Data may depart from a normal distribution not only in skewness, but by the number of extreme values. Excessive numbers of extreme values may cause significance levels of tests requiring the normality assumption to be in error. Therefore procedures which assume normality for their validity when applied to data of this type may produce quite inaccurate results.</p>
+<div class="figure" style="text-align: center"><span id="fig:fig-2-10"></span>
+<img src="Statistical-Methods-in-Water-Resources_files/figure-html/fig-2-10-1.png" alt="Probability plot of a left-skewed distribution (logs of Licking River data)" width="672" />
+<p class="caption">
+Figure 2.10: Probability plot of a left-skewed distribution (logs of Licking River data)
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:fig-2-11"></span>
+<img src="Statistical-Methods-in-Water-Resources_files/figure-html/fig-2-11-1.png" alt="Probability plot of a right-skewed distribution (unit well yields)" width="672" />
+<p class="caption">
+Figure 2.11: Probability plot of a right-skewed distribution (unit well yields)
+</p>
+</div>
+<pre><code>## Warning: Removed 6 rows containing missing values (geom_path).</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:fig-2-12"></span>
+<img src="Statistical-Methods-in-Water-Resources_files/figure-html/fig-2-12-1.png" alt="Probability plot of data with high outliers" width="672" />
+<p class="caption">
+Figure 2.12: Probability plot of data with high outliers
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:fig-2-13"></span>
+<img src="Statistical-Methods-in-Water-Resources_files/figure-html/fig-2-13-1.png" alt="Probability plot of a heavy-tailed data set" width="672" />
+<p class="caption">
+Figure 2.13: Probability plot of a heavy-tailed data set
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:fig-2-14"></span>
+<img src="Statistical-Methods-in-Water-Resources_files/figure-html/fig-2-14-1.png" alt="Boxplot of a heavy-tailed data set" width="672" />
+<p class="caption">
+Figure 2.14: Boxplot of a heavy-tailed data set
+</p>
+</div>
+</div>
+<div id="probability-plots-for-comparing-among-distributions" class="section level4">
+<h4><span class="header-section-number">2.1.5.3</span> Probability plots for comparing among distributions</h4>
+<p>In addition to comparisons to a normal distribution, quantiles may be computed and probability plots constructed for any two-parameter distribution. The distribution which causes data to be most like a straight line on its probability plot is the one which most closely resembles the distributional shape of the data. Data may be compared to a two-parameter lognormal distribution by simply plotting the logarithms of the data as the data quantiles, as was done in figure <a href="ch2.html#fig:fig-2-10">2.10</a>. <span class="citation">Vogel (<a href="#ref-vogel_probability_1986">1986</a>)</span> demonstrated the construction of probability plots for the Gumbel (extreme-value) distribution, which is sometimes employed for flood-flow studies. <span class="citation">Vogel and Kroll (<a href="#ref-vogel_low_1989">1989</a>)</span> cover the use of probability plots for the two-parameter Weibull distribution, used in fitting low-flow data. Again, the best fit is obtained with the distribution which most closely produces a linear plot. In both references, the use of a test of significance called the probability plot correlation coefficient augmented the visual determination of linearity on the plot. This test will be covered in detail in Chapter 4.</p>
+<p>Use of three-parameter distributions can also be indicated by probability plots. For example, if significant right-skewness remains after logarithms are taken, the resulting concave shape on a lognormal probability plot indicates that a log-Pearson III distribution would better fit the data. <span class="citation">Vogel and Kroll (<a href="#ref-vogel_low_1989">1989</a>)</span> demonstrate the construction of a probability plot for the log-Pearson III distribution using a Wilson-Hilferty transformation.</p>
+</div>
+</div>
+</div>
+<div id="ch2-2" class="section level2">
+<h2><span class="header-section-number">2.2</span> Graphical Comparisons of Two or More Data Sets</h2>
+<p>Each of the graphical methods discussed thus far can be, and have been, used for comparing more than one group of data. However, each is not equally effective. As the following sections show, histograms are not capable of providing visual comparisons between data sets at the same level of detail as boxplots or probability plots. Boxplots excel in clarity and easy discrimination of important distributional characteristics, even for comparisons between many groups of data. A newer type of plot, the quantile-quantile (Q-Q) plot, provides additional information about the relationship between two data sets.</p>
+<p>Each graphic will be developed for the same data set, a comparison of unit well yields in Virginia (<span class="citation">Wright (<a href="#ref-wright_effects_1985">1985</a>)</span>). These are small data sets: 13 wells are from valleys underlain by fractured rocks, and 12 wells from valleys underlain by unfractured rocks.</p>
+<div id="histograms-1" class="section level3">
+<h3><span class="header-section-number">2.2.1</span> Histograms</h3>
+<p>Figure <a href="ch2.html#fig:fig-2-15">2.15</a> presents histograms for the two sets of well yield data. The right-skewness of each data set is easily seen, but it is difficult to discern whether any differences exist between them. Histograms do not provide a good visual picture of the centers of the distributions, and only a slightly better comparison of spreads. Positioning histograms side-by-side instead of one above the other provide even less ability to compare data, as the data axes would not be aligned. Unfortunately, this is commonly done. Also common are overlapping histograms, such as in figure <a href="ch2.html#fig:fig-2-16">2.16</a>. Overlapping histograms provide poor visual discrimination between multiple data sets.</p>
+<div class="figure" style="text-align: center"><span id="fig:fig-2-15"></span>
+<img src="figures/2_15.png" alt="Histogram of the unit well yield data" width="310" />
+<p class="caption">
+Figure 2.15: Histogram of the unit well yield data
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:fig-2-16"></span>
+<img src="figures/2_16.png" alt="Overlapping histograms of the unit well yield data" width="570" />
+<p class="caption">
+Figure 2.16: Overlapping histograms of the unit well yield data
+</p>
+</div>
+</div>
+<div id="dot-and-line-plots-of-means-standard-deviations" class="section level3">
+<h3><span class="header-section-number">2.2.2</span> Dot and Line Plots of Means, Standard Deviations</h3>
+<p>Figure <a href="ch2.html#fig:fig-2-17">2.17</a> is a “dot and line” plot often used to represent the mean and standard deviation (or standard error) of data sets. Each dot is the mean of the data set. The bars extend to plus and minus either one standard deviation (shown), or plus and minus one or more standard errors <span class="math inline">\((s.e. = s / \sqrt{n})\)</span>, beyond the mean. This plot displays differences in mean yields, but little else. No information on the symmetry of the data or presence of outliers is available. Because of this, there is not much information given on the spread of the data, as the standard deviation may describe the spread of most of the data, or may be strongly influenced by skewness and a few outliers.</p>
+<div class="figure" style="text-align: center"><span id="fig:fig-2-17"></span>
+<img src="figures/2_17.png" alt="Dot and line plot for the unit well yield data" width="440" />
+<p class="caption">
+Figure 2.17: Dot and line plot for the unit well yield data
+</p>
+</div>
+<p>To emphasize the deficiencies of dot and line plots such as these, figure <a href="ch2.html#fig:fig-2-18">2.18</a> presents three data sets with very different characteristics. The first is a uniform distribution of values between 0 and 20. It is symmetric. The second is a right-skewed data set with outliers. The third is a bimodal distribution, also symmetric. All three have a mean of 10 and standard deviation of 6.63. Therefore each of the three would be represented by the same dot and line plot, shown at the right of the figure.</p>
+<p>Dot and line plots are useful only when the data are actually symmetric. If skewness or outliers are present, as with data set 2, neither the plots (or a table of means and standard deviations) indicate their presence. Even for symmetric distributions, differences such as those between data sets 1 and 3 will not be evident. Far better graphical methods are available.</p>
+<div class="figure" style="text-align: center"><span id="fig:fig-2-18"></span>
+<img src="figures/2_18.png" alt="Number lines of 3 dissimilar groups of data, all having an identical dot and line plot (shown at right)" width="337" />
+<p class="caption">
+Figure 2.18: Number lines of 3 dissimilar groups of data, all having an identical dot and line plot (shown at right)
+</p>
+</div>
+</div>
+<div id="boxplots-1" class="section level3">
+<h3><span class="header-section-number">2.2.3</span> Boxplots</h3>
+<p>Figure <a href="ch2.html#fig:fig-2-19">2.19</a> presents boxplots of the well yield data. The median well yield is seen to be higher for the areas with fractures. The IQR of wells with fractures is slightly larger than that for wells without, and the highest value for each group is similar. Both data sets are seen to be rightskewed. Thus a large amount of information is contained in this very concise illustration. The mean yield, particularly for wells without fractures, is undoubtedly inflated due to skewness, and differences between the two groups of data will in general be larger than indicated by the differences in their mean values.</p>
+<div class="figure" style="text-align: center"><span id="fig:fig-2-19"></span>
+<img src="figures/2_19.png" alt="Boxplots of the unit well yield data" width="489" />
+<p class="caption">
+Figure 2.19: Boxplots of the unit well yield data
+</p>
+</div>
+<p>In figure <a href="ch2.html#fig:fig-2-20">2.20</a>, boxplots of the three data sets given in figure <a href="ch2.html#fig:fig-2-18">2.18</a> are presented. The skewness of data set 2 is clear, as is the symmetry of 1 and 3. The difference in shape between 1 and 3 is evident. The minute whiskers of data set 3 illustrate that over 25 percent of the data are located essentially at the upper and lower quartiles – a bimodal distribution.</p>
+<div class="figure" style="text-align: center"><span id="fig:fig-2-20"></span>
+<img src="figures/2_20.png" alt="Boxplots of the 3 dissimilar groups of data shown in figure 2.18" width="334" />
+<p class="caption">
+Figure 2.20: Boxplots of the 3 dissimilar groups of data shown in figure 2.18
+</p>
+</div>
+<p>The characteristics which make boxplots useful for inspecting a single data set make them even more useful for comparing multiple data sets. They are valuable guides in determining whether central values, spread, and symmetry differ among groups of data. They will be used in later chapters to guide whether tests based on assumptions of normality may be employed. The essential characteristics of numerous groups of data may be displayed in a small space. For example, the 20 boxplots of figure <a href="ch2.html#fig:fig-2-21">2.21</a> were used by <span class="citation">Holtschlag (<a href="#ref-holtschlag_changes_1987">1987</a>)</span> to illustrate the source of ammonia nitrogen on a section of the Detroit River. The Windmill Point Transect is upstream of the U.S. city of Detroit, while the Fermi Transect is below the city. Note the marked changes in concentration (the median lines of the boxplots) and variability (the widths of the boxes) on the Michigan side of the river downstream of Detroit. A lot of information on streamwater quality is succinctly summarized in this relatively small figure.</p>
+<div class="figure" style="text-align: center"><span id="fig:fig-2-21"></span>
+<img src="figures/2_21.png" alt="Boxplots of total ammonia nitrogen concentrations (mg/L as N) at two transects on the Detroit River (from @holtschlag_changes_1987)" width="251" />
+<p class="caption">
+Figure 2.21: Boxplots of total ammonia nitrogen concentrations (mg/L as N) at two transects on the Detroit River (from <span class="citation">Holtschlag (<a href="#ref-holtschlag_changes_1987">1987</a>)</span>)
+</p>
+</div>
+</div>
+<div id="probability-plots-1" class="section level3">
+<h3><span class="header-section-number">2.2.4</span> Probability Plots</h3>
+<p>Probability plots are also useful graphics for comparing groups of data. Characteristics evident in boxplots are also seen using probability plots, though in a different format. Comparisons of each quantile, not just the boxplot quartiles, can be made. The straightness of each data set also allows quick comparisons to conformity with the theoretical distribution.</p>
+<p>Figure <a href="ch2.html#fig:fig-2-22">2.22</a> is a probability plot of the two well yield data sets. The right-skewness of each data set is shown by their concave shapes. Wells without fractures have greater skewness as shown by their greater concavity on the plot. Quantiles of the wells with fractures are higher than those without, indicating generally higher yields. Figure <a href="ch2.html#fig:fig-2-22">2.22</a> shows that the lowest yields in each group are similar, as both data sets approach zero yield. Also seen are the similarity in the highest yield for each group, due to the outlier for the without fractures group. Comparisons between median values are simple to do – just travel up the normal quantile = 0 line. Comparisons of spreads are more difficult – the slopes of each data set display their spread.</p>
+<div class="figure" style="text-align: center"><span id="fig:fig-2-22"></span>
+<img src="figures/2_22.png" alt="Probability plot of the unit well yield data" width="462" />
+<p class="caption">
+Figure 2.22: Probability plot of the unit well yield data
+</p>
+</div>
+<p>In general, boxplots summarize the differences between data groups in a manner more quickly discerned by the viewer. When comparisons to a particular theoretical distribution such as the normal are important, or comparisons between quantiles other than the quartiles are necessary, probability plots are useful graphics. Either have many advantages over histograms or dot and line plots.</p>
+</div>
+<div id="q-q-plots" class="section level3">
+<h3><span class="header-section-number">2.2.5</span> Q-Q Plots</h3>
+<p>Direct comparisons can be made between two data sets by graphing the quantiles (percentiles) of one versus the quantiles (percentiles) of the second. This is called a quantile-quantile or Q-Q plot (<span class="citation">Chambers et al. (<a href="#ref-chambers_graphical_1983">1983</a>)</span>). If the two data sets came from the same distribution, the quantile pairs would plot along a straight line with <span class="math inline">\(Yp = Xp\)</span>, where p is the plotting position and Yp is the pth quantile of Y. In this case it would be said that the median, the quartiles, the 10th and 90th percentiles, etc., of the two data sets were equal. If one data set had the same shape as the second, differing only by an additive amount (each quantile was 5 units higher than for the other data set, for example), the quantile pairs would fall along a line parallel to but offset from the <span class="math inline">\(Yp = Xp\)</span> line, also with slope = 1. If the data sets differed by a multiplicative constant (<span class="math inline">\(Yp = 5 \bullet Xp\)</span>, for example), the quantile pairs would lie along a straight line with slope equal to the multiplicative constant. More complex relationships will result in pairs of quantiles which do not lie along a straight line. The question of whether or not data sets differ by additive or multiplicative relationships will become important when hypothesis testing is conducted.</p>
+<p>Figure <a href="ch2.html#fig:fig-2-23">2.23</a> is a Q-Q plot of the well yield data. Several aspects of the relationship between the two data sets are immediately seen. First, the lowest 9 quantile pairs appear to fall along a straight line with a slope greater than 1, not parallel to the <span class="math inline">\(Yp = Xp\)</span> line shown as a reference. This indicates a multiplicative relation between the data, with <span class="math inline">\(Y \cong 4.4 \bullet X\)</span>, where 4.4 is the slope of those data on the plot. Therefore, the yields with fractures are generally 4.4 times those without fractures for the lowest 75 percent of the data. The 3 highest quantile pairs return near to the <span class="math inline">\(Y = X\)</span> line, indicating that the higher yields in the two data sets approach being equal. The hydrologist might be able to explain this phenomenon, such as higher yielding wells are deeper and less dependent on fracturing, or that some of the wells were misclassified, etc. Therefore the Q-Q plot becomes a valuable tool in understanding the relationships between data sets prior to performing any hypothesis tests.</p>
+<div class="figure" style="text-align: center"><span id="fig:fig-2-23"></span>
+<img src="figures/2_23.png" alt="Q-Q plot of the unit well yield data" width="452" />
+<p class="caption">
+Figure 2.23: Q-Q plot of the unit well yield data
+</p>
+</div>
+<div id="construction-of-q-q-plots" class="section level4">
+<h4><span class="header-section-number">2.2.5.1</span> Construction of Q-Q plots</h4>
+<p>Q-Q plots are similar to probability plots. Now instead of plotting data quantiles from one group against quantiles of a theoretical distribution such as the normal, they are plotted against quantiles of a second data group.</p>
+<p>When sample sizes of the two groups are identical, the x’s and y’s can be ranked separately, and the Q-Q plot is simply a scatterplot of the ordered data pairs <span class="math inline">\((x_{1}, y_{1}) \cdots (x_{n}, y_{n})\)</span>. When sample sizes are not equal, consider n to be the sample size of the smaller data set and m to be the sample size of the larger data set. The data values from the smaller data set are its pth quantiles, where <span class="math inline">\(p = (i − 0.4) / (n + 0.2)\)</span>. The n corresponding quantiles for the larger data set are interpolated values which divide the larger data set into n equally-spaced parts. The following example illustrates the procedure.</p>
+<p>For the well yield data, the 12 values without fractures designated <span class="math inline">\(x_{i}, i = 1, \cdots n\)</span> are themselves the sample quantiles for the smaller data set. Repeating the without fractures data given earlier in the chapter:</p>
+<p><img src="figures/2_A.png" width="572" style="display: block; margin: auto;" /></p>
+<p>The .05 quantile (5th percentile) value of 0.001, for example, is to be paired on the Q-Q plot with the .05 quantile of the yields with fractures. To compute the corresponding y quantiles for the second data set, <span class="math inline">\(p = (j − 0.4) / (m + 0.2)\)</span>, and therefore j must be:
+<span class="math display" id="eq:2-1">\[\begin{equation}
+\begin{aligned}
+\frac{(j - 0.4)}{(m + 0.2)} &amp; = \frac{(i - 0.4)}{(n + 0.2)} &amp;&amp; \text{, or}\\
+j &amp; = \frac{(m + 0.2) \bullet (i - 0.4)}{(n + 0.2)} + 0.4
+\end{aligned}
+\tag{2.1}
+\end{equation}\]</span>
+If j is an integer, the data value y<sub>j</sub> itself is plotted versus x<sub>i</sub>. Usually, however, j will lie between two integers, and the y quantile must be linearly interpolated between the y data corresponding to the ranks on either side of j:
+<span class="math display" id="eq:2-2">\[\begin{equation}
+\begin{aligned}
+y_{j} &amp; = y_{j^{\prime}} + \left( j - j^{\prime} \right) \bullet \left( y_{\left( j^{\prime} + 1 \right)} - y_{j^{\prime}} \right)\\
+&amp;&amp; \text{where $j^{\prime}$ = integer(j)}
+\end{aligned}
+\tag{2.2}
+\end{equation}\]</span>
+For example, the well yield data with fractures are the following:
+<span class="math display">\[0.020\;\;0.031\;\;0.086\;\;0.130\;\;0.160\;\;0.160\;\;0.180\;\;0.300\;\;0.400\;\;0.440\;\;0.510\;\;0.720\;\;0.950\]</span>
+Therefore <span class="math inline">\(n = 12\)</span>       <span class="math inline">\(m = 13\)</span>       and from eq. <a href="ch2.html#eq:2-1">(2.1)</a>, <span class="math inline">\(j = 1.08i − 0.03\)</span>.<br />
+The first of the 12 quantiles to be computed for the data with fractures is then:
+<span class="math display">\[\begin{equation}
+\begin{aligned}
+&amp; i = 1 &amp;&amp; j = 1.05 &amp;&amp;&amp; j^{\prime} = 1 &amp;&amp;&amp;&amp; y_{j} = y_{1} + 0.05 \bullet \left( y_{2} - y_{1} \right) \\
+&amp; &amp;&amp; &amp;&amp;&amp; &amp;&amp;&amp;&amp; y_{j} = 0.020 + 0.05 \bullet (0.031 + 0.020) \\
+&amp; &amp;&amp; &amp;&amp;&amp; &amp;&amp;&amp;&amp; y_{j} = 0.021
+\end{aligned}
+\end{equation}\]</span>
+All 12 quantiles are similarly interpolated:</p>
+<p><img src="figures/2_B.png" width="504" style="display: block; margin: auto;" /></p>
+<p>These interpolated values are added to the table of quantiles given previously:</p>
+<p><img src="figures/2_C.png" width="571" style="display: block; margin: auto;" /></p>
+<p>These (x<sub>i</sub>, y<sub>j</sub>) pairs are the circles which were plotted in figure <a href="ch2.html#fig:fig-2-23">2.23</a>.</p>
+</div>
+</div>
+</div>
+<div id="scatterplots-and-enhancements" class="section level2">
+<h2><span class="header-section-number">2.3</span> Scatterplots and Enhancements</h2>
+<p>The two-dimensional scatterplot is one of the most familiar graphical methods for data analysis. It illustrates the relationship between two variables. Of usual interest is whether that relationship appears to be linear or curved, whether different groups of data lie in separate regions of the scatterplot, and whether the variability or spread is constant over the range of data. In each case, an enhancement called a “smooth” enables the viewer to resolve these issues with greater clarity than would be possible using the scatterplot alone. The following sections discuss these three uses of the scatterplot, and the enhancements available for each use.</p>
+<div id="evaluating-linearity" class="section level3">
+<h3><span class="header-section-number">2.3.1</span> Evaluating Linearity</h3>
+<p>Figure <a href="ch2.html#fig:fig-2-24">2.24</a> is a scatterplot of the mass load of transported sand versus stream discharge for the Colorado River at Lees Ferry, Colorado, during 1949-1964. Are these data sufficiently linear to fit a linear regression to them, or should some other term or transformation be included in order to account for curvature? In Chapters 9 and 11, other ways to answer this question will be presented, but many judgements on linearity are made solely on the basis of plots. To aid in this judgement, a “smooth” will be superimposed on the data.</p>
+<p>The human eye is an excellent judge of the range of data on a scatterplot, but has a difficult time accurately judging the center – the pattern of how y varies with x. This results in two difficulties with judging linearity on a scatterplot as evident in figure <a href="ch2.html#fig:fig-2-24">2.24</a>. Outliers such as the two lowest sand concentrations may fool the observer into believing a linear model may not fit. Alternatively, true changes in slope are often difficult to discern from only a scatter of data. To aid in seeing central patterns without being strongly influenced by outliers, a resistant center line can be fit to the data whose direction and slope varies locally in response to the data themselves. Many methods are available for constructing this type of center line – probably the most familiar is the (non-resistant) moving average. All such methods may be called a “middle smooth”, as they smooth out variations in the data into a coherent pattern through the middle. We discuss computation of smooths in Chapter 10. For now, we will merely illustrate their use as aids to graphical data analysis. The smoothing procedure we prefer is called LOWESS, or LOcally WEighted Scatterplot Smoothing (<span class="citation">Cleveland and McGill (<a href="#ref-cleveland_many_1984">1984</a>)</span>; <span class="citation">Cleveland and McGill (<a href="#ref-cleveland_graphical_1985">1985</a>)</span>).</p>
+<div class="figure" style="text-align: center"><span id="fig:fig-2-24"></span>
+<img src="figures/2_24.png" alt="Suspended sand transport at Lees Ferry, Arizona, 1949-1952" width="479" />
+<p class="caption">
+Figure 2.24: Suspended sand transport at Lees Ferry, Arizona, 1949-1952
+</p>
+</div>
+<p>Figure <a href="ch2.html#fig:fig-2-25">2.25</a> presents the Lees Ferry sediment data of figure <a href="ch2.html#fig:fig-2-24">2.24</a>, with a superimposed middle smooth. Note the nonlinearity now evident by the curving smooth on the left-hand side of the plot. The rate of sand transport slows above 6600 (e<sup>8.8</sup>) cfs. This curvature is easier to see with the superimposed smooth. It is important to remember that no model, such as a linear or quadratic function, is assumed prior to computing a smooth. The smoothed pattern is totally derived by the pattern of the data, and may take on any shape. As such, smooths are an exploratory tool for discerning the form of relationship between y and x. Seeing the pattern of figure <a href="ch2.html#fig:fig-2-25">2.25</a>, a quadratic term might be added, a piecewise linear fit used, or a transformation stronger than logs used prior to performing a linear regression of concentration versus discharge (see Chapter 9).</p>
+<div class="figure" style="text-align: center"><span id="fig:fig-2-25"></span>
+<img src="figures/2_25.png" alt="Data of figure 2.24 with superimposed lowess smooth" width="480" />
+<p class="caption">
+Figure 2.25: Data of figure 2.24 with superimposed lowess smooth
+</p>
+</div>
+<p>Middle smooths should be regularly used when analyzing data on scatterplots, and when presenting those data to others. As no model form is assumed by them, they let the data describe the pattern of dependence of y on x. Smooths are especially useful when large amounts of data are to be plotted, and several groups of data are placed on the same plot. For example, <span class="citation">Welch, Lico, and Hughes (<a href="#ref-welch_arsenic_1988">1988</a>)</span> depicted the dependence of log of arsenic concentration on pH for thousands of groundwater samples throughout the western United States (figure <a href="ch2.html#fig:fig-2-26">2.26</a>). By using middle smooths, data from one physiographic province was seen to differ from the other three provinces in its relationship between pH and arsenic.</p>
+<div class="figure" style="text-align: center"><span id="fig:fig-2-26"></span>
+<img src="figures/2_26.png" alt="Dependance of log(As) on pH for 4 areas in the western U.S. (@welch_arsenic_1988)" width="383" />
+<p class="caption">
+Figure 2.26: Dependance of log(As) on pH for 4 areas in the western U.S. (<span class="citation">Welch, Lico, and Hughes (<a href="#ref-welch_arsenic_1988">1988</a>)</span>)
+</p>
+</div>
+</div>
+<div id="evaluating-differences-in-location-on-a-scatterplot" class="section level3">
+<h3><span class="header-section-number">2.3.2</span> Evaluating Differences in Location on a Scatterplot</h3>
+<p>Figure <a href="ch2.html#fig:fig-2-27">2.27</a> is a scatterplot of conductance versus pH for samples collected at low-flow in small streams within the coal mining region of Ohio (data from <span class="citation">Helsel (<a href="#ref-helsel_mine_1983">1983</a>)</span>). Each stream was classified by the type of land it was draining – unmined land, lands mined and later reclaimed, and lands mined and then abandoned without reclamation. These three types of upstream lands are plotted with different symbols in figure <a href="ch2.html#fig:fig-2-27">2.27</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:fig-2-27"></span>
+<img src="figures/2_27.png" alt="Scatterplot of water-quality draining three types of upstream land use" width="420" />
+<p class="caption">
+Figure 2.27: Scatterplot of water-quality draining three types of upstream land use
+</p>
+</div>
+<p>To see the three locations more clearly, a smooth can be constructed for each group which encloses either 50 or 75 percent of the data. This type of smooth is called a polar smooth (<span class="citation">Cleveland and McGill (<a href="#ref-cleveland_many_1984">1984</a>)</span>), and its computation is detailed in Chapter 10. Briefly, the data are transformed into polar coordinates, a middle or similar smooth computed, and the smooth is re-transformed back into the original units. In figure <a href="ch2.html#fig:fig-2-28">2.28</a>. a polar smooth enclosing 75 percent of the data in each of the types of upstream land is plotted. These smooths are again not limited to a prior shape or form, such as that of an ellipse. Their shapes are determined from the data.</p>
+<p>Polar smooths can be a great aid in exploratory data analysis. For example, the irregular pattern for the polar smooth of data from abandoned lands in figure <a href="ch2.html#fig:fig-2-28">2.28</a> suggests that two separate subgroups are present, one with higher pH than the other. Using different symbols for data from each of the two geologic units underlying these streams shows indeed that the basins underlain by a limestone unit have generally higher pH than those underlain by a sandstone. Therefore the type of geologic unit should be included in any analysis or model of the behavior of chemical constituents for these data.</p>
+<p>Polar smooths are especially helpful when there is a large amount of data to be plotted on a scatterplot. In such situations, the use of different symbols for distinguishing between groups will be ineffective, as the plot will be too crowded to see patterns in the locations of symbols. Indeed, in some locations it will not be possible to distinguish which symbol is plotted. Plots presenting small data points and the polar smooths as in figure <a href="ch2.html#fig:fig-2-28">2.28</a>, or even just the polar smooths themselves, will provide far greater visual differentiation between groups.</p>
+<div class="figure" style="text-align: center"><span id="fig:fig-2-28"></span>
+<img src="figures/2_28.png" alt="Polar smooths for the three groups of data in figure 2.27" width="445" />
+<p class="caption">
+Figure 2.28: Polar smooths for the three groups of data in figure 2.27
+</p>
+</div>
+</div>
+<div id="evaluating-differences-in-spread" class="section level3">
+<h3><span class="header-section-number">2.3.3</span> Evaluating Differences in Spread</h3>
+<p>In addition to understanding where the middle of data lie on a scatterplot, it is often of interest to know something about the spread of the data as well. Homoscedasticity (constant variance) is a crucial assumption of ordinary least-squares regression, as we will see later. Changes in variance also invalidate parametric hypothesis test procedures such as analysis of variance. From a more exploratory point of view, changes in variance may be as important or more important than changes in central value. Differences between estimation methods for flood quantiles, or between methods of laboratory analysis of some chemical constituent, are often differences in repeatability of the results and not of method bias. Graphs again can aid in judging differences in data variability, and are often used for this purpose.</p>
+<p>A major problem with judgements of changing spread on a scatterplot is again that the eye is sensitive to seeing the <u>range</u> of data. The presence of a few unusual values may therefore incorrectly trigger a perception of changing spread. This is especially a problem when the density of data changes across a scatterplot, a common occurrence. Assuming the distribution of data to be identical across a scatterplot, and that no changes in variablility or spread actually occur, areas where data are more dense are more likely to contain outlying values on the plot, and the range of values is likely to be larger. This leads to a perception that the spread has changed.</p>
+<p>One graphical means of determining changes in spread has been given by <span class="citation">Chambers et al. (<a href="#ref-chambers_graphical_1983">1983</a>)</span>. First, a middle smooth is computed, as in figure <a href="ch2.html#fig:fig-2-25">2.25</a>. The absolute values of differences |d<sub>i</sub>| between each data point and the smooth at its value of x is a measure of spread.
+<span class="math display" id="eq:2-3">\[\begin{equation}
+\begin{aligned}
+&amp; |d_{i}| = |y_{i} - l_{i}| &amp;&amp; \text{where $l_{i}$ is the value for the lowess smooth at $x_{i}$}
+\end{aligned}
+\tag{2.3}
+\end{equation}\]</span>
+By graphing these absolute differences |d<sub>i</sub>| versus x<sub>i</sub>, changes in spread will show as changes in absolute differences. A middle smooth of these differences should also be added to make the pattern more clear. This is done in figure <a href="ch2.html#fig:fig-2-29">2.29</a>, a plot of the absolute differences between sand concentration and its lowess smooth for the Lees Ferry data of figure <a href="ch2.html#fig:fig-2-25">2.25</a>. Note that there is a slight decrease in |d<sub>i</sub>|, indicating a small decrease of variability or spread in concentration with increasing discharge at that site.</p>
+<div class="figure" style="text-align: center"><span id="fig:fig-2-29"></span>
+<img src="figures/2_29.png" alt="Absolute residuals show wheter the spread changes with changing x -- sediment concentrations at Lees Ferry, Arizona" width="437" />
+<p class="caption">
+Figure 2.29: Absolute residuals show wheter the spread changes with changing x – sediment concentrations at Lees Ferry, Arizona
+</p>
+</div>
+</div>
+</div>
+<div id="graphs-for-multivariate-data" class="section level2">
+<h2><span class="header-section-number">2.4</span> Graphs for Multivariate Data</h2>
+<p>Boxplots effectively illustrate the characteristics of data for a single variable, and accentuate outliers for further inspection. Scatterplots effectively illustrate the relationships between two variables, and accentuate points which appear unusual in their x-y relationship. Yet there are numerous situations where relationships between more than two variables should be considered simultaneously. Similarities and differences between groups of observations based on 3 or more variables are frequently of interest. Also of interest is the detection of outliers for data with multiple variables. Graphical methods again can provide insight into these relationships. They supplement and enhance the understanding provided by formal hypothesis test procedures. Two multivariate graphical methods already are widely used in water-quality studies – Stiff and Piper diagrams. These and other graphical methods are outlined in the following sections. For more detailed discussions on multivariate graphical methods, see <span class="citation">Chambers et al. (<a href="#ref-chambers_graphical_1983">1983</a>)</span>, or the textbook by <span class="citation">Everitt (<a href="#ref-everitt_graphical_1978">1978</a>)</span>.</p>
+<div id="profile-plots" class="section level3">
+<h3><span class="header-section-number">2.4.1</span> Profile Plots</h3>
+<p>Profile plots are a class of graphical methods which assign each variable to a separate and parallel axis. One observation is represented by a series of points, one per axis, which are connected by a straight line forming the profile. Each axis is scaled independently, based on the range of values in the entire data set. Comparisons between observations are made by comparing profiles.</p>
+<p>As an example, assume that sediment loads are to be regionalized. That is, mean annual loads are to be predicted at ungaged sites based on basin characteristics (physical and climatic conditions) at those sites. Of interest may be the interrelationships between sites based on their basin characteristics, as well as which characteristics are associated with high or low annual values. Profile plots such as the one of site basin characteristics in figure <a href="ch2.html#fig:fig-2-30">2.30</a> would effectively illustrate those relationships.</p>
+<div class="figure" style="text-align: center"><span id="fig:fig-2-30"></span>
+<img src="figures/2_30.png" alt="Profile plot of selected basin characteristics, Cow Creek near Lyons, Kansas (data from @jordan_relation_1979)" width="476" />
+<p class="caption">
+Figure 2.30: Profile plot of selected basin characteristics, Cow Creek near Lyons, Kansas (data from <span class="citation">Jordan (<a href="#ref-jordan_relation_1979">1979</a>)</span>)
+</p>
+</div>
+<div id="stiff-diagrams" class="section level4">
+<h4><span class="header-section-number">2.4.1.1</span> Stiff diagrams</h4>
+<p>Stiff diagrams (<span class="citation">Hem (<a href="#ref-hem_study_1985">1985</a>)</span>) are the most familiar application of profile plots in water resources. In a Stiff diagram, the milliequivalents of major water-quality constituents are plotted for a single sample, with the cation profile plotted to the left of the center line, and anion profile to the right (figure <a href="ch2.html#fig:fig-2-31">2.31</a>). Comparisons between several samples based on multiple water-quality constituents is then easily done by comparing shapes of the Stiff diagrams. Figure <a href="ch2.html#fig:fig-2-32">2.32</a> shows one such comparison for 14 groundwater samples from the Fox Hills Sandstone in Wyoming (<span class="citation">Henderson (<a href="#ref-henderson_geochemistry_1985">1985</a>)</span>).</p>
+<div class="figure" style="text-align: center"><span id="fig:fig-2-31"></span>
+<img src="figures/2_31.png" alt="Stiff diagram for a groundwater sample from the Columbia River Basalt aquifer, Oregon (data from @miller_oregon_1984)" width="386" />
+<p class="caption">
+Figure 2.31: Stiff diagram for a groundwater sample from the Columbia River Basalt aquifer, Oregon (data from <span class="citation">Miller and Gonthier (<a href="#ref-miller_oregon_1984">1984</a>)</span>)
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:fig-2-32"></span>
+<img src="figures/2_32.png" alt="Stiff diagrams to display areal differences in water quality (from @henderson_geochemistry_1985)" width="358" />
+<p class="caption">
+Figure 2.32: Stiff diagrams to display areal differences in water quality (from <span class="citation">Henderson (<a href="#ref-henderson_geochemistry_1985">1985</a>)</span>)
+</p>
+</div>
+</div>
+</div>
+<div id="star-plots" class="section level3">
+<h3><span class="header-section-number">2.4.2</span> Star Plots</h3>
+<p>A second method of displaying multiple axes is to have them radiate from a central point, rather than aligned parallel as in a profile plot. Again, one observation would be represented by a point on each axis, and these points are connected by line segments. The resulting figures resemble a star pattern, and are often called star plots. Angles between rays of the star are <span class="math inline">\(360^{\circ}/k\)</span>, where <span class="math inline">\(k\)</span> is the number of axes to be plotted. To provide the greatest visual discrimination between observations, rays measuring related characteristics should be grouped together. Unusual observations will stand out as a star looking quite different than the other data, perhaps having an unusually long or short ray. In figure <a href="ch2.html#fig:fig-2-33">2.33</a>, the basalt water-quality data graphed using a Stiff diagram in figure <a href="ch2.html#fig:fig-2-31">2.31</a> is displayed as a star plot. Note that the cations are grouped together on the top half of the star, with anions along the bottom.</p>
+<div class="figure" style="text-align: center"><span id="fig:fig-2-33"></span>
+<img src="figures/2_33.png" alt="Star diagram of the basalt water-quality data" width="360" />
+<p class="caption">
+Figure 2.33: Star diagram of the basalt water-quality data
+</p>
+</div>
+<div id="kite-diagrams" class="section level4">
+<h4><span class="header-section-number">2.4.2.1</span> Kite diagrams</h4>
+<p>A simplified 4-axis star diagram, the “kite diagram”, has been used for displaying water-quality compositions, especially to portray compositions of samples located on a map (<span class="citation">Colby et al. (<a href="#ref-colby_sedimentation_1956">1956</a>)</span>). Cations are plotted on the two vertical axes, and anions on the two horizontal axes. The primary advantage of this plot is its simplicity. Its major disadvantage is also its simplicity, in that the use of only four axes may hide important characteristics of the data. One might need to know whether calcium or magnesium were present in large amounts, for example, but that could not be determined from the kite diagram. There is no reason why a larger number of axes could not be employed to give more detail, making the plot a true star diagram. Compare for example the basalt data plotted as a star diagram in figure <a href="ch2.html#fig:fig-2-33">2.33</a> and as a kite diagram in figure <a href="ch2.html#fig:fig-2-34">2.34</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:fig-2-34"></span>
+<img src="figures/2_34.png" alt="Kite diagram of the basalt water-quality data" width="494" />
+<p class="caption">
+Figure 2.34: Kite diagram of the basalt water-quality data
+</p>
+</div>
+<p>One innovative use of the kite diagram was made by <span class="citation">Davis and Rogers (<a href="#ref-davis_assessment_1984">1984</a>)</span>. They plotted the quartiles of all observations taken from each of several formations, and at different depth ranges, in order to compare water quality between formations and depths (figure <a href="ch2.html#fig:fig-2-35">2.35</a>). The kite plots in this case are somewhat like multivariate boxplots. There is no reason why the other multivariate plots described here could not also present percentile values for a group of observations rather than descriptions of individual values, and be used to compare among groups of data.</p>
+<div class="figure" style="text-align: center"><span id="fig:fig-2-35"></span>
+<img src="figures/2_35.png" alt="Kite diagram of quartiles of composition from an alluvial formation in Montana (from @davis_assessment_1984)" width="438" />
+<p class="caption">
+Figure 2.35: Kite diagram of quartiles of composition from an alluvial formation in Montana (from <span class="citation">Davis and Rogers (<a href="#ref-davis_assessment_1984">1984</a>)</span>)
+</p>
+</div>
+</div>
+</div>
+<div id="trilinear-diagrams" class="section level3">
+<h3><span class="header-section-number">2.4.3</span> Trilinear Diagrams</h3>
+<p>Trilinear diagrams have been used within the geosciences since the early 1900’s. When three variables for a single observation sum to 100 percent, they can be represented as one point on a triangular (trilinear) diagram. Figure <a href="ch2.html#fig:fig-2-36">2.36</a> is one example – three major cation axes upon which is plotted the cation composition for the basalt data of figure <a href="ch2.html#fig:fig-2-31">2.31</a>. Each of the three cation values, in milliequivalents, is divided by the sum of the three values, to produce a new scale in percent of total cations:
+<span class="math display" id="eq:2-4">\[\begin{equation}
+c_{i} = m_{i} / \left( m_{1} + m_{2} + m_{3} \right) \\
+\text{where the $c_{i}$ is in percent of total cations, and $m_{i}$ are the milliequivalents of cation i.}
+\tag{2.4}
+\end{equation}\]</span>
+For the basalt data, <span class="math inline">\(Ca = 0.80\;meq\)</span>, <span class="math inline">\(Mg = 0.26\;meq\)</span>, and <span class="math inline">\(Na + K = 0.89\;meq\)</span>. Thus <span class="math inline">\(\% Ca = 41\)</span>, <span class="math inline">\(\% Mg = 13\)</span>, and <span class="math inline">\(\%[Na + K] = 46\)</span>. As points on these axes sum to 100 percent, only two of the variables are independent. By knowing two values <span class="math inline">\(c_{1}\)</span> and <span class="math inline">\(c_{2}\)</span>, the third is also known: <span class="math inline">\(c_{3} = \left( 100 − c_{1} − c_{2} \right)\)</span>.</p>
+<div class="figure" style="text-align: center"><span id="fig:fig-2-36"></span>
+<img src="figures/2_36.png" alt="Trilinear diagram for the basalt cation composition (units are percent milliequivalents)." width="285" />
+<p class="caption">
+Figure 2.36: Trilinear diagram for the basalt cation composition (units are percent milliequivalents).
+</p>
+</div>
+<div id="piper-diagrams" class="section level4">
+<h4><span class="header-section-number">2.4.3.1</span> Piper diagrams</h4>
+<p><span class="citation">Piper (<a href="#ref-piper_graphic_1944">1944</a>)</span> applied these trilinear diagrams to both cation and anion compositions of water qualtiy data. He also combined both trilinear diagrams into a single summary diagram with the shape of a diamond (figure <a href="ch2.html#fig:fig-2-37">2.37</a>). This diamond has four sides, two for cations and two for anions. However, it also has only two independent axes, one for a cation (say <span class="math inline">\(Ca + Mg\)</span>), and one for an anion (say <span class="math inline">\(Cl + SO_{4}\)</span>). If the (<span class="math inline">\(Ca + Mg\)</span>) percentage is known, so is the (<span class="math inline">\(Na + K\)</span>) percentage, as one is 100% minus the other, and similarly for the anions. The collection of these three diagrams in the format shown in figure <a href="ch2.html#fig:fig-2-37">2.37</a> is called a Piper diagram.</p>
+<p>Piper diagrams have the advantage over Stiff and star diagrams that each observation is shown as only one point. Therefore, similarities and differences in composition between numerous observations is more easily seen with Piper diagrams. Stiff and star diagrams have two advantages over Piper diagrams:</p>
+<ol style="list-style-type: decimal">
+<li>they may be separated in space and placed on a map or other graph, and</li>
+<li>more than four independent attributes (two cation and two anion) can be displayed at one time.</li>
+</ol>
+<p>Thus the choice of which to use will depend on the purpose to which they are put.</p>
+<p>Envelopes have been traditionally drawn by eye around a collection of points on a Piper diagram to describe waters of “similar” composition. Trends (along a flow path, for example) have traditionally been indicated by using different symbols on the diagram for different data groups, such as for upgradient and downgradient observations, and drawing an arrow from one group to the other. Recently, both of these practices have been quantified into significance tests for differences and trends associated with Piper diagrams (<span class="citation">Helsel (<a href="#ref-helsel_diamond_1992">1992</a>)</span>). Objective methods for drawing envelopes (a smoothed curve) and trend lines on a Piper diagram were also developed. The envelope drawn on figure <a href="ch2.html#fig:fig-2-37">2.37</a> is one example. Smoothing procedures are discussed in more detail in Chapter 10.</p>
+<div class="figure" style="text-align: center"><span id="fig:fig-2-37"></span>
+<img src="figures/2_37.png" alt="Piper diagram of groundwaters from the Columbia River Basalt aquifer in Oregon (data from @miller_oregon_1984)" width="417" />
+<p class="caption">
+Figure 2.37: Piper diagram of groundwaters from the Columbia River Basalt aquifer in Oregon (data from <span class="citation">Miller and Gonthier (<a href="#ref-miller_oregon_1984">1984</a>)</span>)
+</p>
+</div>
+</div>
+</div>
+<div id="plots-of-principal-components" class="section level3">
+<h3><span class="header-section-number">2.4.4</span> Plots of Principal Components</h3>
+<p>One method for viewing observations on multiple axes is to reduce the number of axes to two, and then plot the data as a scatterplot. An important dimension reduction technique is principal components analysis, or PCA (<span class="citation">Johnson and Wichern (<a href="#ref-johnson_applied_1982">1982</a>)</span>).</p>
+<p>Principal components are linear combinations of the p original variables which form a new set of variables or axes. These new axes are uncorrelated with one another, and have the property that the first principal component is the axis that explains more of the variance of the data than any other axis. The second principal component explains more of the remaining variance than any other axis which is uncorrelated with (orthogonal to) the first. The resulting p axes are thus new “variables”, the first few of which often explain the major patterns of the data in multivariate space. The remaining principal components may be treated as residuals, measuring the “lack of fit” of observations along the first few axes.</p>
+<p>Each observation can be located on the new set of principal component (pc) axes. For example, suppose principal components were computed for four original variables, the cations Ca, Mg, Na and K. The new axes would be linear combinations of these variables, such as:
+<span class="math display">\[\begin{equation}
+\begin{aligned}
+&amp; pc1 = 0.75 Ca + 0.80 Mg + 0.10 Na + 0.06 K &amp;&amp; \text{a &quot;calcareous&quot; axis?}\\
+&amp; pc2 = 0.17 Ca + 0.06 Mg + 0.60 Na + 0.80 K &amp;&amp; \text{a &quot;Na + K&quot; axis?}\\
+&amp; pc3 = 0.40 Ca - 0.25 Mg - 0.10 Na + 0.10 K &amp;&amp; \text{a &quot;Ca vs. Mg&quot; axis?}\\
+&amp; pc4 = 0.05 Ca - 0.10 Mg + 0.10 Na + 0.20 K &amp;&amp; \text{residual noise}
+\end{aligned}
+\end{equation}\]</span>
+An observation which had milliequivalents of <span class="math inline">\(Ca = 1.6\)</span>, <span class="math inline">\(Mg = 1.0\)</span>, <span class="math inline">\(Na = 1.3\)</span> and <span class="math inline">\(K = 0.1\)</span> would have a value on pc1 equal to (<span class="math inline">\(0.6 \bullet 1.6 + 0.8 \bullet 1.0 + 0.1 \bullet 1.3 + 0.06 \bullet 0.1) = 1.9\)</span>, and similarly for the other new “variables”. At this point no reduction in dimensions has taken place, as each observation still has values along the <span class="math inline">\(p = 4\)</span> new pc axes, as they did for the 4 original axes.</p>
+<p>Now, however, plots can be made of the locations of observations oriented along the new principal components axes. Most notably, a scatterplot for the first two components (pc1 vs. pc2) will show how the observations group together along the new axes which now contain the most important information about the variation in the data. Thus groupings in multivariate space have been simplified into groupings along the two most important axes, allowing those groupings to be seen by the data analyst. Waters with generally different chemical compositions should plot at different locations on the pc scatterplot. Data known to come from two different groups may be compared using boxplots, probability plots, or Q-Q plots, but now using the first several pc axes as the measurement “variables”. Additionally, plots can be made of the <u>last</u> few pc axes, to check for outliers. These outliers in multivariate space will now be visible by using the “lack of fit” principal components to focus attention at the appropriate viewing angle. Outliers having unusually large or small values on these plots should be checked for measurement errors, unusual circumstances, and the other investigations outliers warrant. Examples of the use of plots of components include <span class="citation">Xhoffer et al. (<a href="#ref-xhoffer_chemical_1991">1991</a>)</span>, <span class="citation">Meglen and Sistko (<a href="#ref-meglen_evaluating_1985">1985</a>)</span>, and <span class="citation">Lins (<a href="#ref-lins_interannual_1985">1985</a>)</span>.</p>
+</div>
+<div id="other-multivariate-plots" class="section level3">
+<h3><span class="header-section-number">2.4.5</span> Other Multivariate Plots</h3>
+<div id="dimensional-rotation" class="section level4">
+<h4><span class="header-section-number">2.4.5.1</span> 3-Dimensional rotation</h4>
+<p>If three variables are all that are under consideration, several microcomputer packages now will plot data in pseudo-3 dimensions, and allow observations to be rotated in space along all three axes. In this way the inter-relationships between the three variables can be visually observed, data visually clustered into groups of similar observations, and outliers discerned. In figure <a href="ch2.html#fig:fig-2-38">2.38</a> two of the many possible orientations for viewing a data set were output from MacSpin (<span class="citation">Donoho et al. (<a href="#ref-donoho_macspin_1985">1985</a>)</span>), a program for the Apple Macintosh. The data are water qualtity variables measured at low flow in basins with and without coal mining and reclamation (<span class="citation">Helsel (<a href="#ref-helsel_mine_1983">1983</a>)</span>).</p>
+<div class="figure" style="text-align: center"><span id="fig:fig-2-38"></span>
+<img src="figures/2_38.png" alt="Two 3-dimensional plots of a water-quality data set" width="584" />
+<p class="caption">
+Figure 2.38: Two 3-dimensional plots of a water-quality data set
+</p>
+</div>
+<p>Note the u-shaped pattern in the data seen in the right-hand plot. There is some suggestion of two separate groups of data, the causes of which can be checked by the analyst. This pattern is not evident in the left-hand orientation. By rotating data around their three axes, patterns may be seen which would not be evident without a 3-dimensional perspective, and greater insight into the data is obtained.</p>
+</div>
+<div id="scatterplot-matrix" class="section level4">
+<h4><span class="header-section-number">2.4.5.2</span> Scatterplot matrix</h4>
+<p>Another method for inspecting data measured by p variables is to produce a scatterplot for each of the <span class="math inline">\(p \bullet (p − 1) / 2\)</span> possible pairs of variables. These are then printed all on one screen or page. Obviously, little detail can be discerned on any single plot within the matrix, but variables which are related can be grouped, linear versus nonlinear relationships discerned, etc. <span class="citation">Chambers et al. (<a href="#ref-chambers_graphical_1983">1983</a>)</span> describe the production and utility of scatterplot matrices in detail.</p>
+<p>Figure <a href="ch2.html#fig:fig-2-39">2.39</a> is a scatterplot matrix for 5 water-quality variables at low-flow from the coal mining data of <span class="citation">Helsel (<a href="#ref-helsel_mine_1983">1983</a>)</span>. On the lowest row are histograms for each individual variable. Note the right skewness for all variables except pH. All rows above the last contain scatterplots between each pair of varables. For example, the single plot in the first row is the scatterplot of conductance (cond) versus pH. Note the two separate subgroups of data, representing low and high pH waters. Evident from other plots are the linear association between conductance and sulfate (SO4), the presence of high total iron concentrations (TFe) for waters of low alkalinity (ALK) and pH, and high TFe for waters of high sulfate and conductance.</p>
+<div class="figure" style="text-align: center"><span id="fig:fig-2-39"></span>
+<img src="figures/2_39.png" alt="Scatterplot matrix showing the relationshps between 5 water-quality variables" width="535" />
+<p class="caption">
+Figure 2.39: Scatterplot matrix showing the relationshps between 5 water-quality variables
+</p>
+</div>
+</div>
+<div id="methods-to-avoid" class="section level4">
+<h4><span class="header-section-number">2.4.5.3</span> Methods to avoid</h4>
+<p>Two commonly-used methods should usually be avoided, as they provide little ability to compare differences between groups of data. These are stacked bar charts and pie charts. Both allow only coarse discrimination to be made between segments of the plot. Figure <a href="ch2.html#fig:fig-2-40">2.40</a>, for example, is a stacked bar chart of the basalt water-quality data previously shown as a Stiff (figure <a href="ch2.html#fig:fig-2-31">2.31</a>) and star (figure <a href="ch2.html#fig:fig-2-33">2.33</a>) plot. Note that only large differences between categories within a bar are capable of being discerned. For example, it is much easier to see that chloride (Cl) is larger than sulfate (SO4) on the Stiff diagram than on the stacked bar chart. In addition, stacked bar charts provide much less visual distinction when comparing differences among many sites, as in figure <a href="ch2.html#fig:fig-2-32">2.32</a>. Stiff or star diagrams allow differences to be seen as differences in shape, while stacked bar charts require judgements of length without a common datum, a very difficult type of judgement. Multiple pie charts require similarly imprecise and difficult judgements. Further information on these and other types of presentation graphics is given in the last chapter.</p>
+<div class="figure" style="text-align: center"><span id="fig:fig-2-40"></span>
+<img src="figures/2_40.png" alt="Stacked bar chart of the basalt data" width="330" />
+<p class="caption">
+Figure 2.40: Stacked bar chart of the basalt data
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="exercises-1" class="section level2 unnumbered">
+<h2>Exercises</h2>
+<div id="section-3" class="section level3 unnumbered">
+<h3>2.1</h3>
+<p>Annual peak discharges for the Saddle River in New Jersey are given in Appendix C1. For the peaks occuring from 1968-1989, draw</p>
+<ol style="list-style-type: lower-alpha">
+<li>a histogram</li>
+<li>a boxplot</li>
+<li>a quantile plot (using <span class="math inline">\((i − 0.4)/(n + 0.2)\)</span>)</li>
+</ol>
+<p>What transformation, if any, would make these data more symmetric?</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1"><span class="kw">library</span>(data.table)</a>
+<a class="sourceLine" id="cb43-2" data-line-number="2"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb43-3" data-line-number="3"><span class="kw">source</span>(<span class="st">&quot;./data/themes.R&quot;</span>)</a>
+<a class="sourceLine" id="cb43-4" data-line-number="4"><span class="kw">source</span>(<span class="st">&quot;./data/palettes.R&quot;</span>)</a>
+<a class="sourceLine" id="cb43-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb43-6" data-line-number="6">x &lt;-<span class="st"> </span><span class="kw">fread</span>(<span class="st">&#39;data/appendix_c1.csv&#39;</span>)</a>
+<a class="sourceLine" id="cb43-7" data-line-number="7">x &lt;-<span class="st"> </span>x[Year <span class="op">&gt;=</span><span class="st"> </span><span class="dv">1968</span> <span class="op">&amp;</span><span class="st"> </span>Year <span class="op">&lt;=</span><span class="st"> </span><span class="dv">1989</span>]</a>
+<a class="sourceLine" id="cb43-8" data-line-number="8"><span class="kw">setorder</span>(x, Flow_cfs)</a>
+<a class="sourceLine" id="cb43-9" data-line-number="9">x[, idx <span class="op">:</span><span class="er">=</span><span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">row.names</span>(.SD))][, p_i <span class="op">:</span><span class="er">=</span><span class="st"> </span>(idx <span class="op">-</span><span class="st"> </span><span class="fl">0.4</span>)<span class="op">/</span>(.N <span class="op">+</span><span class="st"> </span><span class="fl">0.2</span>)]</a>
+<a class="sourceLine" id="cb43-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb43-11" data-line-number="11">graph_a &lt;-<span class="st"> </span><span class="kw">ggplot</span>(x, <span class="kw">aes</span>(<span class="dt">x =</span> Flow_cfs)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb43-12" data-line-number="12"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">400</span>, <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">fill =</span> palettes_bright<span class="op">$</span>colset_cheer_brights[<span class="dv">1</span>]) <span class="op">+</span></a>
+<a class="sourceLine" id="cb43-13" data-line-number="13"><span class="st">  </span>theme_generic <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb43-14" data-line-number="14"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Annual Streamflow in cfs&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;NUMBER OF OCCURRENCES&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb43-15" data-line-number="15"><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">1600</span>, <span class="dv">4400</span>, <span class="dv">400</span>))</a>
+<a class="sourceLine" id="cb43-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb43-17" data-line-number="17">graph_b &lt;-<span class="st"> </span><span class="kw">ggplot</span>(x, <span class="kw">aes</span>(<span class="dt">y =</span> Flow_cfs)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb43-18" data-line-number="18"><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">alpha =</span> <span class="fl">0.4</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb43-19" data-line-number="19"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="ot">NULL</span>, <span class="dt">y =</span> <span class="st">&quot;Annual Streamflow in cfs&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb43-20" data-line-number="20"><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">2</span>, <span class="dv">2</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb43-21" data-line-number="21"><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">2000</span>, <span class="dv">4000</span>, <span class="dv">1000</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb43-22" data-line-number="22"><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> palettes_bright<span class="op">$</span>colset_cheer_brights) <span class="op">+</span></a>
+<a class="sourceLine" id="cb43-23" data-line-number="23"><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> palettes_bright<span class="op">$</span>colset_cheer_brights) <span class="op">+</span></a>
+<a class="sourceLine" id="cb43-24" data-line-number="24"><span class="st">  </span>theme_generic <span class="op">+</span></a>
+<a class="sourceLine" id="cb43-25" data-line-number="25"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>, <span class="dt">panel.grid =</span> <span class="kw">element_blank</span>(), <span class="dt">axis.text.x =</span> <span class="kw">element_blank</span>(), <span class="dt">axis.ticks.x =</span> <span class="kw">element_blank</span>()) </a>
+<a class="sourceLine" id="cb43-26" data-line-number="26"></a>
+<a class="sourceLine" id="cb43-27" data-line-number="27">graph_c &lt;-<span class="st"> </span><span class="kw">ggplot</span>(x, <span class="kw">aes</span>(<span class="dt">x =</span> Flow_cfs, <span class="dt">y =</span> p_i)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb43-28" data-line-number="28"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb43-29" data-line-number="29"><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb43-30" data-line-number="30"><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> palettes_bright<span class="op">$</span>colset_cheer_brights) <span class="op">+</span></a>
+<a class="sourceLine" id="cb43-31" data-line-number="31"><span class="st">  </span>theme_generic <span class="op">+</span></a>
+<a class="sourceLine" id="cb43-32" data-line-number="32"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Annual Streamflow, in cfs&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;CUMULATIVE FREQUENCY&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb43-33" data-line-number="33"><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">1000</span>, <span class="dv">5000</span>, <span class="dv">1000</span>), <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">1000</span>, <span class="dv">5000</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb43-34" data-line-number="34"><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.1</span>))</a>
+<a class="sourceLine" id="cb43-35" data-line-number="35"></a>
+<a class="sourceLine" id="cb43-36" data-line-number="36">graph_a</a></code></pre></div>
+<p><img src="Statistical-Methods-in-Water-Resources_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1">graph_b</a></code></pre></div>
+<p><img src="Statistical-Methods-in-Water-Resources_files/figure-html/unnamed-chunk-25-2.png" width="672" /></p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1">graph_c</a></code></pre></div>
+<p><img src="Statistical-Methods-in-Water-Resources_files/figure-html/unnamed-chunk-25-3.png" width="672" /></p>
+<p>Either a cube root or logarithmic transform would increase symmetry.</p>
+</div>
+<div id="section-4" class="section level3 unnumbered">
+<h3>2.2</h3>
+<p>Arsenic concentrations (in ppb) were reported for ground waters of southeastern New Hampshire (<span class="citation">Boudette et al. (<a href="#ref-boudette_high_1985">1985</a>)</span>). For these data, compute</p>
+<ol style="list-style-type: lower-alpha">
+<li>a boxplot</li>
+<li>a probability plot</li>
+</ol>
+<p>Based on the probability plot, describe the shape of the data distribution. What transformation, if any, would make these data more symmetric?</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">1.3</th>
+<th align="center">1.5</th>
+<th align="center">1.8</th>
+<th align="center">2.6</th>
+<th align="center">2.8</th>
+<th align="center">3.5</th>
+<th align="center">4.0</th>
+<th align="center">4.8</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">8</td>
+<td align="center">9.5</td>
+<td align="center">12</td>
+<td align="center">14</td>
+<td align="center">19</td>
+<td align="center">23</td>
+<td align="center">41</td>
+<td align="center">80</td>
+</tr>
+<tr class="even">
+<td align="center">100</td>
+<td align="center">110</td>
+<td align="center">120</td>
+<td align="center">190</td>
+<td align="center">240</td>
+<td align="center">250</td>
+<td align="center">300</td>
+<td align="center">340</td>
+</tr>
+<tr class="odd">
+<td align="center">580</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1"><span class="kw">library</span>(data.table)</a>
+<a class="sourceLine" id="cb46-2" data-line-number="2"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb46-3" data-line-number="3"><span class="kw">source</span>(<span class="st">&quot;./data/themes.R&quot;</span>)</a>
+<a class="sourceLine" id="cb46-4" data-line-number="4"><span class="kw">source</span>(<span class="st">&quot;./data/palettes.R&quot;</span>)</a>
+<a class="sourceLine" id="cb46-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb46-6" data-line-number="6">x &lt;-<span class="st"> </span><span class="kw">data.table</span>(<span class="kw">c</span>(<span class="fl">1.3</span>, <span class="fl">1.5</span>, <span class="fl">1.8</span>, <span class="fl">2.6</span>, <span class="fl">2.8</span>, <span class="fl">3.5</span>, <span class="fl">4.0</span>, <span class="fl">4.8</span>, <span class="dv">8</span>, <span class="fl">9.5</span>, <span class="dv">12</span>, <span class="dv">14</span>, <span class="dv">19</span>, <span class="dv">23</span>, <span class="dv">41</span>, <span class="dv">80</span>, <span class="dv">100</span>, <span class="dv">110</span>, <span class="dv">120</span>, <span class="dv">190</span>, <span class="dv">240</span>, <span class="dv">250</span>, <span class="dv">300</span>, <span class="dv">340</span>, <span class="dv">580</span>))</a>
+<a class="sourceLine" id="cb46-7" data-line-number="7"><span class="kw">setnames</span>(x, <span class="st">&quot;Concentration&quot;</span>)</a>
+<a class="sourceLine" id="cb46-8" data-line-number="8"><span class="kw">setorder</span>(x, Concentration)</a>
+<a class="sourceLine" id="cb46-9" data-line-number="9">x[, idx <span class="op">:</span><span class="er">=</span><span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">row.names</span>(.SD))][, p_i <span class="op">:</span><span class="er">=</span><span class="st"> </span>(idx <span class="op">-</span><span class="st"> </span><span class="fl">0.4</span>)<span class="op">/</span>(.N <span class="op">+</span><span class="st"> </span><span class="fl">0.2</span>)][, zp<span class="op">:</span><span class="er">=</span><span class="st"> </span><span class="kw">qnorm</span>(p_i, <span class="dv">0</span>, <span class="dv">1</span>)]</a>
+<a class="sourceLine" id="cb46-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb46-11" data-line-number="11">graph_a &lt;-<span class="st"> </span><span class="kw">ggplot</span>(x, <span class="kw">aes</span>(<span class="dt">y =</span> Concentration)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb46-12" data-line-number="12"><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">alpha =</span> <span class="fl">0.4</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb46-13" data-line-number="13"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="ot">NULL</span>, <span class="dt">y =</span> <span class="st">&quot;Arsenic Concentration in ppb&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb46-14" data-line-number="14"><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">2</span>, <span class="dv">2</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb46-15" data-line-number="15"><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">600</span>, <span class="dv">200</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb46-16" data-line-number="16"><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> palettes_bright<span class="op">$</span>colset_cheer_brights) <span class="op">+</span></a>
+<a class="sourceLine" id="cb46-17" data-line-number="17"><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> palettes_bright<span class="op">$</span>colset_cheer_brights) <span class="op">+</span></a>
+<a class="sourceLine" id="cb46-18" data-line-number="18"><span class="st">  </span>theme_generic <span class="op">+</span></a>
+<a class="sourceLine" id="cb46-19" data-line-number="19"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>, <span class="dt">panel.grid =</span> <span class="kw">element_blank</span>(), <span class="dt">axis.text.x =</span> <span class="kw">element_blank</span>(), <span class="dt">axis.ticks.x =</span> <span class="kw">element_blank</span>()) </a>
+<a class="sourceLine" id="cb46-20" data-line-number="20"></a>
+<a class="sourceLine" id="cb46-21" data-line-number="21">graph_b &lt;-<span class="st"> </span><span class="kw">ggplot</span>(x, <span class="kw">aes</span>(<span class="dt">y =</span> Concentration, <span class="dt">x =</span> zp)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb46-22" data-line-number="22"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb46-23" data-line-number="23"><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb46-24" data-line-number="24"><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> palettes_bright<span class="op">$</span>colset_cheer_brights) <span class="op">+</span></a>
+<a class="sourceLine" id="cb46-25" data-line-number="25"><span class="st">  </span>theme_generic <span class="op">+</span></a>
+<a class="sourceLine" id="cb46-26" data-line-number="26"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;Arsenic Concentration in ppb&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;NORMAL QUANTILES&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb46-27" data-line-number="27"><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="op">-</span><span class="fl">1.5</span>, <span class="fl">1.5</span>, <span class="fl">1.5</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb46-28" data-line-number="28"><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">600</span>, <span class="dv">300</span>))</a>
+<a class="sourceLine" id="cb46-29" data-line-number="29"></a>
+<a class="sourceLine" id="cb46-30" data-line-number="30">graph_a</a></code></pre></div>
+<p><img src="Statistical-Methods-in-Water-Resources_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1">graph_b</a></code></pre></div>
+<p><img src="Statistical-Methods-in-Water-Resources_files/figure-html/unnamed-chunk-26-2.png" width="672" /></p>
+<p>The data are strongly right-skewed. A log transformation makes these data more symmetric.</p>
+</div>
+<div id="section-5" class="section level3 unnumbered">
+<h3>2.3</h3>
+<p>Feth et al. (1964) measured chemical compositions of waters in springs draining differing rock types. Compare chloride concentrations from two of these rock types using a Q-Q plot. Also plot two other types of graphs. Describe the similarities and differences in chloride. What characteristics are evident in each graph?</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="center"></th>
+<th align="center">Chloride</th>
+<th align="center">concentration,</th>
+<th align="center">in</th>
+<th align="center">mg/L</th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"></td>
+<td align="center">6.0</td>
+<td align="center">0.5</td>
+<td align="center">0.4</td>
+<td align="center">0.7</td>
+<td align="center">0.8</td>
+<td align="center">6.0</td>
+</tr>
+<tr class="even">
+<td align="left">Granodiorite</td>
+<td align="center">5.0</td>
+<td align="center">0.6</td>
+<td align="center">1.2</td>
+<td align="center">0.3</td>
+<td align="center">0.2</td>
+<td align="center">0.5</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="center">0.5</td>
+<td align="center">10</td>
+<td align="center">0.2</td>
+<td align="center">0.2</td>
+<td align="center">1.7</td>
+<td align="center">3.0</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="center">1.0</td>
+<td align="center">0.2</td>
+<td align="center">1.2</td>
+<td align="center">1.0</td>
+<td align="center">0.3</td>
+<td align="center">0.1</td>
+</tr>
+<tr class="even">
+<td align="left">Qtz Monzonite</td>
+<td align="center">0.1</td>
+<td align="center">0.4</td>
+<td align="center">3.2</td>
+<td align="center">0.3</td>
+<td align="center">0.4</td>
+<td align="center">1.8</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="center">0.9</td>
+<td align="center">0.1</td>
+<td align="center">0.2</td>
+<td align="center">0.3</td>
+<td align="center">0.5</td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1"><span class="kw">library</span>(data.table)</a>
+<a class="sourceLine" id="cb48-2" data-line-number="2"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb48-3" data-line-number="3"><span class="kw">library</span>(gridExtra)</a>
+<a class="sourceLine" id="cb48-4" data-line-number="4"><span class="kw">source</span>(<span class="st">&quot;./data/themes.R&quot;</span>)</a>
+<a class="sourceLine" id="cb48-5" data-line-number="5"><span class="kw">source</span>(<span class="st">&quot;./data/palettes.R&quot;</span>)</a>
+<a class="sourceLine" id="cb48-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb48-7" data-line-number="7">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">1.0</span>, <span class="fl">0.2</span>, <span class="fl">1.2</span>,   <span class="fl">1.0</span>, <span class="fl">0.3</span>,   <span class="fl">0.1</span>, <span class="fl">0.1</span>,   <span class="fl">0.4</span>, <span class="fl">3.2</span>,   <span class="fl">0.3</span>, <span class="fl">0.4</span>,   <span class="fl">1.8</span>, <span class="fl">0.9</span>,   <span class="fl">0.1</span>, <span class="fl">0.2</span>,   <span class="fl">0.3</span>, <span class="fl">0.5</span>)</a>
+<a class="sourceLine" id="cb48-8" data-line-number="8">x &lt;-<span class="st"> </span><span class="kw">sort</span>(x)</a>
+<a class="sourceLine" id="cb48-9" data-line-number="9">y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">6.0</span>, <span class="fl">0.5</span>, <span class="fl">0.4</span>, <span class="fl">0.7</span>, <span class="fl">0.8</span>, <span class="fl">6.0</span>, <span class="fl">5.0</span>, <span class="fl">0.6</span>, <span class="fl">1.2</span>, <span class="fl">0.3</span>, <span class="fl">0.2</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="dv">10</span>, <span class="fl">0.2</span>, <span class="fl">0.2</span>, <span class="fl">1.7</span>, <span class="fl">3.0</span>)</a>
+<a class="sourceLine" id="cb48-10" data-line-number="10">y &lt;-<span class="st"> </span><span class="kw">sort</span>(y)</a>
+<a class="sourceLine" id="cb48-11" data-line-number="11">y_interp &lt;-<span class="st"> </span>x</a>
+<a class="sourceLine" id="cb48-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb48-13" data-line-number="13"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(x)){</a>
+<a class="sourceLine" id="cb48-14" data-line-number="14">  j &lt;-<span class="st"> </span>((<span class="kw">length</span>(y) <span class="op">*</span><span class="st"> </span>(i <span class="op">-</span><span class="st"> </span><span class="fl">0.4</span>)) <span class="op">/</span><span class="st"> </span>(<span class="kw">length</span>(x) <span class="op">+</span><span class="st"> </span><span class="fl">0.2</span>)) <span class="op">+</span><span class="st"> </span><span class="fl">0.4</span></a>
+<a class="sourceLine" id="cb48-15" data-line-number="15">  j_prime &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">as.integer</span>(j))</a>
+<a class="sourceLine" id="cb48-16" data-line-number="16">  y_interp[i] &lt;-<span class="st"> </span>y[j_prime] <span class="op">+</span><span class="st"> </span>((j <span class="op">-</span><span class="st"> </span>j_prime) <span class="op">*</span><span class="st"> </span>(y[j_prime <span class="op">+</span><span class="st"> </span><span class="dv">1</span>] <span class="op">-</span><span class="st"> </span>y[j_prime]))</a>
+<a class="sourceLine" id="cb48-17" data-line-number="17">}</a>
+<a class="sourceLine" id="cb48-18" data-line-number="18"></a>
+<a class="sourceLine" id="cb48-19" data-line-number="19">chloride_concentration &lt;-<span class="st"> </span><span class="kw">data.table</span>(x,y_interp)</a>
+<a class="sourceLine" id="cb48-20" data-line-number="20"><span class="kw">setnames</span>(chloride_concentration, <span class="kw">c</span>(<span class="st">&quot;Qtz_Monzonite&quot;</span>, <span class="st">&quot;Granodiorite&quot;</span>))</a>
+<a class="sourceLine" id="cb48-21" data-line-number="21"></a>
+<a class="sourceLine" id="cb48-22" data-line-number="22">graph_a &lt;-<span class="st"> </span><span class="kw">ggplot</span>(chloride_concentration, <span class="kw">aes</span>(<span class="dt">x =</span> Qtz_Monzonite, <span class="dt">y =</span> Granodiorite)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb48-23" data-line-number="23"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb48-24" data-line-number="24"><span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="dv">0</span>, <span class="dt">slope =</span> <span class="dv">1</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb48-25" data-line-number="25"><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x =</span> <span class="fl">0.5</span>, <span class="dt">y =</span> <span class="dv">9</span>, <span class="dt">label =</span> <span class="st">&quot;• DATA QUANTILES </span><span class="ch">\n</span><span class="st"> X = Y&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb48-26" data-line-number="26"><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> palettes_bright<span class="op">$</span>colset_cheer_brights) <span class="op">+</span></a>
+<a class="sourceLine" id="cb48-27" data-line-number="27"><span class="st">  </span>theme_generic <span class="op">+</span></a>
+<a class="sourceLine" id="cb48-28" data-line-number="28"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;GRANODIORITE&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;QTZ MONZONITE&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;Dose (mg)&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb48-29" data-line-number="29"><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="fl">3.5</span>, <span class="fl">0.5</span>), <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">3.5</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb48-30" data-line-number="30"><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">2</span>), <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">10</span>))</a>
+<a class="sourceLine" id="cb48-31" data-line-number="31"></a>
+<a class="sourceLine" id="cb48-32" data-line-number="32">graph_b &lt;-<span class="st"> </span><span class="kw">ggplot</span>(chloride_concentration) <span class="op">+</span></a>
+<a class="sourceLine" id="cb48-33" data-line-number="33"><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">data =</span> <span class="kw">as.data.table</span>(y), <span class="kw">aes</span>(<span class="dt">x =</span> <span class="dv">-1</span>, <span class="dt">y =</span> y), <span class="dt">alpha =</span> <span class="fl">0.4</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb48-34" data-line-number="34"><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="dv">1</span>, <span class="dt">y =</span> Qtz_Monzonite), <span class="dt">alpha =</span> <span class="fl">0.4</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb48-35" data-line-number="35"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="ot">NULL</span>, <span class="dt">y =</span> <span class="st">&quot;Chloride Concentration&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb48-36" data-line-number="36"><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">2</span>, <span class="dv">2</span>), <span class="dt">breaks =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>), <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;GRANODIORITE&quot;</span>, <span class="st">&quot;QTZ MONZONITE&quot;</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb48-37" data-line-number="37"><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="fl">2.5</span>), <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">10</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb48-38" data-line-number="38"><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> palettes_bright<span class="op">$</span>colset_cheer_brights) <span class="op">+</span></a>
+<a class="sourceLine" id="cb48-39" data-line-number="39"><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> palettes_bright<span class="op">$</span>colset_cheer_brights) <span class="op">+</span></a>
+<a class="sourceLine" id="cb48-40" data-line-number="40"><span class="st">  </span>theme_generic <span class="op">+</span></a>
+<a class="sourceLine" id="cb48-41" data-line-number="41"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>, <span class="dt">panel.grid =</span> <span class="kw">element_blank</span>())</a>
+<a class="sourceLine" id="cb48-42" data-line-number="42"></a>
+<a class="sourceLine" id="cb48-43" data-line-number="43">graph_c &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">as.data.table</span>(y), <span class="kw">aes</span>(<span class="dt">x =</span> y)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb48-44" data-line-number="44"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">1</span>, <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">fill =</span> palettes_bright<span class="op">$</span>colset_cheer_brights[<span class="dv">1</span>]) <span class="op">+</span></a>
+<a class="sourceLine" id="cb48-45" data-line-number="45"><span class="st">  </span>theme_generic <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb48-46" data-line-number="46"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Granodiorite Chloride Concentration&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;NUMBER OF OCCURRENCES&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb48-47" data-line-number="47"><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">2</span>), <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">11</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb48-48" data-line-number="48"><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">1</span>), <span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">11</span>))</a>
+<a class="sourceLine" id="cb48-49" data-line-number="49"></a>
+<a class="sourceLine" id="cb48-50" data-line-number="50">graph_d &lt;-<span class="st"> </span><span class="kw">ggplot</span>(chloride_concentration, <span class="kw">aes</span>(<span class="dt">x =</span> Qtz_Monzonite)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb48-51" data-line-number="51"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">1</span>, <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">fill =</span> palettes_bright<span class="op">$</span>colset_cheer_brights[<span class="dv">2</span>]) <span class="op">+</span></a>
+<a class="sourceLine" id="cb48-52" data-line-number="52"><span class="st">  </span>theme_generic <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb48-53" data-line-number="53"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Qtz Monzonite Chloride Concentration&quot;</span>, <span class="dt">y =</span> <span class="ot">NULL</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb48-54" data-line-number="54"><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">2</span>), <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">11</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb48-55" data-line-number="55"><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">1</span>), <span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">11</span>))</a>
+<a class="sourceLine" id="cb48-56" data-line-number="56"></a>
+<a class="sourceLine" id="cb48-57" data-line-number="57">graph_a</a></code></pre></div>
+<p><img src="Statistical-Methods-in-Water-Resources_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1">graph_b</a></code></pre></div>
+<p><img src="Statistical-Methods-in-Water-Resources_files/figure-html/unnamed-chunk-27-2.png" width="672" /></p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1"><span class="kw">grid.arrange</span>(graph_c, graph_d, <span class="dt">nrow =</span> <span class="dv">1</span>)</a></code></pre></div>
+<p><img src="Statistical-Methods-in-Water-Resources_files/figure-html/unnamed-chunk-27-3.png" width="672" /></p>
+<p>The granodiorite shows higher chloride concentrations than does the quartz monzonite. This can be seen with any of the three graphs, but most easily with the boxplot. From the Q-Q plot, the relationship does not look linear.</p>
+
+</div>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-blom_statistical_1958">
+<p>Blom, Gunnar. 1958. “Statistical Estimates and Transformed Beta-Variables.” PhD thesis, Almqvist &amp; Wiksell.</p>
+</div>
+<div id="ref-boudette_high_1985">
+<p>Boudette, Eugene L, FC Canney, JE Cotton, RI Davis, WH Ficklin, and JM Motooka. 1985. “High Levels of Arsenic in the Groundwaters of Southeastern New Hampshire.” <em>U.S. Geological Survey Open-File Report</em> 85 (202): 23.</p>
+</div>
+<div id="ref-chambers_graphical_1983">
+<p>Chambers, John, William Cleveland, Beat Kleiner, and Paul Tukey. 1983. <em>Graphical Methods for Data Analysis</em>. PWS-Kent Publishing Co., Boston.</p>
+</div>
+<div id="ref-cleveland_many_1984">
+<p>Cleveland, William S, and Robert McGill. 1984. “The Many Faces of a Scatterplot.” <em>Journal of the American Statistical Association</em> 79 (388). Taylor &amp; Francis Group: 807–22.</p>
+</div>
+<div id="ref-cleveland_graphical_1985">
+<p>Cleveland, William S, and Robert McGill. 1985. “Graphical Perception and Graphical Methods for Analyzing Scientific Data.” <em>Science</em> 229 (4716). American Association for the Advancement of Science: 828–33.</p>
+</div>
+<div id="ref-colby_sedimentation_1956">
+<p>Colby, Bruce Ronald, Charles Herbert Hembree, Frank Hays Rainwater, and others. 1956. <em>Sedimentation and Chemical Quality of Surface Waters in the Wind River Basin, Wyoming</em>. US Government Printing Office.</p>
+</div>
+<div id="ref-cunnane_unbiased_1978">
+<p>Cunnane, C. 1978. “Unbiased Plotting Positions—a Review.” <em>Journal of Hydrology</em> 37 (3-4). Elsevier: 205–22.</p>
+</div>
+<div id="ref-davis_assessment_1984">
+<p>Davis, Robert E, and Gary D Rogers. 1984. “Assessment of Selected Ground-Water-Quality Data in Montana.” US Geological Survey,</p>
+</div>
+<div id="ref-donoho_macspin_1985">
+<p>Donoho, Andrew, David L Donoho, Miriam Gasko, and CW OLSON. 1985. “MACSPIN Graphical Data Analysis Software: D2 Software.” <em>Inc., Austin, Texas</em>.</p>
+</div>
+<div id="ref-everitt_graphical_1978">
+<p>Everitt, Brian S. 1978. <em>Graphical Techniques for Multivariate Data</em>. North-Holland.</p>
+</div>
+<div id="ref-gringorten_plotting_1963">
+<p>Gringorten, Irving I. 1963. “A Plotting Rule for Extreme Probability Paper.” <em>Journal of Geophysical Research</em> 68 (3). Wiley Online Library: 813–14.</p>
+</div>
+<div id="ref-hazen_storage_1914">
+<p>Hazen, Allen. 1914. “The Storage to Be Provided in Impounding Reservoirs for Municipal Water Supply.” <em>Transactions of the American Society of Civil Engineers</em> 77: 1539–1669.</p>
+</div>
+<div id="ref-helsel_mine_1983">
+<p>Helsel, Dennis R. 1983. “MINE Drainage and Rock Type Influences on Eastern Ohio Stream Water Quality 1.” <em>JAWRA Journal of the American Water Resources Association</em> 19 (6). Wiley Online Library: 881–88.</p>
+</div>
+<div id="ref-helsel_diamond_1992">
+<p>Helsel, DR. 1992. “Diamond in the Rough: Enhancements to Piper Diagrams: Submitted to.” <em>Ground Water</em>.</p>
+</div>
+<div id="ref-hem_study_1985">
+<p>Hem, John David. 1985. <em>Study and Interpretation of the Chemical Characteristics of Natural Water</em>. Vol. 2254. Department of the Interior, US Geological Survey.</p>
+</div>
+<div id="ref-henderson_geochemistry_1985">
+<p>Henderson, Thomas. 1985. “Geochemistry of Ground-Water in Two Sandstone Aquifer Systems in the Northern Great Plains in Parts of Montana and Wyoming.” <em>U.S. Geological Survey Professional Paper</em>. US Dept. of the Interior, Geological Survey.</p>
+</div>
+<div id="ref-holtschlag_changes_1987">
+<p>Holtschlag, David J. 1987. <em>Changes in Water Quality of Michigan Streams Near Urban Areas, 1973-84</em>. Vol. 87. 4035. Department of the Interior, US Geological Survey.</p>
+</div>
+<div id="ref-iman_modern_1983">
+<p>Iman, Ronald, and WJ Conover. 1983. “A Modern Approach to Statistics.” John Wiley; Sons, New York.</p>
+</div>
+<div id="ref-interagency_guidelines_1982">
+<p>Interagency Advisory Committee on Water Data. 1982. “Guidelines for Determining Flood Flow Frequency.” <em>Bulletin 17B of the Hydrology Subcommittee</em>. US Geological Survey Reston, VA.</p>
+</div>
+<div id="ref-johnson_applied_1982">
+<p>Johnson, Richard Arnold, and Dean W. Wichern. 1982. <em>Applied Multivariate Statistical Analysis</em>. Prentice-Hall, Inc., Englewood Cliffs, New Jersey.</p>
+</div>
+<div id="ref-jordan_relation_1979">
+<p>Jordan, Paul Robert. 1979. <em>Relation of Sediment Yield to Climatic and Physical Characteristics in the Missouri River Basin</em>. 79. US Geological Survey.</p>
+</div>
+<div id="ref-langbein_plotting_1960">
+<p>Langbein, WB. 1960. “Plotting Positions in Frequency Analysis.” <em>Dalrymple, Tate, Flood Frequency Analysis: US Geol. Survey Water-Supply Paper</em>, 48–51.</p>
+</div>
+<div id="ref-lins_interannual_1985">
+<p>Lins, Harry F. 1985. “Interannual Streamflow Variability in the United States Based on Principal Components.” <em>Water Resources Research</em> 21 (5). Wiley Online Library: 691–701.</p>
+</div>
+<div id="ref-looney_probability_1985">
+<p>Looney, Stephen W, and Thomas R Gulledge Jr. 1985a. “Probability Plotting Positions and Goodness of Fit for the Normal Distribution.” <em>Journal of the Royal Statistical Society: Series D (the Statistician)</em> 34 (3). Wiley Online Library: 297–303.</p>
+</div>
+<div id="ref-mcgill_variations_1978">
+<p>McGill, Robert, John W Tukey, and Wayne A Larsen. 1978. “Variations of Box Plots.” <em>The American Statistician</em> 32 (1). Taylor &amp; Francis Group: 12–16.</p>
+</div>
+<div id="ref-meglen_evaluating_1985">
+<p>Meglen, Robert R, and Robert J Sistko. 1985. “Evaluating Data Quality in Large Data Bases Using Pattern-Recognition Techniques.” In <em>Environmental Applications of Chemometrics, Acs Symposium Series</em>, 17–33. 292. ACS Publications.</p>
+</div>
+<div id="ref-miller_oregon_1984">
+<p>Miller, Timothy L, and Joseph B Gonthier. 1984. <em>Oregon Ground-Water Quality and Its Relation to Hydrogeologic Factors: A Statistical Approach</em>. Vol. 84. 4242. US Geological Survey USA.</p>
+</div>
+<div id="ref-piper_graphic_1944">
+<p>Piper, Arthur M. 1944. “A Graphic Procedure in the Geochemical Interpretation of Water-Analyses.” <em>Eos, Transactions American Geophysical Union</em> 25 (6). Wiley Online Library: 914–28.</p>
+</div>
+<div id="ref-schertz_trend_1985">
+<p>Schertz, Terry L, and Robert M Hirsch. 1985. <em>Trend Analysis of Weekly Acid Rain Data–1978-83</em>. Vol. 85. 4211. US Department of the Interior, Geological Survey.</p>
+</div>
+<div id="ref-tukey_exploratory_1977">
+<p>Tukey, John W. 1977. <em>Exploratory Data Analysis</em>. Vol. 2. Reading, Mass.</p>
+</div>
+<div id="ref-vogel_probability_1986">
+<p>Vogel, Richard M. 1986. “The Probability Plot Correlation Coefficient Test for the Normal, Lognormal, and Gumbel Distributional Hypotheses.” <em>Water Resources Research</em> 22 (4). Wiley Online Library: 587–90.</p>
+</div>
+<div id="ref-vogel_low_1989">
+<p>Vogel, Richard M, and Charles N Kroll. 1989. “Low-Flow Frequency Analysis Using Probability-Plot Correlation Coefficients.” <em>Journal of Water Resources Planning and Management</em> 115 (3). American Society of Civil Engineers: 338–57.</p>
+</div>
+<div id="ref-weibull_phenomenon_1939">
+<p>Weibull, Waloddi. 1939. “The Phenomenon of Rupture in Solids.” <em>IVA Handlingar</em> 153.</p>
+</div>
+<div id="ref-welch_arsenic_1988">
+<p>Welch, Alan H, Michael S Lico, and Jennifer L Hughes. 1988. “Arsenic in Ground Water of the Western United States.” <em>Groundwater</em> 26 (3). Wiley Online Library: 333–47.</p>
+</div>
+<div id="ref-wright_effects_1985">
+<p>Wright, Winfield G. 1985. “Effects of Fracturing on Well Yields in the Coalfield Areas of Wise and Dickenson Counties, Southwestern Virginia.” US Geological Survey,</p>
+</div>
+<div id="ref-xhoffer_chemical_1991">
+<p>Xhoffer, Chris, Paul Bernard, Rene Van Grieken, and Ludo Van der Auwera. 1991. “Chemical Characterization and Source Apportionment of Individual Aerosol Particles over the North Sea and the English Channel Using Multivariate Techniques.” <em>Environmental Science &amp; Technology</em> 25 (8). ACS Publications: 1470–8.</p>
+</div>
+<div id="ref-zelen_probability_1964">
+<p>Zelen, N, and NC Severo. 1964. “Probability Functions: Chapter 26 in Abramowitz, M. And I. A. Stegun, Eds.” <em>Handbook of Mathematical Functions</em>.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="ch1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="ch3.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Statistical-Methods-in-Water-Resources.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

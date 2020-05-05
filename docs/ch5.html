@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="" xml:lang="">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 5 Differences between Two Independent Groups | Statistical Methods in Water Resources with R</title>
   <meta name="description" content="This project aims to translate Helsel and Hirsch ‘Statistical Methods in Water Resources’ into R." />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 5 Differences between Two Independent Groups | Statistical Methods in Water Resources with R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="MiRoVaGo" />
 
 
-<meta name="date" content="2020-04-30" />
+<meta name="date" content="2020-05-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,6 @@
   
 <link rel="prev" href="ch4.html"/>
 <link rel="next" href="ch6.html"/>
-<script src="libs/header-attrs-2.1/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -54,26 +53,25 @@
 
 
 <style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -82,9 +80,9 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  {  }
 @media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+a.sourceLine::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -134,116 +132,96 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
-<li class="chapter" data-level="1" data-path="ch1.html"><a href="ch1.html"><i class="fa fa-check"></i><b>1</b> Summarizing data</a>
-<ul>
+<li class="chapter" data-level="1" data-path="ch1.html"><a href="ch1.html"><i class="fa fa-check"></i><b>1</b> Summarizing data</a><ul>
 <li class="chapter" data-level="1.1" data-path="ch1.html"><a href="ch1.html#characteristics-of-water-resources-data"><i class="fa fa-check"></i><b>1.1</b> Characteristics of Water Resources Data</a></li>
-<li class="chapter" data-level="1.2" data-path="ch1.html"><a href="ch1.html#measures-of-location"><i class="fa fa-check"></i><b>1.2</b> Measures of Location</a>
-<ul>
+<li class="chapter" data-level="1.2" data-path="ch1.html"><a href="ch1.html#measures-of-location"><i class="fa fa-check"></i><b>1.2</b> Measures of Location</a><ul>
 <li class="chapter" data-level="1.2.1" data-path="ch1.html"><a href="ch1.html#classical-measure-the-mean"><i class="fa fa-check"></i><b>1.2.1</b> Classical Measure – the Mean</a></li>
 <li class="chapter" data-level="1.2.2" data-path="ch1.html"><a href="ch1.html#resistant-measure-the-median"><i class="fa fa-check"></i><b>1.2.2</b> Resistant Measure – the Median</a></li>
 <li class="chapter" data-level="1.2.3" data-path="ch1.html"><a href="ch1.html#other-measures-of-location"><i class="fa fa-check"></i><b>1.2.3</b> Other Measures of Location</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="ch1.html"><a href="ch1.html#measures-of-spread"><i class="fa fa-check"></i><b>1.3</b> Measures of Spread</a>
-<ul>
+<li class="chapter" data-level="1.3" data-path="ch1.html"><a href="ch1.html#measures-of-spread"><i class="fa fa-check"></i><b>1.3</b> Measures of Spread</a><ul>
 <li class="chapter" data-level="1.3.1" data-path="ch1.html"><a href="ch1.html#classical-measures"><i class="fa fa-check"></i><b>1.3.1</b> Classical Measures</a></li>
 <li class="chapter" data-level="1.3.2" data-path="ch1.html"><a href="ch1.html#resistant-measures"><i class="fa fa-check"></i><b>1.3.2</b> Resistant Measures</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="ch1.html"><a href="ch1.html#measures-of-skewness"><i class="fa fa-check"></i><b>1.4</b> Measures of Skewness</a>
-<ul>
+<li class="chapter" data-level="1.4" data-path="ch1.html"><a href="ch1.html#measures-of-skewness"><i class="fa fa-check"></i><b>1.4</b> Measures of Skewness</a><ul>
 <li class="chapter" data-level="1.4.1" data-path="ch1.html"><a href="ch1.html#classical-measure-of-skewness"><i class="fa fa-check"></i><b>1.4.1</b> Classical Measure of Skewness</a></li>
 <li class="chapter" data-level="1.4.2" data-path="ch1.html"><a href="ch1.html#resistant-measure-of-skewness"><i class="fa fa-check"></i><b>1.4.2</b> Resistant Measure of Skewness</a></li>
 </ul></li>
 <li class="chapter" data-level="1.5" data-path="ch1.html"><a href="ch1.html#other-resistant-measures"><i class="fa fa-check"></i><b>1.5</b> Other Resistant Measures</a></li>
 <li class="chapter" data-level="1.6" data-path="ch1.html"><a href="ch1.html#outliers"><i class="fa fa-check"></i><b>1.6</b> Outliers</a></li>
-<li class="chapter" data-level="1.7" data-path="ch1.html"><a href="ch1.html#transformations"><i class="fa fa-check"></i><b>1.7</b> Transformations</a>
-<ul>
+<li class="chapter" data-level="1.7" data-path="ch1.html"><a href="ch1.html#transformations"><i class="fa fa-check"></i><b>1.7</b> Transformations</a><ul>
 <li class="chapter" data-level="1.7.1" data-path="ch1.html"><a href="ch1.html#the-ladder-of-powers"><i class="fa fa-check"></i><b>1.7.1</b> The Ladder of Powers</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="ch1.html"><a href="ch1.html#exercises"><i class="fa fa-check"></i>Exercises</a>
-<ul>
+<li class="chapter" data-level="" data-path="ch1.html"><a href="ch1.html#exercises"><i class="fa fa-check"></i>Exercises</a><ul>
 <li class="chapter" data-level="" data-path="ch1.html"><a href="ch1.html#section"><i class="fa fa-check"></i>1.1</a></li>
 <li class="chapter" data-level="" data-path="ch1.html"><a href="ch1.html#section-1"><i class="fa fa-check"></i>1.2</a></li>
 <li class="chapter" data-level="" data-path="ch1.html"><a href="ch1.html#section-2"><i class="fa fa-check"></i>1.3</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="ch2.html"><a href="ch2.html"><i class="fa fa-check"></i><b>2</b> Graphical Data Analysis</a>
-<ul>
-<li class="chapter" data-level="2.1" data-path="ch2.html"><a href="ch2.html#ch2-1"><i class="fa fa-check"></i><b>2.1</b> Graphical Analysis of Single Data Sets</a>
-<ul>
+<li class="chapter" data-level="2" data-path="ch2.html"><a href="ch2.html"><i class="fa fa-check"></i><b>2</b> Graphical Data Analysis</a><ul>
+<li class="chapter" data-level="2.1" data-path="ch2.html"><a href="ch2.html#ch2-1"><i class="fa fa-check"></i><b>2.1</b> Graphical Analysis of Single Data Sets</a><ul>
 <li class="chapter" data-level="2.1.1" data-path="ch2.html"><a href="ch2.html#histograms"><i class="fa fa-check"></i><b>2.1.1</b> Histograms</a></li>
 <li class="chapter" data-level="2.1.2" data-path="ch2.html"><a href="ch2.html#stem-and-leaf-diagrams"><i class="fa fa-check"></i><b>2.1.2</b> Stem and Leaf Diagrams</a></li>
 <li class="chapter" data-level="2.1.3" data-path="ch2.html"><a href="ch2.html#quantile-plots"><i class="fa fa-check"></i><b>2.1.3</b> Quantile Plots</a></li>
 <li class="chapter" data-level="2.1.4" data-path="ch2.html"><a href="ch2.html#boxplots"><i class="fa fa-check"></i><b>2.1.4</b> Boxplots</a></li>
 <li class="chapter" data-level="2.1.5" data-path="ch2.html"><a href="ch2.html#probability-plots"><i class="fa fa-check"></i><b>2.1.5</b> Probability Plots</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="ch2.html"><a href="ch2.html#ch2-2"><i class="fa fa-check"></i><b>2.2</b> Graphical Comparisons of Two or More Data Sets</a>
-<ul>
+<li class="chapter" data-level="2.2" data-path="ch2.html"><a href="ch2.html#ch2-2"><i class="fa fa-check"></i><b>2.2</b> Graphical Comparisons of Two or More Data Sets</a><ul>
 <li class="chapter" data-level="2.2.1" data-path="ch2.html"><a href="ch2.html#histograms-1"><i class="fa fa-check"></i><b>2.2.1</b> Histograms</a></li>
 <li class="chapter" data-level="2.2.2" data-path="ch2.html"><a href="ch2.html#dot-and-line-plots-of-means-standard-deviations"><i class="fa fa-check"></i><b>2.2.2</b> Dot and Line Plots of Means, Standard Deviations</a></li>
 <li class="chapter" data-level="2.2.3" data-path="ch2.html"><a href="ch2.html#boxplots-1"><i class="fa fa-check"></i><b>2.2.3</b> Boxplots</a></li>
 <li class="chapter" data-level="2.2.4" data-path="ch2.html"><a href="ch2.html#probability-plots-1"><i class="fa fa-check"></i><b>2.2.4</b> Probability Plots</a></li>
 <li class="chapter" data-level="2.2.5" data-path="ch2.html"><a href="ch2.html#q-q-plots"><i class="fa fa-check"></i><b>2.2.5</b> Q-Q Plots</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="ch2.html"><a href="ch2.html#scatterplots-and-enhancements"><i class="fa fa-check"></i><b>2.3</b> Scatterplots and Enhancements</a>
-<ul>
+<li class="chapter" data-level="2.3" data-path="ch2.html"><a href="ch2.html#scatterplots-and-enhancements"><i class="fa fa-check"></i><b>2.3</b> Scatterplots and Enhancements</a><ul>
 <li class="chapter" data-level="2.3.1" data-path="ch2.html"><a href="ch2.html#evaluating-linearity"><i class="fa fa-check"></i><b>2.3.1</b> Evaluating Linearity</a></li>
 <li class="chapter" data-level="2.3.2" data-path="ch2.html"><a href="ch2.html#evaluating-differences-in-location-on-a-scatterplot"><i class="fa fa-check"></i><b>2.3.2</b> Evaluating Differences in Location on a Scatterplot</a></li>
 <li class="chapter" data-level="2.3.3" data-path="ch2.html"><a href="ch2.html#evaluating-differences-in-spread"><i class="fa fa-check"></i><b>2.3.3</b> Evaluating Differences in Spread</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="ch2.html"><a href="ch2.html#graphs-for-multivariate-data"><i class="fa fa-check"></i><b>2.4</b> Graphs for Multivariate Data</a>
-<ul>
+<li class="chapter" data-level="2.4" data-path="ch2.html"><a href="ch2.html#graphs-for-multivariate-data"><i class="fa fa-check"></i><b>2.4</b> Graphs for Multivariate Data</a><ul>
 <li class="chapter" data-level="2.4.1" data-path="ch2.html"><a href="ch2.html#profile-plots"><i class="fa fa-check"></i><b>2.4.1</b> Profile Plots</a></li>
 <li class="chapter" data-level="2.4.2" data-path="ch2.html"><a href="ch2.html#star-plots"><i class="fa fa-check"></i><b>2.4.2</b> Star Plots</a></li>
 <li class="chapter" data-level="2.4.3" data-path="ch2.html"><a href="ch2.html#trilinear-diagrams"><i class="fa fa-check"></i><b>2.4.3</b> Trilinear Diagrams</a></li>
 <li class="chapter" data-level="2.4.4" data-path="ch2.html"><a href="ch2.html#plots-of-principal-components"><i class="fa fa-check"></i><b>2.4.4</b> Plots of Principal Components</a></li>
 <li class="chapter" data-level="2.4.5" data-path="ch2.html"><a href="ch2.html#other-multivariate-plots"><i class="fa fa-check"></i><b>2.4.5</b> Other Multivariate Plots</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#exercises-1"><i class="fa fa-check"></i>Exercises</a>
-<ul>
+<li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#exercises-1"><i class="fa fa-check"></i>Exercises</a><ul>
 <li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#section-3"><i class="fa fa-check"></i>2.1</a></li>
 <li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#section-4"><i class="fa fa-check"></i>2.2</a></li>
 <li class="chapter" data-level="" data-path="ch2.html"><a href="ch2.html#section-5"><i class="fa fa-check"></i>2.3</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="ch3.html"><a href="ch3.html"><i class="fa fa-check"></i><b>3</b> Describing Uncertainty</a>
-<ul>
+<li class="chapter" data-level="3" data-path="ch3.html"><a href="ch3.html"><i class="fa fa-check"></i><b>3</b> Describing Uncertainty</a><ul>
 <li class="chapter" data-level="3.1" data-path="ch3.html"><a href="ch3.html#definition-of-interval-estimates"><i class="fa fa-check"></i><b>3.1</b> Definition of Interval Estimates</a></li>
 <li class="chapter" data-level="3.2" data-path="ch3.html"><a href="ch3.html#interpretation-of-interval-estimates"><i class="fa fa-check"></i><b>3.2</b> Interpretation of Interval Estimates</a></li>
-<li class="chapter" data-level="3.3" data-path="ch3.html"><a href="ch3.html#ch3-3"><i class="fa fa-check"></i><b>3.3</b> Confidence Intervals for the Median</a>
-<ul>
+<li class="chapter" data-level="3.3" data-path="ch3.html"><a href="ch3.html#ch3-3"><i class="fa fa-check"></i><b>3.3</b> Confidence Intervals for the Median</a><ul>
 <li class="chapter" data-level="3.3.1" data-path="ch3.html"><a href="ch3.html#ch3-3-1"><i class="fa fa-check"></i><b>3.3.1</b> Nonparametric Interval Estimate For The Median</a></li>
 <li class="chapter" data-level="3.3.2" data-path="ch3.html"><a href="ch3.html#ch3-3-2"><i class="fa fa-check"></i><b>3.3.2</b> Parametric Interval Estimate For The Median</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="ch3.html"><a href="ch3.html#ch3-4"><i class="fa fa-check"></i><b>3.4</b> Confidence Intervals For The Mean</a>
-<ul>
+<li class="chapter" data-level="3.4" data-path="ch3.html"><a href="ch3.html#ch3-4"><i class="fa fa-check"></i><b>3.4</b> Confidence Intervals For The Mean</a><ul>
 <li class="chapter" data-level="3.4.1" data-path="ch3.html"><a href="ch3.html#ch3-4-1"><i class="fa fa-check"></i><b>3.4.1</b> Symmetric Confidence Interval For The Mean</a></li>
 <li class="chapter" data-level="3.4.2" data-path="ch3.html"><a href="ch3.html#ch3-4-2"><i class="fa fa-check"></i><b>3.4.2</b> Asymmetric Confidence Interval For The Mean (For Skewed Data)</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="ch3.html"><a href="ch3.html#ch3-5"><i class="fa fa-check"></i><b>3.5</b> Nonparametric Prediction Intervals</a>
-<ul>
+<li class="chapter" data-level="3.5" data-path="ch3.html"><a href="ch3.html#ch3-5"><i class="fa fa-check"></i><b>3.5</b> Nonparametric Prediction Intervals</a><ul>
 <li class="chapter" data-level="3.5.1" data-path="ch3.html"><a href="ch3.html#two-sided-nonparametric-prediction-interval"><i class="fa fa-check"></i><b>3.5.1</b> Two-Sided Nonparametric Prediction Interval</a></li>
 <li class="chapter" data-level="3.5.2" data-path="ch3.html"><a href="ch3.html#one-sided-nonparametric-prediction-interval"><i class="fa fa-check"></i><b>3.5.2</b> One-Sided Nonparametric Prediction Interval</a></li>
 </ul></li>
-<li class="chapter" data-level="3.6" data-path="ch3.html"><a href="ch3.html#ch3-6"><i class="fa fa-check"></i><b>3.6</b> Parametric Prediction Intervals</a>
-<ul>
+<li class="chapter" data-level="3.6" data-path="ch3.html"><a href="ch3.html#ch3-6"><i class="fa fa-check"></i><b>3.6</b> Parametric Prediction Intervals</a><ul>
 <li class="chapter" data-level="3.6.1" data-path="ch3.html"><a href="ch3.html#symmetric-prediction-interval"><i class="fa fa-check"></i><b>3.6.1</b> Symmetric Prediction Interval</a></li>
 <li class="chapter" data-level="3.6.2" data-path="ch3.html"><a href="ch3.html#asymmetric-prediction-intervals"><i class="fa fa-check"></i><b>3.6.2</b> Asymmetric Prediction Intervals</a></li>
 </ul></li>
-<li class="chapter" data-level="3.7" data-path="ch3.html"><a href="ch3.html#ch3-7"><i class="fa fa-check"></i><b>3.7</b> Confidence Intervals For Percentiles (Tolerance Intervals)</a>
-<ul>
+<li class="chapter" data-level="3.7" data-path="ch3.html"><a href="ch3.html#ch3-7"><i class="fa fa-check"></i><b>3.7</b> Confidence Intervals For Percentiles (Tolerance Intervals)</a><ul>
 <li class="chapter" data-level="3.7.1" data-path="ch3.html"><a href="ch3.html#ch3-7-1"><i class="fa fa-check"></i><b>3.7.1</b> Nonparametric Confidence Intervals For Percentiles</a></li>
 <li class="chapter" data-level="3.7.2" data-path="ch3.html"><a href="ch3.html#ch3-7-2"><i class="fa fa-check"></i><b>3.7.2</b> Nonparametric Tests For Percentiles</a></li>
 <li class="chapter" data-level="3.7.3" data-path="ch3.html"><a href="ch3.html#ch3-7-3"><i class="fa fa-check"></i><b>3.7.3</b> Parametric Confidence Intervals For Percentiles</a></li>
 <li class="chapter" data-level="3.7.4" data-path="ch3.html"><a href="ch3.html#ch3-7-4"><i class="fa fa-check"></i><b>3.7.4</b> Parametric Tests For Percentiles</a></li>
 </ul></li>
-<li class="chapter" data-level="3.8" data-path="ch3.html"><a href="ch3.html#other-uses-for-confidence-intervals"><i class="fa fa-check"></i><b>3.8</b> Other Uses For Confidence Intervals</a>
-<ul>
+<li class="chapter" data-level="3.8" data-path="ch3.html"><a href="ch3.html#other-uses-for-confidence-intervals"><i class="fa fa-check"></i><b>3.8</b> Other Uses For Confidence Intervals</a><ul>
 <li class="chapter" data-level="3.8.1" data-path="ch3.html"><a href="ch3.html#implications-of-non-normality-for-detection-of-outliers"><i class="fa fa-check"></i><b>3.8.1</b> Implications of Non-Normality For Detection of Outliers</a></li>
 <li class="chapter" data-level="3.8.2" data-path="ch3.html"><a href="ch3.html#implications-of-non-normality-for-quality-control"><i class="fa fa-check"></i><b>3.8.2</b> Implications of Non-Normality For Quality Control</a></li>
 <li class="chapter" data-level="3.8.3" data-path="ch3.html"><a href="ch3.html#implications-of-non-normality-for-sampling-design"><i class="fa fa-check"></i><b>3.8.3</b> Implications of Non-Normality For Sampling Design</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#exercises-2"><i class="fa fa-check"></i>Exercises</a>
-<ul>
+<li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#exercises-2"><i class="fa fa-check"></i>Exercises</a><ul>
 <li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#section-6"><i class="fa fa-check"></i>3.1</a></li>
 <li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#section-7"><i class="fa fa-check"></i>3.2</a></li>
 <li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#section-8"><i class="fa fa-check"></i>3.3</a></li>
@@ -251,15 +229,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="ch3.html"><a href="ch3.html#section-10"><i class="fa fa-check"></i>3.5</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="ch4.html"><a href="ch4.html"><i class="fa fa-check"></i><b>4</b> Hypothesis Tests</a>
-<ul>
-<li class="chapter" data-level="4.1" data-path="ch4.html"><a href="ch4.html#ch4-1"><i class="fa fa-check"></i><b>4.1</b> Classification of Hypothesis Tests</a>
-<ul>
+<li class="chapter" data-level="4" data-path="ch4.html"><a href="ch4.html"><i class="fa fa-check"></i><b>4</b> Hypothesis Tests</a><ul>
+<li class="chapter" data-level="4.1" data-path="ch4.html"><a href="ch4.html#ch4-1"><i class="fa fa-check"></i><b>4.1</b> Classification of Hypothesis Tests</a><ul>
 <li class="chapter" data-level="4.1.1" data-path="ch4.html"><a href="ch4.html#Ch4-1-1"><i class="fa fa-check"></i><b>4.1.1</b> Classification Based on Measurement Scales</a></li>
 <li class="chapter" data-level="4.1.2" data-path="ch4.html"><a href="ch4.html#Ch4-1-2"><i class="fa fa-check"></i><b>4.1.2</b> Classification Based on the Data Distribution</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="ch4.html"><a href="ch4.html#Ch4-2"><i class="fa fa-check"></i><b>4.2</b> Structure of Hypothesis Tests</a>
-<ul>
+<li class="chapter" data-level="4.2" data-path="ch4.html"><a href="ch4.html#Ch4-2"><i class="fa fa-check"></i><b>4.2</b> Structure of Hypothesis Tests</a><ul>
 <li class="chapter" data-level="4.2.1" data-path="ch4.html"><a href="ch4.html#Ch4-2-1"><i class="fa fa-check"></i><b>4.2.1</b> Choose the Appropriate Test</a></li>
 <li class="chapter" data-level="4.2.2" data-path="ch4.html"><a href="ch4.html#Ch4-2-2"><i class="fa fa-check"></i><b>4.2.2</b> Establish the Null and Alternate Hypotheses</a></li>
 <li class="chapter" data-level="4.2.3" data-path="ch4.html"><a href="ch4.html#ch4-2-3"><i class="fa fa-check"></i><b>4.2.3</b> Decide on an Acceptable Error Rate α</a></li>
@@ -269,43 +244,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="ch4.html"><a href="ch4.html#Ch4-3"><i class="fa fa-check"></i><b>4.3</b> The Rank-Sum Test as an Example of Hypothesis Testing</a></li>
 <li class="chapter" data-level="4.4" data-path="ch4.html"><a href="ch4.html#ch4-4"><i class="fa fa-check"></i><b>4.4</b> Tests for Normality</a></li>
-<li class="chapter" data-level="" data-path="ch4.html"><a href="ch4.html#exercises-3"><i class="fa fa-check"></i>Exercises</a>
-<ul>
+<li class="chapter" data-level="" data-path="ch4.html"><a href="ch4.html#exercises-3"><i class="fa fa-check"></i>Exercises</a><ul>
 <li class="chapter" data-level="" data-path="ch4.html"><a href="ch4.html#section-11"><i class="fa fa-check"></i>4.1</a></li>
 <li class="chapter" data-level="" data-path="ch4.html"><a href="ch4.html#section-12"><i class="fa fa-check"></i>4.2</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="ch5.html"><a href="ch5.html"><i class="fa fa-check"></i><b>5</b> Differences between Two Independent Groups</a>
-<ul>
-<li class="chapter" data-level="5.1" data-path="ch5.html"><a href="ch5.html#ch5-1"><i class="fa fa-check"></i><b>5.1</b> The Rank-Sum Test</a>
-<ul>
+<li class="chapter" data-level="5" data-path="ch5.html"><a href="ch5.html"><i class="fa fa-check"></i><b>5</b> Differences between Two Independent Groups</a><ul>
+<li class="chapter" data-level="5.1" data-path="ch5.html"><a href="ch5.html#ch5-1"><i class="fa fa-check"></i><b>5.1</b> The Rank-Sum Test</a><ul>
 <li class="chapter" data-level="5.1.1" data-path="ch5.html"><a href="ch5.html#ch5-1-1"><i class="fa fa-check"></i><b>5.1.1</b> Null and Alternate Hypotheses</a></li>
 <li class="chapter" data-level="5.1.2" data-path="ch5.html"><a href="ch5.html#ch5-1-2"><i class="fa fa-check"></i><b>5.1.2</b> Computation of the Exact Test</a></li>
 <li class="chapter" data-level="5.1.3" data-path="ch5.html"><a href="ch5.html#ch5-1-3"><i class="fa fa-check"></i><b>5.1.3</b> The Large Sample Approximation</a></li>
 <li class="chapter" data-level="5.1.4" data-path="ch5.html"><a href="ch5.html#ch5-1-3-1"><i class="fa fa-check"></i><b>5.1.4</b> Correction for ties</a></li>
 <li class="chapter" data-level="5.1.5" data-path="ch5.html"><a href="ch5.html#ch5-1-4"><i class="fa fa-check"></i><b>5.1.5</b> The Rank Transform Approximation</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="ch5.html"><a href="ch5.html#ch5-2"><i class="fa fa-check"></i><b>5.2</b> The t-Test</a>
-<ul>
+<li class="chapter" data-level="5.2" data-path="ch5.html"><a href="ch5.html#ch5-2"><i class="fa fa-check"></i><b>5.2</b> The t-Test</a><ul>
 <li class="chapter" data-level="5.2.1" data-path="ch5.html"><a href="ch5.html#ch5-2-1"><i class="fa fa-check"></i><b>5.2.1</b> Assumptions of the Test</a></li>
 <li class="chapter" data-level="5.2.2" data-path="ch5.html"><a href="ch5.html#ch5-2-2"><i class="fa fa-check"></i><b>5.2.2</b> Computation of the t-Test</a></li>
 <li class="chapter" data-level="5.2.3" data-path="ch5.html"><a href="ch5.html#ch5-2-3"><i class="fa fa-check"></i><b>5.2.3</b> Modification for Unequal Variances</a></li>
 <li class="chapter" data-level="5.2.4" data-path="ch5.html"><a href="ch5.html#ch5-2-4"><i class="fa fa-check"></i><b>5.2.4</b> Consequences of Violating the t-Test’s Assumptions</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="ch5.html"><a href="ch5.html#ch5-3"><i class="fa fa-check"></i><b>5.3</b> Graphical Presentation of Results</a>
-<ul>
+<li class="chapter" data-level="5.3" data-path="ch5.html"><a href="ch5.html#ch5-3"><i class="fa fa-check"></i><b>5.3</b> Graphical Presentation of Results</a><ul>
 <li class="chapter" data-level="5.3.1" data-path="ch5.html"><a href="ch5.html#ch5-3-1"><i class="fa fa-check"></i><b>5.3.1</b> Side-by-Side Boxplots</a></li>
 <li class="chapter" data-level="5.3.2" data-path="ch5.html"><a href="ch5.html#ch5-3-2"><i class="fa fa-check"></i><b>5.3.2</b> Q-Q Plots</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="ch5.html"><a href="ch5.html#ch5-4"><i class="fa fa-check"></i><b>5.4</b> Estimating the Magnitude of Differences Between Two Groups</a>
-<ul>
+<li class="chapter" data-level="5.4" data-path="ch5.html"><a href="ch5.html#ch5-4"><i class="fa fa-check"></i><b>5.4</b> Estimating the Magnitude of Differences Between Two Groups</a><ul>
 <li class="chapter" data-level="5.4.1" data-path="ch5.html"><a href="ch5.html#ch5-4-1"><i class="fa fa-check"></i><b>5.4.1</b> The Hodges-Lehmann Estimator</a></li>
 <li class="chapter" data-level="5.4.2" data-path="ch5.html"><a href="ch5.html#ch5-4-2"><i class="fa fa-check"></i><b>5.4.2</b> Confidence Interval for <span class="math inline">\(\hat{\Delta}\)</span></a></li>
 <li class="chapter" data-level="5.4.3" data-path="ch5.html"><a href="ch5.html#ch5-4-3"><i class="fa fa-check"></i><b>5.4.3</b> Difference Between Mean Values</a></li>
 <li class="chapter" data-level="5.4.4" data-path="ch5.html"><a href="ch5.html#ch5-4-4"><i class="fa fa-check"></i><b>5.4.4</b> Confidence Interval for <span class="math inline">\(\bar{x} − \bar{y}\)</span></a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="ch5.html"><a href="ch5.html#exercises-4"><i class="fa fa-check"></i>Exercises</a>
-<ul>
+<li class="chapter" data-level="" data-path="ch5.html"><a href="ch5.html#exercises-4"><i class="fa fa-check"></i>Exercises</a><ul>
 <li class="chapter" data-level="" data-path="ch5.html"><a href="ch5.html#section-13"><i class="fa fa-check"></i>5.1</a></li>
 <li class="chapter" data-level="" data-path="ch5.html"><a href="ch5.html#section-14"><i class="fa fa-check"></i>5.2</a></li>
 <li class="chapter" data-level="" data-path="ch5.html"><a href="ch5.html#section-15"><i class="fa fa-check"></i>5.3</a></li>
@@ -314,46 +282,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="ch5.html"><a href="ch5.html#section-18"><i class="fa fa-check"></i>5.6</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="ch6.html"><a href="ch6.html"><i class="fa fa-check"></i><b>6</b> Matched-Pair Tests</a>
-<ul>
-<li class="chapter" data-level="6.1" data-path="ch6.html"><a href="ch6.html#ch6-1"><i class="fa fa-check"></i><b>6.1</b> The Sign Test</a>
-<ul>
+<li class="chapter" data-level="6" data-path="ch6.html"><a href="ch6.html"><i class="fa fa-check"></i><b>6</b> Matched-Pair Tests</a><ul>
+<li class="chapter" data-level="6.1" data-path="ch6.html"><a href="ch6.html#ch6-1"><i class="fa fa-check"></i><b>6.1</b> The Sign Test</a><ul>
 <li class="chapter" data-level="6.1.1" data-path="ch6.html"><a href="ch6.html#ch6-1-1"><i class="fa fa-check"></i><b>6.1.1</b> Null and Alternate Hypotheses</a></li>
 <li class="chapter" data-level="6.1.2" data-path="ch6.html"><a href="ch6.html#ch6-1-2"><i class="fa fa-check"></i><b>6.1.2</b> Computation of the Exact Test</a></li>
 <li class="chapter" data-level="6.1.3" data-path="ch6.html"><a href="ch6.html#ch6-1-3"><i class="fa fa-check"></i><b>6.1.3</b> The Large Sample Approximation</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="ch6.html"><a href="ch6.html#ch6-2"><i class="fa fa-check"></i><b>6.2</b> The Signed-Rank Test</a>
-<ul>
+<li class="chapter" data-level="6.2" data-path="ch6.html"><a href="ch6.html#ch6-2"><i class="fa fa-check"></i><b>6.2</b> The Signed-Rank Test</a><ul>
 <li class="chapter" data-level="6.2.1" data-path="ch6.html"><a href="ch6.html#ch6-2-1"><i class="fa fa-check"></i><b>6.2.1</b> Null and Alternate Hypotheses</a></li>
 <li class="chapter" data-level="6.2.2" data-path="ch6.html"><a href="ch6.html#ch6-2-2"><i class="fa fa-check"></i><b>6.2.2</b> Computation of the Exact Test</a></li>
 <li class="chapter" data-level="6.2.3" data-path="ch6.html"><a href="ch6.html#ch6-2-3"><i class="fa fa-check"></i><b>6.2.3</b> The Large Sample Approximation</a></li>
 <li class="chapter" data-level="6.2.4" data-path="ch6.html"><a href="ch6.html#ch6-2-4"><i class="fa fa-check"></i><b>6.2.4</b> The Rank Transform Approximation</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="ch6.html"><a href="ch6.html#ch6-3"><i class="fa fa-check"></i><b>6.3</b> The Paired t-Test</a>
-<ul>
+<li class="chapter" data-level="6.3" data-path="ch6.html"><a href="ch6.html#ch6-3"><i class="fa fa-check"></i><b>6.3</b> The Paired t-Test</a><ul>
 <li class="chapter" data-level="6.3.1" data-path="ch6.html"><a href="ch6.html#ch6-3-1"><i class="fa fa-check"></i><b>6.3.1</b> Assumptions of the Test</a></li>
 <li class="chapter" data-level="6.3.2" data-path="ch6.html"><a href="ch6.html#ch6-3-2"><i class="fa fa-check"></i><b>6.3.2</b> Computation of the Paired t-Test</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="ch6.html"><a href="ch6.html#ch6-4"><i class="fa fa-check"></i><b>6.4</b> Consequences of Violating Test Assumptions</a>
-<ul>
+<li class="chapter" data-level="6.4" data-path="ch6.html"><a href="ch6.html#ch6-4"><i class="fa fa-check"></i><b>6.4</b> Consequences of Violating Test Assumptions</a><ul>
 <li class="chapter" data-level="6.4.1" data-path="ch6.html"><a href="ch6.html#ch6-4-1"><i class="fa fa-check"></i><b>6.4.1</b> Assumption of Normality (t-Test)</a></li>
 <li class="chapter" data-level="6.4.2" data-path="ch6.html"><a href="ch6.html#ch6-4-2"><i class="fa fa-check"></i><b>6.4.2</b> Assumption of Symmetry (Signed-Rank Test)</a></li>
 </ul></li>
-<li class="chapter" data-level="6.5" data-path="ch6.html"><a href="ch6.html#ch6-5"><i class="fa fa-check"></i><b>6.5</b> Graphical Presentation of Results</a>
-<ul>
+<li class="chapter" data-level="6.5" data-path="ch6.html"><a href="ch6.html#ch6-5"><i class="fa fa-check"></i><b>6.5</b> Graphical Presentation of Results</a><ul>
 <li class="chapter" data-level="6.5.1" data-path="ch6.html"><a href="ch6.html#boxplots-6-5-1"><i class="fa fa-check"></i><b>6.5.1</b> Boxplots {#6-5-1}</a></li>
 <li class="chapter" data-level="6.5.2" data-path="ch6.html"><a href="ch6.html#ch6-5-2"><i class="fa fa-check"></i><b>6.5.2</b> Scatterplots With X=Y Line</a></li>
 </ul></li>
-<li class="chapter" data-level="6.6" data-path="ch6.html"><a href="ch6.html#ch6-6"><i class="fa fa-check"></i><b>6.6</b> Estimating the Magnitude of Differences Between Two Groups</a>
-<ul>
+<li class="chapter" data-level="6.6" data-path="ch6.html"><a href="ch6.html#ch6-6"><i class="fa fa-check"></i><b>6.6</b> Estimating the Magnitude of Differences Between Two Groups</a><ul>
 <li class="chapter" data-level="6.6.1" data-path="ch6.html"><a href="ch6.html#ch6-6-1"><i class="fa fa-check"></i><b>6.6.1</b> The Median Difference (Sign Test)</a></li>
 <li class="chapter" data-level="6.6.2" data-path="ch6.html"><a href="ch6.html#ch6-6-2"><i class="fa fa-check"></i><b>6.6.2</b> The Hodges-Lehmann Estimator (Signed-Rank Test)</a></li>
 <li class="chapter" data-level="6.6.3" data-path="ch6.html"><a href="ch6.html#ch6-6-2-1"><i class="fa fa-check"></i><b>6.6.3</b> Confidence interval on <span class="math inline">\(\bar{\Delta}\)</span></a></li>
 <li class="chapter" data-level="6.6.4" data-path="ch6.html"><a href="ch6.html#ch6-6-3"><i class="fa fa-check"></i><b>6.6.4</b> Mean Difference (t-Test)</a></li>
 <li class="chapter" data-level="6.6.5" data-path="ch6.html"><a href="ch6.html#ch6-6-3-1"><i class="fa fa-check"></i><b>6.6.5</b> Confidence interval on the mean difference</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="ch6.html"><a href="ch6.html#exercises-5"><i class="fa fa-check"></i>Exercises</a>
-<ul>
+<li class="chapter" data-level="" data-path="ch6.html"><a href="ch6.html#exercises-5"><i class="fa fa-check"></i>Exercises</a><ul>
 <li class="chapter" data-level="" data-path="ch6.html"><a href="ch6.html#section-19"><i class="fa fa-check"></i>6.1</a></li>
 <li class="chapter" data-level="" data-path="ch6.html"><a href="ch6.html#section-20"><i class="fa fa-check"></i>6.2</a></li>
 <li class="chapter" data-level="" data-path="ch6.html"><a href="ch6.html#section-21"><i class="fa fa-check"></i>6.3</a></li>
@@ -379,16 +339,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="ch5" class="section level1" number="5">
+<div id="ch5" class="section level1">
 <h1><span class="header-section-number">Chapter 5</span> Differences between Two Independent Groups</h1>
 <p>Wells upgradient and downgradient of a hazardous waste site are sampled to determine whether the concentrations of some toxic organic compound known to reside in drums at the site are greater in the downgradient wells. Are they greater at the α = 0.01 significance level? If so, the ground water is declared to be contaminated, and the site will need to be cleaned up.</p>
 <p>Measurements of a biological diversity index are made on sixteen streams. Eight of the streams represent “natural” conditions, while the other eight have received urban runoff. Is the biological quality of the urban streams worse than that of the “natural” streams?</p>
 <p>Unit well yields are determined for a series of bedrock wells in the Piedmont region. Some wells tap areas where fracturing is prevalent, while other wells are drilled in largely unfractured rock. Does fracturing affect well yields, and if so how?</p>
 <p>These are examples of comparisons of two independent groups of data, to determine if one group tends to contain larger values than the other. The data are independent in the sense that there is no natural structure in the order of observations across groups – there are no pairings of data between observation 1 of group 1 and observation 1 of group 2, etc. Where such a pairing does exist, methods like those of Chapter 6 should be used. In some cases it is known ahead of time which group is expected to be larger (a one-sided test), and in other cases it is not (a twosided test). This chapter will present and discuss the rank-sum test, a nonparametric procedure for determining whether two independent groups differ. In the special case where the data within each group are known to be normally distributed, and the differences between the groups are additive, the t-test may also be used. Graphical presentations of the test results will be quickly surveyed. Finally, methods for estimating the magnitude of the difference between the two groups are presented, including the Hodges-Lehmann estimator, one of a class of efficient and resistant nonparametric estimators unfamiliar to many water resources scientists.</p>
-<div id="ch5-1" class="section level2" number="5.1">
+<div id="ch5-1" class="section level2">
 <h2><span class="header-section-number">5.1</span> The Rank-Sum Test</h2>
-<p>The rank-sum test goes by many names. It was developed by Wilcoxon <span class="citation">Wilcoxon (<a href="#ref-wilcoxon1945individual" role="doc-biblioref">1945</a>)</span>, and so is sometimes called the Wilcoxon rank-sum test. It is equivalent to a test developed by Mann and Whitney near the same time period, and the test statistics can be derived one from the other. Thus the Mann-Whitney test is another name for the same test. The combined name of Wilcoxon-Mann-Whitney rank-sum test has also been used.</p>
-<div id="ch5-1-1" class="section level3" number="5.1.1">
+<p>The rank-sum test goes by many names. It was developed by Wilcoxon <span class="citation">Wilcoxon (<a href="#ref-wilcoxon1945individual">1945</a>)</span>, and so is sometimes called the Wilcoxon rank-sum test. It is equivalent to a test developed by Mann and Whitney near the same time period, and the test statistics can be derived one from the other. Thus the Mann-Whitney test is another name for the same test. The combined name of Wilcoxon-Mann-Whitney rank-sum test has also been used.</p>
+<div id="ch5-1-1" class="section level3">
 <h3><span class="header-section-number">5.1.1</span> Null and Alternate Hypotheses</h3>
 <p>In its most general form, the rank-sum test is a test for whether one group tends to produce larger observations than the second group. It has as its null hypothesis:</p>
 <pre><code>H0: Prob [x &gt; y] = 0.5
@@ -414,7 +374,7 @@ Figure 5.2: Boxplots of the logarithms of the figure 5.1 data. Medians still dif
 </p>
 </div>
 </div>
-<div id="ch5-1-2" class="section level3" number="5.1.2">
+<div id="ch5-1-2" class="section level3">
 <h3><span class="header-section-number">5.1.2</span> Computation of the Exact Test</h3>
 <p>The exact form of the rank-sum test is given below. It is the only form appropriate for comparing groups of sample size 10 or smaller per group. When both groups have samples sizes greater than 10 (n, m &gt; 10), the large-sample approximation may be used. Remember that computer packages report p-values from the large sample approximation regardless of sample size.</p>
 <p><strong>Exact Version of the Rank-Sum test!</strong></p>
@@ -438,7 +398,7 @@ Rk = 1 to (N = n + m), using average ranks in case of ties.</p>
 </ol>
 <p>Reject H0 if <span class="math inline">\(W_{rs} ≤ x^*_{α,n,m}\)</span> from Table B4; otherwise do not reject H0.</p>
 <p><u>Example 1.</u></p>
-<p>Precipitation quality was compared at sites with different land uses by Oltmann and Shulters <span class="citation">Oltmann and Shulters (<a href="#ref-oltmann_rainfall_1989" role="doc-biblioref">1989</a>)</span>. A rank-sum test is used to determine if one of the constituents, ammonia plus organic nitrogen, significantly differs (α = 0.05) between the industrial and residential sites.</p>
+<p>Precipitation quality was compared at sites with different land uses by Oltmann and Shulters <span class="citation">Oltmann and Shulters (<a href="#ref-oltmann_rainfall_1989">1989</a>)</span>. A rank-sum test is used to determine if one of the constituents, ammonia plus organic nitrogen, significantly differs (α = 0.05) between the industrial and residential sites.</p>
 <pre><code>H0 : median concentration (industrial) = median concentration (residential)
 
 H3 : median concentration (industrial) ≠ median concentration (residential).</code></pre>
@@ -453,7 +413,7 @@ H3 : median concentration (industrial) ≠ median concentration (residential).</
 = 78.5</p>
 <p>For this two-sided test, reject H0 if <span class="math inline">\(W_{rs} ≤ x^*_{α/2,n,m}\)</span> or <span class="math inline">\(W_rs ≥ x_{α/2,n,m}\)</span>. From Table B4, <span class="math inline">\(x^*_{.026,10,10} = 79\)</span> and <span class="math inline">\(x^*_{.022,10,10} = 78\)</span>. Interpolating halfway between these for W<sub>rs</sub> = 78.5, the p-value for the two-sided test is 0.024•2 = 0.048, and the decision would be to reject H0 at α = 0.05. Reporting the p-value shows how very close the risk of Type I error is to 0.05. The conclusion is therefore that ammonia plus organic nitrogen concentrations from industrial precipitation are significantly different than those in residential precipitation at a p-value of 0.048.</p>
 </div>
-<div id="ch5-1-3" class="section level3" number="5.1.3">
+<div id="ch5-1-3" class="section level3">
 <h3><span class="header-section-number">5.1.3</span> The Large Sample Approximation</h3>
 <p>For the rank sum test, the distribution of the test statistic Wrs closely approximates a normal distribution when the sample size for each group is 10 or above figure <a href="ch5.html#fig:fig-5-3">5.3</a>. With n=m=10, there are 184,756 possible arrangements of the data ranks. The collection of test statistics for each of these comprises the exact distribution of Wrs, shown as bars in figure <a href="ch5.html#fig:fig-5-3">5.3</a>, with a mean of 105. Superimposed on the exact distribution is the normal distribution which closely approximates the exact values. This demonstrates how well the exact distribution of this test can be approximated, even for relatively small sample sizes. The inset shows a magnified view of the peak of the distribution, with the normal approximation crossing the center of the exact distribution bars.</p>
 <p>This approximation does not imply that the data are or must be normally distributed. Rather, it is based on the near normality of the test statistic at large sample sizes. If there are no ties, Wrs has a mean μW and standard deviation σW when H0 is true of:</p>
@@ -482,31 +442,31 @@ Z_{rs} =
 <p>The large-sample approximation is applied to the precipitation nitrogen data. Note that this is inappropriate because there are three pairs of tied values. How close is the approximate to the exact p-value? For the exact test above, Wrs = 78.5.</p>
 <p><span class="math inline">\(\mu_W = 10(21)/2 = 105 \ \ \ \ \ \ \ \ \sigma_W = \sqrt{10\ \  10 (21)/12} = 13.23\)</span></p>
 <p>Therefore $ Z<sub>rs</sub> =  = 1.965 $</p>
-<p>and p ≅ 2•0.025 = 0.05 from a table of the normal distribution such as Table A2 of Iman and Conover <span class="citation">Iman and Conover (<a href="#ref-iman_modern_1983" role="doc-biblioref">1983</a>)</span>. This is very close to the exact test results, and errors decrease with increasing
+<p>and p ≅ 2•0.025 = 0.05 from a table of the normal distribution such as Table A2 of Iman and Conover <span class="citation">Iman and Conover (<a href="#ref-iman_modern_1983">1983</a>)</span>. This is very close to the exact test results, and errors decrease with increasing
 sample sizes.</p>
 </div>
-<div id="ch5-1-3-1" class="section level3" number="5.1.4">
+<div id="ch5-1-3-1" class="section level3">
 <h3><span class="header-section-number">5.1.4</span> Correction for ties</h3>
-<p>Conover <span class="citation">Conover and Conover (<a href="#ref-conover1980practical" role="doc-biblioref">1980</a>)</span> presents a further correction to σW when ties occur, and tied ranks are assigned. The formula below for σ<sub>Wt</sub> should be used for computing the large sample approximation rather than σW when more than a few ties occur.</p>
+<p>Conover <span class="citation">William Jay Conover and Conover (<a href="#ref-conover1980practical">1980</a>)</span> presents a further correction to σW when ties occur, and tied ranks are assigned. The formula below for σ<sub>Wt</sub> should be used for computing the large sample approximation rather than σW when more than a few ties occur.</p>
 <p><span class="math display">\[ \sigma_{Wt} = \sqrt{ \frac{nm}{N(N-1)} \sum_{k=1}^{N} R_{k^2} \ \frac{nm(N+1)^2}{4(N-1)}}  \ \ \ \ \ \ \  \ \ \ \ \ \text{where N = n+m                   [5.4]}\]</span>
 <u> Example 1, cont.</u>
 The tie correction is applied to the large sample approximation for the precipitation nitrogen data.</p>
 <p><span class="math display">\[ \sigma_{Wt} = \sqrt{ \frac{100}{2019} 2868.5 \ \frac{100(21)^2}{419}} = \sqrt{174.61} = 13.21.\]</span></p>
 </div>
-<div id="ch5-1-4" class="section level3" number="5.1.5">
+<div id="ch5-1-4" class="section level3">
 <h3><span class="header-section-number">5.1.5</span> The Rank Transform Approximation</h3>
 <p>Another approximation to the exact rank-sum test is to compute the equivalent parametric test, in this case the t-test, on the ranks Rk rather than on the original data themselves. Computations will be illustrated in detail following the presentation of the t-test in the next section. The rank-transform p-value calculated in that section for the precipitation nitrogen data is 0.042, close to but lower than the exact value, and not as close as the large sample approximation. Rank transform approximations are not as widely accepted as are the large sample approximations. This is due to the fact that the rank transform approximations can result in a lower p-value than the exact test, while the large sample approximation will not. In addition, the rank approximation is often not as close as the large-sample approximation for the same sample size. Statisticians prefer that an approximation never result in a lower p-value than the exact test, as this means that H0 will be rejected more frequently than it should. However, this problem only occurs for small sample sizes. For the sample sizes (conservatively, n and m both larger than 25) at which the rank approximation should be used, it should perform well.</p>
 </div>
 </div>
-<div id="ch5-2" class="section level2" number="5.2">
+<div id="ch5-2" class="section level2">
 <h2><span class="header-section-number">5.2</span> The t-Test</h2>
 <p>The t-test is perhaps the most widely used method for comparing two independent groups of data. It is familiar to most water resources scientists. However, there are five often overlooked
-problems with the t-test that make it less applicable for general use than the nonparametric ranksum test. These are 1) lack of power when applied to non-normal data, 2) dependence on an additive model, 3) lack of applicability for censored data, 4) assumption that the mean is a good measure of central tendency for skewed data, and 5) difficulty in detecting non-normality and inequality of variance for the small sample sizes common to water resources data. These problems were discussed in detail by Helsel and Hirsch <span class="citation">Helsel and Cohn (<a href="#ref-helsel1988estimation" role="doc-biblioref">1988</a>)</span>, and will be evaluated here in regard to the precipitation nitrogen data.</p>
-<div id="ch5-2-1" class="section level3" number="5.2.1">
+problems with the t-test that make it less applicable for general use than the nonparametric ranksum test. These are 1) lack of power when applied to non-normal data, 2) dependence on an additive model, 3) lack of applicability for censored data, 4) assumption that the mean is a good measure of central tendency for skewed data, and 5) difficulty in detecting non-normality and inequality of variance for the small sample sizes common to water resources data. These problems were discussed in detail by Helsel and Hirsch <span class="citation">Helsel and Cohn (<a href="#ref-helsel1988estimation">1988</a>)</span>, and will be evaluated here in regard to the precipitation nitrogen data.</p>
+<div id="ch5-2-1" class="section level3">
 <h3><span class="header-section-number">5.2.1</span> Assumptions of the Test</h3>
 <p>The t-test assumes that both groups of data are normally distributed around their respective means, and that they have the same variance. The two groups therefore are assumed to have identical distributions which differ only in their central location (mean). Therefore the t-test is a test for differences in central location only, and assumes that there is an additive difference between the two means, if any difference exists. These are strong assumptions rarely satisfied with water resources data. The null hypothesis is stated as <span class="math display">\[ H0 \colon \mu_x = \mu_y \ \ \ \ \ \ \ \ \ \ \ \text{the means for groups x and y are identical.}\]</span></p>
 </div>
-<div id="ch5-2-2" class="section level3" number="5.2.2">
+<div id="ch5-2-2" class="section level3">
 <h3><span class="header-section-number">5.2.2</span> Computation of the t-Test</h3>
 <p><strong>Two Sample t-test</strong></p>
 <p><strong>Situation</strong></p>
@@ -525,7 +485,7 @@ Reject H0 if <span class="math inline">\(t \lt −t_{α/2,(n+m−2)}\)</span> or
 <li><p><span class="math inline">\(H3 : \mu_x \lt \mu_y\)</span> (prior to seeing any data, y is expected to be greater than x) Reject H0 if <span class="math inline">\(t \lt −t _{α,(n+m−2)}\)</span> from a table of the t distribution; otherwise do not reject H0.</p></li>
 </ol>
 </div>
-<div id="ch5-2-3" class="section level3" number="5.2.3">
+<div id="ch5-2-3" class="section level3">
 <h3><span class="header-section-number">5.2.3</span> Modification for Unequal Variances</h3>
 <p>When the two groups have unequal variances the degrees of freedom and test statistic t should be modified using Satterthwaite’s approximation:</p>
 <p><strong>Two Sample t-test with Unequal Variances</strong></p>
@@ -552,11 +512,11 @@ Reject H0 if <span class="math inline">\(t \lt −t_{α/2,(df)}\)</span> or <spa
 <p><span class="math display">\[ t_{rank} = \frac{{13.15} - {7.85}}{5.4\sqrt{1/10+1/10}} = 2.19\]</span></p>
 <p>where 13.15 is the mean rank of the x data, etc. Comparing this to <span class="math inline">\(t_{.025,18} = 2.10\)</span>, H0 is rejected with a p-value of 0.042. The medians are declared different.</p>
 </div>
-<div id="ch5-2-4" class="section level3" number="5.2.4">
+<div id="ch5-2-4" class="section level3">
 <h3><span class="header-section-number">5.2.4</span> Consequences of Violating the t-Test’s Assumptions</h3>
 <p>Computing the probability plot correlation coefficient to test for normality of the two groups of precipitation nitrogen data, the industrial group had a PPCC of 0.895, while the residential group had a PPCC of 0.66. From Table B3 of the Appendix, both correlation coefficients are below the critical value of 0.918 for an α of 0.05, and so both groups must be considered non-normal (see Chapter <a href="ch4.html#ch4">4</a> for details on the PPCC test). A t-test should not have been used on these data. However, if the normality test results are ignored, the t-test declares the group means to be similar, which is commonly interpreted to mean that the two groups are similar. The rank-sum test finds the two groups to be significantly different. This has the following consequences:</p>
 <ol style="list-style-type: decimal">
-<li><p>This example demonstrates the <strong>lack of power</strong> encountered when a t-test is applied to non-normal data. <strong>When parametric tests are applied to non-normal data, their power to detect differences which are truly present is much lower than that for the equivalent nonparametric test</strong> <span class="citation">Bradley (<a href="#ref-bradley1968distribution" role="doc-biblioref">1968</a>)</span>. Thus the t-test is not capable of discerning the difference between the two groups of precipitation nitrogen. The skewness and outliers in the data inflate the sample standard deviation used in the t-test. The t-test assumes it is operating on normal distributions having this standard deviation, rather than on non-normal data with smaller overall spread. It then fails to detect the differences present.</p></li>
+<li><p>This example demonstrates the <strong>lack of power</strong> encountered when a t-test is applied to non-normal data. <strong>When parametric tests are applied to non-normal data, their power to detect differences which are truly present is much lower than that for the equivalent nonparametric test</strong> <span class="citation">Bradley (<a href="#ref-bradley1968distribution">1968</a>)</span>. Thus the t-test is not capable of discerning the difference between the two groups of precipitation nitrogen. The skewness and outliers in the data inflate the sample standard deviation used in the t-test. The t-test assumes it is operating on normal distributions having this standard deviation, rather than on non-normal data with smaller overall spread. It then fails to detect the differences present.</p></li>
 <li><p>As shown by the Q-Q plot of figure <a href="ch5.html#fig:fig-5-5">5.5</a>, these data do not exhibit an additive difference between the data sets. A multiplicative model of the differences is more likely, and logs of the data should be used rather than the original units in a t-test. Of course, this is not of concern to the rank-sum test, as the test results will in either units be identical.</p></li>
 <li><p>A t-test cannot be easily applied to censored data, such as data below the detection limit. That is because the mean and standard deviation of such data cannot be computed without either substituting some arbitrary values, or making a further distributional assumption about the data. This topic is discussed further in Chapter <a href="#ch13"><strong>??</strong></a>. It will only be noted here that all data below a single detection limit can easily be assigned a tied rank, and a rank-sum test computed, without making any distributional assumptions or assigning arbitrary values to the data.</p></li>
 <li><p>The t-test assumes that the mean is a good measure of central tendency for the data being tested. This is certainly not true for skewed data such as the precipitation nitrogen data. The mean of the residential data is greatly inflated by the one large outlier figure <a href="ch5.html#fig:fig-5-4">5.4</a>, making it similar to the mean at the industrial site. The mean is neither resistant to outliers, nor near the center (50<sub>th</sub> percentile) of skewed data. Therefore tests on the mean often make little sense.</p></li>
@@ -564,10 +524,10 @@ Reject H0 if <span class="math inline">\(t \lt −t_{α/2,(df)}\)</span> or <spa
 </ol>
 </div>
 </div>
-<div id="ch5-3" class="section level2" number="5.3">
+<div id="ch5-3" class="section level2">
 <h2><span class="header-section-number">5.3</span> Graphical Presentation of Results</h2>
 <p>In Chapter 2 a detailed discussion of graphical methods for comparisons of two or more groups of data was presented. Overlapping and side-by-side histograms, and dot and line plots of means and standard deviations, inadequately portray the complexities commonly found in water resources data. Probability plots and quantile plots allow complexity to be shown, plotting a point for every observation, but often provide too much detail for a visual summarization of hypothesis test results. Two methods, side-by-side boxplots and Q-Q plots, are very well suited to describing both the results of hypothesis tests, and visually allowing a judgement of whether data fit the assumptions of the test being employed. This is illustrated by the precipitation nitrogen data below.</p>
-<div id="ch5-3-1" class="section level3" number="5.3.1">
+<div id="ch5-3-1" class="section level3">
 <h3><span class="header-section-number">5.3.1</span> Side-by-Side Boxplots</h3>
 <p>The best method for illustrating results of the rank-sum test is side-by-side boxplots. With boxplots only a few quantiles are compared, but the loss of detail is compensated for by greater clarity. In figure <a href="ch5.html#fig:fig-5-4">5.4</a> are boxplots of the precipitation nitrogen data. Note the difference in medians is clearly displayed, as well as the similarity in spread (IQR). The rejection of normality by PPCC tests is seen in the presence of skewness (industrial) and an outlier (residential). Sideby-side boxplots are an effective and concise method for illustrating the basic characteristics of data groups, and of differences between those groups.</p>
 <div class="figure" style="text-align: center"><span id="fig:fig-5-4"></span>
@@ -577,11 +537,11 @@ Figure 5.4: Boxplots of the precipitation nitrogen data. Note the skewness and o
 </p>
 </div>
 </div>
-<div id="ch5-3-2" class="section level3" number="5.3.2">
+<div id="ch5-3-2" class="section level3">
 <h3><span class="header-section-number">5.3.2</span> Q-Q Plots</h3>
 <p>Another method for illustration of rank-sum results is the quantile-quantile (Q-Q) plot described in Chapter <a href="ch2.html#ch2">2</a>. Quantiles from one group are plotted against quantiles of the second data group. Chapter <a href="ch2.html#ch2">2</a> has shown that when sample sizes of the two groups are identical, the x’s and y’s can be ranked separately, and the Q-Q plot is simply a scatterplot of the ordered data pairs (x1 , y1)…..(xn, yn). When sample sizes are not equal (n&lt;m), the quantiles from the smaller data set are used as is, and the n corresponding quantiles for the larger data set are interpolated.</p>
 <p>It is always helpful in a Q-Q plot comparing two groups to plot the y = x line. Figure <a href="ch5.html#fig:fig-5-5">5.5</a> is a QQ plot of the precipitation nitrogen data. Two important data characteristics are apparent. First, the data are not parallel to the y = x line, and therefore quantiles do not differ by an additive constant. Instead, they increasingly depart from the line of equality indicating a multiplicative relationship. Note that the Q-Q plot shows that a t-test would not be applicable without a transformation, because it assumes an additive difference between the two groups. The rank-sum test does not make this assumption, and is directly applicable to groups differing by a multiplicative constant (rank procedures will not be affected by a power transformation).</p>
-<p>The magnitude of this relationship between two sets of quantiles on a Q-Q plot can be estimated using the median of all possible ratios <span class="math inline">\((y_j/x_i)\)</span>, i=1,n and j=1,n. This is a type of Hodges-Lehmann estimator, as discussed in the next section. The median ratio equals 0.58, and the line residential = 0.58•industrial is drawn in figure <a href="ch5.html#fig:fig-5-5">5.5</a>. Note the resistance of the median ratio to the one large outlier.</p>
+<p>The magnitude of this relationship between two sets of quantiles on a Q-Q plot can be estimated using the median of all possible ratios <span class="math inline">\((y_j/x_i)\)</span>, i=1,n and j=1,n. This is a type of Hodges-Lehmann estimator, as discussed in the next section. The median ratio equals 0.58, and the line residential = 0.58•industrial is drawn in figure <a href="ch5.html#fig:fig-5-5">5.5</a>. Note the resistance of the median ratio to the one large outlier.</p>
 <div class="figure" style="text-align: center"><span id="fig:fig-5-5"></span>
 <img src="figures/5_5.png" alt="Q-Q plot of the precipitation nitrogen data." width="1871" />
 <p class="caption">
@@ -598,12 +558,12 @@ Figure 5.6: Q-Q plot of the logs of the precipitation nitrogen data.
 </div>
 </div>
 </div>
-<div id="ch5-4" class="section level2" number="5.4">
+<div id="ch5-4" class="section level2">
 <h2><span class="header-section-number">5.4</span> Estimating the Magnitude of Differences Between Two Groups</h2>
 <p>After completion of an hypothesis test comparing two groups of data, the logical next step is to determine by how much the two groups differ. The most well-known approach, related to the two-sample t-test, is to compute the difference between the two group means (<span class="math inline">\(\bar{x}−\bar{y}\)</span>). A more robust alternative, related to the rank-sum test, is one of a class of nonparametric estimators known as Hodges-Lehmann estimators. These two estimators are compared in the following sections.</p>
-<div id="ch5-4-1" class="section level3" number="5.4.1">
+<div id="ch5-4-1" class="section level3">
 <h3><span class="header-section-number">5.4.1</span> The Hodges-Lehmann Estimator</h3>
-<p>One nonparametric estimate of the difference between two independent groups is a Hodges-Lehmann estimator <span class="math inline">\(\hat{\Delta}\)</span> (<span class="citation">Hodges Jr and Lehmann (<a href="#ref-hodges1963estimates" role="doc-biblioref">1963</a>)</span> ; <span class="citation">Hollander and Wolfe (<a href="#ref-hollander1973nonparametric" role="doc-biblioref">1973</a>)</span>, p. 75-77). This estimator is the median of all possible pairwise differences between the x values and y values</p>
+<p>One nonparametric estimate of the difference between two independent groups is a Hodges-Lehmann estimator <span class="math inline">\(\hat{\Delta}\)</span> (<span class="citation">Hodges Jr and Lehmann (<a href="#ref-hodges1963estimates">1963</a>)</span> ; <span class="citation">Hollander and Wolfe (<a href="#ref-hollander1973nonparametric">1973</a>)</span>, p. 75-77). This estimator is the median of all possible pairwise differences between the x values and y values</p>
 <p><span class="math inline">\(\hat{\Delta} = median [x_i - y_j] \ \ \text{for xi, i=1,...n and yj, j=1,..m. } \ \ \ \ \ \  \ \ \ \  [5.5]\)</span></p>
 <p>There will be n•m pairwise differences.</p>
 <p><u> Example 2 </u>
@@ -666,9 +626,9 @@ For the following x’s and y’s , compute 15 − 8 = 7, 15 − 27 = −12, etc
 observations, the rank-sum statistic Wrs would provide no evidence for rejection of the null hypothesis. In other words, a shift of size <span class="math inline">\(\hat{\Delta}\)</span> makes the data appear devoid of any evidence of difference between x and y when viewed by the rank-sum test.</p>
 <p><span class="math inline">\(\hat{\Delta}\)</span> is a median unbiased estimator of the difference in the medians of populations x and y. That is, the probability of underestimating or overestimating the difference between the median of x and the median of y is exactly one-half. If the populations were both normal, it would be a slightly less efficient estimator of differences in medians (or means) than would the parametric estimator x − y . However, when one or both populations is substantially non-normal, it is a more efficient (lower variance) estimator of this difference.</p>
 <p>There is another logical nonparametric estimator of the difference in population medians – the difference between the sample medians (xmed − ymed). For example 2, (x<sub>med</sub> − y<sub>med</sub>) = 10.5. Note that the difference in sample medians is not necessarily equal to the median of the differences <span class="math inline">\(\hat{\Delta}\)</span>. In addition, (xmed − ymed) is always somewhat more variable (less efficient) than is <span class="math inline">\(\hat{\Delta}\)</span> and so is less desirable.</p>
-<p>A modified version of the <span class="math inline">\(\hat{\Delta}\)</span> statistic is used as the estimate of the magnitude of the step trend in the seasonal rank-sum test procedure described by <span class="citation">Crawford, Slack, and Hirsch (<a href="#ref-crawford1983nonparametric" role="doc-biblioref">1983</a>)</span> (p. 74).</p>
+<p>A modified version of the <span class="math inline">\(\hat{\Delta}\)</span> statistic is used as the estimate of the magnitude of the step trend in the seasonal rank-sum test procedure described by <span class="citation">Crawford, Slack, and Hirsch (<a href="#ref-crawford1983nonparametric">1983</a>)</span> (p. 74).</p>
 </div>
-<div id="ch5-4-2" class="section level3" number="5.4.2">
+<div id="ch5-4-2" class="section level3">
 <h3><span class="header-section-number">5.4.2</span> Confidence Interval for <span class="math inline">\(\hat{\Delta}\)</span></h3>
 <p>A nonparametric interval estimate for <span class="math inline">\(\hat{\Delta}\)</span> illustrates how variable the difference between the medians might be. No distribution is assumed for the pairwise differences. The interval is computed by a process similar to that for the confidence interval on the median described earlier. The tabled distribution of the test statistic is entered to find upper and lower critical values at one-half the desired alpha level. These critical values are transformed into ranks. After ordering the n•m pairwise differences from smallest to largest, the differences corresponding to those ranks are the ends of the confidence interval.</p>
 <p>For small sample sizes, table B4 for the rank-sum test is entered to find the critical value x* having a p-value nearest to α/2. This critical value is then used to compute the ranks R<sub>u</sub> and R<sub>l</sub> corresponding to the pairwise differences at the upper and lower confidence limits for <span class="math inline">\(\hat{\Delta}\)</span>. These limits are the R<sub>l</sub>th ranked data points going in from either end of the sorted list of N=n•m pairwise differences.</p>
@@ -693,11 +653,11 @@ The N=12 possible pairwise differences between x and y were:</p>
 <span class="math display">\[R_u = 100 - 24.1+1 = 76.9\]</span>
 the 24.1<sup>st</sup> ranked slope from either end. Rounding to the nearest integer, the 24<sup>th</sup> and 77<sup>th</sup> ranked slopes are used as the ends of the α ≅ 0.05 confidence limit on <span class="math inline">\(\hat{\Delta}\)</span>. Note that using the exact formula, from Table B4 the exact α level is determined to be 2•0.026 = 0.052.</p>
 </div>
-<div id="ch5-4-3" class="section level3" number="5.4.3">
+<div id="ch5-4-3" class="section level3">
 <h3><span class="header-section-number">5.4.3</span> Difference Between Mean Values</h3>
 <p>As noted above, in the situation where the t-test is appropriate, the difference between the means of both groups <span class="math inline">\(\bar{x} − \bar{y}\)</span> is the most efficient estimator of the difference between the two groups of data. Perhaps obvious is that when x and y are transformed prior to performing the ttest, ( <span class="math inline">\(\bar{x} − \bar{y}\)</span> ) does not estimate the difference between group means in their original units. Less obvious is that a re-transformation of ( <span class="math inline">\(\bar{x} − \bar{y}\)</span>) back to original units also does not estimate the difference between group means, but is closer to a function of group medians. For the log transformation as an example, <span class="math inline">\(\bar{x} − \bar{y}\)</span> retransformed would equal the ratio of geometric means of the two groups. How close such a re-transformation comes to estimating the ratio of group medians depends on how close the data are to being symmetric in their transformed units.</p>
 </div>
-<div id="ch5-4-4" class="section level3" number="5.4.4">
+<div id="ch5-4-4" class="section level3">
 <h3><span class="header-section-number">5.4.4</span> Confidence Interval for <span class="math inline">\(\bar{x} − \bar{y}\)</span></h3>
 <p>An interval estimate for the difference in means <span class="math inline">\(\bar{x} − \bar{y}\)</span> is also available. It is appropriate in situations where the t-test may be used – when both data groups closely follow a normal distribution. When the variances of the two groups are similar and the pooled standard deviation s is used in the test, the confidence interval is</p>
 <p><span class="math display">\[ CI = \bar{x} - \bar{y} ± t_{α/2,(n+m−2)} • s\sqrt{1/n + 1/m}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \text{5.10}\]</span>
@@ -706,21 +666,21 @@ When the standard deviations of the two groups are dissimilar and cannot be pool
 <p>where df is the approximate degrees of freedom used in the t-test.</p>
 </div>
 </div>
-<div id="exercises-4" class="section level2 unnumbered" number="">
+<div id="exercises-4" class="section level2 unnumbered">
 <h2>Exercises</h2>
-<div id="section-13" class="section level3 unnumbered" number="">
+<div id="section-13" class="section level3 unnumbered">
 <h3>5.1</h3>
 <p>For the precipitation nitrogen data of Example 1, what would <span class="math inline">\(W_{rs}\)</span> have been had the industrial site been used rather than the arbitrary choice of the residential site. What is the effect on the p-value?</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="ch5.html#cb6-1"></a><span class="kw">library</span>(<span class="st">&quot;ggplot2&quot;</span>)</span>
-<span id="cb6-2"><a href="ch5.html#cb6-2"></a><span class="kw">library</span>(<span class="st">&quot;data.table&quot;</span>)</span>
-<span id="cb6-3"><a href="ch5.html#cb6-3"></a></span>
-<span id="cb6-4"><a href="ch5.html#cb6-4"></a>indus_site =<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.59</span>, <span class="fl">0.87</span>, <span class="fl">1.1</span>, <span class="fl">1.1</span>, <span class="fl">1.2</span>, <span class="fl">1.3</span>, <span class="fl">1.6</span>, <span class="fl">1.7</span>, <span class="fl">3.2</span>, <span class="fl">4.0</span>)</span>
-<span id="cb6-5"><a href="ch5.html#cb6-5"></a>resid_site =<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.3</span>, <span class="fl">0.36</span>, <span class="fl">0.5</span>, <span class="fl">0.7</span>, <span class="fl">0.7</span>, <span class="fl">0.9</span>, <span class="fl">0.92</span>, <span class="fl">1.0</span>, <span class="fl">1.3</span>, <span class="fl">9.7</span>)</span>
-<span id="cb6-6"><a href="ch5.html#cb6-6"></a></span>
-<span id="cb6-7"><a href="ch5.html#cb6-7"></a>data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">site =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;indus_site&quot;</span>, <span class="st">&quot;resid_site&quot;</span>), <span class="dt">each =</span> <span class="dv">10</span>),</span>
-<span id="cb6-8"><a href="ch5.html#cb6-8"></a>                   <span class="dt">conc =</span> <span class="kw">c</span>(indus_site,  resid_site))</span>
-<span id="cb6-9"><a href="ch5.html#cb6-9"></a></span>
-<span id="cb6-10"><a href="ch5.html#cb6-10"></a><span class="kw">print</span>(data)</span></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;ggplot2&quot;</span>)</a>
+<a class="sourceLine" id="cb85-2" data-line-number="2"><span class="kw">library</span>(<span class="st">&quot;data.table&quot;</span>)</a>
+<a class="sourceLine" id="cb85-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb85-4" data-line-number="4">indus_site =<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.59</span>, <span class="fl">0.87</span>, <span class="fl">1.1</span>, <span class="fl">1.1</span>, <span class="fl">1.2</span>, <span class="fl">1.3</span>, <span class="fl">1.6</span>, <span class="fl">1.7</span>, <span class="fl">3.2</span>, <span class="fl">4.0</span>)</a>
+<a class="sourceLine" id="cb85-5" data-line-number="5">resid_site =<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.3</span>, <span class="fl">0.36</span>, <span class="fl">0.5</span>, <span class="fl">0.7</span>, <span class="fl">0.7</span>, <span class="fl">0.9</span>, <span class="fl">0.92</span>, <span class="fl">1.0</span>, <span class="fl">1.3</span>, <span class="fl">9.7</span>)</a>
+<a class="sourceLine" id="cb85-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb85-7" data-line-number="7">data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">site =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;indus_site&quot;</span>, <span class="st">&quot;resid_site&quot;</span>), <span class="dt">each =</span> <span class="dv">10</span>),</a>
+<a class="sourceLine" id="cb85-8" data-line-number="8">                   <span class="dt">conc =</span> <span class="kw">c</span>(indus_site,  resid_site))</a>
+<a class="sourceLine" id="cb85-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb85-10" data-line-number="10"><span class="kw">print</span>(data)</a></code></pre></div>
 <pre><code>##          site conc
 ## 1  indus_site 0.59
 ## 2  indus_site 0.87
@@ -742,14 +702,14 @@ When the standard deviations of the two groups are dissimilar and cannot be pool
 ## 18 resid_site 1.00
 ## 19 resid_site 1.30
 ## 20 resid_site 9.70</code></pre>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="ch5.html#cb8-1"></a><span class="kw">ggplot</span>(data, <span class="kw">aes</span>(<span class="dt">x =</span> site, <span class="dt">y =</span> conc, <span class="dt">fill =</span> site)) <span class="op">+</span></span>
-<span id="cb8-2"><a href="ch5.html#cb8-2"></a><span class="st">  </span><span class="kw">geom_boxplot</span>()<span class="op">+</span></span>
-<span id="cb8-3"><a href="ch5.html#cb8-3"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
-<p><img src="Statistical-Methods-in-Water-Resources_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="ch5.html#cb9-1"></a>test &lt;-<span class="st"> </span><span class="kw">wilcox.test</span>(<span class="dt">x =</span> indus_site, <span class="dt">y =</span> resid_site)</span></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb87-1" data-line-number="1"><span class="kw">ggplot</span>(data, <span class="kw">aes</span>(<span class="dt">x =</span> site, <span class="dt">y =</span> conc, <span class="dt">fill =</span> site)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb87-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_boxplot</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb87-3" data-line-number="3"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
+<p><img src="Statistical-Methods-in-Water-Resources_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb88-1" data-line-number="1">test &lt;-<span class="st"> </span><span class="kw">wilcox.test</span>(<span class="dt">x =</span> indus_site, <span class="dt">y =</span> resid_site)</a></code></pre></div>
 <pre><code>## Warning in wilcox.test.default(x = indus_site, y = resid_site): cannot compute
 ## exact p-value with ties</code></pre>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="ch5.html#cb11-1"></a>test</span></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb90-1" data-line-number="1">test</a></code></pre></div>
 <pre><code>## 
 ##  Wilcoxon rank sum test with continuity correction
 ## 
@@ -758,7 +718,7 @@ When the standard deviations of the two groups are dissimilar and cannot be pool
 ## alternative hypothesis: true location shift is not equal to 0</code></pre>
 <p>The p-value is less than the significance level (0.05) that indicates a difference in the sum of ranks on two sample sites.</p>
 </div>
-<div id="section-14" class="section level3 unnumbered" number="">
+<div id="section-14" class="section level3 unnumbered">
 <h3>5.2</h3>
 <p>Historical ground-water quality data for a shallow aquifer underlying agricultural land shows the following nitrate concentrations (mg/L):</p>
 <table>
@@ -826,7 +786,7 @@ When the standard deviations of the two groups are dissimilar and cannot be pool
 <p>Given that we wish to test for a change in concentration between the two periods, should this be a one-sided or two-sided test?</p>
 <pre><code>This should be a two-sided test because the test will be performed to estimate whether the amount of change has been increased or decreased.</code></pre>
 </div>
-<div id="section-15" class="section level3 unnumbered" number="">
+<div id="section-15" class="section level3 unnumbered">
 <h3>5.3</h3>
 <p>Annual streamflows for the Green R. at Munfordville, KY were listed in Exercise 4.1.</p>
 <p>Beginning in 1969 the stream was regulated by a reservoir.
@@ -835,12 +795,12 @@ a. Construct a Q-Q plot, and indicate whether the flows exhibit an additive or m
 <li><p>Does there appear to be a relationship between (after−before) or (after/before) and the magnitude of annual flow itself? If so, explain why this might occur.</p></li>
 <li><p>Test whether flows after the reservoir came onstream are different.</p></li>
 </ol>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="ch5.html#cb14-1"></a><span class="kw">library</span>(<span class="st">&quot;ggplot2&quot;</span>)</span>
-<span id="cb14-2"><a href="ch5.html#cb14-2"></a></span>
-<span id="cb14-3"><a href="ch5.html#cb14-3"></a>before =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">year =</span> <span class="dv">1950</span><span class="op">:</span><span class="dv">1968</span>,</span>
-<span id="cb14-4"><a href="ch5.html#cb14-4"></a>                    <span class="dt">flows =</span> <span class="kw">c</span>(<span class="dv">4910</span>, <span class="dv">3660</span>, <span class="dv">3910</span>, <span class="dv">1750</span>, <span class="dv">1050</span>, <span class="dv">2670</span>, <span class="dv">2880</span>, <span class="dv">2600</span>, <span class="dv">3520</span>, <span class="dv">1730</span>,</span>
-<span id="cb14-5"><a href="ch5.html#cb14-5"></a>                              <span class="dv">2340</span>, <span class="dv">2600</span>, <span class="dv">3410</span>, <span class="dv">1870</span>, <span class="dv">1730</span>, <span class="dv">2730</span>, <span class="dv">1550</span>, <span class="dv">4060</span>, <span class="dv">2870</span>))</span>
-<span id="cb14-6"><a href="ch5.html#cb14-6"></a>before</span></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb93-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;ggplot2&quot;</span>)</a>
+<a class="sourceLine" id="cb93-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb93-3" data-line-number="3">before =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">year =</span> <span class="dv">1950</span><span class="op">:</span><span class="dv">1968</span>,</a>
+<a class="sourceLine" id="cb93-4" data-line-number="4">                    <span class="dt">flows =</span> <span class="kw">c</span>(<span class="dv">4910</span>, <span class="dv">3660</span>, <span class="dv">3910</span>, <span class="dv">1750</span>, <span class="dv">1050</span>, <span class="dv">2670</span>, <span class="dv">2880</span>, <span class="dv">2600</span>, <span class="dv">3520</span>, <span class="dv">1730</span>,</a>
+<a class="sourceLine" id="cb93-5" data-line-number="5">                              <span class="dv">2340</span>, <span class="dv">2600</span>, <span class="dv">3410</span>, <span class="dv">1870</span>, <span class="dv">1730</span>, <span class="dv">2730</span>, <span class="dv">1550</span>, <span class="dv">4060</span>, <span class="dv">2870</span>))</a>
+<a class="sourceLine" id="cb93-6" data-line-number="6">before</a></code></pre></div>
 <pre><code>##    year flows
 ## 1  1950  4910
 ## 2  1951  3660
@@ -861,10 +821,10 @@ a. Construct a Q-Q plot, and indicate whether the flows exhibit an additive or m
 ## 17 1966  1550
 ## 18 1967  4060
 ## 19 1968  2870</code></pre>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="ch5.html#cb16-1"></a>after =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">year =</span> <span class="dv">1969</span><span class="op">:</span><span class="dv">1980</span>,</span>
-<span id="cb16-2"><a href="ch5.html#cb16-2"></a>                   <span class="dt">flows =</span> <span class="kw">c</span>(<span class="dv">1350</span>, <span class="dv">2350</span>, <span class="dv">3140</span>, <span class="dv">3060</span>, <span class="dv">3630</span>, <span class="dv">3890</span>, <span class="dv">3780</span>, <span class="dv">3180</span>, <span class="dv">2260</span>, <span class="dv">3430</span>, <span class="dv">5290</span>, <span class="dv">2870</span>))</span>
-<span id="cb16-3"><a href="ch5.html#cb16-3"></a></span>
-<span id="cb16-4"><a href="ch5.html#cb16-4"></a>after</span></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb95-1" data-line-number="1">after =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">year =</span> <span class="dv">1969</span><span class="op">:</span><span class="dv">1980</span>,</a>
+<a class="sourceLine" id="cb95-2" data-line-number="2">                   <span class="dt">flows =</span> <span class="kw">c</span>(<span class="dv">1350</span>, <span class="dv">2350</span>, <span class="dv">3140</span>, <span class="dv">3060</span>, <span class="dv">3630</span>, <span class="dv">3890</span>, <span class="dv">3780</span>, <span class="dv">3180</span>, <span class="dv">2260</span>, <span class="dv">3430</span>, <span class="dv">5290</span>, <span class="dv">2870</span>))</a>
+<a class="sourceLine" id="cb95-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb95-4" data-line-number="4">after</a></code></pre></div>
 <pre><code>##    year flows
 ## 1  1969  1350
 ## 2  1970  2350
@@ -878,43 +838,43 @@ a. Construct a Q-Q plot, and indicate whether the flows exhibit an additive or m
 ## 10 1978  3430
 ## 11 1979  5290
 ## 12 1980  2870</code></pre>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="ch5.html#cb18-1"></a><span class="co">#a- Q-Q plot</span></span>
-<span id="cb18-2"><a href="ch5.html#cb18-2"></a><span class="kw">qqplot</span>(before<span class="op">$</span>flows, after<span class="op">$</span>flows, <span class="dt">xlab=</span><span class="st">&quot;Before&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;After&quot;</span>)<span class="op">+</span></span>
-<span id="cb18-3"><a href="ch5.html#cb18-3"></a><span class="st">  </span><span class="kw">theme_classic</span>()</span></code></pre></div>
-<p><img src="Statistical-Methods-in-Water-Resources_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb97-1" data-line-number="1"><span class="co">#a- Q-Q plot</span></a>
+<a class="sourceLine" id="cb97-2" data-line-number="2"><span class="kw">qqplot</span>(before<span class="op">$</span>flows, after<span class="op">$</span>flows, <span class="dt">xlab=</span><span class="st">&quot;Before&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;After&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb97-3" data-line-number="3"><span class="st">  </span><span class="kw">theme_classic</span>()</a></code></pre></div>
+<p><img src="Statistical-Methods-in-Water-Resources_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
 <pre><code>## NULL</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="ch5.html#cb20-1"></a><span class="co">#b. Relationship between the magnitude of annual flow (after−before) or (after/before)</span></span>
-<span id="cb20-2"><a href="ch5.html#cb20-2"></a></span>
-<span id="cb20-3"><a href="ch5.html#cb20-3"></a>rel_bef &lt;-<span class="st"> </span><span class="kw">mean</span>(before<span class="op">$</span>flows) <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(after<span class="op">$</span>flows)</span>
-<span id="cb20-4"><a href="ch5.html#cb20-4"></a></span>
-<span id="cb20-5"><a href="ch5.html#cb20-5"></a>rel_bef</span></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb99-1" data-line-number="1"><span class="co">#b. Relationship between the magnitude of annual flow (after−before) or (after/before)</span></a>
+<a class="sourceLine" id="cb99-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb99-3" data-line-number="3">rel_bef &lt;-<span class="st"> </span><span class="kw">mean</span>(before<span class="op">$</span>flows) <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(after<span class="op">$</span>flows)</a>
+<a class="sourceLine" id="cb99-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb99-5" data-line-number="5">rel_bef</a></code></pre></div>
 <pre><code>## [1] -457.4123</code></pre>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="ch5.html#cb22-1"></a>rel_aft &lt;-<span class="st"> </span><span class="kw">mean</span>(after<span class="op">$</span>flows) <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(before<span class="op">$</span>flows)</span>
-<span id="cb22-2"><a href="ch5.html#cb22-2"></a></span>
-<span id="cb22-3"><a href="ch5.html#cb22-3"></a>rel_aft</span></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb101-1" data-line-number="1">rel_aft &lt;-<span class="st"> </span><span class="kw">mean</span>(after<span class="op">$</span>flows) <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(before<span class="op">$</span>flows)</a>
+<a class="sourceLine" id="cb101-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb101-3" data-line-number="3">rel_aft</a></code></pre></div>
 <pre><code>## [1] 457.4123</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="ch5.html#cb24-1"></a><span class="kw">library</span>(<span class="st">&quot;ggplot2&quot;</span>)</span>
-<span id="cb24-2"><a href="ch5.html#cb24-2"></a>before =<span class="st"> </span><span class="dv">1950</span><span class="op">:</span><span class="dv">1968</span></span>
-<span id="cb24-3"><a href="ch5.html#cb24-3"></a>after =<span class="st"> </span><span class="dv">1969</span><span class="op">:</span><span class="dv">1980</span></span>
-<span id="cb24-4"><a href="ch5.html#cb24-4"></a>before_flow =<span class="st"> </span><span class="kw">c</span>(<span class="dv">4910</span>, <span class="dv">3660</span>, <span class="dv">3910</span>, <span class="dv">1750</span>, <span class="dv">1050</span>, <span class="dv">2670</span>, <span class="dv">2880</span>, <span class="dv">2600</span>, <span class="dv">3520</span>, <span class="dv">1730</span>, <span class="dv">2340</span>, <span class="dv">2600</span>, <span class="dv">3410</span>, <span class="dv">1870</span>, <span class="dv">1730</span>, <span class="dv">2730</span>, <span class="dv">1550</span>, <span class="dv">4060</span>, <span class="dv">2870</span>)</span>
-<span id="cb24-5"><a href="ch5.html#cb24-5"></a>after_flow =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1350</span>, <span class="dv">2350</span>, <span class="dv">3140</span>, <span class="dv">3060</span>, <span class="dv">3630</span>, <span class="dv">3890</span>, <span class="dv">3780</span>, <span class="dv">3180</span>, <span class="dv">2260</span>, <span class="dv">3430</span>, <span class="dv">5290</span>, <span class="dv">2870</span>)</span>
-<span id="cb24-6"><a href="ch5.html#cb24-6"></a>data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">year =</span> <span class="kw">c</span>(before, after), <span class="dt">flows =</span> <span class="kw">c</span>(before_flow, after_flow),</span>
-<span id="cb24-7"><a href="ch5.html#cb24-7"></a>                   <span class="dt">group =</span> <span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;Before&quot;</span>, <span class="dv">19</span>), <span class="kw">rep</span>(<span class="st">&quot;After&quot;</span>, <span class="dv">12</span>)))</span>
-<span id="cb24-8"><a href="ch5.html#cb24-8"></a></span>
-<span id="cb24-9"><a href="ch5.html#cb24-9"></a><span class="kw">ggplot</span>(data, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> flows, <span class="dt">color =</span> group))<span class="op">+</span></span>
-<span id="cb24-10"><a href="ch5.html#cb24-10"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">colour=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">linetype=</span><span class="st">&quot;19&quot;</span>, <span class="dt">size=</span><span class="fl">0.2</span>) <span class="op">+</span></span>
-<span id="cb24-11"><a href="ch5.html#cb24-11"></a><span class="st">  </span><span class="kw">geom_point</span>()<span class="op">+</span></span>
-<span id="cb24-12"><a href="ch5.html#cb24-12"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Year&quot;</span>)<span class="op">+</span></span>
-<span id="cb24-13"><a href="ch5.html#cb24-13"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Annual Peak Discharge (cfs)&quot;</span>)<span class="op">+</span></span>
-<span id="cb24-14"><a href="ch5.html#cb24-14"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
-<p><img src="Statistical-Methods-in-Water-Resources_files/figure-html/unnamed-chunk-2-2.png" width="672" /></p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="ch5.html#cb25-1"></a><span class="co">#The magnitude of annual streamflow after 1969, shows an increase in flow rate and this increase is a result of the increase in the discharge volume of the reservoir.</span></span>
-<span id="cb25-2"><a href="ch5.html#cb25-2"></a></span>
-<span id="cb25-3"><a href="ch5.html#cb25-3"></a><span class="co">#c. Test whether flows after the reservoir came onstream are different.</span></span>
-<span id="cb25-4"><a href="ch5.html#cb25-4"></a>before =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">year =</span> <span class="dv">1950</span><span class="op">:</span><span class="dv">1968</span>,</span>
-<span id="cb25-5"><a href="ch5.html#cb25-5"></a>                    <span class="dt">flows =</span> <span class="kw">c</span>(<span class="dv">4910</span>, <span class="dv">3660</span>, <span class="dv">3910</span>, <span class="dv">1750</span>, <span class="dv">1050</span>, <span class="dv">2670</span>, <span class="dv">2880</span>, <span class="dv">2600</span>, <span class="dv">3520</span>, <span class="dv">1730</span>,</span>
-<span id="cb25-6"><a href="ch5.html#cb25-6"></a>                              <span class="dv">2340</span>, <span class="dv">2600</span>, <span class="dv">3410</span>, <span class="dv">1870</span>, <span class="dv">1730</span>, <span class="dv">2730</span>, <span class="dv">1550</span>, <span class="dv">4060</span>, <span class="dv">2870</span>))</span>
-<span id="cb25-7"><a href="ch5.html#cb25-7"></a>before</span></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb103-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;ggplot2&quot;</span>)</a>
+<a class="sourceLine" id="cb103-2" data-line-number="2">before =<span class="st"> </span><span class="dv">1950</span><span class="op">:</span><span class="dv">1968</span></a>
+<a class="sourceLine" id="cb103-3" data-line-number="3">after =<span class="st"> </span><span class="dv">1969</span><span class="op">:</span><span class="dv">1980</span></a>
+<a class="sourceLine" id="cb103-4" data-line-number="4">before_flow =<span class="st"> </span><span class="kw">c</span>(<span class="dv">4910</span>, <span class="dv">3660</span>, <span class="dv">3910</span>, <span class="dv">1750</span>, <span class="dv">1050</span>, <span class="dv">2670</span>, <span class="dv">2880</span>, <span class="dv">2600</span>, <span class="dv">3520</span>, <span class="dv">1730</span>, <span class="dv">2340</span>, <span class="dv">2600</span>, <span class="dv">3410</span>, <span class="dv">1870</span>, <span class="dv">1730</span>, <span class="dv">2730</span>, <span class="dv">1550</span>, <span class="dv">4060</span>, <span class="dv">2870</span>)</a>
+<a class="sourceLine" id="cb103-5" data-line-number="5">after_flow =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1350</span>, <span class="dv">2350</span>, <span class="dv">3140</span>, <span class="dv">3060</span>, <span class="dv">3630</span>, <span class="dv">3890</span>, <span class="dv">3780</span>, <span class="dv">3180</span>, <span class="dv">2260</span>, <span class="dv">3430</span>, <span class="dv">5290</span>, <span class="dv">2870</span>)</a>
+<a class="sourceLine" id="cb103-6" data-line-number="6">data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">year =</span> <span class="kw">c</span>(before, after), <span class="dt">flows =</span> <span class="kw">c</span>(before_flow, after_flow),</a>
+<a class="sourceLine" id="cb103-7" data-line-number="7">                   <span class="dt">group =</span> <span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;Before&quot;</span>, <span class="dv">19</span>), <span class="kw">rep</span>(<span class="st">&quot;After&quot;</span>, <span class="dv">12</span>)))</a>
+<a class="sourceLine" id="cb103-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb103-9" data-line-number="9"><span class="kw">ggplot</span>(data, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> flows, <span class="dt">color =</span> group))<span class="op">+</span></a>
+<a class="sourceLine" id="cb103-10" data-line-number="10"><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">colour=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">linetype=</span><span class="st">&quot;19&quot;</span>, <span class="dt">size=</span><span class="fl">0.2</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb103-11" data-line-number="11"><span class="st">  </span><span class="kw">geom_point</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb103-12" data-line-number="12"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Year&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb103-13" data-line-number="13"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Annual Peak Discharge (cfs)&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb103-14" data-line-number="14"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
+<p><img src="Statistical-Methods-in-Water-Resources_files/figure-html/unnamed-chunk-41-2.png" width="672" /></p>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" data-line-number="1"><span class="co">#The magnitude of annual streamflow after 1969, shows an increase in flow rate and this increase is a result of the increase in the discharge volume of the reservoir.</span></a>
+<a class="sourceLine" id="cb104-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb104-3" data-line-number="3"><span class="co">#c. Test whether flows after the reservoir came onstream are different.</span></a>
+<a class="sourceLine" id="cb104-4" data-line-number="4">before =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">year =</span> <span class="dv">1950</span><span class="op">:</span><span class="dv">1968</span>,</a>
+<a class="sourceLine" id="cb104-5" data-line-number="5">                    <span class="dt">flows =</span> <span class="kw">c</span>(<span class="dv">4910</span>, <span class="dv">3660</span>, <span class="dv">3910</span>, <span class="dv">1750</span>, <span class="dv">1050</span>, <span class="dv">2670</span>, <span class="dv">2880</span>, <span class="dv">2600</span>, <span class="dv">3520</span>, <span class="dv">1730</span>,</a>
+<a class="sourceLine" id="cb104-6" data-line-number="6">                              <span class="dv">2340</span>, <span class="dv">2600</span>, <span class="dv">3410</span>, <span class="dv">1870</span>, <span class="dv">1730</span>, <span class="dv">2730</span>, <span class="dv">1550</span>, <span class="dv">4060</span>, <span class="dv">2870</span>))</a>
+<a class="sourceLine" id="cb104-7" data-line-number="7">before</a></code></pre></div>
 <pre><code>##    year flows
 ## 1  1950  4910
 ## 2  1951  3660
@@ -935,10 +895,10 @@ a. Construct a Q-Q plot, and indicate whether the flows exhibit an additive or m
 ## 17 1966  1550
 ## 18 1967  4060
 ## 19 1968  2870</code></pre>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="ch5.html#cb27-1"></a>after =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">year =</span> <span class="dv">1969</span><span class="op">:</span><span class="dv">1980</span>,</span>
-<span id="cb27-2"><a href="ch5.html#cb27-2"></a>                   <span class="dt">flows =</span> <span class="kw">c</span>(<span class="dv">1350</span>, <span class="dv">2350</span>, <span class="dv">3140</span>, <span class="dv">3060</span>, <span class="dv">3630</span>, <span class="dv">3890</span>, <span class="dv">3780</span>, <span class="dv">3180</span>, <span class="dv">2260</span>, <span class="dv">3430</span>, <span class="dv">5290</span>, <span class="dv">2870</span>))</span>
-<span id="cb27-3"><a href="ch5.html#cb27-3"></a></span>
-<span id="cb27-4"><a href="ch5.html#cb27-4"></a>after</span></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" data-line-number="1">after =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">year =</span> <span class="dv">1969</span><span class="op">:</span><span class="dv">1980</span>,</a>
+<a class="sourceLine" id="cb106-2" data-line-number="2">                   <span class="dt">flows =</span> <span class="kw">c</span>(<span class="dv">1350</span>, <span class="dv">2350</span>, <span class="dv">3140</span>, <span class="dv">3060</span>, <span class="dv">3630</span>, <span class="dv">3890</span>, <span class="dv">3780</span>, <span class="dv">3180</span>, <span class="dv">2260</span>, <span class="dv">3430</span>, <span class="dv">5290</span>, <span class="dv">2870</span>))</a>
+<a class="sourceLine" id="cb106-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb106-4" data-line-number="4">after</a></code></pre></div>
 <pre><code>##    year flows
 ## 1  1969  1350
 ## 2  1970  2350
@@ -952,55 +912,55 @@ a. Construct a Q-Q plot, and indicate whether the flows exhibit an additive or m
 ## 10 1978  3430
 ## 11 1979  5290
 ## 12 1980  2870</code></pre>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="ch5.html#cb29-1"></a>test &lt;-<span class="st"> </span><span class="kw">wilcox.test</span>(before<span class="op">$</span>flows, after<span class="op">$</span>flows)</span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" data-line-number="1">test &lt;-<span class="st"> </span><span class="kw">wilcox.test</span>(before<span class="op">$</span>flows, after<span class="op">$</span>flows)</a></code></pre></div>
 <pre><code>## Warning in wilcox.test.default(before$flows, after$flows): cannot compute exact
 ## p-value with ties</code></pre>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="ch5.html#cb31-1"></a>test</span></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" data-line-number="1">test</a></code></pre></div>
 <pre><code>## 
 ##  Wilcoxon rank sum test with continuity correction
 ## 
 ## data:  before$flows and after$flows
 ## W = 83.5, p-value = 0.2236
 ## alternative hypothesis: true location shift is not equal to 0</code></pre>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="ch5.html#cb33-1"></a><span class="co">#The p-value is higher than the significance level (0.05) that represents no difference.</span></span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" data-line-number="1"><span class="co">#The p-value is higher than the significance level (0.05) that represents no difference.</span></a></code></pre></div>
 </div>
-<div id="section-16" class="section level3 unnumbered" number="">
+<div id="section-16" class="section level3 unnumbered">
 <h3>5.4</h3>
 <p>Consider the following small data set</p>
 <p>X: 1.0, 2.0, 3.0, 4.0
 Y: 1.5, 2.5, 3.5, 4.5, 5.5, 7.0, 10.0, 20.0, 40.0, 100.0</p>
 <p>Using the Table B4, determine the two-sided p value for an additive difference between the X and Y data using the exact rank-sum test. Then compute it using the large-sample approximation. Then compute it using the t-test on ranks. Compute the expected difference <span class="math inline">\(\hat{\Delta}\)</span> between X and Y.</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="ch5.html#cb34-1"></a>x =<span class="st"> </span><span class="kw">c</span>(<span class="fl">1.0</span>, <span class="fl">2.0</span>, <span class="fl">3.0</span>, <span class="fl">4.0</span>)</span>
-<span id="cb34-2"><a href="ch5.html#cb34-2"></a>y =<span class="st"> </span><span class="kw">c</span>(<span class="fl">1.5</span>, <span class="fl">2.5</span>, <span class="fl">3.5</span>, <span class="fl">4.5</span>, <span class="fl">5.5</span>, <span class="fl">7.0</span>, <span class="fl">10.0</span>, <span class="fl">20.0</span>, <span class="fl">40.0</span>, <span class="fl">100.0</span>)</span>
-<span id="cb34-3"><a href="ch5.html#cb34-3"></a><span class="kw">wilcox.test</span>(x, y, <span class="dt">exact =</span> <span class="ot">FALSE</span>, <span class="dt">correct =</span> T)</span></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb113-1" data-line-number="1">x =<span class="st"> </span><span class="kw">c</span>(<span class="fl">1.0</span>, <span class="fl">2.0</span>, <span class="fl">3.0</span>, <span class="fl">4.0</span>)</a>
+<a class="sourceLine" id="cb113-2" data-line-number="2">y =<span class="st"> </span><span class="kw">c</span>(<span class="fl">1.5</span>, <span class="fl">2.5</span>, <span class="fl">3.5</span>, <span class="fl">4.5</span>, <span class="fl">5.5</span>, <span class="fl">7.0</span>, <span class="fl">10.0</span>, <span class="fl">20.0</span>, <span class="fl">40.0</span>, <span class="fl">100.0</span>)</a>
+<a class="sourceLine" id="cb113-3" data-line-number="3"><span class="kw">wilcox.test</span>(x, y, <span class="dt">exact =</span> <span class="ot">FALSE</span>, <span class="dt">correct =</span> T)</a></code></pre></div>
 <pre><code>## 
 ##  Wilcoxon rank sum test with continuity correction
 ## 
 ## data:  x and y
 ## W = 6, p-value = 0.05624
 ## alternative hypothesis: true location shift is not equal to 0</code></pre>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="ch5.html#cb36-1"></a><span class="co">#Large-sample approximation</span></span>
-<span id="cb36-2"><a href="ch5.html#cb36-2"></a>nom_x =<span class="st"> </span><span class="kw">length</span>(x)</span>
-<span id="cb36-3"><a href="ch5.html#cb36-3"></a>nom_y =<span class="st"> </span><span class="kw">length</span>(y)</span>
-<span id="cb36-4"><a href="ch5.html#cb36-4"></a>total =<span class="st"> </span>nom_x <span class="op">+</span><span class="st"> </span>nom_y</span>
-<span id="cb36-5"><a href="ch5.html#cb36-5"></a>mean_approx =<span class="st"> </span>nom_x<span class="op">*</span>(total <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)<span class="op">/</span><span class="dv">2</span></span>
-<span id="cb36-6"><a href="ch5.html#cb36-6"></a>mean_approx</span></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" data-line-number="1"><span class="co">#Large-sample approximation</span></a>
+<a class="sourceLine" id="cb115-2" data-line-number="2">nom_x =<span class="st"> </span><span class="kw">length</span>(x)</a>
+<a class="sourceLine" id="cb115-3" data-line-number="3">nom_y =<span class="st"> </span><span class="kw">length</span>(y)</a>
+<a class="sourceLine" id="cb115-4" data-line-number="4">total =<span class="st"> </span>nom_x <span class="op">+</span><span class="st"> </span>nom_y</a>
+<a class="sourceLine" id="cb115-5" data-line-number="5">mean_approx =<span class="st"> </span>nom_x<span class="op">*</span>(total <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)<span class="op">/</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb115-6" data-line-number="6">mean_approx</a></code></pre></div>
 <pre><code>## [1] 30</code></pre>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="ch5.html#cb38-1"></a>var_approx =<span class="st"> </span><span class="kw">sqrt</span>(nom_x<span class="op">*</span>nom_y<span class="op">*</span>(total <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)<span class="op">/</span><span class="dv">12</span>)</span>
-<span id="cb38-2"><a href="ch5.html#cb38-2"></a>var_approx</span></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" data-line-number="1">var_approx =<span class="st"> </span><span class="kw">sqrt</span>(nom_x<span class="op">*</span>nom_y<span class="op">*</span>(total <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)<span class="op">/</span><span class="dv">12</span>)</a>
+<a class="sourceLine" id="cb117-2" data-line-number="2">var_approx</a></code></pre></div>
 <pre><code>## [1] 7.071068</code></pre>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="ch5.html#cb40-1"></a>rank_data =<span class="st"> </span><span class="kw">rank</span>(<span class="kw">c</span>(x, y))</span>
-<span id="cb40-2"><a href="ch5.html#cb40-2"></a>rank_x =<span class="st"> </span>rank_data[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>]</span>
-<span id="cb40-3"><a href="ch5.html#cb40-3"></a>rank_y =<span class="st"> </span>rank_data[<span class="dv">5</span><span class="op">:</span><span class="dv">14</span>]</span>
-<span id="cb40-4"><a href="ch5.html#cb40-4"></a>wil_rank_sum =<span class="st"> </span><span class="kw">sum</span>(<span class="kw">rank</span>(<span class="kw">c</span>(x,y))[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>])</span>
-<span id="cb40-5"><a href="ch5.html#cb40-5"></a>man_whit =<span class="st"> </span><span class="kw">sum</span>(<span class="kw">rank</span>(<span class="kw">c</span>(x,y))[<span class="dv">5</span><span class="op">:</span><span class="dv">14</span>])</span>
-<span id="cb40-6"><a href="ch5.html#cb40-6"></a>stand_value =<span class="st"> </span>(wil_rank_sum <span class="op">+</span><span class="st"> </span><span class="dv">1</span><span class="op">/</span><span class="dv">2</span> <span class="op">-</span><span class="st"> </span>man_whit) <span class="op">/</span><span class="st"> </span>var_approx</span>
-<span id="cb40-7"><a href="ch5.html#cb40-7"></a>stand_value</span></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb119-1" data-line-number="1">rank_data =<span class="st"> </span><span class="kw">rank</span>(<span class="kw">c</span>(x, y))</a>
+<a class="sourceLine" id="cb119-2" data-line-number="2">rank_x =<span class="st"> </span>rank_data[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>]</a>
+<a class="sourceLine" id="cb119-3" data-line-number="3">rank_y =<span class="st"> </span>rank_data[<span class="dv">5</span><span class="op">:</span><span class="dv">14</span>]</a>
+<a class="sourceLine" id="cb119-4" data-line-number="4">wil_rank_sum =<span class="st"> </span><span class="kw">sum</span>(<span class="kw">rank</span>(<span class="kw">c</span>(x,y))[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>])</a>
+<a class="sourceLine" id="cb119-5" data-line-number="5">man_whit =<span class="st"> </span><span class="kw">sum</span>(<span class="kw">rank</span>(<span class="kw">c</span>(x,y))[<span class="dv">5</span><span class="op">:</span><span class="dv">14</span>])</a>
+<a class="sourceLine" id="cb119-6" data-line-number="6">stand_value =<span class="st"> </span>(wil_rank_sum <span class="op">+</span><span class="st"> </span><span class="dv">1</span><span class="op">/</span><span class="dv">2</span> <span class="op">-</span><span class="st"> </span>man_whit) <span class="op">/</span><span class="st"> </span>var_approx</a>
+<a class="sourceLine" id="cb119-7" data-line-number="7">stand_value</a></code></pre></div>
 <pre><code>## [1] -10.25305</code></pre>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="ch5.html#cb42-1"></a>prob &lt;-<span class="st"> </span><span class="kw">pnorm</span>(<span class="dt">q =</span> stand_value)</span>
-<span id="cb42-2"><a href="ch5.html#cb42-2"></a>prob</span></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb121-1" data-line-number="1">prob &lt;-<span class="st"> </span><span class="kw">pnorm</span>(<span class="dt">q =</span> stand_value)</a>
+<a class="sourceLine" id="cb121-2" data-line-number="2">prob</a></code></pre></div>
 <pre><code>## [1] 5.73345e-25</code></pre>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="ch5.html#cb44-1"></a><span class="kw">t.test</span>(rank_x, rank_y, <span class="dt">var.equal=</span>F)</span></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb123-1" data-line-number="1"><span class="kw">t.test</span>(rank_x, rank_y, <span class="dt">var.equal=</span>F)</a></code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
@@ -1013,17 +973,17 @@ Y: 1.5, 2.5, 3.5, 4.5, 5.5, 7.0, 10.0, 20.0, 40.0, 100.0</p>
 ## mean of x mean of y 
 ##       4.0       8.9</code></pre>
 </div>
-<div id="section-17" class="section level3 unnumbered" number="">
+<div id="section-17" class="section level3 unnumbered">
 <h3>5.5</h3>
 <p>Unit well yields, in gallons per minute per foot of water-bearing material, were contrasted for wells within valleys containing fracturing versus valleys with no fracturing (Wright, 1985). For the PPCC test for normality, r(with)=0.943 and r(without)=0.805. Perform the appropriate α = 0.05 test to discern whether fracturing is associated with higher mean unit well yield</p>
 <p><img src="figures/ex_5.5.png" width="1347" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="ch5.html#cb46-1"></a>with &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.95</span>, <span class="fl">0.72</span>, <span class="fl">0.51</span>, <span class="fl">0.44</span>, <span class="fl">0.40</span>, <span class="fl">0.30</span>, <span class="fl">0.18</span>, <span class="fl">0.16</span>, <span class="fl">0.16</span>, <span class="fl">0.13</span>, <span class="fl">0.086</span>, <span class="fl">0.031</span>, <span class="fl">0.020</span>)</span>
-<span id="cb46-2"><a href="ch5.html#cb46-2"></a>without &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">1.02</span>, <span class="fl">0.49</span>, <span class="fl">0.454</span>, <span class="fl">0.10</span>, <span class="fl">0.077</span>, <span class="fl">0.041</span>, <span class="fl">0.040</span>, <span class="fl">0.030</span>, <span class="fl">0.020</span>, <span class="fl">0.007</span>, <span class="fl">0.003</span>, <span class="fl">0.001</span>)</span>
-<span id="cb46-3"><a href="ch5.html#cb46-3"></a></span>
-<span id="cb46-4"><a href="ch5.html#cb46-4"></a>test &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">fracturing =</span> <span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;without&quot;</span>, <span class="dv">12</span>), <span class="kw">rep</span>(<span class="st">&quot;with&quot;</span>, <span class="dv">13</span>)),</span>
-<span id="cb46-5"><a href="ch5.html#cb46-5"></a>  <span class="dt">yield =</span> <span class="kw">c</span>(without,  with))</span>
-<span id="cb46-6"><a href="ch5.html#cb46-6"></a></span>
-<span id="cb46-7"><a href="ch5.html#cb46-7"></a>test</span></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb125-1" data-line-number="1">with &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.95</span>, <span class="fl">0.72</span>, <span class="fl">0.51</span>, <span class="fl">0.44</span>, <span class="fl">0.40</span>, <span class="fl">0.30</span>, <span class="fl">0.18</span>, <span class="fl">0.16</span>, <span class="fl">0.16</span>, <span class="fl">0.13</span>, <span class="fl">0.086</span>, <span class="fl">0.031</span>, <span class="fl">0.020</span>)</a>
+<a class="sourceLine" id="cb125-2" data-line-number="2">without &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">1.02</span>, <span class="fl">0.49</span>, <span class="fl">0.454</span>, <span class="fl">0.10</span>, <span class="fl">0.077</span>, <span class="fl">0.041</span>, <span class="fl">0.040</span>, <span class="fl">0.030</span>, <span class="fl">0.020</span>, <span class="fl">0.007</span>, <span class="fl">0.003</span>, <span class="fl">0.001</span>)</a>
+<a class="sourceLine" id="cb125-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb125-4" data-line-number="4">test &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">fracturing =</span> <span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;without&quot;</span>, <span class="dv">12</span>), <span class="kw">rep</span>(<span class="st">&quot;with&quot;</span>, <span class="dv">13</span>)),</a>
+<a class="sourceLine" id="cb125-5" data-line-number="5">  <span class="dt">yield =</span> <span class="kw">c</span>(without,  with))</a>
+<a class="sourceLine" id="cb125-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb125-7" data-line-number="7">test</a></code></pre></div>
 <pre><code>##    fracturing yield
 ## 1     without 1.020
 ## 2     without 0.490
@@ -1050,7 +1010,7 @@ Y: 1.5, 2.5, 3.5, 4.5, 5.5, 7.0, 10.0, 20.0, 40.0, 100.0</p>
 ## 23       with 0.086
 ## 24       with 0.031
 ## 25       with 0.020</code></pre>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="ch5.html#cb48-1"></a><span class="kw">t.test</span>(without, with, <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb127-1" data-line-number="1"><span class="kw">t.test</span>(without, with, <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>)</a></code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
@@ -1064,18 +1024,18 @@ Y: 1.5, 2.5, 3.5, 4.5, 5.5, 7.0, 10.0, 20.0, 40.0, 100.0</p>
 ## 0.1902500 0.3143846</code></pre>
 <p>As the p-value is higher than α, therefore a significant difference exists. Higher p-value means non significance of t-statistic, that means very less support to reject the null hypothesis.</p>
 </div>
-<div id="section-18" class="section level3 unnumbered" number="">
+<div id="section-18" class="section level3 unnumbered">
 <h3>5.6</h3>
 <p>Assume that the unit well yield data are now trace organic analyses from two sampling sites and that all values below 0.050 were reported as “&lt; 0.05.” Retest the hypothesis that H0 : μx = μy versus H1 : μx &gt; μy using the rank-sum test. By how much does the test statistic change? Are the results altered by presence of a detection limit? Could a t-test be used in this situation?</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="ch5.html#cb50-1"></a><span class="kw">library</span>(<span class="st">&quot;ggplot2&quot;</span>)</span>
-<span id="cb50-2"><a href="ch5.html#cb50-2"></a>with &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.95</span>, <span class="fl">0.72</span>, <span class="fl">0.51</span>, <span class="fl">0.44</span>, <span class="fl">0.40</span>, <span class="fl">0.30</span>, <span class="fl">0.18</span>, <span class="fl">0.16</span>, <span class="fl">0.16</span>, <span class="fl">0.13</span>, <span class="fl">0.086</span>, <span class="fl">0.031</span>, <span class="fl">0.020</span>)</span>
-<span id="cb50-3"><a href="ch5.html#cb50-3"></a>without &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">1.02</span>, <span class="fl">0.49</span>, <span class="fl">0.454</span>, <span class="fl">0.10</span>, <span class="fl">0.077</span>, <span class="fl">0.041</span>, <span class="fl">0.040</span>, <span class="fl">0.030</span>, <span class="fl">0.020</span>, <span class="fl">0.007</span>, <span class="fl">0.003</span>, <span class="fl">0.001</span>)</span>
-<span id="cb50-4"><a href="ch5.html#cb50-4"></a></span>
-<span id="cb50-5"><a href="ch5.html#cb50-5"></a>test &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">fracturing =</span> <span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;without&quot;</span>, <span class="dv">12</span>), <span class="kw">rep</span>(<span class="st">&quot;with&quot;</span>, <span class="dv">13</span>)),</span>
-<span id="cb50-6"><a href="ch5.html#cb50-6"></a>                   <span class="dt">yield =</span> <span class="kw">c</span>(without,  with)</span>
-<span id="cb50-7"><a href="ch5.html#cb50-7"></a>)</span>
-<span id="cb50-8"><a href="ch5.html#cb50-8"></a></span>
-<span id="cb50-9"><a href="ch5.html#cb50-9"></a>test</span></code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb129-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;ggplot2&quot;</span>)</a>
+<a class="sourceLine" id="cb129-2" data-line-number="2">with &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.95</span>, <span class="fl">0.72</span>, <span class="fl">0.51</span>, <span class="fl">0.44</span>, <span class="fl">0.40</span>, <span class="fl">0.30</span>, <span class="fl">0.18</span>, <span class="fl">0.16</span>, <span class="fl">0.16</span>, <span class="fl">0.13</span>, <span class="fl">0.086</span>, <span class="fl">0.031</span>, <span class="fl">0.020</span>)</a>
+<a class="sourceLine" id="cb129-3" data-line-number="3">without &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">1.02</span>, <span class="fl">0.49</span>, <span class="fl">0.454</span>, <span class="fl">0.10</span>, <span class="fl">0.077</span>, <span class="fl">0.041</span>, <span class="fl">0.040</span>, <span class="fl">0.030</span>, <span class="fl">0.020</span>, <span class="fl">0.007</span>, <span class="fl">0.003</span>, <span class="fl">0.001</span>)</a>
+<a class="sourceLine" id="cb129-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb129-5" data-line-number="5">test &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">fracturing =</span> <span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;without&quot;</span>, <span class="dv">12</span>), <span class="kw">rep</span>(<span class="st">&quot;with&quot;</span>, <span class="dv">13</span>)),</a>
+<a class="sourceLine" id="cb129-6" data-line-number="6">                   <span class="dt">yield =</span> <span class="kw">c</span>(without,  with)</a>
+<a class="sourceLine" id="cb129-7" data-line-number="7">)</a>
+<a class="sourceLine" id="cb129-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb129-9" data-line-number="9">test</a></code></pre></div>
 <pre><code>##    fracturing yield
 ## 1     without 1.020
 ## 2     without 0.490
@@ -1102,38 +1062,38 @@ Y: 1.5, 2.5, 3.5, 4.5, 5.5, 7.0, 10.0, 20.0, 40.0, 100.0</p>
 ## 23       with 0.086
 ## 24       with 0.031
 ## 25       with 0.020</code></pre>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="ch5.html#cb52-1"></a><span class="kw">ggplot</span>(test, <span class="kw">aes</span>(<span class="dt">x =</span> fracturing, <span class="dt">y =</span> yield)) <span class="op">+</span></span>
-<span id="cb52-2"><a href="ch5.html#cb52-2"></a><span class="st">  </span><span class="kw">geom_boxplot</span>()<span class="op">+</span></span>
-<span id="cb52-3"><a href="ch5.html#cb52-3"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
-<p><img src="Statistical-Methods-in-Water-Resources_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="ch5.html#cb53-1"></a><span class="kw">wilcox.test</span>(without, with, <span class="dt">exact =</span> <span class="ot">FALSE</span>, <span class="dt">correct =</span> T)</span></code></pre></div>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb131-1" data-line-number="1"><span class="kw">ggplot</span>(test, <span class="kw">aes</span>(<span class="dt">x =</span> fracturing, <span class="dt">y =</span> yield)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb131-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_boxplot</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb131-3" data-line-number="3"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
+<p><img src="Statistical-Methods-in-Water-Resources_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb132-1" data-line-number="1"><span class="kw">wilcox.test</span>(without, with, <span class="dt">exact =</span> <span class="ot">FALSE</span>, <span class="dt">correct =</span> T)</a></code></pre></div>
 <pre><code>## 
 ##  Wilcoxon rank sum test with continuity correction
 ## 
 ## data:  without and with
 ## W = 43.5, p-value = 0.0643
 ## alternative hypothesis: true location shift is not equal to 0</code></pre>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="ch5.html#cb55-1"></a>nom_x =<span class="st"> </span><span class="kw">length</span>(without)</span>
-<span id="cb55-2"><a href="ch5.html#cb55-2"></a>nom_y =<span class="st"> </span><span class="kw">length</span>(with)</span>
-<span id="cb55-3"><a href="ch5.html#cb55-3"></a>total =<span class="st"> </span>nom_x <span class="op">+</span><span class="st"> </span>nom_y</span>
-<span id="cb55-4"><a href="ch5.html#cb55-4"></a>mean_approx =<span class="st"> </span>nom_x<span class="op">*</span>(total <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)<span class="op">/</span><span class="dv">2</span></span>
-<span id="cb55-5"><a href="ch5.html#cb55-5"></a>mean_approx</span></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb134-1" data-line-number="1">nom_x =<span class="st"> </span><span class="kw">length</span>(without)</a>
+<a class="sourceLine" id="cb134-2" data-line-number="2">nom_y =<span class="st"> </span><span class="kw">length</span>(with)</a>
+<a class="sourceLine" id="cb134-3" data-line-number="3">total =<span class="st"> </span>nom_x <span class="op">+</span><span class="st"> </span>nom_y</a>
+<a class="sourceLine" id="cb134-4" data-line-number="4">mean_approx =<span class="st"> </span>nom_x<span class="op">*</span>(total <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)<span class="op">/</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb134-5" data-line-number="5">mean_approx</a></code></pre></div>
 <pre><code>## [1] 156</code></pre>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="ch5.html#cb57-1"></a>var_approx =<span class="st"> </span><span class="kw">sqrt</span>(nom_x<span class="op">*</span>nom_y<span class="op">*</span>(total <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)<span class="op">/</span><span class="dv">12</span>)</span>
-<span id="cb57-2"><a href="ch5.html#cb57-2"></a>var_approx</span></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb136-1" data-line-number="1">var_approx =<span class="st"> </span><span class="kw">sqrt</span>(nom_x<span class="op">*</span>nom_y<span class="op">*</span>(total <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)<span class="op">/</span><span class="dv">12</span>)</a>
+<a class="sourceLine" id="cb136-2" data-line-number="2">var_approx</a></code></pre></div>
 <pre><code>## [1] 18.38478</code></pre>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="ch5.html#cb59-1"></a>rank_data =<span class="st"> </span><span class="kw">rank</span>(<span class="kw">c</span>(without, with))</span>
-<span id="cb59-2"><a href="ch5.html#cb59-2"></a>rank_x =<span class="st"> </span>rank_data[<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>]</span>
-<span id="cb59-3"><a href="ch5.html#cb59-3"></a>rank_y =<span class="st"> </span>rank_data[<span class="dv">12</span><span class="op">:</span><span class="dv">25</span>]</span>
-<span id="cb59-4"><a href="ch5.html#cb59-4"></a>wil_rank_sum =<span class="st"> </span><span class="kw">sum</span>(<span class="kw">rank</span>(<span class="kw">c</span>(without,with))[<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>])</span>
-<span id="cb59-5"><a href="ch5.html#cb59-5"></a>man_whit =<span class="st"> </span><span class="kw">sum</span>(<span class="kw">rank</span>(<span class="kw">c</span>(without,with))[<span class="dv">13</span><span class="op">:</span><span class="dv">25</span>])</span>
-<span id="cb59-6"><a href="ch5.html#cb59-6"></a>stand_value =<span class="st"> </span>(wil_rank_sum <span class="op">+</span><span class="st"> </span><span class="dv">1</span><span class="op">/</span><span class="dv">2</span> <span class="op">-</span><span class="st"> </span>man_whit) <span class="op">/</span><span class="st"> </span>var_approx</span>
-<span id="cb59-7"><a href="ch5.html#cb59-7"></a>stand_value</span></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb138-1" data-line-number="1">rank_data =<span class="st"> </span><span class="kw">rank</span>(<span class="kw">c</span>(without, with))</a>
+<a class="sourceLine" id="cb138-2" data-line-number="2">rank_x =<span class="st"> </span>rank_data[<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>]</a>
+<a class="sourceLine" id="cb138-3" data-line-number="3">rank_y =<span class="st"> </span>rank_data[<span class="dv">12</span><span class="op">:</span><span class="dv">25</span>]</a>
+<a class="sourceLine" id="cb138-4" data-line-number="4">wil_rank_sum =<span class="st"> </span><span class="kw">sum</span>(<span class="kw">rank</span>(<span class="kw">c</span>(without,with))[<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>])</a>
+<a class="sourceLine" id="cb138-5" data-line-number="5">man_whit =<span class="st"> </span><span class="kw">sum</span>(<span class="kw">rank</span>(<span class="kw">c</span>(without,with))[<span class="dv">13</span><span class="op">:</span><span class="dv">25</span>])</a>
+<a class="sourceLine" id="cb138-6" data-line-number="6">stand_value =<span class="st"> </span>(wil_rank_sum <span class="op">+</span><span class="st"> </span><span class="dv">1</span><span class="op">/</span><span class="dv">2</span> <span class="op">-</span><span class="st"> </span>man_whit) <span class="op">/</span><span class="st"> </span>var_approx</a>
+<a class="sourceLine" id="cb138-7" data-line-number="7">stand_value</a></code></pre></div>
 <pre><code>## [1] -4.433016</code></pre>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="ch5.html#cb61-1"></a>prob &lt;-<span class="st"> </span><span class="kw">pnorm</span>(<span class="dt">q =</span> stand_value)</span>
-<span id="cb61-2"><a href="ch5.html#cb61-2"></a>prob</span></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb140-1" data-line-number="1">prob &lt;-<span class="st"> </span><span class="kw">pnorm</span>(<span class="dt">q =</span> stand_value)</a>
+<a class="sourceLine" id="cb140-2" data-line-number="2">prob</a></code></pre></div>
 <pre><code>## [1] 4.646207e-06</code></pre>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="ch5.html#cb63-1"></a><span class="kw">t.test</span>(rank_x, rank_y, <span class="dt">var.equal=</span>F)</span></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb142-1" data-line-number="1"><span class="kw">t.test</span>(rank_x, rank_y, <span class="dt">var.equal=</span>F)</a></code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
@@ -1145,6 +1105,7 @@ Y: 1.5, 2.5, 3.5, 4.5, 5.5, 7.0, 10.0, 20.0, 40.0, 100.0</p>
 ## sample estimates:
 ## mean of x mean of y 
 ##  10.12500  14.60714</code></pre>
+<p>contained in the data below detection limit is extracted using ranks. Results are the same (one-sided p-value = 0.039. Reject equality). A t-test could not be used without improperly substituting</p>
 
 </div>
 </div>
@@ -1152,19 +1113,19 @@ Y: 1.5, 2.5, 3.5, 4.5, 5.5, 7.0, 10.0, 20.0, 40.0, 100.0</p>
 <h3>References</h3>
 <div id="refs" class="references">
 <div id="ref-bradley1968distribution">
-<p>Bradley, James V. 1968. “Distribution-Free Statistical Tests.”</p>
+<p>Bradley, James V. 1968. “Distribution-Free Statistical Tests.” Citeseer.</p>
 </div>
 <div id="ref-conover1980practical">
-<p>Conover, William Jay, and William Jay Conover. 1980. “Practical Nonparametric Statistics.”</p>
+<p>Conover, William Jay, and William Jay Conover. 1980. “Practical Nonparametric Statistics.” Wiley New York.</p>
 </div>
 <div id="ref-crawford1983nonparametric">
 <p>Crawford, Charles G, James Richard Slack, and Robert M Hirsch. 1983. <em>Nonparametric Tests for Trends in Water-Quality Data Using the Statistical Analysis System</em>. US Geological Survey.</p>
 </div>
 <div id="ref-helsel1988estimation">
-<p>Helsel, Dennis R, and Timothy A Cohn. 1988. “Estimation of Descriptive Statistics for Multiply Censored Water Quality Data.” <em>Water Resources Research</em> 24 (12): 1997–2004.</p>
+<p>Helsel, Dennis R, and Timothy A Cohn. 1988. “Estimation of Descriptive Statistics for Multiply Censored Water Quality Data.” <em>Water Resources Research</em> 24 (12). Wiley Online Library: 1997–2004.</p>
 </div>
 <div id="ref-hodges1963estimates">
-<p>Hodges Jr, Joseph L, and Erich L Lehmann. 1963. “Estimates of Location Based on Rank Tests.” <em>The Annals of Mathematical Statistics</em>, 598–611.</p>
+<p>Hodges Jr, Joseph L, and Erich L Lehmann. 1963. “Estimates of Location Based on Rank Tests.” <em>The Annals of Mathematical Statistics</em>. JSTOR, 598–611.</p>
 </div>
 <div id="ref-hollander1973nonparametric">
 <p>Hollander, M., and D. A. Wolfe. 1973. <em>Nonparametric Statistical Methods</em>. Vol. 503. John Wiley &amp; Sons, New York.</p>
@@ -1176,7 +1137,7 @@ Y: 1.5, 2.5, 3.5, 4.5, 5.5, 7.0, 10.0, 20.0, 40.0, 100.0</p>
 <p>Oltmann, Richard N, and Michael V Shulters. 1989. “Rainfall and Runoff Quantity and Quality Characteristics of Four Urban Land-Use Catchments in Fresno, California, October 1981 to April 1983.” USGPO; For sale by the Books; Open-File Reports Section, US Geological ….</p>
 </div>
 <div id="ref-wilcoxon1945individual">
-<p>Wilcoxon, Frank. 1945. “Individual Comparisons by Ranking Methods.” <em>Biometrics</em> 1: 80–83.</p>
+<p>Wilcoxon, Frank. 1945. “Individual Comparisons by Ranking Methods.” <em>Biometrics</em> 1. Oxford University Press Oxford, UK: 80–83.</p>
 </div>
 </div>
             </section>
