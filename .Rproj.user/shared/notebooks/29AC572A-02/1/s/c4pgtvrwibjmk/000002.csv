@@ -1,7 +1,0 @@
-"0","library(data.table)
-library(ggplot2)
-source(""./data/themes.R"")
-"
-"2","Registering fonts with R
-"
-"0","source(""./data/palettes.R"")"
