@@ -1,0 +1,61 @@
+# Comparing Several Independent Groups   {#ch7}
+
+Concentrations of volatile organic compounds are measured in shallow ground waters across a several county area. The wells sampled can be classified as being contained in one of seven land-use types:  undeveloped, agricultural, wetlands, low-density residential, high-density residential, commercial, and industrial/transportation.  Do the concentrations of volatiles differ between these types of surface land-use, and if so, how?
+
+Alkalinity, pH, iron concentrations, and biological diversity are measured at low flow for small streams draining areas mined for coal.  Each stream drains either unmined land, land strip-mined and then abandoned, or land strip-mined and then reclaimed.  The streams also drain one of two rock units, a sandstone or a limestone formation.  Do drainages from mined and unmined lands differ in quality?  What affect has reclamation had?  Are there differences in chemical or biological quality due to rock type separate and distinct from the effects due to mining history?
+
+Three methods for field extraction and concentration of an organic chemical are to be compared at numerous wells.  Are there differences among concentrations produced by the extraction processes?  These must be discerned above the well-to-well differences in concentration which contribute considerable noise to the data.
+
+The methods of this chapter can be used to answer questions such as those above.  These methods are extensions of the ones introduced in Chapters 5 and 6, where now more than two groups of data are to be compared.  The classic technique in this situation is analysis of variance.  More robust nonparametric techniques are also presented for the frequent situations where data do not meet the assumptions of analysis of variance.
+
+Suppose a set of continuous data, such as concentration or water levels, is collected.  It is suspected that one or more influences on the magnitude of these data comes from grouped variables, variables whose values are simply "from group X".  Examples include season of the year ("from summer", "winter", etc.), aquifer type, land-use type, and similar groups.  Each observation will be classified into one of these groups.
+
+First consider the effect of only one grouped variable, calling it an **explanatory variable** because it is believed to explain some of the variation in magnitude of the data at hand.  This variable is also called a **factor**.  It consists of a set of k groups, with each data point belonging in one of the k groups.  For example, the data could be calcium concentrations from wells in one of k aquifers, and the objective is to determine whether the calcium concentrations differ among the k aquifers.  Within each group (aquifer) there are nj observations (the sample size of each group is not necessarily the same).  Observation y~ij~ is the ith of n~j~ observations in group j, so that i=1,...n~j~ for the jth of k groups j=1,...k .  The total number of observations N is thus 
+
+
+\begin{equation}
+N = \sum_{j=1}^{k} {n_{j}},    \text{which simplifies to N = k*n}\\
+\end{equation}
+
+when the sample size n~j~ = n for all k groups (equal sample sizes).
+
+The tests in this chapter determine if all k groups have the same central value (median or mean, depending on the test), or whether at least one of the groups differs from the others.  When data within each of the groups are normally distributed and possess identical variances, an analysis of variance (ANOVA) can be used.  Analysis of variance is a parametric test, determining whether each group's mean is identical.  When there are only two groups, the ANOVA becomes identical to a t-test.  Thus ANOVA is like a t-test between three or more groups of data, and is restricted by the same types of assumptions as was the t-test.  When every group of data cannot be assumed to be normally distributed or have identical variance, a nonparametric test should be used instead.  The Kruskal-Wallis test is much like a rank-sum test extended to more than two groups.  It compares the medians of groups differentiated by one explanatory variable (one factor).
+
+When the effect of more than one factor is to be evaluated simultaneously, such as both rock type and mining history in one of the examples which began this chapter, the one-way tests can no longer be used.  For data which can be assumed normal, several factors can be tested simultaneously using multi-factor analysis of variance.   However, the requirements of normality and equal variance now apply to data grouped by each unique combination of factors.    This becomes quite restrictive and is rarely met in practice.  Therefore nonparametric alternatives are also presented.
+
+The following sections begin with tests for differences due to one factor.  Subsequent sections discuss tests for effects due to more than one factor.   All of these have as their null hypothesis that each group median (or mean) is identical, with the alternative that at least one is different.  However, when the null hypothesis is rejected, these tests do not tell which group or groups are different!  Therefore sections also follow on multiple comparison tests -- tests performed after the ANOVA or Kruskal-Wallis null hypothesis has been rejected, for determining which groups differ from others.  A final section on graphical display of results finishes the chapter.
+
+## Tests for Differences Due to One Factor
+### The Kruskal-Wallis Test
+The Kruskal-Wallis test, like other nonparametric tests, may be computed by an exact method used for small sample sizes, by a large-sample approximation (a chi-square approximation) available on statistical packages, and by ranking the data and performing a parametric test on the ranks.   Tables for the exact method give p-values which are exactly correct.  The other two methods produce approximate p-values that are only valid when sample sizes are large, but do not require special tables.  Tables of exact p-values for all sample sizes would be huge, as there are many possible combinations of numbers of groups and sample sizes per group.  Fortunately, large sample approximations for all but the smallest sample sizes are very close to their true (exact) values.  Thus exact computations are rarely required. All three versions have the same objective, as stated by their null and alternate hypotheses.
+
+#### Null and alternate hypotheses
+In its most general form, the Kruskal-Wallis test has the following null and alternate hypotheses:
+
+            H 0: All of the k groups of data have identical distributions, versus
+            H 1: At least one group differs in its distribution
+
+No assumptions are required about the shape(s) of the distributions.  They may be normal, lognormal, or anything else.  If the alternate hypothesis is true, they may have different distributional shapes.  In this form, the only interest in the data is to determine whether all groups are identical, or whether some tend to produce observations different in value than the others.  This difference is not attributed solely to a difference in median, though that is one possibility.  Thus the Kruskal-Wallis test, like the rank-sum test, may be used to determine the general equivalence of groups of data.   
+In practice, the test is usually performed for a more specific purpose \-- to determine whether all groups have the same median, or whether at least one median is different.  This form requires that all other characteristics of the data distributions, such as spread or skewness, are identical \-- though not necessarily in the original units.  Any data for which a monotonic transformation, such as in the ladder of powers, produces similar spreads and skewness are also valid.  This parallels the rank-sum test (see Chapter 5).  As a test for difference in medians, the KruskalWallis null and alternate hypotheses are:
+
+         H 0: The medians of the k groups are identical,   
+         H 1: At least one median differs from the others. (a 2-sided test).
+         
+As with the rank-sum test, the Kruskal-Wallis test statistic and p-value computed for data that are transformed using any monotonic transformation are identical to the test statiistic and pvalue using the original units.  Thus there is little incentive to search for transformations (to normality or otherwise) \-- the test is applicable in many situations.
+
+#### Computation of the exact test
+The exact form of the Kruskal-Wallis test is required when comparing 3 groups with sample sizes of 5 or less per group, or with 4 or more groups of size 4 or less per group (Lehmann, 1975).  For larger sample sizes the large-sample approximation is sufficiently accurate.  As there are few instances where sample sizes are small enough to warrant using the exact test, exact tables for the Kruskal-Wallis test are not included in this book.  Refer to either Conover (1980) or Lehmann (1975) for those tables. 
+Should the exact test be required, compute the exact test statistic K as shown in the large sample approximation of the following section.  K is computed identically for both the exact form or large sample approximation.  When ties occur, the large sample approximation must be used.
+
+#### The large-sample approximation
+To compute the test, the data are ranked from smallest to largest, from 1 to N.  At this point the original values are no longer used; their ranks are used to compute the test statistic.  If the null hypothesis is true, the average rank for each group should be similar, and also be close to the overall average rank for all N data.  When the alternative hypothesis is true, the average rank for some of the groups will differ from others, reflecting the difference in magnitude of its observations.  Some of the average group ranks will then be significantly higher than the overall average rank for all N data, and some will be lower.  The test statistic K uses the squares of the differences between the average group ranks and the overall average rank, to determine if groups differ in magnitude.  K will equal 0 if all groups have identical average ranks, and will be positive if group ranks are different.  The distribution of K when the null hypothesis is true can be approximated quite well by a chi-square distribution with k−1 degrees of freedom.
+
+The degrees of freedom is a measure of the number of independent pieces of information used to construct the test statistic.  If all data are divided by the overall group mean to standardize the data set, then when any k−1 average group ranks are known, the final (kth) average rank can be computed from the others as
+
+\begin{equation}
+\overline{R}_{k} = \frac{N} {n_{k}} \bullet [1 - \sum_{j=1}^{k-1} \frac{n_{j}} {N} \overline{R}_{j}]
+\end{equation}
+
+Therefore there are actually only k−1 independent pieces of information represented by the k average group ranks.  From these the kth average rank is fixed.
+
+
