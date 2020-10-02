@@ -1,3 +1,10 @@
+---
+output:
+  pdf_document: 
+    fig_height: 6
+    fig_width: 8
+  html_document: default
+---
 # Comparing Several Independent Groups   {#ch7}
 
 Concentrations of volatile organic compounds are measured in shallow ground waters across a several county area. The wells sampled can be classified as being contained in one of seven land-use types:  undeveloped, agricultural, wetlands, low-density residential, high-density residential, commercial, and industrial/transportation.  Do the concentrations of volatiles differ between these types of surface land-use, and if so, how?
@@ -58,4 +65,201 @@ The degrees of freedom is a measure of the number of independent pieces of infor
 
 Therefore there are actually only k−1 independent pieces of information represented by the k average group ranks.  From these the kth average rank is fixed.
 
+```{r fig-T_7_01, echo = FALSE, fig.align='center', fig.cap=""}
+knitr::include_graphics("figures/T_7_01.png")
+
+```
+
+<u>Example 1</u>.  
+Fecal coliforms, in organisms per 100 ml, were measured in the Illinois River from 1971 to 1976 (@lin1980coliforms).  A small subset of those data are presented here.  Do all four seasons exhibit similar values, or do one or more seasons differ?  Boxplots for the four seasons are shown in figure \@ref(fig:fig-7-1).
+
+```{r fig-T_7_1, echo = FALSE, fig.align='center', fig.cap=" Selected fecal coliform data (from @lin1980coliforms).  [counts in organisms per 100 ml] "}
+knitr::include_graphics("figures/T_7_1.png")
+```
+
+
+```{r fig-7-1, echo = FALSE, fig.cap = "   Boxplots of Fecal Coliform Data from the Illinois River  ", fig.align="center"}
+knitr::include_graphics("figures/7_1.png")
+```
+
+Should a parametric or nonparametric test be performed on these data?  If even one of the four groups exhibits non-normality, the assumptions of parametric analysis of variance are violated.  The consequences of this violation is an inability to detect differences which are truly present -- a lack of power.  The PPCC test for normality rejects normality at α =0.05 for two of the seasons, summer and spring (table 7.1).  Outliers and skewness for the fall samples also argue for non-normality.  Based solely on the skewness and outliers evident in the boxplot, a nonparametric test should be used on these data.
+
+Computation of the Kruskal-Wallis test is shown in table \@ref(fig:fig-T_7_2).  This is compared to a table of the chi-square distribution available in many statistics texts, such as Iman and Conover (1983).  We conclude that there is not enough evidence in these data to reject the assumption that fecal coliform counts are distributed similarly in all four seasons.
+
+Table 7.2.  Kruskal-Wallis test for the fecal coliform data
+```{r, fig-T_7_2, echo = FALSE, fig.align="center"}
+knitr::include_graphics("figures/T_7_2.png")
+```
+
+
+#### The rank transform approximation 
+The rank transform approximation to the Kruskal-Wallis test is computed by performing a onefactor analysis of variance on the ranks R~ij~.  This approximation compares the mean rank within each group to the overall mean rank, using an F-distribution for the approximation of the distribution of K.  The F and chi-square approximations will result in very similar p-values.  The rank transform method should properly be called an "analysis of variance on the ranks".  
+
+For the example 1 data, the rank transform approximation results in a p-value of 0.47, essentially identical to that for the large sample approximation.  Detailed computations are shown following the discussion of ANOVA in the next section. 
+
+####  Analysis of Variance (One Factor)
+Analysis of variance is the parametric equivalent to the Kruskal-Wallis test.  It compares the mean values of each group with the overall mean for the entire data set.  If the group means are dissimilar, some of them will differ from the overall mean, as in figure \@ref(fig:fig-7-2).  If the group means are similar, they will also be similar to the overall mean, as in figure \@ref(fig:fig-7-3). 
+
+```{r fig-7-2, echo = FALSE, fig.cap = "   Hypothetical data for three groups.  Treatment mean square > Error mean square.  ", fig.align="center"}
+knitr::include_graphics("figures/7_2.png")
+```
+
+Why should a test of differences between means be named an analysis of variance?  In order to determine if the differences between group means (the signal) can be seen above the variation within groups (the noise), the total noise in the data as measured by the total sum of squares is split into two parts:  
+
+**Total sum of squares = Treatment sum of squares + Error sum of squares**  
+(overall variation) = (group means − overall mean) + (variation within groups)  
+
+\begin{equation}
+\sum_{j=1}^{k}\sum_{i=1}^{{n}_{j}}(y_{ij}-\overline{y})^{2} = \sum_{j=1}^{k} {n}_{j}(\overline{y}_{j}-\overline{y})^{2} + \sum_{j=1}^{k}\sum_{i=1}^{{n}_{j}}(y_{ij}-\overline{y})^{2}
+\end{equation}
+
+If the total sum of squares is divided by N−1, where N is the total number of observations, it equals the variance of the y~ij~'s.  Thus ANOVA partitions the variance of the data into two parts, one measuring the signal and the other the noise.  These parts are then compared to determine if the means are significantly different. 
+
+
+#### Null and alternate hypotheses 
+The null and alternate hypotheses for the analysis of variance are:   
+
+     H~0~: the k group means are identical  µ~1~ = µ~2~ = ...= µ~k~ .   
+     H~1~: at least one mean is different.  
+     
+```{r fig-7-3, echo = FALSE, fig.cap = "   Hypothetical data for three groups.  Treatment mean square ≅ Error mean square. ", fig.align="center"}
+knitr::include_graphics("figures/7_3.png")
+``` 
+
+#### Assumptions of the test 
+If ANOVA is performed on two groups, the F statistic which results will equal the square of the two-sample t-test statistic F=t^2^, and will have the same p-value.  It is not surprising, then, that the same assumptions apply to both tests: 
+
+1. All samples are random samples from their respective populations.    
+2. All samples are independent of one another.  
+3. Departures from the group mean (y~ij~ − y ~j~) are normally distributed for all j groups.   
+4. All groups have equal population variance σ2 estimated for each group by s~j~^2^
+
+
+\begin{equation}
+{s}_{j}^{2} = \frac {\sum_{i=1}^{{n}_{j}} (y_{ij}-\overline{y}_{j})^{2}} {{n}_{j}-1}
+\end{equation}
+
+
+Violation of either the normality or constant variance assumption results in a loss of ability to see differences between means (a loss of power).  The analysis of variance suffers from the same five problems as did the t-test:  1) lack of power when applied to non-normal data, 2) dependence on an additive model, 3) lack of applicability for censored data, 4) assumption that the mean is a good measure of central tendency for skewed data, and 5) difficulty in assessing whether the normality and equality of variance assumptions are valid for small sample sizes.  See Chapter \@ref(ch5) for a detailed discussion of these problems. 
+
+Difficulties arise when using prior tests of normality to "prove" non-normality before allowing use of the nonparametric Kruskal-Wallis test.  Small samples sizes may inhibit detecting nonnormality, as mentioned above.  Second, transformations must be done on more than two groups of data.  It is usually quite difficult to find a single transformation which when applied to all groups will result in each becoming normal with constant variance.  Even the best transformation based on sample data may not alleviate the power loss inherent when the assumptions of ANOVA are violated.  Finally, if all groups are actually from a normal distribution, one or more may be "proven" non-normal simply by chance (there is an α% chance for each group).  Thus the results of testing for normality can be quite inconclusive prior to performing ANOVA.  The value of nonparametric approaches here is that they are relatively powerful for a wide range of situations.    
+
+
+#### Computation 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Tests for the Effects of More Than One Factor
+It is quite common that more than one factor is suspected to be influencing the magnitudes of observations.  In these situations it is desirable to measure the influence of all factors simultaneously.  Sequential one-factor tests are an inadequate alternative to a single multi-factor test.  Even when only one factor is actually influencing the data and a one-way ANOVA for that factor soundly rejects H~0~, a second one-way test for a related factor may erroneously reject H~0~ simply due to the association between the two factors.  The test for the second factor should remove the effect of the first before establishing that the second has any influence.  By evaluating all factors simultaneously, the influence of one can be measured while compensating for the others.  This is the objective of a multi-factor analysis of variance, and of the nonparametric analogue.
+
+### Nonparametric Multi-Factor Tests 
+For two-factor and more complex ANOVA's where the data within one or more treatment groups are not normally distributed and may not have equal variances, there are two possible approaches for analysis.  The first is a class of tests which include the Kruskal-Wallis and Friedman tests as simpler cases.  These tests, described by Groggel and Skillings (1986), do not allow for interactions between factors.  The tests reformat multiple factors into two factors, one the factor being tested, and the other the collection of all other treatment groups for all remaining factors.  The data are then ranked within treatment groups for analysis, much as in a Friedman test.  The reader is referred to their paper for more detail.
+
+The second procedure is a rank transformation test (Conover and Iman, 1981).  All data are ranked from 1 to N, and an ANOVA computed on the ranks.  This procedure is far more robust to departures from the assumptions of normality and constant variance than is an ANOVA on the original data.  The rank transformation produces values which are much closer to meeting the two critical assumptions than are the original values themselves.  The tests determine whether the mean rank differs between treatment groups, rather than the mean.  The mean rank is interpreted as an estimate of the median.  Multiple comparison procedures on the ranks can then differentiate which groups differ from others.
+
+Examples of the computation and performance of these rank transformation tests will be delayed until after discussion of parametric factorial ANOVA
+
+###  Multi-Factor Analysis of Variance -- Factorial ANOVA
+The effects of two or more factors may be simultaneously evaluated using a factorial ANOVA design.  A factorial ANOVA occurs when none of the factors is a subset of the others.  If subsetted factors do occur, the design includes "nested" factors and the equations for computing the F test statistics will differ from those here (nested ANOVA is briefly introduced in a later section).  A two-factor ANOVA will be fully described -- more than two factors can be incorporated, but are beyond the scope of this book.  See Neter, Wasserman and Kutner (1985) for more detail on higher-way  and nested analysis of variance.
+
+For a two-factor ANOVA, the influences of two explanatory variables are simultaneously tested.  The first page of this chapter presented a two-factor ANOVA, the determination of chemical concentrations among basins at low flow.  The objective was to determine whether concentrations differed as a function of mining history (whether or not each basin was mined, and if so whether it was reclaimed) and of rock type.
+
+####   Null and alternate hypotheses
+Call the two factors A and B.  There are i=1,...a ≥ 2 categories of factor A, and  j=1,...b ≥ 2 categories of factor B.  Treatment groups are defined as all the possible combinations of factors A and B, so there are a•b treatment groups.  Within each treatment group there are n~ij~ observations.  The test determines whether mean concentrations are identical among all the a•b treatment groups, or whether at least one differs.
+
+H~0~ :  all a•b treatment group means µ~ij~ are equal µ~11~= µ~12~ = ...= µ~ab~  
+H~1~ :  at least one µ~ij~ differs from the rest. 
+
+The magnitude of any observation yijk can be affected by several possible influences:
+
+\begin{equation}
+Y_{ijk} =  µ + αi + β_{j} + αβ_{ij} + ε_{ijk}, \text {where}\\  
+\end{equation}
+
+<center> > α~i~ = influence of the ith category of A  
+      β~j~ = influence of the jth category of B  
+         αβ~ij~ = interaction effect between A and B beyond those of α~i~ and β~j~  
+             separately for the ijth treatment group, and  
+    ε~ijk~ = residual error, the difference between the kth observation (k=1,...n~ij~) and the treatment group mean µ~ij~.   
+</center>  
+
+
+The null hypothesis states that treatment group means µij all equal the overall mean µ.  Therefore αi βj and αβ~ij~ all equal 0 \-- there are no effects due to any of the factors or to their interaction.  If any one of α~i~, β~j~, or αβ~ij~ are nonzero, the null hypothesis is rejected, and at least one treatment group evidences a difference in its mean. 
+
+#### Interaction between factors  
+
+If αβ~ij~ = 0 in the equation above, there is no interaction present.  Without interaction, the effect of factor B is identical for all groups of factor A, and the effect of factor A is identical for all groups of factor B.  Suppose there are 3 groups of factor A (a1, a2, and a3) and 2 groups of factor B (b1 and b2), resulting in six treatment groups overall.  Lack of interaction can be visualized by plotting the means for all treatment groups as in figure 7.4.  The parallelism of the lines shows that no interaction is present.  The effect of A going from a1 to a2 to a3 is identical regardless of which B group is involved.  The increase going from b1 to b2 for factor B is identical for every group of factor A.
+
+When interaction is present (αβij ≠ 0) the treatment group means are not determined solely by the additive effects of factors A and B alone.  Some of the groups will have mean values larger or smaller than those expected just from the results of the individual factors.  The effect of factor A can no longer be discussed without reference to which group of factor B is  of interest, and the effect of factor B can likewise not be stated apart from a knowledge of the group of factor A.  In a plot of the treatment group means, the lines are no longer parallel (figure 7.5).  The pattern of differences going from a1 to a2 to a3 depends on which group of factor B is of interest, and likewise for the differences between b1 and b2 -- the pattern differs for the three A groups.
+
+
+```{r fig-7-4, echo = FALSE, fig.cap = "  Six treatment group means with no interaction present ", fig.align="center"}
+knitr::include_graphics("figures/7_4.png")
+```
+
+```{r fig-7-5, echo = FALSE, fig.cap = "   Six treatment group means with interaction present ", fig.align="center"}
+knitr::include_graphics("figures/7_5.png")
+```
+
+Interaction can result from a synergistic or antagonistic effect.  As an example, fish may not die instream due only to higher water temperatures, or to slightly higher copper concentrations, but combine the two and the result could be deadly.  This type of interrelation between factors results in a significant interaction effect.  For k factors there are (k−1) possible interaction terms between the factors.  Unless it is known ahead of time that interactions are not possible, interaction terms should always be included and tested for in multi-factor ANOVA models. 
+
+#### Assumptions for factorial ANOV
+
+Assumptions are the same as for a one-way ANOVA.  Departures from each treatment group mean µ~ij~ (every combination of factors A and B) are assumed normally distributed with identical variance.  This is a consequence of the ε~ij~, which are normally distributed and of variance σ2, being randomly distributed among the treatment groups.  The normality and constant variance assumptions can be checked by inspecting boxplots of the data for each treatment group.
+
+#### Computation
+The influences of factors A, B, and their interaction are evaluated separately by again partitioning the total sums of squares into component parts due to each factor.  After dividing by their respective degrees of freedom, the mean squares for factors A, B, and interaction are produced.  As with a one-way ANOVA, these are compared to the error mean square (MSE) using F-tests to determine their significance.
+
+sum of Squares  
+The equations for the sums of squares for factor A (SSA), factor B (SSB), interaction (SSI), and error, assuming constant sample size n per treatment group, are:
+
+\begin{equation}
+SSA = \sum^{a} \frac{(\sum^{b}\sum^{n}y)^{2}} {bn} - \frac{(\sum^{a}\sum^{b}\sum^{n}y)^{2}} {abn}    µ_{i}-µ\\
+SSB = \sum^{b} \frac{(\sum^{a}\sum^{n}y)^{2}} {an} - \frac{(\sum^{a}\sum^{b}\sum^{n}y)^{2}} {abn}    µ_{j}-µ\\  
+SSI  =    Total SS − SSA − SSB − SSE                                           µ_{ij} − (µ_{i} + µ_{j} ) + µ\\
+SSE = \sum^{a}\sum^{b}\sum^{n} (y)^{2} - \sum^{a}\sum^{b} \frac{(\sum^{n}y)^{2}} {n}  y_{ijk}-µ_{ij}\\  
+Total SS = \sum^{a}\sum^{b}\sum^{n} (y)^{2}- \frac{(\sum^{a}\sum^{b}\sum^{n}y)^{2}} {abn}   y_{ijk}-µ\\ 
+
+\end{equation}
+
+Mean Squares and the F-test  
+
+Dividing the sums of squares by their degrees of freedom produces the mean squares for factors A, B, interaction, and error as in the ANOVA table below.  If H~0~ is true and α~i~, β~j~, and αβ~ij~ all equal 0, all variation is simply around the overall mean µ.  The MSA, MSB, and MSI will then all be measures of the error variance, as is the MSE, and all three F-tests will have ratios not far from 1.  However when H~1~ is true, at least one of the mean squares in the numerators should be larger than the MSE, and the resulting F-ratio will be larger than the appropriate quantile of the F distribution.  When F is large, H~0~ can be rejected, and that influence be considered to significantly affect the magnitudes of the data at a level of risk equal to α.
+
+The two-factor ANOVA table is as follows when there is an equal number of observations for each treatment (all n~ij~ = n). 
+
+**Table here**  
+
+
+Example 2   
+Iron concentrations were measured at low flow in numerous small streams in the coal-producing areas of eastern Ohio (Helsel, 1983).  Each stream drains either an unmined area, a reclaimed coal mine, or an abandoned coal mine.  Each site is also underlain by either a sandstone or limestone formation.  Are iron concentrations influenced by upstream mining history, by the underlying rock type, or by both?
+
+There are several scenarios which would cause H0 to be rejected.  Factor A (say mining history) could be significant (α~i~≠ 0), but factor B insignificant.  Or factor B (rock type) could be significant (βj≠ 0), but not A.  Both factors could be significant (α~i~, β~j~ ≠ 0).  Both factors could be significant, plus an additional interaction effect because one or more treatment groups (say unreclaimed sandstone basins) exhibited much different iron concentrations than those expected from either influence alone (α~i~, β~j~, αβ~ij~ ≠ 0).  Finally, both factor A and B could be not significant (α~i~, β~j~ = 0) but concentrations be elevated for one specific treatment group (αβ~ij~ ≠ 0).  This would be interpreted as no overall mining  or rock type effect, but one combination of mining history and rock type would have differing mean concentrations. 
+
+Boxplots for a subset of the iron concentration data from Helsel (1983) are presented in **figure 7.6**.  Note the skewness, as well as the differences in variance as depicted by differing box heights.  A random subset was taken in order to produce equal sample sizes per treatment group, yet preserving the essential data characteristics.  The subset data are listed in **Appendix C5**.  In the section **7.2.2.5**, analysis of unequal sample sizes per treatment group will be presented and the entire iron data set analyzed.  
+
+There are six treatment groups, combining the three possible mining histories (unmined, abandoned mine, and reclaimed mine) and the two possible rock types (sandstone and limestone).  An analysis of variance conducted on this subset which has n=13 observations per treatment group produced the following ANOVA table.  Tested was the effect of mining history alone, rock type alone, and their interaction (Mine\*Rock).  A*B is a common abbreviation for the interaction between A and B.
+
+**Table here**   
+
+None of the three possible influences is significant at the α = 0.05 level, as their  p-values are all larger than 0.05.  However, the gross violation of the test's assumptions of normality and equal variance shown in the boxplots must be considered.  Perhaps the failure to reject H~0~ is due not to a lack of an influence evidenced in the data, but of the parametric test's lack of power to detect these influences because of the violation of test assumptions.  To determine whether this is so, the equivalent rank transformation test is performed.
+
+
+------------------------------------------------
+
+
+
+
+--------------------------------------------------
 
