@@ -376,9 +376,11 @@ rho and tau, whose p-values of 0.04 and 0.07 respectively did indicate an associ
 and x. Figure \@ref(fig:fig-8-4) provides an intuitive explanation of why r differs from rho and tau - - r is
 strongly affected by the one outlying observation, even though the overall trend is a linear one.  
 
-**Exercises**  
+## Exercises {-} 
  
-8.1 Are uranium concentrations correlated with total dissolved solids in the following
+### 8.1 {-}
+
+Are uranium concentrations correlated with total dissolved solids in the following
 groundwater samples? If so, describe the strength of the relationship.  
 
 |Uranium conc | TDS           | Uranium conc. | TDS     
@@ -397,8 +399,41 @@ groundwater samples? If so, describe the strength of the relationship.
 |1174.54      |10.1142        |1116.59        |7.2446
 |599.50       |0.7551
 
+````{r}
+library(data.table)
+library(ggplot2)
+source("./data/themes.R")
+source("./data/palettes.R")
+uranium_conc <- c(682.65, 819.12, 303.76, 1151.40, 582.42, 1043.39, 634.84, 1087.25, 113.51, 688.09, 1174.54, 599.50, 1240.81, 538.35, 607.75, 705.89, 1290.57, 526.09, 784.68, 953.14, 1149.31, 1074.22, 1116.59)
+
+tds <- c(0.9315, 1.9380, 0.2919, 11.9042, 1.5674, 2.0623, 3.8858, 0.9772, 1.9354, 0.4367, 10.1142, 0.7551, 6.8559, 0.4806, 1.1452, 6.0876, 10.8823, 0.1473, 2.6741, 3.0918, 0.7592, 3.7101, 7.2446)
+
+sampl <- data.table(uranium_conc, tds)
+print(sampl)
+
+ggplot(sampl, aes(tds, uranium_conc)) + 
+   geom_point() + 
+   theme_generic + 
+   labs(x = "TDS (ppb) ", y = "Uranium (mg/L)")
+
+#The plot of uranium versus total dissolved solids looks like it could be nonlinear near the 0 TDS boundary. So Spearman's rho was computed, and
+
+cor.test(tds, uranium_conc, "less", "spearman")
+
+````
+
+### 8.2 {-}
+
 8.2 Compute the other two correlation coefficients not chosen in Exercise 8.1. Are all
-coefficients equally appropriate?  
+coefficients equally appropriate? 
+
+````{r}
+cor.test(tds, uranium_conc, "less", "pearson")
+cor.test(tds, uranium_conc, "less", "kendall")
+
+
+````
+###  8.3 {-}
 
 8.3 For the data on Corbicula densities in the Tennesse River found in Appendix C8,
 compute Kendall's tau for all pairs of data in the same strata and season, but one year
